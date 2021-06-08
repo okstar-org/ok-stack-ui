@@ -17,6 +17,15 @@ const PROXY_CONFIG = {
       // proxyReq.setHeader('cookie', cookie);
     },
   },
+  '/api/**': {
+    target: 'http://ems-dev-api.hncstech.com.cn',
+    changeOrigin: true,
+    secure: false,
+    logLevel: 'debug',
+    "pathRewrite: {
+      "^/api": ""
+    }
+  }
 };
 
 module.exports = PROXY_CONFIG;

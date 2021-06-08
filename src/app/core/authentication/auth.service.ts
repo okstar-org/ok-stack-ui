@@ -12,7 +12,7 @@ import { guest } from './user';
 export class AuthService {
   private user$ = new BehaviorSubject<User>(guest);
 
-  private userReq$ = this.http.get<User>('/me');
+  private userReq$ = this.http.get<User>('/api/portal/admin/me');
 
   constructor(private http: HttpClient, private token: TokenService) {
     this.token
@@ -32,22 +32,23 @@ export class AuthService {
 
   login(email: string, password: string, rememberMe = false) {
     return this.http
-      .post<Token>('/auth/login', { email, password, remember_me: rememberMe })
+      .post<Token>('/api/portal/admin/passport/login', { email, password, remember_me: rememberMe })
       .pipe(
+        map((r: any) => r.payload.data),
         tap(token => this.token.set(token)),
         map(() => this.check())
       );
   }
 
   refresh() {
-    return this.http.post<Token>('/auth/refresh', {}).pipe(
+    return this.http.post<Token>('/api/portal/admin/passport/refresh', {}).pipe(
       tap(token => this.token.set(token, true)),
       map(() => this.check())
     );
   }
 
   logout() {
-    return this.http.post('/auth/logout', {}).pipe(
+    return this.http.post('/api/portal/admin/passport/logout', {}).pipe(
       tap(() => this.token.clear()),
       map(() => !this.check())
     );

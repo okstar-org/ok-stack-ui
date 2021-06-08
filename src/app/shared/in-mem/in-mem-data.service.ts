@@ -110,18 +110,18 @@ export class InMemDataService implements InMemoryDbService {
       });
     }
 
-    if (is(reqInfo, 'me')) {
-      return reqInfo.utils.createResponse$(() => {
-        const { headers, url } = reqInfo;
-        const user = getUserFromJWTToken(reqInfo.req as HttpRequest<any>);
+    // if (is(reqInfo, 'me')) {
+    //   return reqInfo.utils.createResponse$(() => {
+    //     const { headers, url } = reqInfo;
+    //     const user = getUserFromJWTToken(reqInfo.req as HttpRequest<any>);
 
-        if (!user) {
-          return { status: STATUS.UNAUTHORIZED, headers, url, body: {} };
-        }
+    //     if (!user) {
+    //       return { status: STATUS.UNAUTHORIZED, headers, url, body: {} };
+    //     }
 
-        return { status: STATUS.OK, headers, url, body: user };
-      });
-    }
+    //     return { status: STATUS.OK, headers, url, body: user };
+    //   });
+    // }
   }
 
   post(reqInfo: RequestInfo) {
