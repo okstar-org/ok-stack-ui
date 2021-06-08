@@ -22,7 +22,7 @@ const PROXY_CONFIG = {
     changeOrigin: true,
     secure: false,
     logLevel: 'debug',
-    "pathRewrite: {
+    pathRewrite: {
       "^/api": ""
     }
   }
