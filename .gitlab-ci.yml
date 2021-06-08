@@ -17,7 +17,7 @@ stages:
   - deploy
 
 cache:
-    policy: pull
+    # policy: pull
     key: "$CI_COMMIT_REF_NAME"
     paths:
       - dist/ng-matero

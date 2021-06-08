@@ -32,7 +32,12 @@ export class AuthService {
 
   login(email: string, password: string, rememberMe = false) {
     return this.http
-      .post<Token>('/api/portal/admin/passport/login', { email, password, remember_me: rememberMe })
+      .post<Token>('/api/portal/admin/passport/login', {
+        account: email,
+        password,
+        grantType: 'password',
+        remember_me: rememberMe,
+      })
       .pipe(
         map((r: any) => r.payload.data),
         tap(token => this.token.set(token)),
