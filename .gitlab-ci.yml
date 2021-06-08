@@ -57,11 +57,11 @@ job-install:
 #   <<: *templateDef
 #   script:
 #     - npm run unit
-job-clear:
-  stage: clear
-  <<: *templateDef
-  script:
-    - npm run clean
+# job-clear:
+#   stage: clear
+#   <<: *templateDef
+#   script:
+#     - npm run clean
 
 job-build-pre:
   stage: build
