@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: '',
+  baseUrl: 'http://ems-dev-api.hncstech.com.cn',
   useHash: false,
   hmr: false,
 };
