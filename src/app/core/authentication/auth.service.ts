@@ -17,7 +17,10 @@ export class AuthService {
   constructor(private http: HttpClient, private token: TokenService) {
     this.token
       .change()
-      .pipe(switchMap(() => (this.check() ? this.userReq$ : of(guest))))
+      .pipe(
+        switchMap(() => (this.check() ? this.userReq$ : of(guest))),
+        map((r: any) => this.data(r))
+      )
       .subscribe(user => this.user$.next(Object.assign({}, guest, user)));
 
     this.token
@@ -39,10 +42,14 @@ export class AuthService {
         remember_me: rememberMe,
       })
       .pipe(
-        map((r: any) => r.payload.data),
+        map((r: any) => this.data(r)),
         tap(token => this.token.set(token)),
         map(() => this.check())
       );
+  }
+
+  data(r: any) {
+    return r.payload.data;
   }
 
   refresh() {
