@@ -75,8 +75,8 @@
     "menu-level.level-1-1.level-2-1.level-3-1.level-4-1": "Level 4.1",
     "permissions": "Permissions",
     "permissions.test": "Permission Test",
-    "menu.crm": "CRM",
-    "menu.crm.saleslead": "Sales Leads"
+    "crm": "CRM",
+    "crm.saleslead": "Sales Leads"
   },
   "validations": {
     "required": "This field is required",
