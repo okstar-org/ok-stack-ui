@@ -1,6 +1,19 @@
 {
   "menu": [
     {
+      "route": "crm",
+      "name": "crm",
+      "type": "sub",
+      "icon": "crm",
+      "children": [
+        {
+          "route": "saleslead",
+          "name": "saleslead",
+          "type": "link"
+        }
+      ]
+    },
+    {
       "route": "dashboard",
       "name": "dashboard",
       "type": "link",

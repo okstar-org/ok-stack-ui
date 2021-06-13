@@ -16,8 +16,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: 'crm', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'crm', loadChildren: () => import('./crm/crm.module').then(m => m.CrmModule) },
       {
         path: 'design',
         loadChildren: () => import('./design/design.module').then(m => m.DesignModule),

@@ -1,0 +1,77 @@
+<breadcrumb></breadcrumb>
+
+<div fxLayout="row wrap" class="matero-row">
+  <div fxFlex="100" class="matero-col">
+    <mat-card>
+      <!-- <mat-card-title>Form Inline</mat-card-title> -->
+      <form [formGroup]="group">
+        <mat-form-field class="m-r-8">
+          <input matInput placeholder="关键词"
+          [(ngModel)]="q.keyword" name="keyword"
+          [ngModelOptions]="{standalone:true}">
+        </mat-form-field>
+
+        <mat-form-field class="m-r-8">
+          <mat-label>线索来源</mat-label>
+          <mat-select [(ngModel)]="q.from" name="from"
+            [ngModelOptions]="{standalone:true}">
+            <mat-option value="0">全部</mat-option>
+            <mat-option value="1">电话营销</mat-option>
+            <mat-option value="2">主动来电</mat-option>
+            <mat-option value="3">客户介绍</mat-option>
+            <mat-option value="4">朋友介绍</mat-option>
+            <mat-option value="5">独立开发</mat-option>
+            <mat-option value="6">网络搜索</mat-option>
+            <mat-option value="7">广告杂志</mat-option>
+            <mat-option value="8">展会促销</mat-option>
+            <mat-option value="9">其它途径</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="m-r-8">
+          <mat-label>线索状态</mat-label>
+          <mat-select [(ngModel)]="q.state" name="state"
+          [ngModelOptions]="{standalone:true}">
+            <mat-option value="0">全部</mat-option>
+            <mat-option value="1">初步意向</mat-option>
+            <mat-option value="2">下次邀约</mat-option>
+            <mat-option value="3">已转客户</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="m-r-8">
+          <input matInput placeholder="归属人员"
+          [(ngModel)]="q.owner" name="owner"
+          [ngModelOptions]="{standalone:true}">
+        </mat-form-field>
+
+        <mat-form-field class="m-r-8">
+          <mat-placeholder>最后跟进</mat-placeholder>
+          <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
+          <mat-datetimepicker #datetimePicker [openOnFocus]="true"
+            startView="month" [timeInterval]="5"
+            type="date"></mat-datetimepicker>
+          <input  [matDatetimepicker]="datetimePicker"
+                 autocomplete="false" formControlName="date"
+                 matInput required>
+       </mat-form-field>
+
+        <button mat-raised-button color="primary">Search</button>
+      </form>
+
+    </mat-card>
+
+    <mat-card>
+      <mtx-grid [data]="list"
+          [columns]="columns"
+          [length]="total"
+          [loading]="isLoading"
+          [pageOnFront]="false"
+          [pageIndex]="q.page"
+          [pageSize]="q.per_page"
+          [pageSizeOptions]="[5,10,20]">
+      </mtx-grid>
+    </mat-card>
+  </div>
+</div>
+
