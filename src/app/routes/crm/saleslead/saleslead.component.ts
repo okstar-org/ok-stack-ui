@@ -42,10 +42,10 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     owner: '',
     state: '',
     from: '',
-    sort: 'stars',
+    sort: 'id',
     order: 'desc',
-    page: 0,
-    per_page: 10,
+    page: -1,
+    size: 10,
   };
   get params() {
     const p = Object.assign({}, this.q);
@@ -55,12 +55,13 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   columns: MtxGridColumn[] = [
     {
       header: '客户名称',
-      field: 'name',
-      formatter: (data: any) => `<a href="${data.html_url}" target="_blank">${data.name}</a>`,
+      field: 'customerName',
+      formatter: (data: any) =>
+        `<a href="${data.html_url}" target="_blank">${data.customerName}</a>`,
     },
-    { header: '联系人姓名', field: 'owner.login' },
-    { header: '手机号码', field: 'owner.avatar_url', type: 'image' },
-    { header: '归属人员', field: 'description', width: '300px' },
+    { header: '联系人姓名', field: 'contactName' },
+    { header: '手机号码', field: 'mobilePhone', type: 'image' },
+    { header: '归属人员', field: 'landPhone', width: '300px' },
     { header: '线索状态', field: 'stargazers_count', type: 'number' },
     { header: '最后跟进', field: 'forks_count', type: 'number' },
     { header: '未跟进天数', field: 'score', type: 'number' },
@@ -94,10 +95,10 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       owner: '',
       state: '',
       from: '',
-      sort: 'stars',
+      sort: 'id',
       order: 'desc',
       page: 0,
-      per_page: 10,
+      size: 10,
       date: [null, Validators.required],
     });
 
@@ -115,7 +116,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.getData();
+    this.getData();
   }
 
   ngOnDestroy() {
@@ -127,8 +128,8 @@ export class SalesleadComponent implements OnInit, OnDestroy {
 
     this.salesleadSrv.getData(this.params).subscribe(
       res => {
-        this.list = res.items;
-        this.total = res.total_count;
+        this.list = res.data.content;
+        this.total = res.data.totalElements;
         this.isLoading = false;
         this.cdr.detectChanges();
       },
@@ -145,7 +146,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
 
   getNextPage(e: PageEvent) {
     this.q.page = e.pageIndex;
-    this.q.per_page = e.pageSize;
+    this.q.size = e.pageSize;
     this.getData();
   }
 }

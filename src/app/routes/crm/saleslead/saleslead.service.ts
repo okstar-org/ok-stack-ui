@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map, share, switchMap, tap } from 'rxjs/operators';
 
 export interface RepoSearchList {
-  incomplete_results: boolean;
-  items: any[];
-  total_count: number;
+  data: any;
+  extra: any;
 }
 
 @Injectable()
@@ -13,6 +13,9 @@ export class SalesleadService {
   constructor(private http: HttpClient) {}
 
   getData(params = {}): Observable<RepoSearchList> {
-    return this.http.get<RepoSearchList>('/api/portal/crm/saleslead/page', { params });
+    console.log('getData', params);
+    return this.http
+      .get<RepoSearchList>('/api/portal/crm/saleslead/page', { params })
+      .pipe(map((r: any) => r.payload));
   }
 }
