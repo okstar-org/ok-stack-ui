@@ -61,10 +61,10 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     },
     { header: '联系人姓名', field: 'contactName' },
     { header: '手机号码', field: 'mobilePhone', type: 'image' },
-    { header: '归属人员', field: 'landPhone', width: '300px' },
-    { header: '线索状态', field: 'stargazers_count', type: 'number' },
-    { header: '最后跟进', field: 'forks_count1', type: 'number' },
-    { header: '未跟进天数', field: 'score', type: 'number' },
+    { header: '归属人员', field: 'ownerName', width: '300px' },
+    { header: '线索状态', field: 'leadState', type: 'number' },
+    { header: '最后跟进', field: 'lastFollowUpTime', type: 'number' },
+    { header: '未跟进天数', field: 'unFollowUpDays', type: 'number' },
     { header: '操作', field: 'open_issues', type: 'number' },
   ];
 
