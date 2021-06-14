@@ -60,7 +60,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
         `<a href="${data.html_url}" target="_blank">${data.customerName}</a>`,
     },
     { header: '联系人姓名', field: 'contactName' },
-    { header: '手机号码', field: 'mobilePhone', type: 'image' },
+    { header: '手机号码', field: 'mobilePhone' },
     { header: '归属人员', field: 'ownerName', width: '300px' },
     { header: '线索状态', field: 'leadState', type: 'number' },
     { header: '最后跟进', field: 'lastFollowUpTime', type: 'number' },
