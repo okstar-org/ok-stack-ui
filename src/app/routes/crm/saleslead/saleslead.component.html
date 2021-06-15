@@ -69,7 +69,9 @@
           [pageOnFront]="false"
           [pageIndex]="q.page"
           [pageSize]="q.size"
-          [pageSizeOptions]="[5,10,20]">
+          [pageSizeOptions]="[5,10,20]"
+          (page)="getNextPage($event)"
+          >
       </mtx-grid>
     </mat-card>
   </div>

@@ -44,12 +44,12 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     from: '',
     sort: 'id',
     order: 'desc',
-    page: -1,
+    page: 0,
     size: 10,
   };
   get params() {
     const p = Object.assign({}, this.q);
-    p.page += 1;
+    // p.page += 1;
     return p;
   }
   columns: MtxGridColumn[] = [
@@ -62,10 +62,57 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     { header: '联系人姓名', field: 'contactName' },
     { header: '手机号码', field: 'mobilePhone' },
     { header: '归属人员', field: 'ownerName', width: '300px' },
-    { header: '线索状态', field: 'leadState', type: 'number' },
-    { header: '最后跟进', field: 'lastFollowUpTime', type: 'number' },
+    { header: '线索状态', field: 'leadState' },
+    { header: '最后跟进', field: 'lastFollowUpTime', type: 'date' },
     { header: '未跟进天数', field: 'unFollowUpDays', type: 'number' },
-    { header: '操作', field: 'open_issues', type: 'number' },
+    {
+      header: '操作',
+      field: 'operation',
+      minWidth: 220,
+      width: '220px',
+      pinned: 'right',
+      type: 'button',
+      buttons: [
+        {
+          type: 'icon',
+          icon: 'chat',
+          text: '跟进',
+          popTitle: '跟进',
+          tooltip: '跟进',
+        },
+        {
+          color: 'primary',
+          icon: 'edit',
+          text: this.translate.stream('table_kitchen_sink.edit'),
+          tooltip: this.translate.stream('table_kitchen_sink.edit'),
+          pop: true,
+          popTitle: this.translate.stream('table_kitchen_sink.edit'),
+          popCloseText: this.translate.stream('table_kitchen_sink.edit'),
+          popOkText: this.translate.stream('table_kitchen_sink.ok'),
+        },
+        {
+          color: 'warn',
+          icon: 'delete',
+          text: this.translate.stream('table_kitchen_sink.delete'),
+          tooltip: this.translate.stream('table_kitchen_sink.delete'),
+          pop: true,
+          popTitle: this.translate.stream('table_kitchen_sink.confirm_delete'),
+          popCloseText: this.translate.stream('table_kitchen_sink.close'),
+          popOkText: this.translate.stream('table_kitchen_sink.ok'),
+          // click: record => this.delete(record),
+        },
+        {
+          color: 'accent',
+          icon: 'arrow_upward',
+          text: '置顶',
+          tooltip: '置顶',
+          pop: true,
+          popTitle: this.translate.stream('table_kitchen_sink.confirm_delete'),
+          popCloseText: this.translate.stream('table_kitchen_sink.close'),
+          popOkText: this.translate.stream('table_kitchen_sink.ok'),
+        },
+      ],
+    },
   ];
 
   constructor(
@@ -147,6 +194,11 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   getNextPage(e: PageEvent) {
     this.q.page = e.pageIndex;
     this.q.size = e.pageSize;
+    this.getData();
+  }
+
+  search() {
+    this.q.page = 0;
     this.getData();
   }
 }
