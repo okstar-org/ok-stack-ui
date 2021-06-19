@@ -27,6 +27,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemDataService } from './shared/in-mem/in-mem-data.service';
 import { BASE_URL } from '@core/interceptors/base-url-interceptor';
 import { environment } from '@env/environment';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 @NgModule({
   declarations: [AppComponent],
@@ -52,6 +53,11 @@ import { environment } from '@env/environment';
     HttpClientInMemoryWebApiModule.forRoot(InMemDataService, {
       dataEncapsulation: false,
       passThruUnknownUrl: true,
+    }),
+    LoggerModule.forRoot({
+      serverLoggingUrl: '/api/logs',
+      level: NgxLoggerLevel.DEBUG,
+      serverLogLevel: NgxLoggerLevel.ERROR,
     }),
   ],
   providers: [

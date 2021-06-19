@@ -1,6 +1,25 @@
+export interface Header {
+  cts: string;
+  sts: string;
+  traceId: string;
+  status: {
+    code: number;
+    text: string;
+  };
+}
+
+export interface Payload {
+  data: any;
+  extra: any;
+}
+
+export interface R {
+  header: Header;
+  payload: Payload;
+}
+
 export interface User {
   [propName: string]: any;
-
   id: number | string | null;
   name?: string;
   email?: string;

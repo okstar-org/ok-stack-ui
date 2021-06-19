@@ -8,12 +8,14 @@ import {
 import { SalesleadService } from './saleslead.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatDatetimepickerFilterType } from '@mat-datetimepicker/core';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { MtxGridColumn } from '@ng-matero/extensions';
 import { PageEvent } from '@angular/material/paginator';
+import { AddComponent } from './dialog/add/add.component';
 
 @Component({
   selector: 'app-saleslead',
@@ -120,7 +122,8 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private dateAdapter: DateAdapter<any>,
     private translate: TranslateService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    public dialog: MatDialog
   ) {
     this.today = moment.utc();
     this.tomorrow = moment.utc().date(moment.utc().date() + 1);
@@ -164,10 +167,14 @@ export class SalesleadComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getData();
+
+    // setTimeout(()=>{
+    //   this.openDialogAdd()
+    // },3000)
   }
 
   ngOnDestroy() {
-    this.translateSubscription.unsubscribe();
+    // this.translateSubscription.unsubscribe();
   }
 
   getData() {
@@ -200,5 +207,9 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   search() {
     this.q.page = 0;
     this.getData();
+  }
+
+  openDialogAdd() {
+    this.dialog.open(AddComponent);
   }
 }

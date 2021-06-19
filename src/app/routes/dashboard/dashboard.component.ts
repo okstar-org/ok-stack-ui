@@ -1,3 +1,4 @@
+import { NGXLogger } from 'ngx-logger';
 import {
   Component,
   OnInit,
@@ -43,12 +44,13 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private ngZone: NgZone,
     private dashboardSrv: DashboardService,
-    private settings: SettingsService
+    private settings: SettingsService,
+    private logger: NGXLogger
   ) {}
 
   ngOnInit() {
     this.notifySubscription = this.settings.notify.subscribe(res => {
-      console.log(res);
+      this.logger.debug(res);
     });
   }
 

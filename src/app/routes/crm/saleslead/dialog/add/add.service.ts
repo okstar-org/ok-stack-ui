@@ -4,19 +4,18 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, share, switchMap, tap } from 'rxjs/operators';
 
-export interface RepoSearchList {
-  data: any;
-  extra: any;
-}
+export interface DialogAddItem {}
 
-@Injectable()
-export class SalesleadService {
+@Injectable({
+  providedIn: 'root',
+})
+export class AddService {
   constructor(private logger: NGXLogger, private http: HttpClient) {}
 
-  getData(params = {}): Observable<RepoSearchList> {
-    this.logger.debug('getData', params);
+  postData(params = {}): Observable<DialogAddItem> {
+    this.logger.debug('post', params);
     return this.http
-      .get<RepoSearchList>('/api/portal/crm/saleslead/page', { params })
+      .post<DialogAddItem>('/api/portal/crm/saleslead/save', params)
       .pipe(map((r: any) => r.payload));
   }
 }

@@ -1,9 +1,10 @@
+import { NGXLogger } from 'ngx-logger';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map, share, switchMap, tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
-import { Token, User } from './interface';
+import { R, Token, User } from './interface';
 import { guest } from './user';
 
 @Injectable({
@@ -12,14 +13,14 @@ import { guest } from './user';
 export class AuthService {
   private user$ = new BehaviorSubject<User>(guest);
 
-  private userReq$ = this.http.get<User>('/api/portal/admin/me');
+  private userReq$ = this.http.get<R>('/api/portal/admin/me');
 
-  constructor(private http: HttpClient, private token: TokenService) {
+  constructor(private logger: NGXLogger, private http: HttpClient, private token: TokenService) {
     this.token
       .change()
       .pipe(
         switchMap(() => (this.check() ? this.userReq$ : of(guest))),
-        map((r: any) => this.data(r))
+        map((r: R) => this.payload(r))
       )
       .subscribe(user => this.user$.next(Object.assign({}, guest, user)));
 
@@ -35,25 +36,27 @@ export class AuthService {
 
   login(email: string, password: string, rememberMe = false) {
     return this.http
-      .post<Token>('/api/portal/admin/passport/login', {
+      .post<R>('/api/portal/admin/passport/login', {
         account: email,
         password,
         grantType: 'password',
         remember_me: rememberMe,
       })
       .pipe(
-        map((r: any) => this.data(r)),
+        map((r: R) => this.payload(r)),
         tap(token => this.token.set(token)),
         map(() => this.check())
       );
   }
 
-  data(r: any) {
-    return r.payload.data;
+  payload(r: R): Token {
+    this.logger.debug('r', r);
+    return r.payload.data as Token;
   }
 
   refresh() {
-    return this.http.post<Token>('/api/portal/admin/passport/refresh', {}).pipe(
+    return this.http.post<R>('/api/portal/admin/passport/refresh', {}).pipe(
+      map((r: R) => this.payload(r)),
       tap(token => this.token.set(token, true)),
       map(() => this.check())
     );

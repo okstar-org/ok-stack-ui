@@ -4,10 +4,11 @@ import { SharedModule } from '@shared/shared.module';
 import { SalesleadComponent } from './saleslead/saleslead.component';
 
 import { crmRoutes } from './crm.routing';
+import { AddComponent } from './saleslead/dialog/add/add.component';
 
 @NgModule({
-  declarations: [SalesleadComponent],
+  declarations: [SalesleadComponent, AddComponent],
   imports: [CommonModule, SharedModule, crmRoutes],
-  entryComponents: [],
+  entryComponents: [AddComponent],
 })
 export class CrmModule {}
