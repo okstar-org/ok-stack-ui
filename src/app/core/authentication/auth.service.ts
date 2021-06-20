@@ -32,7 +32,9 @@ export class AuthService {
 
   check() {
     this.logger.debug('check...');
-    return this.token.valid();
+    const v = this.token.valid();
+    this.logger.debug('check...', v);
+    return v;
   }
 
   login(email: string, password: string, rememberMe = false) {

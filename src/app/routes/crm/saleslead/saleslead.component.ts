@@ -1,3 +1,4 @@
+import { NGXLogger } from 'ngx-logger';
 import {
   Component,
   OnInit,
@@ -87,7 +88,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
           popTitle: this.translate.stream('table_kitchen_sink.confirm_delete'),
           popCloseText: this.translate.stream('table_kitchen_sink.close'),
           popOkText: this.translate.stream('table_kitchen_sink.ok'),
-          // click: record => this.delete(record),
+          click: record => this.delete(record),
         },
         {
           color: 'accent',
@@ -104,6 +105,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   ];
 
   constructor(
+    private logger: NGXLogger,
     private salesleadSrv: SalesleadService,
     private fb: FormBuilder,
     private dateAdapter: DateAdapter<any>,
@@ -126,9 +128,9 @@ export class SalesleadComponent implements OnInit, OnDestroy {
           return date.minute() % 2 === 0;
       }
     };
-    this.group = fb.group({
+    this.group = this.fb.group({
       keyword: '',
-      ownerName: [],
+      ownerName: '',
       leadState: '',
       leadFrom: '',
       sort: 'id,desc',
@@ -229,5 +231,12 @@ export class SalesleadComponent implements OnInit, OnDestroy {
 
   openDialogAdd() {
     this.dialog.open(AddComponent);
+  }
+
+  delete(record) {
+    this.logger.info('record', record);
+    this.salesleadSrv.delete(record).subscribe(r => {
+      this.logger.debug('==>', r);
+    });
   }
 }
