@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, share, switchMap, tap } from 'rxjs/operators';
+import { CRM_API } from 'app/routes/crm/api-url';
 
 export interface DialogAddItem {}
 
@@ -15,7 +16,7 @@ export class AddService {
   postData(params = {}): Observable<DialogAddItem> {
     this.logger.debug('post', params);
     return this.http
-      .post<DialogAddItem>('/api/portal/crm/saleslead/save', params)
+      .post<DialogAddItem>(CRM_API.saleslead.save, params)
       .pipe(map((r: any) => r.payload));
   }
 }

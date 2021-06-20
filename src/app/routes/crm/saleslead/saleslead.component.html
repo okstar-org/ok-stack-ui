@@ -7,14 +7,12 @@
       <form [formGroup]="group">
         <mat-form-field class="m-r-8">
           <input matInput placeholder="关键词"
-          [(ngModel)]="q.keyword" name="keyword"
-          [ngModelOptions]="{standalone:true}">
+          formControlName="keyword" name="keyword">
         </mat-form-field>
 
         <mat-form-field class="m-r-8">
           <mat-label>线索来源</mat-label>
-          <mat-select [(ngModel)]="q.from" name="from"
-            [ngModelOptions]="{standalone:true}">
+          <mat-select formControlName="leadFrom" name="leadFrom">
             <mat-option value="0">全部</mat-option>
             <mat-option value="1">电话营销</mat-option>
             <mat-option value="2">主动来电</mat-option>
@@ -30,8 +28,7 @@
 
         <mat-form-field class="m-r-8">
           <mat-label>线索状态</mat-label>
-          <mat-select [(ngModel)]="q.state" name="state"
-          [ngModelOptions]="{standalone:true}">
+          <mat-select formControlName="leadState" name="state">
             <mat-option value="0">全部</mat-option>
             <mat-option value="1">初步意向</mat-option>
             <mat-option value="2">下次邀约</mat-option>
@@ -41,8 +38,7 @@
 
         <mat-form-field class="m-r-8">
           <input matInput placeholder="归属人员"
-          [(ngModel)]="q.owner" name="owner"
-          [ngModelOptions]="{standalone:true}">
+          formControlName="ownerName" name="ownerName">
         </mat-form-field>
 
         <mat-form-field class="m-r-8">
@@ -53,10 +49,11 @@
             type="date"></mat-datetimepicker>
           <input  [matDatetimepicker]="datetimePicker"
                  autocomplete="false" formControlName="date"
-                 matInput required>
+                 matInput>
        </mat-form-field>
 
-        <button mat-raised-button color="primary">Search</button>
+        <button mat-raised-button color="primary" (click)="search()">Search</button>
+        <button mat-raised-button color="primary" (click)="reset()" style="margin-left: 1em;">Reset</button>
       </form>
 
     </mat-card>
@@ -71,9 +68,10 @@
           [length]="total"
           [loading]="isLoading"
           [pageOnFront]="false"
-          [pageIndex]="q.page"
-          [pageSize]="q.size"
+          [pageIndex]="pageIndex"
+          [pageSize]="pageSize"
           [pageSizeOptions]="[5,10,20]"
+          (sortChange)="changeSort($event)"
           (page)="getNextPage($event)"
           >
       </mtx-grid>

@@ -13,7 +13,7 @@ import { guest } from './user';
 export class AuthService {
   private user$ = new BehaviorSubject<User>(guest);
 
-  private userReq$ = this.http.get<R>('/api/portal/admin/me');
+  private userReq$ = this.http.get<R>('/api/portal/sys/me');
 
   constructor(private logger: NGXLogger, private http: HttpClient, private token: TokenService) {
     this.token
@@ -31,12 +31,13 @@ export class AuthService {
   }
 
   check() {
+    this.logger.debug('check...');
     return this.token.valid();
   }
 
   login(email: string, password: string, rememberMe = false) {
     return this.http
-      .post<R>('/api/portal/admin/passport/login', {
+      .post<R>('/api/portal/sys/passport/login', {
         account: email,
         password,
         grantType: 'password',
@@ -55,7 +56,7 @@ export class AuthService {
   }
 
   refresh() {
-    return this.http.post<R>('/api/portal/admin/passport/refresh', {}).pipe(
+    return this.http.post<R>('/api/portal/sys/passport/refresh', {}).pipe(
       map((r: R) => this.payload(r)),
       tap(token => this.token.set(token, true)),
       map(() => this.check())
@@ -63,7 +64,7 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post('/api/portal/admin/passport/logout', {}).pipe(
+    return this.http.post('/api/portal/sys/passport/logout', {}).pipe(
       tap(() => this.token.clear()),
       map(() => !this.check())
     );

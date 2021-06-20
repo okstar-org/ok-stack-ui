@@ -8,6 +8,7 @@ import { ErrorInterceptor } from './error-interceptor';
 import { LoggingInterceptor } from './logging-interceptor';
 import { SettingsInterceptor } from './settings-interceptor';
 import { SanctumInterceptor } from './sanctum-interceptor';
+import { ParamsInterceptor } from './params-interceptor';
 
 /** Http interceptor providers in outside-in order */
 export const httpInterceptorProviders = [
@@ -19,4 +20,5 @@ export const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: ParamsInterceptor, multi: true },
 ];

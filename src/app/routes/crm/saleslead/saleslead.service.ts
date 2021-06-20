@@ -2,7 +2,9 @@ import { NGXLogger } from 'ngx-logger';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, share, switchMap, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+
+import { CRM_API } from './../api-url';
 
 export interface RepoSearchList {
   data: any;
@@ -16,7 +18,7 @@ export class SalesleadService {
   getData(params = {}): Observable<RepoSearchList> {
     this.logger.debug('getData', params);
     return this.http
-      .get<RepoSearchList>('/api/portal/crm/saleslead/page', { params })
+      .get<RepoSearchList>(CRM_API.saleslead.page, { params })
       .pipe(map((r: any) => r.payload));
   }
 }

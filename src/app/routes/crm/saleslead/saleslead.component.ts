@@ -39,21 +39,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   list = [];
   total = 0;
   isLoading = true;
-  q = {
-    keyword: '',
-    owner: '',
-    state: '',
-    from: '',
-    sort: 'id',
-    order: 'desc',
-    page: 0,
-    size: 10,
-  };
-  get params() {
-    const p = Object.assign({}, this.q);
-    // p.page += 1;
-    return p;
-  }
+
   columns: MtxGridColumn[] = [
     {
       header: '客户名称',
@@ -61,9 +47,9 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       formatter: (data: any) =>
         `<a href="${data.html_url}" target="_blank">${data.customerName}</a>`,
     },
-    { header: '联系人姓名', field: 'contactName' },
+    { header: '联系人姓名', field: 'contactName', sortable: true },
     { header: '手机号码', field: 'mobilePhone' },
-    { header: '归属人员', field: 'ownerName', width: '300px' },
+    { header: '归属人员', field: 'ownerName' },
     { header: '线索状态', field: 'leadState' },
     { header: '最后跟进', field: 'lastFollowUpTime', type: 'date' },
     { header: '未跟进天数', field: 'unFollowUpDays', type: 'number' },
@@ -142,14 +128,13 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     };
     this.group = fb.group({
       keyword: '',
-      owner: '',
-      state: '',
-      from: '',
-      sort: 'id',
-      order: 'desc',
+      ownerName: [],
+      leadState: '',
+      leadFrom: '',
+      sort: 'id,desc',
       page: 0,
       size: 10,
-      date: [null, Validators.required],
+      date: [null],
     });
 
     // this.group = fb.group({
@@ -198,14 +183,47 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     );
   }
 
+  get params() {
+    const p = Object.assign({}, this.group.value);
+    // p.page += 1;
+    return p;
+  }
+
+  get pageIndex() {
+    return this.group.get('page').value;
+  }
+
+  get pageSize() {
+    return this.group.get('size').value;
+  }
+
   getNextPage(e: PageEvent) {
-    this.q.page = e.pageIndex;
-    this.q.size = e.pageSize;
+    this.group.get('page').setValue(e.pageIndex);
+    this.group.get('size').setValue(e.pageSize);
     this.getData();
   }
 
+  resetPage() {
+    this.group.get('page').setValue(0);
+    this.group.get('size').setValue(10);
+  }
+
+  changeSelect(e: any) {
+    console.log(e);
+  }
+
+  changeSort(e: any) {
+    console.log(e);
+  }
+
   search() {
-    this.q.page = 0;
+    this.group.get('page').setValue(0);
+    this.getData();
+  }
+
+  reset() {
+    this.group.reset();
+    this.resetPage();
     this.getData();
   }
 

@@ -13,6 +13,7 @@ export class AddComponent implements OnInit {
   constructor(private logger: NGXLogger, private fb: FormBuilder, private addSrv: AddService) {
     this.addForm = fb.group({
       isCreateFollowUpTask: false,
+      customerName: '',
       owner: '',
       state: '',
       from: '',
