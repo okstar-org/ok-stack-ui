@@ -13,7 +13,7 @@
         <mat-form-field class="m-r-8">
           <mat-label>线索来源</mat-label>
           <mat-select formControlName="leadFrom" name="leadFrom">
-            <mat-option value="0">全部</mat-option>
+            <mat-option>全部</mat-option>
             <mat-option value="1">电话营销</mat-option>
             <mat-option value="2">主动来电</mat-option>
             <mat-option value="3">客户介绍</mat-option>
@@ -29,10 +29,10 @@
         <mat-form-field class="m-r-8">
           <mat-label>线索状态</mat-label>
           <mat-select formControlName="leadState" name="state">
-            <mat-option value="0">全部</mat-option>
-            <mat-option value="1">初步意向</mat-option>
-            <mat-option value="2">下次邀约</mat-option>
-            <mat-option value="3">已转客户</mat-option>
+            <mat-option >全部</mat-option>
+            <mat-option value="InitialIntention">初步意向</mat-option>
+            <mat-option value="NextInvite">下次邀约</mat-option>
+            <mat-option value="IsCustomer">已转客户</mat-option>
           </mat-select>
         </mat-form-field>
 

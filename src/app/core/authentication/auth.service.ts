@@ -19,8 +19,9 @@ export class AuthService {
     this.token
       .change()
       .pipe(
-        switchMap(() => (this.check() ? this.userReq$ : of(guest))),
-        map((r: R) => this.payload(r))
+        switchMap(() =>
+          this.check() ? this.userReq$.pipe(map((r: R) => this.payload(r))) : of(guest)
+        )
       )
       .subscribe(user => this.user$.next(Object.assign({}, guest, user)));
 
@@ -52,9 +53,9 @@ export class AuthService {
       );
   }
 
-  payload(r: R): Token {
+  payload(r: R) {
     this.logger.debug('r', r);
-    return r.payload.data as Token;
+    return r.payload.data;
   }
 
   refresh() {
