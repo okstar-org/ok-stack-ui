@@ -1,5 +1,7 @@
+import { DTO } from './../../saleslead.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddService } from './add.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 
@@ -10,14 +12,16 @@ import { NGXLogger } from 'ngx-logger';
 export class AddComponent implements OnInit {
   addForm: FormGroup;
 
-  constructor(private logger: NGXLogger, private fb: FormBuilder, private addSrv: AddService) {
-    this.addForm = fb.group({
-      isCreateFollowUpTask: false,
-      customerName: '',
-      owner: '',
-      state: '',
-      from: '',
-    });
+  @Output() emitter = new EventEmitter<void>();
+
+  constructor(
+    private logger: NGXLogger,
+    private fb: FormBuilder,
+    private addSrv: AddService,
+    @Inject(MAT_DIALOG_DATA) public data: DTO
+  ) {
+    this.logger.debug('data:', data);
+    this.addForm = fb.group(data);
   }
 
   ngOnInit(): void {}

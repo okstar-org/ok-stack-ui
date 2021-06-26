@@ -18,7 +18,8 @@ const PROXY_CONFIG = {
     },
   },
   '/api/**': {
-    target: 'http://ems-dev-api.hncstech.com.cn',
+    target: 'http://localhost:32080',
+    // target: 'http://ems-dev-api.hncstech.com.cn',
     changeOrigin: true,
     secure: false,
     logLevel: 'debug',

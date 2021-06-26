@@ -5,11 +5,12 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  EventEmitter,
 } from '@angular/core';
-import { SalesleadService } from './saleslead.service';
+import { DTO, SalesleadService } from './saleslead.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDatetimepickerFilterType } from '@mat-datetimepicker/core';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
@@ -74,10 +75,11 @@ export class SalesleadComponent implements OnInit, OnDestroy {
           icon: 'edit',
           text: this.translate.stream('table_kitchen_sink.edit'),
           tooltip: this.translate.stream('table_kitchen_sink.edit'),
-          pop: true,
-          popTitle: this.translate.stream('table_kitchen_sink.edit'),
-          popCloseText: this.translate.stream('table_kitchen_sink.edit'),
-          popOkText: this.translate.stream('table_kitchen_sink.ok'),
+          // pop: true,
+          // popTitle: this.translate.stream('table_kitchen_sink.edit'),
+          // popCloseText: this.translate.stream('table_kitchen_sink.edit'),
+          // popOkText: this.translate.stream('table_kitchen_sink.ok'),
+          click: record => this.edit(record),
         },
         {
           color: 'warn',
@@ -95,10 +97,11 @@ export class SalesleadComponent implements OnInit, OnDestroy {
           icon: 'arrow_upward',
           text: '置顶',
           tooltip: '置顶',
-          pop: true,
-          popTitle: this.translate.stream('table_kitchen_sink.confirm_delete'),
-          popCloseText: this.translate.stream('table_kitchen_sink.close'),
-          popOkText: this.translate.stream('table_kitchen_sink.ok'),
+          // pop: true,
+          // popTitle: this.translate.stream('table_kitchen_sink.confirm_delete'),
+          // popCloseText: this.translate.stream('table_kitchen_sink.close'),
+          // popOkText: this.translate.stream('table_kitchen_sink.ok'),
+          click: record => this.top(record),
         },
       ],
     },
@@ -133,7 +136,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       ownerName: '',
       leadState: '',
       leadFrom: '',
-      sort: 'id,desc',
+      sort: 'ordinal,desc',
       page: 0,
       size: 10,
       date: [null],
@@ -187,7 +190,6 @@ export class SalesleadComponent implements OnInit, OnDestroy {
 
   get params() {
     const p = Object.assign({}, this.group.value);
-    // p.page += 1;
     return p;
   }
 
@@ -197,6 +199,14 @@ export class SalesleadComponent implements OnInit, OnDestroy {
 
   get pageSize() {
     return this.group.get('size').value;
+  }
+
+  delete(record) {
+    this.logger.info('record', record);
+    this.salesleadSrv.delete(record).subscribe(r => {
+      this.logger.debug('delete==>', r);
+      this.getData();
+    });
   }
 
   getNextPage(e: PageEvent) {
@@ -218,6 +228,13 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     console.log(e);
   }
 
+  top(e: any) {
+    this.salesleadSrv.top(e).subscribe(r => {
+      this.logger.debug('top==>', r);
+      this.getData();
+    });
+  }
+
   search() {
     this.group.get('page').setValue(0);
     this.getData();
@@ -229,14 +246,31 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     this.getData();
   }
 
-  openDialogAdd() {
-    this.dialog.open(AddComponent);
+  add() {
+    const data: DTO = {
+      isCreateFollowUpTask: false,
+      customerName: '',
+      customerState: 0,
+      avatar: '',
+      contactName: '',
+      createdAt: new Date(),
+      faxPhone: '',
+      landPhone: '',
+      lastFollowUpTime: new Date(),
+      leadFrom: 0,
+      leadState: 0,
+      mobilePhone: '',
+      nextFollowUpTime: new Date(),
+      note: '',
+      owner: '',
+      ownerName: '',
+      unFollowUpDays: null,
+      mail: '',
+    };
+    this.dialog.open(AddComponent, { data });
   }
 
-  delete(record) {
-    this.logger.info('record', record);
-    this.salesleadSrv.delete(record).subscribe(r => {
-      this.logger.debug('==>', r);
-    });
+  edit(data: any) {
+    this.dialog.open(AddComponent, { data });
   }
 }

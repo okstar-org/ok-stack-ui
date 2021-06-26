@@ -1,6 +1,7 @@
 class Saleslead {
   page = '/api/portal/app-crm/saleslead/page';
   save = '/api/portal/app-crm/saleslead/save';
+  top = '/api/portal/app-crm/saleslead/top';
   deleteById = '/api/portal/app-crm/saleslead/deleteById/';
 }
 

@@ -6,30 +6,84 @@ import { map } from 'rxjs/operators';
 
 import { CRM_API } from './../api-url';
 
-export interface RepoSearchList {
+export interface Payload {
   data: any;
   extra: any;
 }
 
+enum CustomerStateEnum {
+  AlreadyPurchased,
+  FollowingUp,
+  OnTrial,
+  PutItOnHold,
+  ReadyToBuy,
+  Understanding,
+}
+
+enum LeadFromEnum {
+  CallIn,
+  Customer,
+  Develop,
+  Friends,
+  Marketing,
+  NetSearch,
+}
+
+enum LeadStateEnum {
+  InitialIntention,
+  IsCustomer,
+  NextInvite,
+}
+
+export interface DTO {
+  isCreateFollowUpTask: boolean;
+  customerName: string;
+  customerState: CustomerStateEnum;
+  avatar: string;
+  contactName: string;
+  createdAt: Date;
+  faxPhone: string;
+  landPhone: string;
+  lastFollowUpTime: Date;
+  leadFrom: LeadFromEnum;
+  leadState: LeadStateEnum;
+  mobilePhone: string;
+  nextFollowUpTime: Date;
+  note: string;
+  owner: string;
+  ownerName: string;
+  mail: string;
+  unFollowUpDays: number;
+}
+
 export interface ID {
-  id: number;
+  id: string;
 }
 
 @Injectable()
 export class SalesleadService {
   constructor(private logger: NGXLogger, private http: HttpClient) {}
 
-  getData(params = {}): Observable<RepoSearchList> {
+  getData(params = {}): Observable<Payload> {
     this.logger.debug('getData', params);
     return this.http
-      .get<RepoSearchList>(CRM_API.saleslead.page, { params })
+      .get<Payload>(CRM_API.saleslead.page, { params })
       .pipe(map((r: any) => r.payload));
   }
 
-  delete(params: ID): Observable<RepoSearchList> {
+  delete(params: ID): Observable<Payload> {
     this.logger.debug('delete', params);
     return this.http
-      .delete<RepoSearchList>(CRM_API.saleslead.deleteById + params.id)
+      .delete<Payload>(CRM_API.saleslead.deleteById + params.id)
+      .pipe(map((r: any) => r.payload));
+  }
+
+  top(params: ID): Observable<Payload> {
+    this.logger.debug('top', params);
+    return this.http
+      .put<Payload>(CRM_API.saleslead.top, params.id, {
+        headers: { 'content-type': 'application/json' },
+      })
       .pipe(map((r: any) => r.payload));
   }
 }
