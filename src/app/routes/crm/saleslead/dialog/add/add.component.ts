@@ -12,7 +12,7 @@ import { NGXLogger } from 'ngx-logger';
 export class AddComponent implements OnInit {
   addForm: FormGroup;
 
-  @Output() emitter = new EventEmitter<void>();
+  emitter = new EventEmitter<void>();
 
   constructor(
     private logger: NGXLogger,
@@ -34,6 +34,7 @@ export class AddComponent implements OnInit {
     this.logger.debug('submit', this.addForm.value);
     this.addSrv.postData(this.addForm.value).subscribe(r => {
       this.logger.debug('==>', r);
+      this.emitter.emit();
     });
   }
 }

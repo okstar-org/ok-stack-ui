@@ -46,15 +46,16 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     {
       header: '客户名称',
       field: 'customerName',
+      sortable: true,
       formatter: (data: any) =>
         `<a href="${data.html_url}" target="_blank">${data.customerName}</a>`,
     },
     { header: '联系人姓名', field: 'contactName', sortable: true },
-    { header: '手机号码', field: 'mobilePhone' },
-    { header: '归属人员', field: 'ownerName' },
-    { header: '线索状态', field: 'leadState' },
-    { header: '最后跟进', field: 'lastFollowUpTime', type: 'date' },
-    { header: '未跟进天数', field: 'unFollowUpDays', type: 'number' },
+    { header: '手机号码', field: 'mobilePhone', sortable: true },
+    { header: '归属人员', field: 'ownerName', sortable: true },
+    { header: '线索状态', field: 'leadState', sortable: true },
+    { header: '最后跟进', field: 'lastFollowUpTime', sortable: true, type: 'date' },
+    { header: '未跟进天数', field: 'unFollowUpDays', sortable: true, type: 'number' },
     {
       header: '操作',
       field: 'operation',
@@ -109,7 +110,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
 
   constructor(
     private logger: NGXLogger,
-    private salesleadSrv: SalesleadService,
+    private service: SalesleadService,
     private fb: FormBuilder,
     private dateAdapter: DateAdapter<any>,
     private translate: TranslateService,
@@ -170,7 +171,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   getData() {
     this.isLoading = true;
 
-    this.salesleadSrv.getData(this.params).subscribe(
+    this.service.getData(this.params).subscribe(
       res => {
         this.list = res.data.content;
         this.total = res.data.totalElements;
@@ -202,8 +203,8 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   }
 
   delete(record) {
-    this.logger.info('record', record);
-    this.salesleadSrv.delete(record).subscribe(r => {
+    this.logger.info('delete...', record);
+    this.service.delete(record).subscribe(r => {
       this.logger.debug('delete==>', r);
       this.getData();
     });
@@ -229,7 +230,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   }
 
   top(e: any) {
-    this.salesleadSrv.top(e).subscribe(r => {
+    this.service.top(e).subscribe(r => {
       this.logger.debug('top==>', r);
       this.getData();
     });
@@ -267,10 +268,36 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       unFollowUpDays: null,
       mail: '',
     };
-    this.dialog.open(AddComponent, { data });
+    const dialogRef = this.dialog.open(AddComponent, { data });
+    const sub = dialogRef.componentInstance.emitter.subscribe(() => {
+      this.getData();
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.logger.debug('closed');
+      sub.unsubscribe();
+    });
   }
 
   edit(data: any) {
-    this.dialog.open(AddComponent, { data });
+    const dialogRef = this.dialog.open(AddComponent, { data });
+    const sub = dialogRef.componentInstance.emitter.subscribe(() => {
+      this.getData();
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.logger.debug('closed');
+      sub.unsubscribe();
+    });
   }
+
+  import() {}
+
+  export() {}
+
+  change() {}
+
+  newTask() {}
+
+  sendMessage() {}
 }

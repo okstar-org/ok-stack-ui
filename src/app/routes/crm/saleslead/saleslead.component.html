@@ -52,15 +52,30 @@
                  matInput>
        </mat-form-field>
 
-        <button mat-raised-button color="primary" (click)="search()">Search</button>
-        <button mat-raised-button color="primary" (click)="reset()" style="margin-left: 1em;">Reset</button>
+        <button mat-stroked-button color="primary" (click)="search()" class="m-x-8">
+          <mat-icon>search</mat-icon>Search</button>
+        <button mat-stroked-button color="primary" (click)="reset()" class="m-x-8">
+          <mat-icon class="mat-12">autorenew</mat-icon>Reset</button>
       </form>
 
     </mat-card>
 
     <mat-card>
-      <mat-card>
-        <button mat-raised-button color="primary" (click)="add()">Add</button>
+
+      <mat-card class="ctrl-button-area">
+        <button mat-stroked-button color="primary" (click)="add()" class="m-x-8" >
+          <mat-icon class="icon-12">add</mat-icon>添加
+        </button>
+        <button mat-stroked-button color="primary" (click)="import()" class="m-x-8" >
+          <mat-icon class="icon-8">get_app</mat-icon>导入</button>
+        <button mat-stroked-button color="primary" (click)="export()" class="m-x-8" >
+          <mat-icon class="icon-8" >publish</mat-icon>导出</button>
+        <button mat-stroked-button color="primary" (click)="change()" class="m-x-8" >
+          <mat-icon class="icon-8" >person_add</mat-icon>转为客户</button>
+        <button mat-stroked-button color="primary" (click)="newTask()" class="m-x-8" >
+          <mat-icon class="icon-8" >list</mat-icon>新建任务</button>
+        <button mat-stroked-button color="primary" (click)="sendMessage()" class="m-x-8" >
+          <mat-icon class="icon-8" >chat_bubble_outline</mat-icon>发送短信</button>
       </mat-card>
 
       <mtx-grid [data]="list"
