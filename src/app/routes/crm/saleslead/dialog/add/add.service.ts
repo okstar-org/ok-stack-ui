@@ -13,8 +13,15 @@ export interface DialogAddItem {}
 export class AddService {
   constructor(private logger: NGXLogger, private http: HttpClient) {}
 
-  postData(params = {}): Observable<DialogAddItem> {
-    this.logger.debug('post', params);
+  params(params = {}): Observable<DialogAddItem> {
+    this.logger.debug('params', params);
+    return this.http
+      .get<DialogAddItem>(CRM_API.saleslead.params, params)
+      .pipe(map((r: any) => r.payload));
+  }
+
+  save(params = {}): Observable<DialogAddItem> {
+    this.logger.debug('save', params);
     return this.http
       .post<DialogAddItem>(CRM_API.saleslead.save, params)
       .pipe(map((r: any) => r.payload));

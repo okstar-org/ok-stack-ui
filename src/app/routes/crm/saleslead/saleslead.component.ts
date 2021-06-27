@@ -53,6 +53,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     { header: '联系人姓名', field: 'contactName', sortable: true },
     { header: '手机号码', field: 'mobilePhone', sortable: true },
     { header: '归属人员', field: 'ownerName', sortable: true },
+    { header: '线索来源', field: 'leadFrom', sortable: true },
     { header: '线索状态', field: 'leadState', sortable: true },
     { header: '最后跟进', field: 'lastFollowUpTime', sortable: true, type: 'date' },
     { header: '未跟进天数', field: 'unFollowUpDays', sortable: true, type: 'number' },
@@ -248,6 +249,8 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   }
 
   add() {
+    this.logger.debug('add...');
+
     const data: DTO = {
       isCreateFollowUpTask: false,
       customerName: '',
@@ -258,8 +261,8 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       faxPhone: '',
       landPhone: '',
       lastFollowUpTime: new Date(),
-      leadFrom: 0,
-      leadState: 0,
+      leadFrom: '',
+      leadState: '',
       mobilePhone: '',
       nextFollowUpTime: new Date(),
       note: '',
@@ -280,15 +283,18 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   }
 
   edit(data: any) {
+    this.logger.debug('edit...');
+
     const dialogRef = this.dialog.open(AddComponent, { data });
     const sub = dialogRef.componentInstance.emitter.subscribe(() => {
+      this.logger.debug('emitter');
       this.getData();
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.logger.debug('closed');
-      sub.unsubscribe();
-    });
+    // dialogRef.afterClosed().subscribe(() => {
+    //   this.logger.debug('closed');
+    //   sub.unsubscribe();
+    // });
   }
 
   import() {}

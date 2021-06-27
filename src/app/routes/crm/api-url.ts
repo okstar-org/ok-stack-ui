@@ -1,4 +1,5 @@
 class Saleslead {
+  params = '/api/portal/app-crm/saleslead/params';
   page = '/api/portal/app-crm/saleslead/page';
   save = '/api/portal/app-crm/saleslead/save';
   top = '/api/portal/app-crm/saleslead/top';

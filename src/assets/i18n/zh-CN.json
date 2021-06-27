@@ -75,7 +75,7 @@
     "menu-level.level-1-1.level-2-1.level-3-1.level-4-1": "层级 4.1",
     "permissions": "权限管理",
     "permissions.test": "权限测试",
-    "crm": "CRM",
+    "crm": "客户管理",
     "crm.saleslead": "销售线索"
   },
   "validations": {

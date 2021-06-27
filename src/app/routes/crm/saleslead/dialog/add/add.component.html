@@ -79,15 +79,26 @@
 
       <tr>
         <td>
-          <mat-form-field class="demo-full-width">
+          <mat-form-field class="demo-full-width" *ngIf="params['select']">
             <mat-label>线索来源</mat-label>
-            <input matInput formControlName="leadFrom">
+            <!-- <mtx-select formControlName="leadFrom" *ngIf="params['select']">
+              <mtx-option *ngFor="let item of params['select']['leadFrom']"
+              [value]="item">
+                {{item}}
+              </mtx-option>
+            </mtx-select> -->
+            <mtx-select formControlName="leadFrom"
+            [items]="params['select']['leadFrom']">
+            </mtx-select>
           </mat-form-field>
         </td>
         <td>
           <mat-form-field class="demo-full-width">
             <mat-label>线索状态</mat-label>
-            <input matInput formControlName="leadState">
+            <mtx-select formControlName="leadState"
+            [items]="leadStateSelect"
+            >
+            </mtx-select>
           </mat-form-field>
         </td>
         <td>
@@ -177,5 +188,5 @@
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
   <button mat-raised-button mat-dialog-close>Close</button>
   <button mat-raised-button color="primary" mat-dialog-close cdkFocusInitial
-  (click)="doSubmit()">Submit</button>
+  (click)="doSave()">Save</button>
 </mat-dialog-actions>

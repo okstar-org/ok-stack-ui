@@ -20,15 +20,6 @@ enum CustomerStateEnum {
   Understanding,
 }
 
-enum LeadFromEnum {
-  CallIn,
-  Customer,
-  Develop,
-  Friends,
-  Marketing,
-  NetSearch,
-}
-
 enum LeadStateEnum {
   InitialIntention,
   IsCustomer,
@@ -45,8 +36,8 @@ export interface DTO {
   faxPhone: string;
   landPhone: string;
   lastFollowUpTime: Date;
-  leadFrom: LeadFromEnum;
-  leadState: LeadStateEnum;
+  leadFrom: string;
+  leadState: string;
   mobilePhone: string;
   nextFollowUpTime: Date;
   note: string;

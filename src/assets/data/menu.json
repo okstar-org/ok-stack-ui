@@ -4,7 +4,7 @@
       "route": "crm",
       "name": "crm",
       "type": "sub",
-      "icon": "crm",
+      "icon": "people",
       "children": [
         {
           "route": "saleslead",
