@@ -7,7 +7,7 @@ import {
   ChangeDetectorRef,
   EventEmitter,
 } from '@angular/core';
-import { DTO, SalesleadService } from './saleslead.service';
+import { DTO, SalesleadService, Form } from './saleslead.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -271,7 +271,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   add() {
     this.logger.debug('add...');
 
-    const data: DTO = {
+    const data: Form = {
       isCreateFollowUpTask: false,
       customerName: '',
       customerState: 0,
@@ -289,7 +289,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       owner: '',
       ownerName: '',
       unFollowUpDays: null,
-      mail: '',
+      mail: [null, Validators.email],
     };
     const dialogRef = this.dialog.open(AddComponent, { data });
     dialogRef.componentInstance.emitter.subscribe(() => {
@@ -318,7 +318,9 @@ export class SalesleadComponent implements OnInit, OnDestroy {
 
   import() {}
 
-  export() {}
+  export() {
+    this.service.getExport(this.params);
+  }
 
   change() {}
 

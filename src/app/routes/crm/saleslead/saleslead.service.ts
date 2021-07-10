@@ -47,6 +47,10 @@ export interface DTO {
   unFollowUpDays: number;
 }
 
+export interface Form extends DTO {
+  mail: any;
+}
+
 export interface ID {
   id: string;
 }
@@ -55,11 +59,27 @@ export interface ID {
 export class SalesleadService {
   constructor(private logger: NGXLogger, private http: HttpClient) {}
 
+  downLoadFile(data: any, type: string) {
+    const blob = new Blob([data], { type });
+    const url = window.URL.createObjectURL(blob);
+    const pwa = window.open(url);
+    if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
+      alert('Please disable your Pop-up blocker and try again.');
+    }
+  }
+
   getData(params = {}): Observable<Payload> {
     this.logger.debug('getData', params);
     return this.http
       .get<Payload>(CRM_API.saleslead.page, { params })
       .pipe(map((r: any) => r.payload));
+  }
+
+  getExport(params = {}) {
+    this.logger.debug('getExport', params);
+    return this.http
+      .get(CRM_API.saleslead.export, { responseType: 'arraybuffer', params })
+      .subscribe(r => this.downLoadFile(r, 'application/ms-excel'));
   }
 
   getParams(params = {}): Observable<Payload> {
