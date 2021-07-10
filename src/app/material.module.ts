@@ -41,7 +41,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import {
+  MatMomentDateModule,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+} from '@angular/material-moment-adapter';
 
 // 3rd library
 import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
@@ -97,6 +100,9 @@ import { materialProviders } from './material-config';
     MatMomentDatetimeModule,
     MatDatetimepickerModule,
   ],
-  providers: [materialProviders],
+  providers: [
+    materialProviders,
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+  ],
 })
 export class MaterialModule {}

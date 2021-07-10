@@ -62,6 +62,13 @@ export class SalesleadService {
       .pipe(map((r: any) => r.payload));
   }
 
+  getParams(params = {}): Observable<Payload> {
+    this.logger.debug('getParams', params);
+    return this.http
+      .get<Payload>(CRM_API.saleslead.params, { params })
+      .pipe(map((r: any) => r.payload));
+  }
+
   delete(params: ID): Observable<Payload> {
     this.logger.debug('delete', params);
     return this.http

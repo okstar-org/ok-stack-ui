@@ -11,8 +11,6 @@ import { DTO, SalesleadService } from './saleslead.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatDatetimepickerFilterType } from '@mat-datetimepicker/core';
-import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { MtxGridColumn } from '@ng-matero/extensions';
@@ -29,19 +27,18 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   type = 'moment';
 
   group: FormGroup;
-  today: moment.Moment;
-  tomorrow: moment.Moment;
-  min: moment.Moment;
-  max: moment.Moment;
-  start: moment.Moment;
-  filter: (date: moment.Moment, type: MatDatetimepickerFilterType) => boolean;
 
   translateSubscription: Subscription;
 
+  backParams = {};
   list = [];
   total = 0;
   isLoading = true;
-
+  rowSelectable = true;
+  columnHideable = true;
+  columnMovable = true;
+  multiSelectable = true;
+  showToolbar = true;
   columns: MtxGridColumn[] = [
     {
       header: '客户名称',
@@ -113,35 +110,20 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     private logger: NGXLogger,
     private service: SalesleadService,
     private fb: FormBuilder,
-    private dateAdapter: DateAdapter<any>,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
   ) {
-    this.today = moment.utc();
-    this.tomorrow = moment.utc().date(moment.utc().date() + 1);
-    this.min = this.today.clone().year(2018).month(10).date(3).hour(11).minute(10);
-    this.max = this.min.clone().date(4).minute(45);
-    this.start = this.today.clone().year(1930).month(9).date(28);
-    this.filter = (date: moment.Moment, type: MatDatetimepickerFilterType) => {
-      switch (type) {
-        case MatDatetimepickerFilterType.DATE:
-          return date.year() % 2 === 0 && date.month() % 2 === 0 && date.date() % 2 === 0;
-        case MatDatetimepickerFilterType.HOUR:
-          return date.hour() % 2 === 0;
-        case MatDatetimepickerFilterType.MINUTE:
-          return date.minute() % 2 === 0;
-      }
-    };
     this.group = this.fb.group({
+      sort: 'ordinal,desc',
+      page: 0,
+      size: 10,
+
       keyword: '',
       ownerName: '',
       leadState: '',
       leadFrom: '',
-      sort: 'ordinal,desc',
-      page: 0,
-      size: 10,
-      date: [null],
+      lastFollowUpTime: [null],
     });
 
     // this.group = fb.group({
@@ -163,10 +145,18 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     // setTimeout(()=>{
     //   this.openDialogAdd()
     // },3000)
+    this.getParams();
   }
 
   ngOnDestroy() {
     // this.translateSubscription.unsubscribe();
+  }
+
+  getParams() {
+    this.service.getParams().subscribe(res => {
+      this.logger.debug('getParams', res);
+      this.backParams = res.data;
+    });
   }
 
   getData() {

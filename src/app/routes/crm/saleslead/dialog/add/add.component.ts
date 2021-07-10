@@ -23,8 +23,7 @@ export class AddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DTO
   ) {
     this.logger.debug('data:', data);
-    this.addForm = fb.group(data);
-    // this.leadFromSelect = [{ name: 'aaa', value: 'a'}]
+    this.addForm = this.fb.group(data);
   }
 
   ngOnInit(): void {
