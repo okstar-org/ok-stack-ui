@@ -1,81 +1,74 @@
-<breadcrumb></breadcrumb>
-
+<page-header class="bg-purple-500"></page-header>
 <div fxLayout="row wrap" class="matero-row">
   <div fxFlex="100" class="matero-col">
     <mat-card>
       <!-- <mat-card-title>Form Inline</mat-card-title> -->
       <form [formGroup]="group">
         <mat-form-field class="m-r-8">
-          <input matInput placeholder="关键词"
-          formControlName="keyword" name="keyword">
+          <mat-placeholder>{{"crm.saleslead.keyword" | translate}}</mat-placeholder>
+          <input matInput  formControlName="keyword" name="keyword">
         </mat-form-field>
 
-        <mat-form-field class="m-r-8" *ngIf="backParams && backParams['select']">
-          <mat-label>线索来源</mat-label>
+        <mat-form-field class="m-r-8" *ngIf="getBackParams('leadFrom')">
+          <mat-label>{{"crm.saleslead.leadFrom" | translate}}</mat-label>
           <mat-select formControlName="leadFrom" name="leadFrom">
-            <mat-option>全部</mat-option>
-            <mat-option *ngFor="let item of backParams.select.leadFrom"
-              [value]="item">
-                {{item}}
+            <mat-option>{{"common.all" | translate}}</mat-option>
+            <mat-option *ngFor="let item of getBackParams('leadFrom')" [value]="item">
+                {{"crm.saleslead.leadFromSelect." + item | translate}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="m-r-8" *ngIf="backParams && backParams['select']">
-          <mat-label>线索状态</mat-label>
+        <mat-form-field class="m-r-8" *ngIf="getBackParams('leadState')">
+          <mat-label>{{"crm.saleslead.leadState" | translate}}</mat-label>
           <mat-select formControlName="leadState" name="state">
-            <mat-option >全部</mat-option>
-            <mat-option *ngFor="let item of backParams.select.leadState"
-            [value]="item">
-              {{item}}
+            <mat-option>{{"common.all" | translate}}</mat-option>
+            <mat-option *ngFor="let item of getBackParams('leadState')" [value]="item">
+              {{"crm.saleslead.leadStateSelect." + item | translate}}
           </mat-option>
           </mat-select>
         </mat-form-field>
 
         <mat-form-field class="m-r-8">
-          <input matInput placeholder="归属人员"
-          formControlName="ownerName" name="ownerName">
+          <mat-placeholder>{{"crm.saleslead.ownerName" | translate}}</mat-placeholder>
+          <input matInput formControlName="ownerName" name="ownerName">
         </mat-form-field>
 
         <mat-form-field class="m-r-8">
-          <mat-placeholder>最后跟进</mat-placeholder>
+          <mat-placeholder>{{"crm.saleslead.lastFollowUpTime" | translate}}</mat-placeholder>
           <mat-datepicker-toggle [for]="datetimePicker" matSuffix></mat-datepicker-toggle>
-          <mat-datepicker #datetimePicker
-            startView="month"
-            type="date"></mat-datepicker>
-          <input  [matDatepicker]="datetimePicker"
+          <mat-datepicker #datetimePicker startView="month" type="date"></mat-datepicker>
+          <input [matDatepicker]="datetimePicker"
                  autocomplete="off" formControlName="lastFollowUpTime"
                  matInput>
        </mat-form-field>
 
         <button mat-stroked-button color="primary" (click)="search()" class="m-x-8">
-          <mat-icon>search</mat-icon>Search</button>
+          <mat-icon>search</mat-icon>{{"common.search" | translate}}</button>
         <button mat-stroked-button color="primary" (click)="reset()" class="m-x-8">
-          <mat-icon class="mat-12">autorenew</mat-icon>Reset</button>
+          <mat-icon class="mat-12">autorenew</mat-icon>{{"common.reset" | translate}}</button>
       </form>
+    </mat-card>
 
+    <mat-card class="ctrl-button-area">
+      <button mat-stroked-button color="primary" (click)="add()" class="m-x-8" >
+        <mat-icon class="icon-12">add</mat-icon>添加
+      </button>
+      <button mat-stroked-button color="primary" (click)="import()" class="m-x-8" >
+        <mat-icon class="icon-8">get_app</mat-icon>导入</button>
+      <button mat-stroked-button color="primary" (click)="export()" class="m-x-8" >
+        <mat-icon class="icon-8" >publish</mat-icon>导出</button>
+      <button mat-stroked-button color="primary" (click)="change()" class="m-x-8" >
+        <mat-icon class="icon-8" >person_add</mat-icon>转为客户</button>
+      <button mat-stroked-button color="primary" (click)="newTask()" class="m-x-8" >
+        <mat-icon class="icon-8" >list</mat-icon>新建任务</button>
+      <button mat-stroked-button color="primary" (click)="sendMessage()" class="m-x-8" >
+        <mat-icon class="icon-8" >chat_bubble_outline</mat-icon>发送短信</button>
     </mat-card>
 
     <mat-card>
-
-      <mat-card class="ctrl-button-area">
-        <button mat-stroked-button color="primary" (click)="add()" class="m-x-8" >
-          <mat-icon class="icon-12">add</mat-icon>添加
-        </button>
-        <button mat-stroked-button color="primary" (click)="import()" class="m-x-8" >
-          <mat-icon class="icon-8">get_app</mat-icon>导入</button>
-        <button mat-stroked-button color="primary" (click)="export()" class="m-x-8" >
-          <mat-icon class="icon-8" >publish</mat-icon>导出</button>
-        <button mat-stroked-button color="primary" (click)="change()" class="m-x-8" >
-          <mat-icon class="icon-8" >person_add</mat-icon>转为客户</button>
-        <button mat-stroked-button color="primary" (click)="newTask()" class="m-x-8" >
-          <mat-icon class="icon-8" >list</mat-icon>新建任务</button>
-        <button mat-stroked-button color="primary" (click)="sendMessage()" class="m-x-8" >
-          <mat-icon class="icon-8" >chat_bubble_outline</mat-icon>发送短信</button>
-      </mat-card>
-
       <mtx-grid
-          [toolbarTitle]="'销售线索'"
+          [toolbarTitle]="'crm.saleslead.title' | translate"
           [data]="list"
           [columns]="columns"
           [length]="total"
@@ -91,8 +84,18 @@
           [pageSizeOptions]="[5,10,20]"
           (sortChange)="changeSort($event)"
           (page)="getNextPage($event)"
+          [cellTemplate]="{leadState: leadStateTpl, leadFrom: leadFromTpl}"
           >
       </mtx-grid>
+
+      <ng-template #leadStateTpl let-row let-index="index" let-col="colDef">
+        {{"crm.saleslead.leadStateSelect." +row.leadState | translate}}
+      </ng-template>
+
+      <ng-template #leadFromTpl let-row let-index="index" let-col="colDef">
+        {{"crm.saleslead.leadFromSelect." +row.leadFrom | translate}}
+      </ng-template>
+
     </mat-card>
   </div>
 </div>

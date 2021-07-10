@@ -140,5 +140,37 @@
     "confirm_delete": "确认删除？",
     "ok": "确定",
     "close": "关闭"
-  }
+  },
+  "crm":{
+    "saleslead":{
+      "title": "销售线索",
+      "keyword": "关键词",
+      "customerName": "客户名称",
+      "contactName": "联系人姓名",
+      "mobilePhone": "手机号码",
+      "ownerName": "归属人员",
+      "leadFrom": "线索来源",
+      "leadState": "线索状态",
+      "lastFollowUpTime": "最后跟进",
+      "unFollowUpDays": "未跟进天数",
+      "leadStateSelect": {
+        "null":"--",
+        "InitialIntention":"初步意向",
+        "NextInvite":"下次邀约",
+        "IsCustomer":"已转客户"
+      },
+      "leadFromSelect":{
+        "null":"--",
+        "Marketing":"电话营销",
+        "CallIn":"主动来电",
+        "Customer":"客户介绍",
+        "Friends":"朋友介绍",
+        "Develop":"独立开发",
+        "NetSearch":"网络搜索",
+        "Exhibition":"展会促销",
+        "Others":"展会促销"
+      }
+    }
+  },
+  "common":{"all":"全部", "search": "搜索", "reset":"重置"}
 }

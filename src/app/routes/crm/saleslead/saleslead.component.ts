@@ -31,6 +31,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   translateSubscription: Subscription;
 
   backParams = {};
+
   list = [];
   total = 0;
   isLoading = true;
@@ -41,19 +42,45 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   showToolbar = true;
   columns: MtxGridColumn[] = [
     {
-      header: '客户名称',
+      header: this.translate.stream('crm.saleslead.customerName'),
       field: 'customerName',
       sortable: true,
       formatter: (data: any) =>
         `<a href="${data.html_url}" target="_blank">${data.customerName}</a>`,
     },
-    { header: '联系人姓名', field: 'contactName', sortable: true },
-    { header: '手机号码', field: 'mobilePhone', sortable: true },
-    { header: '归属人员', field: 'ownerName', sortable: true },
-    { header: '线索来源', field: 'leadFrom', sortable: true },
-    { header: '线索状态', field: 'leadState', sortable: true },
-    { header: '最后跟进', field: 'lastFollowUpTime', sortable: true, type: 'date' },
-    { header: '未跟进天数', field: 'unFollowUpDays', sortable: true, type: 'number' },
+    {
+      header: this.translate.stream('crm.saleslead.contactName'),
+      field: 'contactName',
+      sortable: true,
+    },
+    {
+      header: this.translate.stream('crm.saleslead.mobilePhone'),
+      field: 'mobilePhone',
+      sortable: true,
+    },
+    {
+      header: this.translate.stream('crm.saleslead.ownerName'),
+      field: 'ownerName',
+      sortable: true,
+    },
+    { header: this.translate.stream('crm.saleslead.leadFrom'), field: 'leadFrom', sortable: true },
+    {
+      header: this.translate.stream('crm.saleslead.leadState'),
+      field: 'leadState',
+      sortable: true,
+    },
+    {
+      header: this.translate.stream('crm.saleslead.lastFollowUpTime'),
+      field: 'lastFollowUpTime',
+      sortable: true,
+      type: 'date',
+    },
+    {
+      header: this.translate.stream('crm.saleslead.unFollowUpDays'),
+      field: 'unFollowUpDays',
+      sortable: true,
+      type: 'number',
+    },
     {
       header: '操作',
       field: 'operation',
@@ -110,6 +137,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     private logger: NGXLogger,
     private service: SalesleadService,
     private fb: FormBuilder,
+    private dateAdapter: DateAdapter<any>,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
@@ -141,20 +169,18 @@ export class SalesleadComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getData();
-
-    // setTimeout(()=>{
-    //   this.openDialogAdd()
-    // },3000)
-    this.getParams();
+    this.loadBackParams();
+    this.translateSubscription = this.translate.onLangChange.subscribe((res: { lang: any }) => {
+      this.dateAdapter.setLocale(res.lang);
+    });
   }
 
   ngOnDestroy() {
-    // this.translateSubscription.unsubscribe();
+    this.translateSubscription.unsubscribe();
   }
 
-  getParams() {
+  loadBackParams() {
     this.service.getParams().subscribe(res => {
-      this.logger.debug('getParams', res);
       this.backParams = res.data;
     });
   }
@@ -191,6 +217,10 @@ export class SalesleadComponent implements OnInit, OnDestroy {
 
   get pageSize() {
     return this.group.get('size').value;
+  }
+
+  getBackParams(param) {
+    return this.backParams[param];
   }
 
   delete(record) {
@@ -251,8 +281,8 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       faxPhone: '',
       landPhone: '',
       lastFollowUpTime: new Date(),
-      leadFrom: '',
-      leadState: '',
+      leadFrom: null,
+      leadState: null,
       mobilePhone: '',
       nextFollowUpTime: new Date(),
       note: '',
@@ -262,22 +292,21 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       mail: '',
     };
     const dialogRef = this.dialog.open(AddComponent, { data });
-    const sub = dialogRef.componentInstance.emitter.subscribe(() => {
+    dialogRef.componentInstance.emitter.subscribe(() => {
       this.getData();
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.logger.debug('closed');
-      sub.unsubscribe();
-    });
+    // dialogRef.afterClosed().subscribe(() => {
+    //   this.logger.debug('closed');
+    //   sub.unsubscribe();
+    // });
   }
 
   edit(data: any) {
     this.logger.debug('edit...');
 
     const dialogRef = this.dialog.open(AddComponent, { data });
-    const sub = dialogRef.componentInstance.emitter.subscribe(() => {
-      this.logger.debug('emitter');
+    dialogRef.componentInstance.emitter.subscribe(() => {
       this.getData();
     });
 
