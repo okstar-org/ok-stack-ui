@@ -32,7 +32,6 @@ export interface DTO {
   customerState: CustomerStateEnum;
   avatar: string;
   contactName: string;
-  createdAt: Date;
   faxPhone: string;
   landPhone: string;
   lastFollowUpTime: Date;
@@ -43,12 +42,12 @@ export interface DTO {
   note: string;
   owner: string;
   ownerName: string;
-  mail: string;
   unFollowUpDays: number;
+  mail: string;
 }
 
 export interface Form extends DTO {
-  mail: any;
+  mail: string | any;
 }
 
 export interface ID {

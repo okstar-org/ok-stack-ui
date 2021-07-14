@@ -79,26 +79,26 @@
 
       <tr>
         <td>
-          <mat-form-field class="demo-full-width" *ngIf="params['select']">
+          <mat-form-field class="demo-full-width" *ngIf="params">
             <mat-label>线索来源</mat-label>
-            <mtx-select formControlName="leadFrom" *ngIf="params['select']">
-              <mtx-option *ngFor="let item of params['select']['leadFrom']"
+            <mtx-select formControlName="leadFrom" *ngIf="params">
+              <mtx-option *ngFor="let item of params['leadFrom']"
               [value]="item">
-                {{'crm.saleslead.leadFrom.' + item | translate}}
+                {{'crm.saleslead.leadFromSelect.' + item | translate}}
               </mtx-option>
             </mtx-select>
             <!-- <mtx-select formControlName="leadFrom"
-            [items]="params['select']['leadFrom']">
+            [items]="params['leadFrom']">
             </mtx-select> -->
           </mat-form-field>
         </td>
         <td>
           <mat-form-field class="demo-full-width">
             <mat-label>线索状态</mat-label>
-            <mtx-select formControlName="leadState" *ngIf="params['select']">
-              <mtx-option *ngFor="let item of params['select']['leadState']"
+            <mtx-select formControlName="leadState" *ngIf="params">
+              <mtx-option *ngFor="let item of params['leadState']"
               [value]="item">
-                {{'crm.saleslead.leadState.' + item | translate}}
+                {{'crm.saleslead.leadStateSelect.' + item | translate}}
               </mtx-option>
             </mtx-select>
           </mat-form-field>

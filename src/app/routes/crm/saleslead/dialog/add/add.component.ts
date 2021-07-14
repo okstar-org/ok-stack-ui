@@ -1,4 +1,4 @@
-import { DTO } from './../../saleslead.service';
+import { Form } from './../../saleslead.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddService } from './add.service';
 import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
@@ -20,7 +20,7 @@ export class AddComponent implements OnInit {
     private logger: NGXLogger,
     private fb: FormBuilder,
     private service: AddService,
-    @Inject(MAT_DIALOG_DATA) public data: DTO
+    @Inject(MAT_DIALOG_DATA) public data: Form
   ) {
     this.logger.debug('data:', data);
     this.addForm = this.fb.group(data);

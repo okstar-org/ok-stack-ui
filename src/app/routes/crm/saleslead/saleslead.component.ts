@@ -277,7 +277,6 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       customerState: 0,
       avatar: '',
       contactName: '',
-      createdAt: new Date(),
       faxPhone: '',
       landPhone: '',
       lastFollowUpTime: new Date(),
