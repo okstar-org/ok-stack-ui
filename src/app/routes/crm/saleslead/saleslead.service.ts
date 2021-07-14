@@ -43,11 +43,11 @@ export interface DTO {
   owner: string;
   ownerName: string;
   unFollowUpDays: number;
-  mail: string;
+  mail: any;
 }
 
 export interface Form extends DTO {
-  mail: string | any;
+  //   mail: string | any;
 }
 
 export interface ID {

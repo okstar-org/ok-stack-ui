@@ -270,7 +270,6 @@ export class SalesleadComponent implements OnInit, OnDestroy {
 
   add() {
     this.logger.debug('add...');
-
     const data: Form = {
       isCreateFollowUpTask: false,
       customerName: '',
