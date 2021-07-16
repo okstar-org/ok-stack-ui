@@ -4,12 +4,12 @@
     <mat-card>
       <!-- <mat-card-title>Form Inline</mat-card-title> -->
       <form [formGroup]="group">
-        <mat-form-field class="m-r-8">
+        <mat-form-field class="m-8">
           <mat-placeholder>{{"crm.saleslead.keyword" | translate}}</mat-placeholder>
           <input matInput  formControlName="keyword" name="keyword">
         </mat-form-field>
 
-        <mat-form-field class="m-r-8" *ngIf="getBackParams('leadFrom')">
+        <mat-form-field class="m-8" *ngIf="getBackParams('leadFrom')">
           <mat-label>{{"crm.saleslead.leadFrom" | translate}}</mat-label>
           <mat-select formControlName="leadFrom" name="leadFrom">
             <mat-option>{{"common.all" | translate}}</mat-option>
@@ -19,7 +19,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="m-r-8" *ngIf="getBackParams('leadState')">
+        <mat-form-field class="m-8" *ngIf="getBackParams('leadState')">
           <mat-label>{{"crm.saleslead.leadState" | translate}}</mat-label>
           <mat-select formControlName="leadState" name="state">
             <mat-option>{{"common.all" | translate}}</mat-option>
@@ -29,12 +29,12 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="m-r-8">
+        <mat-form-field class="m-8">
           <mat-placeholder>{{"crm.saleslead.ownerName" | translate}}</mat-placeholder>
           <input matInput formControlName="ownerName" name="ownerName">
         </mat-form-field>
 
-        <mat-form-field class="m-r-8">
+        <mat-form-field class="m-8">
           <mat-placeholder>{{"crm.saleslead.lastFollowUpTime" | translate}}</mat-placeholder>
           <mat-datepicker-toggle [for]="datetimePicker" matSuffix></mat-datepicker-toggle>
           <mat-datepicker #datetimePicker startView="month" type="date"></mat-datepicker>

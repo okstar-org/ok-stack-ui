@@ -7,159 +7,128 @@
       <input matInput disabled value="Google">
     </mat-form-field> -->
     <mat-card>
-      <table class="demo-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="demo-full-width">
+      <div class="demo-full-width">
+
+
+            <mat-form-field class="demo-full-width" class="m-r-8">
               <mat-label>客户名称</mat-label>
               <input matInput formControlName="customerName" required>
               <mat-error *ngIf="addForm.get('customerName').invalid">
                 {{'validations.required' | translate}}
               </mat-error>
             </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="demo-full-width">
+
+
+            <mat-form-field class="demo-full-width" class="m-r-8">
               <mat-label>联系人姓名</mat-label>
               <input matInput formControlName="contactName" required>
               <mat-error *ngIf="addForm.get('contactName').invalid">
                 {{'validations.required' | translate}}
               </mat-error>
             </mat-form-field>
-          </td>
 
-          <td>
-            <mat-form-field class="demo-full-width">
+            <mat-form-field class="demo-full-width" class="m-r-8">
               <mat-label>尊称</mat-label>
               <input matInput>
             </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="demo-full-width">
+
+            <mat-form-field class="demo-full-width" class="m-r-8">
               <mat-label>角色</mat-label>
               <input matInput>
             </mat-form-field>
-          </td>
-        </tr>
 
-        <tr>
-          <td>
-            <mat-form-field class="demo-full-width">
+            <mat-form-field class="demo-full-width" class="m-r-8">
               <mat-label>手机号码</mat-label>
               <input matInput formControlName="mobilePhone">
               <mat-icon matSuffix>smartphone</mat-icon>
             </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="demo-full-width">
+
+            <mat-form-field class="demo-full-width" class="m-r-8">
               <mat-label>固定号码</mat-label>
               <input matInput formControlName="landPhone">
               <mat-icon matSuffix>phone</mat-icon>
             </mat-form-field>
-          <td>
-            <mat-form-field class="demo-full-width">
+
+            <mat-form-field class="demo-full-width" class="m-r-8">
               <mat-label>电子邮箱</mat-label>
               <input matInput formControlName="mail">
               <mat-icon matSuffix>mail</mat-icon>
             </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="demo-full-width">
+
+            <mat-form-field class="demo-full-width" class="m-r-8">
               <mat-label>传真号码</mat-label>
               <input matInput formControlName="faxPhone">
             </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="demo-full-width">
+
+            <mat-form-field class="demo-full-width" class="m-r-8">
               <mat-label>微信账号</mat-label>
               <input matInput>
             </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="demo-full-width">
+
+            <mat-form-field class="demo-full-width" class="m-r-8">
               <mat-label>QQ号码</mat-label>
               <input matInput>
             </mat-form-field>
-          </td>
-        </tr>
 
-      <tr>
-        <td>
-          <mat-form-field class="demo-full-width" *ngIf="params">
-            <mat-label>线索来源</mat-label>
-            <mtx-select formControlName="leadFrom" *ngIf="params">
-              <mtx-option *ngFor="let item of params['leadFrom']"
-              [value]="item">
-                {{'crm.saleslead.leadFromSelect.' + item | translate}}
-              </mtx-option>
-            </mtx-select>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="demo-full-width">
-            <mat-label>线索状态</mat-label>
-            <mtx-select formControlName="leadState" *ngIf="params">
-              <mtx-option *ngFor="let item of params['leadState']"
-              [value]="item">
-                {{'crm.saleslead.leadStateSelect.' + item | translate}}
-              </mtx-option>
-            </mtx-select>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="demo-full-width">
-            <mat-label>归属人员</mat-label>
-            <input matInput formControlName="ownerName">
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="4">
+            <mat-form-field class="demo-full-width" class="m-r-8" *ngIf="params">
+              <mat-label>线索来源</mat-label>
+              <mtx-select formControlName="leadFrom" *ngIf="params">
+                <mtx-option *ngFor="let item of params['leadFrom']"
+                [value]="item">
+                  {{'crm.saleslead.leadFromSelect.' + item | translate}}
+                </mtx-option>
+              </mtx-select>
+            </mat-form-field>
+
+            <mat-form-field class="demo-full-width" class="m-r-8" *ngIf="params">
+              <mat-label>线索状态</mat-label>
+              <mtx-select formControlName="leadState">
+                <mtx-option *ngFor="let item of params['leadState']"
+                [value]="item">
+                  {{'crm.saleslead.leadStateSelect.' + item | translate}}
+                </mtx-option>
+              </mtx-select>
+            </mat-form-field>
+
+            <mat-form-field class="demo-full-width" *ngIf="params">
+              <mat-label>归属人员</mat-label>
+              <input matInput formControlName="ownerName">
+            </mat-form-field>
+
           <mat-form-field class="demo-full-width">
             <mat-label>备注</mat-label>
-                <textarea matInput formControlName="note"></textarea>
+            <textarea matInput formControlName="note"></textarea>
           </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <mat-checkbox aria-label="跟进任务"
-                        formControlName="isCreateFollowUpTask"
-          >
+
+          <mat-checkbox aria-label="跟进任务" formControlName="isCreateFollowUpTask">
           创建跟进任务
         </mat-checkbox>
-        </td>
 
-      </tr>
-      <tr *ngIf="isCreateFollowUpTask.value">
-        <td>
+        <div *ngIf="isCreateFollowUpTask.value">
+
           <mat-form-field class="demo-full-width">
             <mat-label>下次跟进</mat-label>
             <input matInput>
           </mat-form-field>
-        </td>
-        <td>
+
           <mat-form-field class="demo-full-width">
             <mat-label>跟进内容</mat-label>
             <input matInput>
           </mat-form-field>
-        </td>
-        <td>
+
           <mat-form-field class="demo-full-width">
             <mat-label>跟进人员</mat-label>
             <input matInput>
           </mat-form-field>
-        </td>
-        <td>
+
           <mat-form-field class="demo-full-width">
             <mat-label>任务提醒</mat-label>
             <input matInput>
           </mat-form-field>
-        </td>
-      </tr>
-      </table>
+
+        </div>
+
+      </div>
     </mat-card>
   </form>
 </mat-dialog-content>
@@ -167,6 +136,5 @@
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
   <button mat-raised-button mat-dialog-close>Close</button>
   <button mat-raised-button color="primary"
-  (click)="doSave()"
-  >Save</button>
+  (click)="doSave()">Save</button>
 </mat-dialog-actions>
