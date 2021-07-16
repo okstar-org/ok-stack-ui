@@ -272,16 +272,16 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     this.logger.debug('add...');
     const data: Form = {
       isCreateFollowUpTask: false,
-      customerName: '',
+      customerName: ['', Validators.required],
+      contactName: ['', Validators.required],
       customerState: 0,
       avatar: '',
-      contactName: '',
       faxPhone: '',
       landPhone: '',
       lastFollowUpTime: new Date(),
       leadFrom: null,
       leadState: null,
-      mobilePhone: '',
+      mobilePhone: [''],
       nextFollowUpTime: new Date(),
       note: '',
       owner: '',
@@ -292,6 +292,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(AddComponent, { data });
     dialogRef.componentInstance.emitter.subscribe(() => {
       this.getData();
+      dialogRef.close();
     });
 
     // dialogRef.afterClosed().subscribe(() => {
@@ -306,6 +307,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(AddComponent, { data });
     dialogRef.componentInstance.emitter.subscribe(() => {
       this.getData();
+      dialogRef.close();
     });
 
     // dialogRef.afterClosed().subscribe(() => {

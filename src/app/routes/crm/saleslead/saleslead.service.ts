@@ -28,16 +28,16 @@ enum LeadStateEnum {
 
 export interface DTO {
   isCreateFollowUpTask: boolean;
-  customerName: string;
+  customerName: any;
+  contactName: any;
   customerState: CustomerStateEnum;
   avatar: string;
-  contactName: string;
   faxPhone: string;
   landPhone: string;
   lastFollowUpTime: Date;
   leadFrom: string;
   leadState: string;
-  mobilePhone: string;
+  mobilePhone: any;
   nextFollowUpTime: Date;
   note: string;
   owner: string;

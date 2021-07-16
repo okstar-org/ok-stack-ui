@@ -45,6 +45,10 @@ export class AddComponent implements OnInit {
 
   doSave() {
     this.logger.debug('save', this.addForm.value);
+    if (!this.addForm.valid) {
+      return false;
+    }
+
     this.service.save(this.addForm.value).subscribe(r => {
       this.logger.debug('==>', r);
       this.emitter.emit();
