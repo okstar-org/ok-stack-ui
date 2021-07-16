@@ -42,10 +42,14 @@
                  matInput>
        </mat-form-field>
 
+      <div style="display: inline-block;">
         <button mat-stroked-button color="primary" (click)="search()" class="m-x-8">
           <mat-icon>search</mat-icon>{{"common.search" | translate}}</button>
-        <button mat-stroked-button color="primary" (click)="reset()" class="m-x-8">
-          <mat-icon class="mat-12">autorenew</mat-icon>{{"common.reset" | translate}}</button>
+          <button mat-stroked-button color="primary" (click)="reset()" class="m-x-8">
+          <mat-icon class="mat-12">autorenew</mat-icon>{{"common.reset" | translate}}
+        </button>
+      </div>
+
       </form>
     </mat-card>
 
