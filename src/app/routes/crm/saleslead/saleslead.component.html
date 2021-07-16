@@ -2,7 +2,6 @@
 <div fxLayout="row wrap" class="matero-row">
   <div fxFlex="100" class="matero-col">
     <mat-card>
-      <!-- <mat-card-title>Form Inline</mat-card-title> -->
       <form [formGroup]="group">
         <mat-form-field class="m-8">
           <mat-placeholder>{{"crm.saleslead.keyword" | translate}}</mat-placeholder>
@@ -51,18 +50,18 @@
     </mat-card>
 
     <mat-card class="ctrl-button-area">
-      <button mat-stroked-button color="primary" (click)="add()" class="m-x-8" >
-        <mat-icon class="icon-12">add</mat-icon>{{"common.add"|translate}}
+      <button mat-stroked-button color="primary" (click)="add()" class="m-8" >
+        <mat-icon class="icon-8">add</mat-icon>{{"common.add"|translate}}
       </button>
-      <button mat-stroked-button color="primary" (click)="import()" class="m-x-8" >
+      <button mat-stroked-button color="primary" (click)="import()" class="m-8" >
         <mat-icon class="icon-8">get_app</mat-icon>{{"common.import"|translate}}</button>
-      <button mat-stroked-button color="primary" (click)="export()" class="m-x-8" >
+      <button mat-stroked-button color="primary" (click)="export()" class="m-8" >
         <mat-icon class="icon-8" >publish</mat-icon>{{"common.export"|translate}}</button>
-      <button mat-stroked-button color="primary" (click)="change()" class="m-x-8" >
+      <button mat-stroked-button color="primary" (click)="change()" class="m-8" >
         <mat-icon class="icon-8" >person_add</mat-icon>{{"crm.saleslead.changeToCustomer"|translate}}</button>
-      <button mat-stroked-button color="primary" (click)="newTask()" class="m-x-8" >
+      <button mat-stroked-button color="primary" (click)="newTask()" class="m-8" >
         <mat-icon class="icon-8" >list</mat-icon>{{"crm.saleslead.newTask"|translate}}</button>
-      <button mat-stroked-button color="primary" (click)="sendMessage()" class="m-x-8" >
+      <button mat-stroked-button color="primary" (click)="sendMessage()" class="m-8" >
         <mat-icon class="icon-8" >chat_bubble_outline</mat-icon>{{"crm.saleslead.sendMessage"|translate}}</button>
     </mat-card>
 
