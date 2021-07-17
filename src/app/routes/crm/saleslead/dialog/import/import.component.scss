@@ -21,8 +21,10 @@ ul.msg-list {
 .table-box {
   overflow: auto;
   max-height: 359px;
+
   table {
     width: 100%;
+
     .is-completed {
       background: rgb(235, 190, 190);
     }

@@ -114,6 +114,7 @@ export class ImportComponent implements OnInit {
       this.data = JSON.parse(buf);
       // console.log(this.data);
       this.status = Status.READY;
+      this.processed = 0;
     };
     reader.readAsBinaryString(file);
   }
