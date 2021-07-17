@@ -1,10 +1,6 @@
 <mat-card>
-  <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-  </button> -->
   <mat-horizontal-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>上传文件</ng-template>
 
         <div class="stepper-body">
@@ -26,7 +22,7 @@
                     请按照模板的格式准备导入数据，模板中的表头名称不可更改，表头行不能删除
                   </li>
                   <li>
-                    <a href="javascript:;">下载模板</a>
+                    <a href="assets/examples/crm/saleslead/客户管理-销售线索-导入模板.xls">下载模板</a>
                   </li>
                 </ul>
               </div>
@@ -46,10 +42,11 @@
                     上传填好的信息表
                   </li>
                   <li>
-                    文件后缀名必须为xls 或xlsx （即Excel格式），文件大小不得大于10M，最多支持导入3000条数据
+                    文件后缀名必须为xls 或xlsx （即Excel格式），单文件最多支持导入{{max}}条数据
                   </li>
                   <li>
-                    <a href="javascript:;">Template.xls(23.5 KB)</a> x
+                    <input *ngIf="canUpload()" type="file" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="updateFile" (change)="updateFile($event)">
+                    <!-- <a href="javascript:;">Template.xls(23.5 KB)</a> x -->
                   </li>
                 </ul>
               </div>
@@ -72,37 +69,87 @@
           <button mat-raised-button matStepperNext color="primary">下一步</button>
         </mat-dialog-actions>
 
-      </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>数据预览</ng-template>
         <div class="stepper-body">
-          <table>
-            <tr>
-              <td>客户名称               </td>
-              <td>客户类型               </td>
-              <td>所属行业               </td>
-              <td>客户来源               </td>
-              <td>星级               </td>
-            </tr>
-          </table>
+          <div *ngIf="data" class="table-box">
+            <table mat-table [dataSource]="data" class="mat-elevation-z8">
+              <ng-container matColumnDef="客户名称">
+                <th mat-header-cell *matHeaderCellDef> 客户名称 </th>
+                <td mat-cell *matCellDef="let item" [ngClass]="{'is-completed': item._isUploaded}">
+                  {{item['客户名称']}}</td>
+              </ng-container>
+              <ng-container matColumnDef="联系人姓名">
+                <th mat-header-cell *matHeaderCellDef> 联系人姓名 </th>
+                <td mat-cell *matCellDef="let item" [ngClass]="{'is-completed': item._isUploaded}"> {{item['联系人姓名']}} </td>
+              </ng-container>
+              <ng-container matColumnDef="手机号码">
+                <th mat-header-cell *matHeaderCellDef> 手机号码 </th>
+                <td mat-cell *matCellDef="let item" [ngClass]="{'is-completed': item._isUploaded}"> {{item['手机号码']}} </td>
+              </ng-container>
+              <ng-container matColumnDef="固定电话">
+                <th mat-header-cell *matHeaderCellDef> 固定电话 </th>
+                <td mat-cell *matCellDef="let item" [ngClass]="{'is-completed': item._isUploaded}"> {{item['固定电话']}} </td>
+              </ng-container>
+              <ng-container matColumnDef="邮箱">
+                <th mat-header-cell *matHeaderCellDef> 邮箱 </th>
+                <td mat-cell *matCellDef="let item" [ngClass]="{'is-completed': item._isUploaded}"> {{item['邮箱']}} </td>
+              </ng-container>
+              <ng-container matColumnDef="线索来源">
+                <th mat-header-cell *matHeaderCellDef> 线索来源 </th>
+                <td mat-cell *matCellDef="let item" [ngClass]="{'is-completed': item._isUploaded}"> {{item['线索来源']}} </td>
+              </ng-container>
+              <ng-container matColumnDef="线索状态">
+                <th mat-header-cell *matHeaderCellDef> 线索状态 </th>
+                <td mat-cell *matCellDef="let item" [ngClass]="{'is-completed': item._isUploaded}"> {{item['线索状态']}} </td>
+              </ng-container>
+              <ng-container matColumnDef="备注">
+                <th mat-header-cell *matHeaderCellDef> 备注 </th>
+                <td mat-cell *matCellDef="let item" [ngClass]="{'is-completed': item._isUploaded}"> {{item['备注']}} </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
         </div>
         <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
           <button mat-raised-button matStepperPrevious>上一步</button>
-          <button mat-raised-button matStepperNext color="primary">下一步</button>
+          <button mat-raised-button matStepperNext color="primary"  *ngIf="isReady()" (click)="doImport()">导入</button>
+          <button mat-raised-button matStepperNext color="primary"  *ngIf="isUploading()">下一步</button>
         </mat-dialog-actions>
-      </form>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>导入数据</ng-template>
       <div class="stepper-body" fxLayout="row wrap" fxLayoutAlign="center center">
-        <mat-icon class="icon-proccessing icon-32">autorenew</mat-icon>
-        <p>正在导入数据第{{processed}}/{{total}}条</p>
+        <div *ngIf="data" class="processing-box">
+          <div *ngIf="isUploading()">
+            <mat-icon class="icon-processing icon-32">autorenew</mat-icon>
+            <p>正在上传数据第{{processed}}/{{data.length}}条</p>
+          </div>
+          <div *ngIf="isFinished()">
+            <mat-icon class="icon-32">done</mat-icon>
+            <p>上传完成</p>
+          </div>
+          <div *ngIf="isCanceled()">
+            <mat-icon class="icon-32">cancel</mat-icon>
+            <p>已取消(已导入{{processed}}条)</p>
+          </div>
+          <div *ngIf="isSubmiting()">
+            <mat-icon class="icon-processing icon-32">autorenew</mat-icon>
+            <p>正在提交...</p>
+          </div>
+          <div *ngIf="isCompleted()">
+            <mat-icon class="icon-32">done</mat-icon>
+            <p>提交完成</p>
+          </div>
+        </div>
       </div>
       <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
         <button mat-raised-button matStepperPrevious>上一步</button>
-        <button mat-raised-button (click)="stepper.reset()">取消</button>
+        <button mat-raised-button *ngIf="isUploading()" (click)="doCancel()">取消</button>
+        <button mat-raised-button *ngIf="isFinished()" (click)="doSubmit()">提交</button>
+        <!-- (click)="stepper.reset()" -->
       </mat-dialog-actions>
     </mat-step>
   </mat-horizontal-stepper>

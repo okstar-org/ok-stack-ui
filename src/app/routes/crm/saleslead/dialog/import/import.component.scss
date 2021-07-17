@@ -17,3 +17,18 @@ ul.msg-list {
     color: rgb(102, 102, 102);
   }
 }
+
+.table-box {
+  overflow: auto;
+  max-height: 359px;
+  table {
+    width: 100%;
+    .is-completed {
+      background: rgb(235, 190, 190);
+    }
+  }
+}
+
+.processing-box {
+  text-align: center;
+}

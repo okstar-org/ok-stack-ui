@@ -4,7 +4,7 @@
 }
 
 .warning-box {
-  padding: 0 0.6em;
+  padding: 0 .6em;
   background: rgba(255, 245, 230, 1);
   border-radius: 8px;
   border: 1px solid rgba(255, 235, 204, 1);
@@ -13,7 +13,7 @@
     font-size: 12px;
 
     > p {
-      margin: 0.6em;
+      margin: .4em;
       color: #666;
 
       &.warning-title {
@@ -33,6 +33,6 @@
   }
 }
 
-.icon-proccessing {
+.icon-processing {
   animation: rotating 1.2s linear infinite;
 }
