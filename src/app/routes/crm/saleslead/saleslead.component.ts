@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 import { MtxGridColumn } from '@ng-matero/extensions';
 import { PageEvent } from '@angular/material/paginator';
 import { AddComponent } from './dialog/add/add.component';
+import { ImportComponent } from './dialog/import/import.component';
 
 @Component({
   selector: 'app-saleslead',
@@ -173,6 +174,8 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     this.translateSubscription = this.translate.onLangChange.subscribe((res: { lang: any }) => {
       this.dateAdapter.setLocale(res.lang);
     });
+
+    // this.import()
   }
 
   ngOnDestroy() {
@@ -276,12 +279,12 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       contactName: ['', Validators.required],
       customerState: 0,
       avatar: '',
-      faxPhone: '',
-      landPhone: '',
+      faxPhone: [null],
+      landPhone: [null],
+      mobilePhone: [null],
       lastFollowUpTime: new Date(),
       leadFrom: null,
       leadState: null,
-      mobilePhone: [''],
       nextFollowUpTime: new Date(),
       note: '',
       owner: '',
@@ -316,7 +319,15 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     // });
   }
 
-  import() {}
+  import() {
+    this.logger.debug('import...');
+
+    const dialogRef = this.dialog.open(ImportComponent, {});
+    // dialogRef.componentInstance.emitter.subscribe(() => {
+    //   this.getData();
+    //   dialogRef.close();
+    // });
+  }
 
   export() {
     this.service.getExport(this.params);

@@ -1,0 +1,19 @@
+.stepper-body {
+  height: 360px;
+}
+
+ul.msg-list {
+  list-style-type: none;
+  padding-left: 1em;
+
+  li {
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+    margin: .5em 0;
+  }
+
+  li:first-child {
+    font-weight: 700;
+    color: rgb(102, 102, 102);
+  }
+}

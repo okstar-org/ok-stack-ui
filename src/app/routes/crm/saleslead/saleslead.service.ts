@@ -32,12 +32,12 @@ export interface DTO {
   contactName: any;
   customerState: CustomerStateEnum;
   avatar: string;
-  faxPhone: string;
-  landPhone: string;
+  faxPhone: any;
+  landPhone: any;
+  mobilePhone: any;
   lastFollowUpTime: Date;
   leadFrom: string;
   leadState: string;
-  mobilePhone: any;
   nextFollowUpTime: Date;
   note: string;
   owner: string;

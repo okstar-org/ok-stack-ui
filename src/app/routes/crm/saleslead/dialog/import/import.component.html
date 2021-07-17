@@ -1,0 +1,109 @@
+<mat-card>
+  <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button> -->
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>上传文件</ng-template>
+
+        <div class="stepper-body">
+
+          <mat-card>
+
+            <div fxLayout="row wrap" fxLayoutAlign="center center" >
+              <div [style.background]="'rgba(245,245,245,1)'" fxFlex="20" class="matero-col">
+                <div style="height: 6em;" fxLayout="row wrap" fxLayoutAlign="center center">
+                  <mat-icon class="icon-48" [style.color]="'#ccc'">cloud_download</mat-icon>
+                </div>
+              </div>
+              <div fxFlex="80" class="matero-col">
+                <ul class="msg-list">
+                  <li class="msg-list-item">
+                    填写导入数据信息
+                  </li>
+                  <li>
+                    请按照模板的格式准备导入数据，模板中的表头名称不可更改，表头行不能删除
+                  </li>
+                  <li>
+                    <a href="javascript:;">下载模板</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </mat-card>
+
+          <mat-card>
+            <div fxLayout="row wrap" fxLayoutAlign="center center" >
+              <div [style.background]="'rgba(245,245,245,1)'" fxFlex="20" class="matero-col">
+                <div style="height: 6em;" fxLayout="row wrap" fxLayoutAlign="center center">
+                  <mat-icon class="icon-48" [style.color]="'#ccc'">cloud_upload</mat-icon>
+                </div>
+              </div>
+              <div fxFlex="80" class="matero-col">
+                <ul class="msg-list">
+                  <li class="msg-list-item">
+                    上传填好的信息表
+                  </li>
+                  <li>
+                    文件后缀名必须为xls 或xlsx （即Excel格式），文件大小不得大于10M，最多支持导入3000条数据
+                  </li>
+                  <li>
+                    <a href="javascript:;">Template.xls(23.5 KB)</a> x
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </mat-card>
+
+          <div class="warning-box" fxLayout="row wrap" fxLayoutAlign="start center">
+              <div class="warning-icon">
+                <mat-icon class="icon-36" [style.color]="'#FE9400'">error_outline</mat-icon>
+              </div>
+              <div class="warning-text">
+                <p class="warning-title">特别提示</p>
+                <p>导入过程中如发现同名客户，且对该客户数据有更新权限，则更新这条客户数据。</p>
+              </div>
+          </div>
+        </div>
+
+        <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+          <a mat-button href="">导入记录</a>
+          <button mat-raised-button matStepperNext color="primary">下一步</button>
+        </mat-dialog-actions>
+
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>数据预览</ng-template>
+        <div class="stepper-body">
+          <table>
+            <tr>
+              <td>客户名称               </td>
+              <td>客户类型               </td>
+              <td>所属行业               </td>
+              <td>客户来源               </td>
+              <td>星级               </td>
+            </tr>
+          </table>
+        </div>
+        <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+          <button mat-raised-button matStepperPrevious>上一步</button>
+          <button mat-raised-button matStepperNext color="primary">下一步</button>
+        </mat-dialog-actions>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>导入数据</ng-template>
+      <div class="stepper-body" fxLayout="row wrap" fxLayoutAlign="center center">
+        <mat-icon class="icon-proccessing icon-32">autorenew</mat-icon>
+        <p>正在导入数据第{{processed}}/{{total}}条</p>
+      </div>
+      <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+        <button mat-raised-button matStepperPrevious>上一步</button>
+        <button mat-raised-button (click)="stepper.reset()">取消</button>
+      </mat-dialog-actions>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>

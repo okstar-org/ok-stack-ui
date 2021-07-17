@@ -9,7 +9,6 @@
     <mat-card>
       <div class="demo-full-width">
 
-
             <mat-form-field class="demo-full-width" class="m-r-8">
               <mat-label>客户名称</mat-label>
               <input matInput formControlName="customerName" required>
@@ -17,7 +16,6 @@
                 {{'validations.required' | translate}}
               </mat-error>
             </mat-form-field>
-
 
             <mat-form-field class="demo-full-width" class="m-r-8">
               <mat-label>联系人姓名</mat-label>
@@ -90,19 +88,22 @@
               </mtx-select>
             </mat-form-field>
 
-            <mat-form-field class="demo-full-width" *ngIf="params">
+            <mat-form-field class="demo-full-width" class="m-r-8" *ngIf="params">
               <mat-label>归属人员</mat-label>
               <input matInput formControlName="ownerName">
             </mat-form-field>
 
-          <mat-form-field class="demo-full-width">
+          <mat-form-field class="demo-full-width" class="m-r-8">
             <mat-label>备注</mat-label>
             <textarea matInput formControlName="note"></textarea>
           </mat-form-field>
 
-          <mat-checkbox aria-label="跟进任务" formControlName="isCreateFollowUpTask">
-          创建跟进任务
-        </mat-checkbox>
+          <div>
+
+          <!-- <mat-form-field class="demo-full-width" class="m-r-8"> -->
+            <mat-label>创建跟进任务</mat-label>
+            <mat-checkbox aria-label="创建跟进任务" formControlName="isCreateFollowUpTask"></mat-checkbox>
+          <!-- </mat-form-field> -->
 
         <div *ngIf="isCreateFollowUpTask.value">
 
@@ -127,6 +128,7 @@
           </mat-form-field>
 
         </div>
+      </div>
 
       </div>
     </mat-card>
@@ -134,7 +136,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
-  <button mat-raised-button mat-dialog-close>Close</button>
+  <!-- <button mat-raised-button mat-dialog-close>Close</button> -->
   <button mat-raised-button color="primary"
   (click)="doSave()">Save</button>
 </mat-dialog-actions>
