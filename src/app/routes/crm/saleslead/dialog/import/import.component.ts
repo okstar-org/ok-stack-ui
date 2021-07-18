@@ -1,6 +1,7 @@
+import { ImportService } from './import.service';
 import { NGXLogger } from 'ngx-logger';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { DTO, Status } from './import.model';
 import { ReturnStatement } from '@angular/compiler';
@@ -10,6 +11,8 @@ import { ReturnStatement } from '@angular/compiler';
   styleUrls: ['./import.component.scss'],
 })
 export class ImportComponent implements OnInit {
+  emitter = new EventEmitter<void>();
+
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -32,14 +35,16 @@ export class ImportComponent implements OnInit {
   status: Status;
   interval: any;
 
-  constructor(private logger: NGXLogger, private formBuilder: FormBuilder) {}
+  constructor(
+    private logger: NGXLogger,
+    private formBuilder: FormBuilder,
+    private service: ImportService
+  ) {}
 
   ngOnInit() {}
 
   clear() {
     this.data = null;
-    // this.status = null;
-    window.clearInterval(this.interval);
   }
 
   doImport() {
@@ -53,32 +58,58 @@ export class ImportComponent implements OnInit {
 
     this.status = Status.UPLOADING;
 
-    this.interval = window.setInterval(() => {
-      const row = this.data[this.processed];
-      if (!row) {
-        window.clearInterval(this.interval);
-        return;
-      }
-      row._isUploaded = true;
-      this.processed += 1;
-      if (this.processed >= this.data.length) {
-        this.status = Status.FINISHED;
-        this.doSubmit();
-      }
+    this.service.importBegin().subscribe(r => {
+      this.logger.info('begin', r);
+    });
+
+    this.interval = window.setTimeout(() => {
+      this.addHandler();
     }, 100);
   }
 
+  addHandler() {
+    const row = this.data[this.processed];
+    if (!row) {
+      return;
+    }
+
+    this.service
+      .importAdd(row)
+      .pipe(r => {
+        row._isUploaded = true;
+        this.processed += 1;
+
+        return r;
+      })
+      .subscribe(r => {
+        this.logger.info('add {}=>{}', row, r);
+
+        if (this.isCanceled()) {
+          return;
+        }
+
+        this.interval = window.setTimeout(() => {
+          this.addHandler();
+        }, 100);
+
+        if (this.processed >= this.data.length) {
+          this.status = Status.FINISHED;
+          this.doSubmit();
+        }
+      });
+  }
+
   doCancel() {
-    window.clearInterval(this.interval);
     this.status = Status.CANCELED;
   }
 
   doSubmit() {
     this.status = Status.SUBMITING;
-    setTimeout(() => {
+    this.service.importCommit().subscribe(r => {
+      this.logger.info('doSubmit', r);
       this.status = Status.COMPLETED;
-      // this.clear();
-    }, 1000);
+      this.emitter.emit();
+    });
   }
 
   updateFile($event) {

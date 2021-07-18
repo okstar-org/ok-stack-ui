@@ -323,10 +323,10 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     this.logger.debug('import...');
 
     const dialogRef = this.dialog.open(ImportComponent, {});
-    // dialogRef.componentInstance.emitter.subscribe(() => {
-    //   this.getData();
-    //   dialogRef.close();
-    // });
+    dialogRef.componentInstance.emitter.subscribe(() => {
+      this.getData();
+      dialogRef.close();
+    });
   }
 
   export() {
