@@ -58,12 +58,20 @@ export interface ID {
 export class SalesleadService {
   constructor(private logger: NGXLogger, private http: HttpClient) {}
 
-  downLoadFile(data: any, type: string) {
-    const blob = new Blob([data], { type });
-    const url = window.URL.createObjectURL(blob);
-    const pwa = window.open(url);
-    if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
-      alert('Please disable your Pop-up blocker and try again.');
+  downLoadFile(data: any, fileName: string, type: string) {
+    try {
+      const blob = new Blob([data], { type });
+
+      const a = document.createElement('a');
+      a.download = fileName;
+      a.style.display = 'none';
+      a.href = window.URL.createObjectURL(blob);
+
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (error) {
+      alert('您的浏览器不支持下载，请升级到最新的chrome浏览器！');
     }
   }
 
@@ -76,9 +84,12 @@ export class SalesleadService {
 
   getExport(params = {}) {
     this.logger.debug('getExport', params);
+    // const url = CRM_API.saleslead.export;
+    // window.location.assign(url);
+    // URL.revokeObjectURL(url);
     return this.http
       .get(CRM_API.saleslead.export, { responseType: 'arraybuffer', params })
-      .subscribe(r => this.downLoadFile(r, 'application/ms-excel'));
+      .subscribe(r => this.downLoadFile(r, '客户管理-销售线索-导出.xls', 'application/ms-excel'));
   }
 
   getParams(params = {}): Observable<Payload> {

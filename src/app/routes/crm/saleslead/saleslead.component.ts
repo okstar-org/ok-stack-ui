@@ -1,3 +1,4 @@
+import { supports } from './../../../shared/utils/support';
 import { NGXLogger } from 'ngx-logger';
 import {
   Component,
@@ -141,7 +142,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     private dateAdapter: DateAdapter<any>,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
-    public dialog: MatDialog
+    private dialog: MatDialog
   ) {
     this.group = this.fb.group({
       sort: 'ordinal,desc',
@@ -330,6 +331,12 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   }
 
   export() {
+    if (!supports.canDownload()) {
+      this.translate.get('support.can_not').subscribe(r => {
+        alert(r);
+      });
+      return;
+    }
     this.service.getExport(this.params);
   }
 
