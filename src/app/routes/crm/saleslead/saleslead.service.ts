@@ -82,14 +82,14 @@ export class SalesleadService {
       .pipe(map((r: any) => r.payload));
   }
 
-  getExport(params = {}) {
+  getExport(params = {}, fileName: string) {
     this.logger.debug('getExport', params);
     // const url = CRM_API.saleslead.export;
     // window.location.assign(url);
     // URL.revokeObjectURL(url);
     return this.http
       .get(CRM_API.saleslead.export, { responseType: 'arraybuffer', params })
-      .subscribe(r => this.downLoadFile(r, '客户管理-销售线索-导出.xls', 'application/ms-excel'));
+      .subscribe(r => this.downLoadFile(r, fileName, 'application/ms-excel'));
   }
 
   getParams(params = {}): Observable<Payload> {

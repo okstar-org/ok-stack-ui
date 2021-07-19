@@ -337,7 +337,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       });
       return;
     }
-    this.service.getExport(this.params);
+    this.service.getExport(this.params, '客户管理-销售线索-导出.xls');
   }
 
   change() {}
