@@ -19,6 +19,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'crm', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'crm', loadChildren: () => import('./crm/crm.module').then(m => m.CrmModule) },
+      { path: 'sys', loadChildren: () => import('./sys/sys.module').then(m => m.SysModule) },
       {
         path: 'design',
         loadChildren: () => import('./design/design.module').then(m => m.DesignModule),

@@ -76,7 +76,9 @@
     "permissions": "权限管理",
     "permissions.test": "权限测试",
     "crm": "客户管理",
-    "crm.saleslead": "销售线索"
+    "crm.saleslead": "销售线索",
+    "sys": "系统管理",
+    "sys.org": "组织架构"
   },
   "validations": {
     "required": "该字段必填",

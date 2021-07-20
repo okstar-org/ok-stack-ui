@@ -14,6 +14,19 @@
       ]
     },
     {
+      "route": "sys",
+      "name": "sys",
+      "type": "sub",
+      "icon": "settings",
+      "children": [
+        {
+          "route": "org",
+          "name": "org",
+          "type": "link"
+        }
+      ]
+    },
+    {
       "route": "dashboard",
       "name": "dashboard",
       "type": "link",
