@@ -48,7 +48,8 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       field: 'customerName',
       sortable: true,
       formatter: (data: any) =>
-        `<a href="${data.html_url}" target="_blank">${data.customerName}</a>`,
+        // `<a [routerLink]="['crm/saleslead/detail', ${data.id}]" mat-tab-link>${data.customerName}</a>`,
+        `<a href="crm/saleslead/detail/${data.id}">${data.customerName}</a>`,
     },
     {
       header: this.translate.stream('crm.saleslead.contactName'),
