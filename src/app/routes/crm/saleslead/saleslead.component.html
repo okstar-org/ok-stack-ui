@@ -87,7 +87,7 @@
           [pageSizeOptions]="[5,10,20]"
           (sortChange)="changeSort($event)"
           (page)="getNextPage($event)"
-          [cellTemplate]="{leadState: leadStateTpl, leadFrom: leadFromTpl}"
+          [cellTemplate]="{leadState: leadStateTpl, leadFrom: leadFromTpl, customerName: nameTpl}"
           >
       </mtx-grid>
 
@@ -97,6 +97,12 @@
 
       <ng-template #leadFromTpl let-row let-index="index" let-col="colDef">
         {{"crm.saleslead.leadFromSelect." +row.leadFrom | translate}}
+      </ng-template>
+
+      <ng-template #nameTpl let-row let-index="index" let-col="colDef">
+        <a [routerLink] = "['/crm/saleslead/detail', row.id ]" >
+          {{ row.customerName }}
+        </a>
       </ng-template>
 
     </mat-card>

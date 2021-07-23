@@ -1,14 +1,8 @@
 import { supports } from './../../../shared/utils/support';
 import { NGXLogger } from 'ngx-logger';
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  EventEmitter,
-} from '@angular/core';
-import { DTO, SalesleadService, Form } from './saleslead.service';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+
+import { SalesleadService, Form } from './saleslead.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -47,9 +41,6 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       header: this.translate.stream('crm.saleslead.customerName'),
       field: 'customerName',
       sortable: true,
-      formatter: (data: any) =>
-        // `<a [routerLink]="['crm/saleslead/detail', ${data.id}]" mat-tab-link>${data.customerName}</a>`,
-        `<a href="crm/saleslead/detail/${data.id}">${data.customerName}</a>`,
     },
     {
       header: this.translate.stream('crm.saleslead.contactName'),
@@ -66,7 +57,11 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       field: 'ownerName',
       sortable: true,
     },
-    { header: this.translate.stream('crm.saleslead.leadFrom'), field: 'leadFrom', sortable: true },
+    {
+      header: this.translate.stream('crm.saleslead.leadFrom'),
+      field: 'leadFrom',
+      sortable: true,
+    },
     {
       header: this.translate.stream('crm.saleslead.leadState'),
       field: 'leadState',
@@ -87,8 +82,8 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     {
       header: '操作',
       field: 'operation',
-      minWidth: 220,
-      width: '220px',
+      minWidth: 180,
+      width: '200px',
       pinned: 'right',
       type: 'button',
       buttons: [
