@@ -1,13 +1,26 @@
 <page-header class="bg-purple-500"></page-header>
 
-<mat-card>
+<mat-card *ngIf="data">
     <mat-card-header>
-        <mat-card-title>北京市xxx   [标志]  客户网络咨询</mat-card-title>
+        <mat-card-title>
+          <ul class="ok-item-list crm-saleslead-header">
+            <li class="crm-saleslead-logo">
+              <img [src]="'./assets/images/matero.png'">
+            </li>
+            <li class="crm-saleslead-customer-name">{{data.customerName}}</li>
+            <li>[标志] </li>
+            <li>客户网络咨询</li>
+          </ul>
+        </mat-card-title>
         <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
     </mat-card-header>
     <!-- <img matCardImage src="Card wide image source"> -->
     <mat-card-content>
-        <p> 线索归属：张翠花  联系人姓名：张全蛋 下次跟进：2021-07-15 12:00</p>
+      <ul class="ok-item-list crm-saleslead-detail">
+        <li>线索归属：[张翠花]</li>
+        <li>联系人姓名：{{data.contactName}} </li>
+        <li>下次跟进：{{data.nextFollowUpTime}}</li>
+      </ul>
     </mat-card-content>
     <mat-card-actions align="start" style="margin: 0;">
         <button mat-button  mat-raised-button>初步意向</button>

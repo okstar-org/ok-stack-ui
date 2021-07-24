@@ -4,12 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { CRM_API } from './../api-url';
-
-export interface Payload {
-  data: any;
-  extra: any;
-}
+import { CRM_API, Payload } from './../api-url';
 
 enum CustomerStateEnum {
   AlreadyPurchased,
@@ -43,11 +38,11 @@ export interface DTO {
   owner: string;
   ownerName: string;
   unFollowUpDays: number;
-  mail: any;
+  mail: string;
 }
 
 export interface Form extends DTO {
-  //   mail: string | any;
+  mail: any;
 }
 
 export interface ID {

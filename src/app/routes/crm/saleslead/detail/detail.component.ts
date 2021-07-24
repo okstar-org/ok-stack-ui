@@ -1,5 +1,8 @@
+import { NGXLogger } from 'ngx-logger';
+import { DetailService } from './detail.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DTO } from '../saleslead.service';
 
 @Component({
   selector: 'app-detail',
@@ -8,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailComponent implements OnInit {
   id: string;
+  data: DTO;
 
   tabLinks = [
     { label: 'info', link: 'info' },
@@ -17,12 +21,25 @@ export class DetailComponent implements OnInit {
     { label: 'attach', link: 'attach' },
   ];
 
-  constructor(private activedRoute: ActivatedRoute) {
+  constructor(
+    private logger: NGXLogger,
+    private activedRoute: ActivatedRoute,
+    private svc: DetailService
+  ) {
     this.activedRoute.params.subscribe((params: { id: string }) => {
       console.log('params=>', params);
       this.id = params.id;
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getData();
+  }
+
+  getData() {
+    this.svc.getData(this.id).subscribe(r => {
+      this.logger.info(r);
+      this.data = r.data;
+    });
+  }
 }
