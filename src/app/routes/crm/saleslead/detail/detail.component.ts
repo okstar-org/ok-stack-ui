@@ -9,6 +9,14 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailComponent implements OnInit {
   id: string;
 
+  tabLinks = [
+    { label: 'info', link: 'info' },
+    { label: 'followup', link: 'followup' },
+    { label: 'task', link: 'task' },
+    { label: 'call', link: 'call' },
+    { label: 'attach', link: 'attach' },
+  ];
+
   constructor(private activedRoute: ActivatedRoute) {
     this.activedRoute.params.subscribe((params: { id: string }) => {
       console.log('params=>', params);

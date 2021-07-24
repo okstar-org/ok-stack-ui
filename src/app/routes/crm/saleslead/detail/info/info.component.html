@@ -1,0 +1,116 @@
+<div>
+
+  <div class="ok-content-box">
+    <div class="ok-content-title">
+      <mat-icon class="icon-40">bookmark</mat-icon>
+      基本信息
+    </div>
+    <div class="ok-content-wrapper">
+      <table>
+        <tr>
+          <td>客户名称：</td>
+          <td></td>
+          <td>联系人姓名：</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>尊称：</td>
+          <td></td>
+          <td>角色：</td>
+          <td>决策人</td>
+        </tr>
+        <tr>
+          <td>部门职务：</td>
+          <td>销售部经理</td>
+          <td>手机号码：</td>
+          <td>18888888888</td>
+        </tr>
+        <tr>
+          <td>固定电话：</td>
+          <td>-</td>
+          <td>传真号码：</td>
+          <td>-</td>
+        </tr>
+
+        <tr>
+          <td>电子邮箱：</td>
+          <td>-</td>
+          <td>微信账号：</td>
+          <td>-</td>
+        </tr>
+
+        <tr>
+          <td>QQ号码：</td>
+          <td>-</td>
+          <td>线索来源：</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>线索状态：</td>
+          <td>初步意向</td>
+          <td></td>
+          <td></td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="ok-content-box">
+    <div class="ok-content-title">
+      <mat-icon class="icon-40">bookmark</mat-icon>
+      系统信息
+    </div>
+    <div class="ok-content-wrapper">
+      <table>
+        <tr>
+          <td>系统编号：</td>
+          <td>XS20190324010001</td>
+          <td>所属部门：</td>
+          <td>销售一部</td>
+        </tr>
+        <tr>
+          <td>创建人员：</td>
+          <td>张脆花</td>
+          <td>前归属人：</td>
+          <td>张脆花</td>
+        </tr>
+        <tr>
+          <td>前所属部门：</td>
+          <td>销售一部</td>
+          <td>创建时间：</td>
+          <td>2019-07-15 17:27</td>
+        </tr>
+        <tr>
+          <td>更新时间：</td>
+          <td> 2019-07-15 17:27</td>
+          <td>最后跟进：</td>
+          <td>2019-07-15 17:27</td>
+        </tr>
+        <tr>
+          <td>下次跟进：</td>
+          <td>2019-07-15 17:27</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="ok-content-box">
+    <div class="ok-content-title">
+      <mat-icon class="icon-40">bookmark</mat-icon>
+      相关数据
+    </div>
+    <div class="ok-content-wrapper">
+      <ul class="ok-number-box">
+        <li *ngFor="let m of meters">
+          <p class="name">{{m.name}}</p>
+          <p class="count">{{m.amount}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+</div>

@@ -1,3 +1,41 @@
-<p>
-  线索详情：{{id}}
-</p>
+<page-header class="bg-purple-500"></page-header>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>北京市xxx   [标志]  客户网络咨询</mat-card-title>
+        <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
+    </mat-card-header>
+    <!-- <img matCardImage src="Card wide image source"> -->
+    <mat-card-content>
+        <p> 线索归属：张翠花  联系人姓名：张全蛋 下次跟进：2021-07-15 12:00</p>
+    </mat-card-content>
+    <mat-card-actions align="start" style="margin: 0;">
+        <button mat-button  mat-raised-button>初步意向</button>
+        <button mat-button  mat-raised-button>转为客户</button>
+        <button mat-button  mat-raised-button>写跟进</button>
+        <button mat-button  mat-raised-button>新建任务</button>
+        <button mat-button  mat-raised-button>拨打手机</button>
+        <button mat-button  mat-raised-button>编辑线索</button>
+        <button mat-button  mat-raised-button>删除线索</button>
+    </mat-card-actions>
+    <!-- <mat-card-footer>
+        Footer
+    </mat-card-footer> -->
+    <div class="ok-arrow-box">
+      <a routerLink="../111"><mat-icon class="mat-18" color="'#999'">keyboard_arrow_left</mat-icon></a>
+      <a routerLink="../222"><mat-icon class="mat-18" color="primary">keyboard_arrow_right</mat-icon></a>
+    </div>
+</mat-card>
+
+<nav mat-tab-nav-bar aria-label="salea leads navigation links">
+  <a mat-tab-link
+     *ngFor="let tabLink of tabLinks; let i = index"
+     [routerLink]="tabLink.link"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive"
+     >
+    {{"crm.saleslead.detail.tab."+ tabLink.label | translate}}
+  </a>
+</nav>
+<router-outlet></router-outlet>
+

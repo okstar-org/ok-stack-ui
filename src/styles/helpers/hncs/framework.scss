@@ -36,3 +36,78 @@
 .icon-processing {
   animation: rotating 1.2s linear infinite;
 }
+
+.ok-arrow-box {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  border: 1px solid #999;
+  border-radius: 5px;
+}
+
+.ok-content-box {
+  $border-color: rgb(233, 233, 233);
+
+  color: #666;
+
+  .ok-content-title {
+    font-weight: bold;
+    padding: 1em;
+  }
+
+  .ok-content-wrapper {
+    padding: 0 1em;
+
+    > table {
+      border-spacing: 0;
+      width: 100%;
+      border-bottom: 1px solid $border-color;
+      border-left: 1px solid $border-color;
+      > tr {
+        > td {
+          line-height: 36px;
+          font-size: 12px;
+          border-top: 1px solid $border-color;
+          border-right: 1px solid $border-color;
+
+          &:nth-child(2n) {
+            padding-left: 1em;
+            width: 35%;
+          }
+
+          &:nth-child(2n+1) {
+            background: rgb(245, 245, 245);
+            min-width: 6em;
+            max-width: 16em;
+            width: 15%;
+            text-align: right;
+            padding-right: 1em;
+            font-weight: bold;
+          }
+
+        }
+
+      }
+    }
+  }
+}
+
+ul.ok-number-box {
+  list-style: none;
+  > li {
+    font-size: 12px;
+    display: inline-block;
+    text-align: center;
+    margin: 1em;
+    border: 1px solid #eee;
+    width: 6em;
+
+    .name {
+      font-weight: bold;
+    }
+
+    .count {
+      color: rgb(143, 81, 224);
+    }
+  }
+}

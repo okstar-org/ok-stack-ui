@@ -1,5 +1,4 @@
 import { Routes, RouterModule } from '@angular/router';
-import { DetailComponent } from './detail/detail.component';
 import { SalesleadComponent } from './saleslead.component';
 
 const routes: Routes = [
