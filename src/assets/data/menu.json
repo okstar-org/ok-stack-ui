@@ -10,6 +10,11 @@
           "route": "saleslead",
           "name": "saleslead",
           "type": "link"
+        },
+        {
+          "route": "customer",
+          "name": "customer",
+          "type": "link"
         }
       ]
     },
