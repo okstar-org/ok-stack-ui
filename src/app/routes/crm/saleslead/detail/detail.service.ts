@@ -14,7 +14,7 @@ export class DetailService {
   getData(id: string, params = {}): Observable<Payload> {
     this.logger.debug('getData', params);
     return this.http
-      .get<Payload>(CRM_API.saleslead.findById + id, { params })
+      .get<Payload>(CRM_API.saleslead.detail.findById + id, { params })
       .pipe(map((r: any) => r.payload));
   }
 }

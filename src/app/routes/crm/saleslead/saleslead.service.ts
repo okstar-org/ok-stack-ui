@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CRM_API, Payload } from './../api-url';
+import { ID } from '@shared/api/ok';
 
 enum CustomerStateEnum {
   AlreadyPurchased,
@@ -45,10 +46,6 @@ export interface Form extends DTO {
   mail: any;
 }
 
-export interface ID {
-  id: string;
-}
-
 @Injectable()
 export class SalesleadService {
   constructor(private logger: NGXLogger, private http: HttpClient) {}
@@ -79,9 +76,6 @@ export class SalesleadService {
 
   getExport(params = {}, fileName: string) {
     this.logger.debug('getExport', params);
-    // const url = CRM_API.saleslead.export;
-    // window.location.assign(url);
-    // URL.revokeObjectURL(url);
     return this.http
       .get(CRM_API.saleslead.export, { responseType: 'arraybuffer', params })
       .subscribe(r => this.downLoadFile(r, fileName, 'application/ms-excel'));

@@ -1,3 +1,4 @@
+import { OkSearchComponent } from './components/ok/ok-search/ok-search.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -37,7 +38,12 @@ const MODULES = [
   ToastrModule,
   TranslateModule,
 ];
-const COMPONENTS = [BreadcrumbComponent, PageHeaderComponent, ErrorCodeComponent];
+const COMPONENTS = [
+  BreadcrumbComponent,
+  PageHeaderComponent,
+  ErrorCodeComponent,
+  OkSearchComponent,
+];
 const COMPONENTS_DYNAMIC = [];
 const DIRECTIVES = [DisableControlDirective];
 const PIPES = [SafeUrlPipe, ToObservablePipe];

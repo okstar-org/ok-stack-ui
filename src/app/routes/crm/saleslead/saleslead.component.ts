@@ -36,6 +36,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
   columnMovable = true;
   multiSelectable = true;
   showToolbar = true;
+
   columns: MtxGridColumn[] = [
     {
       header: this.translate.stream('crm.saleslead.customerName'),
@@ -133,8 +134,8 @@ export class SalesleadComponent implements OnInit, OnDestroy {
 
   constructor(
     private logger: NGXLogger,
-    private service: SalesleadService,
     private fb: FormBuilder,
+    private service: SalesleadService,
     private dateAdapter: DateAdapter<any>,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef,
@@ -171,8 +172,6 @@ export class SalesleadComponent implements OnInit, OnDestroy {
     this.translateSubscription = this.translate.onLangChange.subscribe((res: { lang: any }) => {
       this.dateAdapter.setLocale(res.lang);
     });
-
-    // this.import()
   }
 
   ngOnDestroy() {

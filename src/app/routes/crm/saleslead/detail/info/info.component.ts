@@ -30,6 +30,6 @@ export class InfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('info destroy1...');
+    console.log('info destroy...');
   }
 }

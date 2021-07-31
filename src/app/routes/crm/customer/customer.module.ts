@@ -1,3 +1,4 @@
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { customerRoutes } from './customer.routing';
 import { SharedModule } from './../../../shared/shared.module';
 import { NgModule } from '@angular/core';

@@ -5,7 +5,7 @@
         <mat-card-title>
           <ul class="ok-item-list crm-saleslead-header">
             <li class="crm-saleslead-logo">
-              <img [src]="'./assets/images/matero.png'">
+              <img matListAvatar [src]="data.avatar" alt="">
             </li>
             <li class="crm-saleslead-customer-name">{{data.customerName}}</li>
             <li>[标志] </li>
@@ -15,21 +15,21 @@
         <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
     </mat-card-header>
     <!-- <img matCardImage src="Card wide image source"> -->
-    <mat-card-content>
+    <mat-card-content style="margin: 0;">
       <ul class="ok-item-list crm-saleslead-detail">
-        <li>线索归属：[张翠花]</li>
-        <li>联系人姓名：{{data.contactName}} </li>
-        <li>下次跟进：{{data.nextFollowUpTime}}</li>
+        <li class="m-8">线索归属：[张翠花]</li>
+        <li class="m-8">联系人员：{{data.contactName}} </li>
+        <li class="m-8">下次跟进：{{data.nextFollowUpTime}}</li>
       </ul>
     </mat-card-content>
     <mat-card-actions align="start" style="margin: 0;">
-        <button mat-button  mat-raised-button>初步意向</button>
-        <button mat-button  mat-raised-button>转为客户</button>
-        <button mat-button  mat-raised-button>写跟进</button>
-        <button mat-button  mat-raised-button>新建任务</button>
-        <button mat-button  mat-raised-button>拨打手机</button>
-        <button mat-button  mat-raised-button>编辑线索</button>
-        <button mat-button  mat-raised-button>删除线索</button>
+        <button mat-button  mat-raised-button class="m-8">初步意向</button>
+        <button mat-button  mat-raised-button class="m-8">转为客户</button>
+        <button mat-button  mat-raised-button class="m-8">写跟进</button>
+        <button mat-button  mat-raised-button class="m-8">新建任务</button>
+        <button mat-button  mat-raised-button class="m-8">拨打手机</button>
+        <button mat-button  mat-raised-button class="m-8">编辑线索</button>
+        <button mat-button  mat-raised-button class="m-8">删除线索</button>
     </mat-card-actions>
     <!-- <mat-card-footer>
         Footer

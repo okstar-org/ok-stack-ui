@@ -9,10 +9,15 @@ class Saleslead {
   save = '/api/portal/app-crm/saleslead/save';
   deleteById = '/api/portal/app-crm/saleslead/deleteById/';
   findById = '/api/portal/app-crm/saleslead/findById/';
+
+  detail = {
+    findById: '/api/portal/app-crm/saleslead/detail/findById/',
+  };
 }
 
 class CrmApi {
   constructor() {}
+
   saleslead = new Saleslead();
 }
 
