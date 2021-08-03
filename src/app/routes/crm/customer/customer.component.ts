@@ -159,7 +159,7 @@ export class CustomerComponent extends OkPaginatorComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getPage();
+    this.getPage();
   }
 
   changeSelect(e: any) {
