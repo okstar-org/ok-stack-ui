@@ -1,4 +1,4 @@
-import { ID, OkApi } from './../api/ok';
+import { ID, OkApi, OkResult } from './../api/ok';
 import { NGXLogger } from 'ngx-logger';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -31,7 +31,7 @@ export class OkPaginatorService {
 
   getPage(params = {}): Observable<OkPayload> {
     this.logger.debug(this.api.page, params);
-    return this.http.get<OkPayload>(this.api.page, { params }).pipe(map((r: any) => r.OkPayload));
+    return this.http.get<OkResult>(this.api.page, { params }).pipe(map((r: OkResult) => r.payload));
   }
 
   getExport(params = {}, fileName: string) {

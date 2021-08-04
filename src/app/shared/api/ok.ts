@@ -28,6 +28,12 @@ export interface OkPayload {
   extra: any;
 }
 
+export interface OkResult {
+  header: { cts: Date; sts: Date };
+  payload: OkPayload;
+  success: boolean;
+}
+
 const okPageGroup = new OkPageGroup();
 
 export { okPageGroup };
