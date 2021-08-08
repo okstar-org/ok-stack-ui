@@ -11,10 +11,10 @@ import { Injectable } from '@angular/core';
 export class DetailService {
   constructor(private logger: NGXLogger, private http: HttpClient) {}
 
-  getData(id: string, params = {}): Observable<Payload> {
+  getData(sn: string, params = {}): Observable<Payload> {
     this.logger.debug('getData', params);
     return this.http
-      .get<Payload>(CRM_API.saleslead.detail.findById + id, { params })
+      .get<Payload>(CRM_API.saleslead.detail.findBySn + sn, { params })
       .pipe(map((r: any) => r.payload));
   }
 }

@@ -84,8 +84,8 @@
       </ng-template>
 
       <ng-template #nameTpl let-row let-index="index" let-col="colDef">
-        <a [routerLink] = "['/crm/customer/detail', row.id ]" >
-          {{ row.customerName }}
+        <a [routerLink] = "['/crm/customer/detail', row.sn ]" >
+          {{ row.name }}
         </a>
       </ng-template>
 

@@ -153,6 +153,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       lastFollowUpTime: [null],
     });
 
+    // this.group.addControl('sort', {});
     // this.group = fb.group({
     //   dateTimeYear: [new Date('2017-11-09T12:10:00.000Z'), Validators.required],
     //   date: [null, Validators.required],

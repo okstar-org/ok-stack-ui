@@ -18,7 +18,9 @@ export class DetailComponent implements OnInit {
     { label: 'followup', link: 'followup' },
     { label: 'task', link: 'task' },
     { label: 'call', link: 'call' },
+    { label: 'sms', link: 'sms' },
     { label: 'attach', link: 'attach' },
+    { label: 'log', link: 'log' },
   ];
 
   constructor(

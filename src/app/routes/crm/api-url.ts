@@ -11,7 +11,7 @@ class Saleslead {
   findById = '/api/portal/app-crm/saleslead/findById/';
 
   detail = {
-    findById: '/api/portal/app-crm/saleslead/detail/findById/',
+    findBySn: '/api/portal/app-crm/saleslead/detail/findBySn/',
   };
 }
 

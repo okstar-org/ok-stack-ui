@@ -29,13 +29,13 @@ export class CustomerComponent extends OkPaginatorComponent implements OnInit {
   showToolbar = true;
   columns: MtxGridColumn[] = [
     {
-      header: this.translate.stream('crm.customer.customerName'),
-      field: 'customerName',
+      header: this.translate.stream('crm.customer.name'),
+      field: 'name',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.customer.customerStatus'),
-      field: 'customerStatus',
+      header: this.translate.stream('crm.customer.status'),
+      field: 'state',
       sortable: true,
     },
     {
