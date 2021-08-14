@@ -1,11 +1,21 @@
+import { OkDetailComponent } from './../../../../../shared/components/ok/ok-detail.component';
+import { map } from 'rxjs/operators';
+import { OkPayload, OkApi, OkResult } from './../../../../../shared/api/ok';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NGXLogger } from 'ngx-logger';
+import { DTO, leadApi, LeadDTO } from '../../lead.api';
+import { ActivatedRoute } from '@angular/router';
+import { OkDetailService } from '@shared/services/ok-detail.service';
+import { InfoService } from './info.service';
 
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.scss'],
 })
-export class InfoComponent implements OnInit, OnDestroy {
+export class InfoComponent extends OkDetailComponent implements OnInit, OnDestroy {
   meters = [
     { name: '联系人', amount: '10' },
     { name: '跟进记录', amount: '0' },
@@ -23,13 +33,28 @@ export class InfoComponent implements OnInit, OnDestroy {
     { name: '操作日志', amount: '110233' },
   ];
 
-  constructor() {}
+  id: string;
+  data: LeadDTO;
+
+  constructor(
+    protected logger: NGXLogger,
+    protected service: InfoService,
+    private activedRoute: ActivatedRoute
+  ) {
+    super(logger, service);
+    this.activedRoute.parent.params.subscribe((p: { id: string }) => {
+      this.id = p.id;
+    });
+  }
 
   ngOnInit() {
-    console.log('info init...');
+    this.logger.info('info init...', this.id);
+    this.getDetail(this.id).subscribe(r => {
+      this.data = r.data;
+    });
   }
 
   ngOnDestroy(): void {
-    console.log('info destroy...');
+    this.logger.info('info destroy...', this.id);
   }
 }

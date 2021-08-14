@@ -51,6 +51,7 @@ export class OkPaginatorComponent {
   changeSort(e: any) {
     console.log(e);
   }
+
   getBackParams(param) {
     return this.backParams[param];
   }

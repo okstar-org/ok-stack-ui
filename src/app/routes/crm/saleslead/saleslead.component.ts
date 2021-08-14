@@ -2,7 +2,7 @@ import { supports } from './../../../shared/utils/support';
 import { NGXLogger } from 'ngx-logger';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 
-import { SalesleadService, Form } from './saleslead.service';
+import { SalesleadService } from './saleslead.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -12,6 +12,7 @@ import { MtxGridColumn } from '@ng-matero/extensions';
 import { PageEvent } from '@angular/material/paginator';
 import { AddComponent } from './dialog/add/add.component';
 import { ImportComponent } from './dialog/import/import.component';
+import { Form } from './lead.api';
 
 @Component({
   selector: 'app-saleslead',

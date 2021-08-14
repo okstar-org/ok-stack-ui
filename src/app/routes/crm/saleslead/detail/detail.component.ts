@@ -2,7 +2,7 @@ import { NGXLogger } from 'ngx-logger';
 import { DetailService } from './detail.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DTO } from '../saleslead.service';
+import { DTO } from '../lead.api';
 
 @Component({
   selector: 'app-detail',

@@ -11,49 +11,49 @@
         </li>
       </ul>
     </div>
-    <div class="ok-content-wrapper">
+    <div class="ok-content-wrapper" *ngIf="data">
       <table>
         <tr>
           <td>客户名称：</td>
-          <td></td>
+          <td>{{data.customerName}}</td>
           <td>联系人姓名：</td>
-          <td></td>
+          <td>{{data.contactName}}</td>
         </tr>
         <tr>
           <td>尊称：</td>
-          <td></td>
+          <td>{{data.honorificTitle}}</td>
           <td>角色：</td>
-          <td>决策人</td>
+          <td>{{data.role}}</td>
         </tr>
         <tr>
           <td>部门职务：</td>
-          <td>销售部经理</td>
+          <td>{{data.position}}</td>
           <td>手机号码：</td>
-          <td>18888888888</td>
+          <td>{{data.mobilePhone}}</td>
         </tr>
         <tr>
           <td>固定电话：</td>
-          <td>-</td>
+          <td>{{data.landPhone}}</td>
           <td>传真号码：</td>
-          <td>-</td>
+          <td>{{data.faxPhone}}</td>
         </tr>
 
         <tr>
           <td>电子邮箱：</td>
-          <td>-</td>
+          <td>{{data.mail}}</td>
           <td>微信账号：</td>
-          <td>-</td>
+          <td>[wx23%#SDa]</td>
         </tr>
 
         <tr>
           <td>QQ号码：</td>
-          <td>-</td>
+          <td>[123456]</td>
           <td>线索来源：</td>
-          <td>-</td>
+          <td>{{data.leadFrom}}</td>
         </tr>
         <tr>
           <td>线索状态：</td>
-          <td>初步意向</td>
+          <td>{{data.leadState}}</td>
           <td></td>
           <td></td>
         </tr>
@@ -69,37 +69,37 @@
         <li>系统信息</li>
       </ul>
     </div>
-    <div class="ok-content-wrapper">
+    <div class="ok-content-wrapper" *ngIf="data">
       <table>
         <tr>
-          <td>系统编号：</td>
-          <td>XS20190324010001</td>
+          <td>数据编号：</td>
+          <td>{{data.sn}}</td>
+          <td>数据UUID：</td>
+          <td>{{data.uuid}}</td>
+        </tr>
+        <tr>
           <td>所属部门：</td>
-          <td>销售一部</td>
-        </tr>
-        <tr>
+          <td>[销售一部]</td>
           <td>创建人员：</td>
-          <td>张脆花</td>
-          <td>前归属人：</td>
-          <td>张脆花</td>
+          <td>[张脆花]</td>
         </tr>
         <tr>
+          <td>前归属人：</td>
+          <td>[张脆花]</td>
           <td>前所属部门：</td>
           <td>销售一部</td>
+        </tr>
+        <tr>
           <td>创建时间：</td>
-          <td>2019-07-15 17:27</td>
-        </tr>
-        <tr>
+          <td>{{data.createdAt}}</td>
           <td>更新时间：</td>
-          <td> 2019-07-15 17:27</td>
-          <td>最后跟进：</td>
-          <td>2019-07-15 17:27</td>
+          <td>{{data.updatedAt}}</td>
         </tr>
         <tr>
+          <td>最后跟进：</td>
+          <td>{{data.lastFollowUpTime}}</td>
           <td>下次跟进：</td>
-          <td>2019-07-15 17:27</td>
-          <td></td>
-          <td></td>
+          <td>{{data.nextFollowUpTime}}</td>
         </tr>
       </table>
     </div>

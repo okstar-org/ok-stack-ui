@@ -1,10 +1,10 @@
-import { Form } from './../../saleslead.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddService } from './add.service';
 import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { CRM_API } from 'app/routes/crm/api-url';
+import { Form } from '../../lead.api';
 
 @Component({
   templateUrl: './add.component.html',

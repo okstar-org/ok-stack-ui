@@ -1,5 +1,5 @@
 import { TranslateService } from '@ngx-translate/core';
-import { OkPaginatorComponent } from './../../../shared/components/ok/ok-paginator-component';
+import { OkPaginatorComponent } from '../../../shared/components/ok/ok-paginator.component';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';

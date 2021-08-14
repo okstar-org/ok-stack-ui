@@ -6,9 +6,6 @@ import { Observable } from 'rxjs';
 import { OkPayload } from '@shared/api/ok';
 import { map } from 'rxjs/operators';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
 export class OkPaginatorService {
   constructor(protected logger: NGXLogger, protected http: HttpClient, protected api: OkApi) {}
 

@@ -7,45 +7,6 @@ import { map } from 'rxjs/operators';
 import { CRM_API, Payload } from './../api-url';
 import { ID } from '@shared/api/ok';
 
-enum CustomerStateEnum {
-  AlreadyPurchased,
-  FollowingUp,
-  OnTrial,
-  PutItOnHold,
-  ReadyToBuy,
-  Understanding,
-}
-
-enum LeadStateEnum {
-  InitialIntention,
-  IsCustomer,
-  NextInvite,
-}
-
-export interface DTO {
-  isCreateFollowUpTask: boolean;
-  customerName: any;
-  contactName: any;
-  customerState: CustomerStateEnum;
-  avatar: string;
-  faxPhone: any;
-  landPhone: any;
-  mobilePhone: any;
-  lastFollowUpTime: Date;
-  leadFrom: string;
-  leadState: string;
-  nextFollowUpTime: Date;
-  note: string;
-  owner: string;
-  ownerName: string;
-  unFollowUpDays: number;
-  mail: string;
-}
-
-export interface Form extends DTO {
-  mail: any;
-}
-
 @Injectable()
 export class SalesleadService {
   constructor(private logger: NGXLogger, private http: HttpClient) {}
