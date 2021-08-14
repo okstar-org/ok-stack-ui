@@ -9,6 +9,7 @@ import { DTO, leadApi, LeadDTO } from '../../lead.api';
 import { ActivatedRoute } from '@angular/router';
 import { OkDetailService } from '@shared/services/ok-detail.service';
 import { InfoService } from './info.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-info',
@@ -38,10 +39,11 @@ export class InfoComponent extends OkDetailComponent implements OnInit, OnDestro
 
   constructor(
     protected logger: NGXLogger,
+    protected fb: FormBuilder,
     protected service: InfoService,
     private activedRoute: ActivatedRoute
   ) {
-    super(logger, service);
+    super(logger, fb, service, {});
     this.activedRoute.parent.params.subscribe((p: { id: string }) => {
       this.id = p.id;
     });

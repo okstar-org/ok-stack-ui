@@ -4,14 +4,23 @@ export interface ID {
 
 export interface OkGroup {}
 
-class OkPageGroup implements OkGroup {
+export interface OkPageParams {
+  page: number;
+  size: number;
+  sort?: string;
+  keyword?: string;
+}
+
+class OkPageGroup implements OkGroup, OkPageParams {
   page = 0;
   size = 10;
   sort = 'ordinal,desc';
   keyword?: string;
 }
 
-export interface OkApi {
+export interface OkApi {}
+
+export interface OkPageApi extends OkApi {
   params: string;
   page: string;
   top: string;

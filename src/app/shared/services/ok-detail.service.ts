@@ -16,4 +16,10 @@ export class OkDetailService {
       .get<OkResult>(leadApi.detail.info.findById + id, { params })
       .pipe(map((r: OkResult) => r.payload));
   }
+
+  getPage(params = {}): Observable<OkPayload> {
+    const url = leadApi.detail.followup.page;
+    this.logger.debug(url, params);
+    return this.http.get<OkResult>(url, { params }).pipe(map((r: OkResult) => r.payload));
+  }
 }

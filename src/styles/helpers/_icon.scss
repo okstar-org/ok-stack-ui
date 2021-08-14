@@ -1,4 +1,7 @@
 // Icon
+.icon-10 {
+  @include icon(10);
+}
 
 .icon-20 {
   @include icon(20);

@@ -1,4 +1,4 @@
-import { ID, OkApi, OkResult } from './../api/ok';
+import { ID, OkApi, OkPageApi, OkResult } from './../api/ok';
 import { NGXLogger } from 'ngx-logger';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,7 +7,7 @@ import { OkPayload } from '@shared/api/ok';
 import { map } from 'rxjs/operators';
 
 export class OkPaginatorService {
-  constructor(protected logger: NGXLogger, protected http: HttpClient, protected api: OkApi) {}
+  constructor(protected logger: NGXLogger, protected http: HttpClient, protected api: OkPageApi) {}
 
   downLoadFile(data: any, fileName: string, type: string) {
     try {

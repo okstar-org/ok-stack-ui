@@ -1,21 +1,15 @@
-import { OkApi } from './../../../shared/api/ok';
+import { OkApi, OkPageApi } from './../../../shared/api/ok';
 
 class LeadApi implements OkApi {
-  params: string;
-  page: string;
-  top: string;
-  export: string;
-  importBegin: string;
-  importCommit: string;
-  save: string;
-  deleteById: string;
-  findById: string;
-
   detail = {
     findById: '/api/portal/app-crm/saleslead/detail/findById/',
     findBySn: '/api/portal/app-crm/saleslead/detail/findBySn/',
     info: {
       findById: '/api/portal/app-crm/saleslead/detail/info/findById/',
+    },
+
+    followup: {
+      page: '/api/portal/app-crm/saleslead/detail/followUp/page',
     },
   };
 }
