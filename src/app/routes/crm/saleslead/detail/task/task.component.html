@@ -1,3 +1,90 @@
 <mat-card>
-  任务记录
+  <div class="ok-content-box">
+    <div class="ok-content-title">
+      <ul class="ok-item-list">
+        <li>
+          <mat-icon class="icon-40">bookmark</mat-icon>
+        </li>
+        <li>
+          跟进记录
+        </li>
+      </ul>
+    </div>
+    <div class="ok-content-wrapper">
+
+      <div class="ok-search-controls">
+        <app-ok-search [formGroup]="group" [controls]="searchControls"></app-ok-search>
+        <button mat-button  mat-raised-button class="m-8" (click)="onSearch()">搜索</button>
+      </div>
+
+      <ul class="task-list">
+        <li class="task m-8" *ngFor="let item of list">
+          <div>
+            <mat-list fxLayout="row">
+              <mat-list-item>
+                <div class="t-cell">
+                  <p><mat-icon class="icon-10">access_time</mat-icon>开始时间</p>
+                  <div>{{item.begin}}</div>
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="t-cell">
+                  <p><mat-icon class="icon-10">access_time</mat-icon>开始时间</p>
+                  <div>{{item.end}}</div>
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="t-cell">
+                  <p>任务标题</p>
+                  <div>{{item.name}}</div>
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="t-cell">
+                  <p>负责人员</p>
+                    <div class="t-avatar">
+                      <img mat-card-avatar
+                      src="assets/images/avatar.jpg"
+                      aria-label="Shiba Inu avatar">
+                      <span>[张翠花]</span>
+                  </div>
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="t-cell">
+                  <p>任务状态</p>
+                  <div>未开始</div>
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="t-cell">
+                  <p>紧急程度</p>
+                  <div>紧急</div>
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="t-cell">
+                  <button
+                    class="t-btn"
+                  mat-button mat-raised-button (click)="onSearch()">
+                    <mat-icon class="icon-10">forward</mat-icon>详情
+                  </button>
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </div>
+
+        </li>
+
+
+      </ul>
+
+      <mat-paginator
+        [length]="total"
+        [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = $event">
+      </mat-paginator>
+
+    </div>
+  </div>
 </mat-card>

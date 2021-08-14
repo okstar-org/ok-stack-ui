@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
-import { DTO, leadApi, LeadDTO } from '../../lead.api';
+import { LeadDTO } from '../../lead.api';
 import { ActivatedRoute } from '@angular/router';
 import { OkDetailService } from '@shared/services/ok-detail.service';
 import { InfoService } from './info.service';

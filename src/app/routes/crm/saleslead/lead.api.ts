@@ -1,22 +1,28 @@
 import { OkApi, OkPageApi } from './../../../shared/api/ok';
 
-class LeadApi implements OkApi {
-  detail = {
-    findById: '/api/portal/app-crm/saleslead/detail/findById/',
-    findBySn: '/api/portal/app-crm/saleslead/detail/findBySn/',
-    info: {
-      findById: '/api/portal/app-crm/saleslead/detail/info/findById/',
-    },
-
-    followup: {
-      page: '/api/portal/app-crm/saleslead/detail/followUp/page',
-    },
-  };
+class InfoApi implements OkApi {
+  page = 'string';
+  findById = '/api/portal/app-crm/saleslead/detail/info/findById/';
 }
 
-const leadApi = new LeadApi();
+const infoApi = new InfoApi();
+export { infoApi };
 
-export { leadApi };
+class FollowApi implements OkApi {
+  findById = '/api/portal/app-crm/saleslead/detail/followUp/page';
+  page = '/api/portal/app-crm/saleslead/detail/followUp/page';
+}
+
+const followApi = new FollowApi();
+export { followApi };
+
+class TaskApi implements OkApi {
+  findById = '/api/portal/app-crm/saleslead/detail/task/findById';
+  page = '/api/portal/app-crm/saleslead/detail/task/page';
+}
+
+const taskApi = new TaskApi();
+export { taskApi };
 
 enum CustomerStateEnum {
   AlreadyPurchased,

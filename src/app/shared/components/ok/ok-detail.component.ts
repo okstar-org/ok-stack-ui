@@ -1,9 +1,9 @@
 import { NGXLogger } from 'ngx-logger';
 import { Observable, Subscription } from 'rxjs';
-import { leadApi } from 'app/routes/crm/saleslead/lead.api';
 import { OkDetailService } from '@shared/services/ok-detail.service';
 import { OkGroup, okPageGroup, OkPayload } from '@shared/api/ok';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { PageEvent } from '@angular/material/paginator';
 
 export class OkDetailComponent {
   translateSubscription: Subscription;
@@ -12,11 +12,9 @@ export class OkDetailComponent {
   list = [];
   total = 0;
   isLoading = true;
-  rowSelectable = true;
-  columnHideable = true;
-  columnMovable = true;
-  multiSelectable = true;
-  showToolbar = true;
+
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageEvent: PageEvent;
 
   constructor(
     protected logger: NGXLogger,
@@ -60,5 +58,9 @@ export class OkDetailComponent {
         this.isLoading = false;
       }
     );
+  }
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
 }

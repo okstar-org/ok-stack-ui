@@ -11,6 +11,12 @@
       </ul>
     </div>
     <div class="ok-content-wrapper">
+
+      <div class="ok-search-controls">
+        <app-ok-search [formGroup]="group" [controls]="searchControls"></app-ok-search>
+        <button mat-button  mat-raised-button class="m-8" (click)="onSearch()">搜索</button>
+      </div>
+
       <ul class="follow-up-list">
 
         <li *ngFor="let item of list">
@@ -32,10 +38,9 @@
                 来自线索:
               </span>
               <span class="ful-l-name">
-                北京市科学管理有限公司
+                [北京市科学管理有限公司]
               </span>
             </div>
-
 
             <ul class="fu-time">
               <li>
@@ -62,7 +67,7 @@
         </li>
       </ul>
 
-      <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+      <mat-paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
                      (page)="pageEvent = $event">
       </mat-paginator>
 
