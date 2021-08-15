@@ -31,19 +31,6 @@
         <mat-icon class="icon-8" >publish</mat-icon>{{"common.export"|translate}}
       </button>
 
-
-      <button mat-stroked-button color="primary" (click)="newTask()" class="m-8" >
-        <mat-icon class="icon-8" >repeat</mat-icon>转移商机
-      </button>
-
-      <button mat-stroked-button color="primary" (click)="newTask()" class="m-8" >
-        <mat-icon class="icon-8" >merge_type</mat-icon>添加协作
-      </button>
-
-      <button mat-stroked-button color="primary" (click)="sendMessage()" class="m-8" >
-        <mat-icon class="icon-8" >chat_bubble_outline</mat-icon>发送短信
-      </button>
-
       <mtx-grid
           [toolbarTitle]="'crm.order.title' | translate"
           [data]="list"
