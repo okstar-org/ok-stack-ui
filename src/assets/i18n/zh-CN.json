@@ -1,6 +1,6 @@
 {
   "menu": {
-    "dashboard": "数据大盘",
+    "dashboard": "仪表",
     "design": "设计",
     "design.colors": "颜色系统",
     "design.icons": "Material 图标库",
@@ -75,11 +75,19 @@
     "menu-level.level-1-1.level-2-1.level-3-1.level-4-1": "层级 4.1",
     "permissions": "权限管理",
     "permissions.test": "权限测试",
-    "crm": "客户管理",
-    "crm.saleslead": "销售线索",
-    "crm.customer": "客户列表",
+    "crm": "CRM",
+    "crm.saleslead": "线索管理",
+    "crm.customer": "客户管理",
+    "crm.opportunity": "商机管理",
+    "crm.order": "订单管理",
+    "crm.contact": "联系管理",
+    "crm.finance": "财务管理",
     "sys": "系统管理",
-    "sys.org": "组织架构"
+    "sys.org": "组织架构",
+    "workflow": "工作流程",
+    "workflow.approve": "流程审批",
+    "workflow.instance": "流程实例",
+    "workflow.model": "流程设计"
   },
   "validations": {
     "required": "该字段必填",
