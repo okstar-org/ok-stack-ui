@@ -68,7 +68,7 @@
       </ul>
 
       <mat-paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-                     (page)="pageEvent = $event">
+                     (page)="onPageEvent($event)">
       </mat-paginator>
 
     </div>

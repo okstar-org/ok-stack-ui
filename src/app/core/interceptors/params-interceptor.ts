@@ -11,7 +11,8 @@ export class ParamsInterceptor implements HttpInterceptor {
     let { params } = req;
 
     params.keys().forEach(k => {
-      if (!params.get(k)) {
+      console.log('params:', k, '-->', params.get(k));
+      if (params.get(k) === null || params.get(k) === '' || typeof params.get(k) === 'undefined') {
         params = params.delete(k);
       }
     });

@@ -14,7 +14,6 @@ export class OkDetailComponent {
   isLoading = true;
 
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  pageEvent: PageEvent;
 
   constructor(
     protected logger: NGXLogger,
@@ -62,5 +61,11 @@ export class OkDetailComponent {
 
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  }
+
+  onPageEvent(e: PageEvent) {
+    this.group.get('page').setValue(e.pageIndex);
+    this.group.get('size').setValue(e.pageSize);
+    this.getPage();
   }
 }
