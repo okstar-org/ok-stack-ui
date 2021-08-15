@@ -18,12 +18,12 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="m-8" *ngIf="getBackParams('leadState')">
-          <mat-label>{{"crm.saleslead.leadState" | translate}}</mat-label>
-          <mat-select formControlName="leadState" name="state">
+        <mat-form-field class="m-8" *ngIf="getBackParams('leadStatus')">
+          <mat-label>{{"crm.saleslead.leadStatus" | translate}}</mat-label>
+          <mat-select formControlName="leadStatus" name="state">
             <mat-option>{{"common.all" | translate}}</mat-option>
-            <mat-option *ngFor="let item of getBackParams('leadState')" [value]="item">
-              {{"crm.saleslead.leadStateSelect." + item | translate}}
+            <mat-option *ngFor="let item of getBackParams('leadStatus')" [value]="item">
+              {{"crm.saleslead.leadStatusSelect." + item | translate}}
           </mat-option>
           </mat-select>
         </mat-form-field>
@@ -67,9 +67,7 @@
         <mat-icon class="icon-8">list</mat-icon>{{"crm.saleslead.newTask"|translate}}</button>
       <button mat-stroked-button color="primary" (click)="sendMessage()" class="m-8" >
         <mat-icon class="icon-8">chat_bubble_outline</mat-icon>{{"crm.saleslead.sendMessage"|translate}}</button>
-    </mat-card>
 
-    <mat-card>
       <mtx-grid
           [toolbarTitle]="'crm.saleslead.title' | translate"
           [data]="list"
@@ -87,12 +85,12 @@
           [pageSizeOptions]="[5,10,20]"
           (sortChange)="changeSort($event)"
           (page)="getNextPage($event)"
-          [cellTemplate]="{leadState: leadStateTpl, leadFrom: leadFromTpl, customerName: nameTpl}"
+          [cellTemplate]="{leadStatus: leadStatusTpl, leadFrom: leadFromTpl, customerName: nameTpl}"
           >
       </mtx-grid>
 
-      <ng-template #leadStateTpl let-row let-index="index" let-col="colDef">
-        {{"crm.saleslead.leadStateSelect." +row.leadState | translate}}
+      <ng-template #leadStatusTpl let-row let-index="index" let-col="colDef">
+        {{"crm.saleslead.leadStatusSelect." +row.leadStatus | translate}}
       </ng-template>
 
       <ng-template #leadFromTpl let-row let-index="index" let-col="colDef">

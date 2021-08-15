@@ -51,9 +51,6 @@
         <mat-icon class="icon-8" >people</mat-icon>移入公海
       </button>
 
-    </mat-card>
-
-    <mat-card>
       <mtx-grid
           [toolbarTitle]="'crm.customer.title' | translate"
           [data]="list"
@@ -71,12 +68,12 @@
           [pageSizeOptions]="[5,10,20]"
           (sortChange)="changeSort($event)"
           (page)="getNextPage($event)"
-          [cellTemplate]="{leadState: leadStateTpl, leadFrom: leadFromTpl, customerName: nameTpl}"
+          [cellTemplate]="{leadStatus: leadStatusTpl, leadFrom: leadFromTpl, customerName: nameTpl}"
           >
       </mtx-grid>
 
-      <ng-template #leadStateTpl let-row let-index="index" let-col="colDef">
-        {{"crm.customer.leadStateSelect." +row.leadState | translate}}
+      <ng-template #leadStatusTpl let-row let-index="index" let-col="colDef">
+        {{"crm.customer.leadStatusSelect." +row.leadStatus | translate}}
       </ng-template>
 
       <ng-template #leadFromTpl let-row let-index="index" let-col="colDef">
