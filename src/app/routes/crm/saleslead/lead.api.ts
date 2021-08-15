@@ -54,7 +54,7 @@ export interface DTO extends ENTITY {
   landPhone: any;
   mobilePhone: any;
   leadFrom: string;
-  leadState: string;
+  leadStatus: string;
   nextFollowUpTime: Date;
   lastFollowUpTime: Date;
   note: string;

@@ -75,13 +75,18 @@
     "menu-level.level-1-1.level-2-1.level-3-1.level-4-1": "层级 4.1",
     "permissions": "权限管理",
     "permissions.test": "权限测试",
-    "crm": "CRM",
+    "crm": "客户管理",
     "crm.saleslead": "线索管理",
-    "crm.customer": "客户管理",
+    "crm.customer": "客户列表",
     "crm.opportunity": "商机管理",
     "crm.order": "订单管理",
     "crm.contact": "联系管理",
     "crm.finance": "财务管理",
+    "crm.finance.collection-plan": "回款计划",
+    "crm.finance.collection-manage": "回款管理",
+    "crm.finance.refund": "退款管理",
+    "crm.finance.cost": "费用管理",
+    "crm.finance.invoice": "发票管理",
     "sys": "系统管理",
     "sys.org": "组织架构",
     "workflow": "工作流程",
@@ -152,48 +157,48 @@
     "ok": "确定",
     "close": "关闭"
   },
-  "crm":{
-    "saleslead":{
+  "crm": {
+    "saleslead": {
       "title": "销售线索",
       "keyword": "关键词",
-      "changeToCustomer":"转为客户",
-      "newTask":"新建任务",
-      "sendMessage":"发送短信",
+      "changeToCustomer": "转为客户",
+      "newTask": "新建任务",
+      "sendMessage": "发送短信",
       "customerName": "客户名称",
       "contactName": "联系人姓名",
       "mobilePhone": "手机号码",
       "ownerName": "归属人员",
       "leadFrom": "线索来源",
-      "leadState": "线索状态",
+      "leadStatus": "线索状态",
       "lastFollowUpTime": "最后跟进",
       "unFollowUpDays": "未跟进天数",
-      "leadStateSelect": {
-        "null":"--",
-        "InitialIntention":"初步意向",
-        "NextInvite":"下次邀约",
-        "IsCustomer":"已转客户"
+      "leadStatusSelect": {
+        "null": "--",
+        "InitialIntention": "初步意向",
+        "NextInvite": "下次邀约",
+        "IsCustomer": "已转客户"
       },
-      "leadFromSelect":{
-        "null":"--",
-        "Marketing":"电话营销",
-        "CallIn":"主动来电",
-        "Customer":"客户介绍",
-        "Friends":"朋友介绍",
-        "Develop":"独立开发",
-        "NetSearch":"网络搜索",
-        "Exhibition":"展会促销",
-        "Others":"展会促销"
+      "leadFromSelect": {
+        "null": "--",
+        "Marketing": "电话营销",
+        "CallIn": "主动来电",
+        "Customer": "客户介绍",
+        "Friends": "朋友介绍",
+        "Develop": "独立开发",
+        "NetSearch": "网络搜索",
+        "Exhibition": "展会促销",
+        "Others": "展会促销"
       },
-      "detail":{
-          "tab":{
-            "info": "概况信息",
-            "followup": "跟进记录",
-            "task": "任务记录",
-            "call": "呼叫记录",
-            "sms": "短信记录",
-            "attach": "相关附件",
-            "log": "操作日志"
-          }
+      "detail": {
+        "tab": {
+          "info": "概况信息",
+          "followup": "跟进记录",
+          "task": "任务记录",
+          "call": "呼叫记录",
+          "sms": "短信记录",
+          "attach": "相关附件",
+          "log": "操作日志"
+        }
       }
     },
     "customer": {
@@ -206,17 +211,38 @@
       "lastFollowUpTime": "最后跟进",
       "unFollowUpDays": "未跟进天数",
       "ownerName": "归属人员"
+    },
+    "opportunity": {
+      "title": "商机列表",
+      "name": "商机名称",
+      "phase": "商机阶段",
+      "customerName": "关联客户",
+      "priceList": "报价记录",
+      "priceAmount": "报价金额",
+      "estimateAmount": "预计销售金额",
+      "estimateDate": "预计签单日期",
+      "lastFollowUpTime": "最后跟进",
+      "unFollowUpDays": "未跟进天数"
+    },
+    "finance": {
+      "tab": {
+        "collection-plan": "回款计划",
+        "collection-manage": "回款管理",
+        "refund": "退款管理",
+        "cost": "费用管理",
+        "invoice": "发票管理"
+      }
     }
   },
-  "common":{
-    "all":"全部",
+  "common": {
+    "all": "全部",
     "search": "搜索",
-    "reset":"重置",
-    "add":"添加",
-    "import":"导入",
-    "export":"导出"
+    "reset": "重置",
+    "add": "添加",
+    "import": "导入",
+    "export": "导出"
   },
-  "support":{
-    "can_not":"您的浏览器不支持该功能，请升级最新版谷歌或者火狐浏览器！"
+  "support": {
+    "can_not": "您的浏览器不支持该功能，请升级最新版谷歌或者火狐浏览器！"
   }
 }

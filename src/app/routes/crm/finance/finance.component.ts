@@ -6,6 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./finance.component.scss'],
 })
 export class FinanceComponent implements OnInit {
+  tabLinks = [
+    { label: 'collection-plan', link: 'collection-plan' },
+    { label: 'collection-manage', link: 'collection-manage' },
+    { label: 'refund', link: 'refund' },
+    { label: 'invoice', link: 'invoice' },
+    { label: 'cost', link: 'cost' },
+  ];
+
   constructor() {}
 
   ngOnInit() {}

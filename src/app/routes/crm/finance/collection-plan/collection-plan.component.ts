@@ -1,83 +1,61 @@
-import { OkPaginatorComponent } from './../../../shared/components/ok/ok-paginator.component';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { NGXLogger } from 'ngx-logger';
-import { FormBuilder } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { OrderService } from './order.service';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+import { NGXLogger } from 'ngx-logger';
+
+import { CollectionPlanService } from './collection-plan.service';
 import { MtxGridColumn } from '@ng-matero/extensions';
+import { OkPaginatorComponent } from '@shared/components/ok/ok-paginator.component';
 
 @Component({
-  selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.scss'],
+  selector: 'app-collection-plan',
+  templateUrl: './collection-plan.component.html',
+  styleUrls: ['./collection-plan.component.scss'],
+  providers: [CollectionPlanService],
 })
-export class OrderComponent extends OkPaginatorComponent implements OnInit {
-  searchControls = [
-    {
-      name: 'keyword',
-      type: 'input',
-      label: '关键词',
-    },
-    {
-      name: 'customerStatus',
-      type: 'select',
-      label: '客户状态',
-      select: [
-        { name: 'Understanding', text: '了解产品' },
-        { name: 'FollowingUp', text: '正在跟进' },
-        { name: 'OnTrial', text: '正在试用' },
-        { name: 'ReadyToBuy', text: '准备购买' },
-        { name: 'PrepareForPayment', text: '准备付款' },
-        { name: 'AlreadyPurchased', text: '已经购买' },
-        { name: 'PutItOnHold', text: '暂时搁置' },
-      ],
-    },
-    {
-      name: 'lastFollowUpTime',
-      type: 'date',
-      label: '最后跟进',
-    },
-  ];
+export class CollectionPlanComponent extends OkPaginatorComponent implements OnInit {
+  group: FormGroup;
+  backParams = {};
 
+  list = [];
+  total = 0;
+  isLoading = true;
+  rowSelectable = true;
+  columnHideable = true;
+  columnMovable = true;
+  multiSelectable = true;
+  showToolbar = true;
   columns: MtxGridColumn[] = [
     {
-      header: this.translate.stream('crm.saleslead.customerName'),
-      field: 'customerName',
+      header: this.translate.stream('crm.collection-plan.name'),
+      field: 'name',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.saleslead.contactName'),
-      field: 'contactName',
+      header: this.translate.stream('crm.collection-plan.status'),
+      field: 'state',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.saleslead.mobilePhone'),
+      header: this.translate.stream('crm.collection-plan.mobilePhone'),
       field: 'mobilePhone',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.saleslead.ownerName'),
+      header: this.translate.stream('crm.collection-plan.ownerName'),
       field: 'ownerName',
       sortable: true,
     },
+
     {
-      header: this.translate.stream('crm.saleslead.leadFrom'),
-      field: 'leadFrom',
-      sortable: true,
-    },
-    {
-      header: this.translate.stream('crm.saleslead.leadState'),
-      field: 'leadState',
-      sortable: true,
-    },
-    {
-      header: this.translate.stream('crm.saleslead.lastFollowUpTime'),
+      header: this.translate.stream('crm.collection-plan.lastFollowUpTime'),
       field: 'lastFollowUpTime',
       sortable: true,
       type: 'date',
     },
     {
-      header: this.translate.stream('crm.saleslead.unFollowUpDays'),
+      header: this.translate.stream('crm.collection-plan.unFollowUpDays'),
       field: 'unFollowUpDays',
       sortable: true,
       type: 'number',
@@ -117,7 +95,7 @@ export class OrderComponent extends OkPaginatorComponent implements OnInit {
           popTitle: this.translate.stream('table_kitchen_sink.confirm_delete'),
           popCloseText: this.translate.stream('table_kitchen_sink.close'),
           popOkText: this.translate.stream('table_kitchen_sink.ok'),
-          click: record => this.delete(record),
+          // click: record => this.delete(record),
         },
         {
           color: 'accent',
@@ -128,9 +106,36 @@ export class OrderComponent extends OkPaginatorComponent implements OnInit {
           // popTitle: this.translate.stream('table_kitchen_sink.confirm_delete'),
           // popCloseText: this.translate.stream('table_kitchen_sink.close'),
           // popOkText: this.translate.stream('table_kitchen_sink.ok'),
-          click: record => this.top(record),
+          // click: record => this.top(record),
         },
       ],
+    },
+  ];
+
+  searchControls = [
+    {
+      name: 'keyword',
+      type: 'input',
+      label: '关键词',
+    },
+    {
+      name: 'collection-planStatus',
+      type: 'select',
+      label: '客户状态',
+      select: [
+        { name: 'Understanding', text: '了解产品' },
+        { name: 'FollowingUp', text: '正在跟进' },
+        { name: 'OnTrial', text: '正在试用' },
+        { name: 'ReadyToBuy', text: '准备购买' },
+        { name: 'PrepareForPayment', text: '准备付款' },
+        { name: 'AlreadyPurchased', text: '已经购买' },
+        { name: 'PutItOnHold', text: '暂时搁置' },
+      ],
+    },
+    {
+      name: 'lastFollowUpTime',
+      type: 'date',
+      label: '最后跟进',
     },
   ];
 
@@ -139,26 +144,24 @@ export class OrderComponent extends OkPaginatorComponent implements OnInit {
     protected fb: FormBuilder,
     protected cdr: ChangeDetectorRef,
     private translate: TranslateService,
-    protected svc: OrderService
+    protected svc: CollectionPlanService
   ) {
-    super(fb, cdr, logger, svc, {
-      keyword: '',
-    });
+    super(fb, cdr, logger, svc, {});
   }
 
-  ngOnInit() {}
-
-  add() {}
-
-  edit(data: any) {
-    this.logger.debug('edit...', data);
+  ngOnInit() {
+    this.getPage();
   }
 
-  import() {
-    this.logger.debug('import...');
+  changeSelect(e: any) {
+    console.log(e);
   }
 
-  export() {
-    this.logger.debug('export...');
+  changeSort(e: any) {
+    console.log(e);
   }
+  getBackParams(param) {
+    return this.backParams[param];
+  }
+  edit(row: any) {}
 }

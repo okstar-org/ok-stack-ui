@@ -1,5 +1,6 @@
+import { OpportunityComponent } from './opportunity.component';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [{}];
+const routes: Routes = [{ path: '', component: OpportunityComponent }];
 
-export const OpportunityRoutes = RouterModule.forChild(routes);
+export const opportunityRoutes = RouterModule.forChild(routes);

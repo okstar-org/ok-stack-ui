@@ -282,7 +282,7 @@ export class SalesleadComponent implements OnInit, OnDestroy {
       mobilePhone: [null],
       lastFollowUpTime: new Date(),
       leadFrom: null,
-      leadState: null,
+      leadStatus: null,
       nextFollowUpTime: new Date(),
       note: '',
       owner: '',

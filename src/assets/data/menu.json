@@ -44,7 +44,34 @@
         {
           "route": "finance",
           "name": "finance",
-          "type": "link"
+          "type": "sub",
+          "children": [
+            {
+              "route": "collection-plan",
+              "name": "collection-plan",
+              "type": "link"
+            },
+            {
+              "route": "collection-manage",
+              "name": "collection-manage",
+              "type": "link"
+            },
+            {
+              "route": "refund",
+              "name": "refund",
+              "type": "link"
+            },
+            {
+              "route": "cost",
+              "name": "cost",
+              "type": "link"
+            },
+            {
+              "route":"invoice",
+              "name":"invoice",
+              "type": "link"
+            }
+          ]
         }
       ]
     },
