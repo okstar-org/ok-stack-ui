@@ -1,0 +1,109 @@
+<page-header class="bg-purple-500"></page-header>
+<div fxLayout="row wrap" class="matero-row">
+  <div fxFlex="100" class="matero-col">
+    <mat-card>
+      <form [formGroup]="group">
+        <mat-form-field class="m-8">
+          <mat-placeholder>{{"crm.lead.keyword" | translate}}</mat-placeholder>
+          <input matInput  formControlName="keyword" name="keyword">
+        </mat-form-field>
+
+        <mat-form-field class="m-8" *ngIf="getBackParams('source')">
+          <mat-label>{{"crm.lead.source" | translate}}</mat-label>
+          <mat-select formControlName="source" name="source">
+            <mat-option>{{"common.all" | translate}}</mat-option>
+            <mat-option *ngFor="let item of getBackParams('source')" [value]="item">
+                {{"crm.lead.sourceSelect." + item | translate}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="m-8" *ngIf="getBackParams('status')">
+          <mat-label>{{"crm.lead.status" | translate}}</mat-label>
+          <mat-select formControlName="status" name="state">
+            <mat-option>{{"common.all" | translate}}</mat-option>
+            <mat-option *ngFor="let item of getBackParams('status')" [value]="item">
+              {{"crm.lead.statusSelect." + item | translate}}
+          </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="m-8">
+          <mat-placeholder>{{"crm.lead.ownerName" | translate}}</mat-placeholder>
+          <input matInput formControlName="ownerName" name="ownerName">
+        </mat-form-field>
+
+        <mat-form-field class="m-8">
+          <mat-placeholder>{{"crm.lead.lastFollowUpTime" | translate}}</mat-placeholder>
+          <mat-datepicker-toggle [for]="datetimePicker" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #datetimePicker startView="month" type="date"></mat-datepicker>
+          <input [matDatepicker]="datetimePicker"
+                 autocomplete="off" formControlName="lastFollowUpTime"
+                 matInput>
+       </mat-form-field>
+
+      <div style="display: inline-block;">
+        <button mat-stroked-button color="primary" (click)="search()" class="m-x-8">
+          <mat-icon>search</mat-icon>{{"common.search" | translate}}</button>
+          <button mat-stroked-button color="primary" (click)="reset()" class="m-x-8">
+          <mat-icon class="mat-12">autorenew</mat-icon>{{"common.reset" | translate}}
+        </button>
+      </div>
+
+      </form>
+    </mat-card>
+
+    <mat-card class="ctrl-button-area">
+      <button mat-stroked-button color="primary" (click)="add()" class="m-8" >
+        <mat-icon class="icon-8">add</mat-icon>{{"common.add"|translate}}
+      </button>
+      <button mat-stroked-button color="primary" (click)="import()" class="m-8" >
+        <mat-icon class="icon-8">get_app</mat-icon>{{"common.import"|translate}}</button>
+      <button mat-stroked-button color="primary" (click)="export()" class="m-8">
+        <mat-icon class="icon-8">publish</mat-icon>{{"common.export"|translate}}</button>
+      <button mat-stroked-button color="primary" (click)="change()" class="m-8" >
+        <mat-icon class="icon-8">person_add</mat-icon>{{"crm.lead.changeToCustomer"|translate}}</button>
+      <button mat-stroked-button color="primary" (click)="newTask()" class="m-8" >
+        <mat-icon class="icon-8">list</mat-icon>{{"crm.lead.newTask"|translate}}</button>
+      <button mat-stroked-button color="primary" (click)="sendMessage()" class="m-8" >
+        <mat-icon class="icon-8">chat_bubble_outline</mat-icon>{{"crm.lead.sendMessage"|translate}}</button>
+
+      <mtx-grid
+          [toolbarTitle]="'crm.lead.title' | translate"
+          [data]="list"
+          [columns]="columns"
+          [length]="total"
+          [loading]="isLoading"
+          [showToolbar]="showToolbar"
+          [rowSelectable]="rowSelectable"
+          [columnHideable]="columnHideable"
+          [columnMovable]="columnMovable"
+          [multiSelectable]="multiSelectable"
+          [pageOnFront]="false"
+          [pageIndex]="pageIndex"
+          [pageSize]="pageSize"
+          [pageSizeOptions]="[5,10,20]"
+          (sortChange)="changeSort($event)"
+          (page)="getNextPage($event)"
+          [cellTemplate]="{status: statusTpl, source: sourceTpl, customerName: nameTpl}"
+          >
+      </mtx-grid>
+
+      <ng-template #statusTpl let-row let-index="index" let-col="colDef">
+        {{"crm.lead.statusSelect." +row.status | translate}}
+      </ng-template>
+
+      <ng-template #sourceTpl let-row let-index="index" let-col="colDef">
+        {{"crm.lead.sourceSelect." +row.source | translate}}
+      </ng-template>
+
+      <ng-template #nameTpl let-row let-index="index" let-col="colDef">
+        <a [routerLink] = "['/crm/lead/detail', row.id ]" >
+          {{ row.customerName }}
+        </a>
+      </ng-template>
+
+    </mat-card>
+  </div>
+</div>
+

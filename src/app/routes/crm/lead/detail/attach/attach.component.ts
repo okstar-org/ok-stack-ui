@@ -1,17 +1,17 @@
-import { OkPaginatorComponent } from './../../../shared/components/ok/ok-paginator.component';
+import { AttachService } from './attach.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { OrderService } from './order.service';
+import { OkDetailComponent } from '@shared/components/ok/ok-detail.component';
 import { MtxGridColumn } from '@ng-matero/extensions';
 
 @Component({
-  selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.scss'],
+  selector: 'app-attach',
+  templateUrl: './attach.component.html',
+  styleUrls: ['./attach.component.scss'],
 })
-export class OrderComponent extends OkPaginatorComponent implements OnInit {
+export class AttachComponent extends OkDetailComponent implements OnInit {
   searchControls = [
     {
       name: 'keyword',
@@ -19,46 +19,50 @@ export class OrderComponent extends OkPaginatorComponent implements OnInit {
       label: '关键词',
     },
     {
-      name: 'sn',
-      type: 'input',
-      label: '编号',
+      name: 'beginTime',
+      type: 'date',
+      label: '开始时间',
     },
     {
-      name: 'name',
-      type: 'input',
-      label: '名称',
+      name: 'endTime',
+      type: 'date',
+      label: '截至时间',
     },
   ];
 
   columns: MtxGridColumn[] = [
     {
-      header: this.translate.stream('crm.order.sn'),
-      field: 'sn',
-      sortable: true,
-    },
-    {
-      header: this.translate.stream('crm.order.name'),
+      header: this.translate.stream('crm.attach.name'),
       field: 'name',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.order.amount'),
-      field: 'amount',
+      header: this.translate.stream('crm.attach.type'),
+      field: 'type',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.order.collectAmount'),
-      field: 'collectAmount',
+      header: this.translate.stream('crm.attach.size'),
+      field: 'size',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.order.invoiceAmount'),
-      field: 'invoiceAmount',
+      header: this.translate.stream('crm.attach.time'),
+      field: 'time',
       sortable: true,
     },
-
     {
-      header: '操作',
+      header: this.translate.stream('crm.attach.note'),
+      field: 'note',
+      sortable: true,
+    },
+    {
+      header: this.translate.stream('crm.attach.creator'),
+      field: 'creator',
+      sortable: true,
+    },
+    {
+      header: this.translate.stream('table_kitchen_sink.operation'),
       field: 'operation',
       minWidth: 180,
       width: '200px',
@@ -70,10 +74,6 @@ export class OrderComponent extends OkPaginatorComponent implements OnInit {
           icon: 'edit',
           text: this.translate.stream('table_kitchen_sink.edit'),
           tooltip: this.translate.stream('table_kitchen_sink.edit'),
-          // pop: true,
-          // popTitle: this.translate.stream('table_kitchen_sink.edit'),
-          // popCloseText: this.translate.stream('table_kitchen_sink.edit'),
-          // popOkText: this.translate.stream('table_kitchen_sink.ok'),
           click: record => this.edit(record),
         },
         {
@@ -103,12 +103,12 @@ export class OrderComponent extends OkPaginatorComponent implements OnInit {
     protected fb: FormBuilder,
     protected cdr: ChangeDetectorRef,
     private translate: TranslateService,
-    protected svc: OrderService
+    protected svc: AttachService
   ) {
-    super(fb, cdr, logger, svc, {
+    super(logger, fb, svc, {
       keyword: '',
-      sn: '',
-      name: '',
+      beginTime: [null],
+      endTime: [null],
     });
   }
 
@@ -116,17 +116,17 @@ export class OrderComponent extends OkPaginatorComponent implements OnInit {
     this.getPage();
   }
 
-  add() {}
+  onClick() {}
+
+  onSearch() {
+    this.getPage();
+  }
 
   edit(data: any) {
-    this.logger.debug('edit...', data);
+    this.logger.debug('edit...');
   }
 
-  import() {
-    this.logger.debug('import...');
-  }
+  top(data: any) {}
 
-  export() {
-    this.logger.debug('export...');
-  }
+  delete(data: any) {}
 }

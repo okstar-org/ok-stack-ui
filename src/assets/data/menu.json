@@ -17,8 +17,8 @@
       "icon": "people",
       "children": [
         {
-          "route": "saleslead",
-          "name": "saleslead",
+          "route": "lead",
+          "name": "lead",
           "type": "link"
         },
         {

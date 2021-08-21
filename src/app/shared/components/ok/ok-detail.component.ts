@@ -9,11 +9,16 @@ export class OkDetailComponent {
   translateSubscription: Subscription;
   backParams = {};
   group: FormGroup;
+
   list = [];
   total = 0;
   isLoading = true;
-
-  pageSizeOptions: number[] = [5, 10, 25, 100];
+  rowSelectable = true;
+  columnHideable = true;
+  columnMovable = true;
+  multiSelectable = true;
+  showToolbar = true;
+  pageSizeOptions: number[] = [5, 10, 25, 50, 100];
 
   constructor(
     protected logger: NGXLogger,
@@ -40,6 +45,16 @@ export class OkDetailComponent {
 
   get pageSize() {
     return this.group.get('size').value;
+  }
+
+  changeSort(e: any) {
+    console.log('changeSort', e);
+  }
+
+  getNextPage(e: PageEvent) {
+    this.group.get('page').setValue(e.pageIndex);
+    this.group.get('size').setValue(e.pageSize);
+    this.getPage();
   }
 
   getPage() {

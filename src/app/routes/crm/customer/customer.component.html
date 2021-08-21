@@ -32,7 +32,7 @@
       </button>
 
       <button mat-stroked-button color="primary" (click)="newTask()" class="m-8" >
-        <mat-icon class="icon-8" >list</mat-icon>{{"crm.saleslead.newTask"|translate}}
+        <mat-icon class="icon-8" >list</mat-icon>{{"crm.lead.newTask"|translate}}
       </button>
 
       <button mat-stroked-button color="primary" (click)="newTask()" class="m-8" >
@@ -77,7 +77,7 @@
       </ng-template>
 
       <ng-template #leadFromTpl let-row let-index="index" let-col="colDef">
-        {{"crm.customer.leadFromSelect." +row.leadFrom | translate}}
+        {{"crm.customer.sourceSelect." +row.leadFrom | translate}}
       </ng-template>
 
       <ng-template #nameTpl let-row let-index="index" let-col="colDef">

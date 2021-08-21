@@ -76,7 +76,7 @@
     "permissions": "權限管理",
     "permissions.test": "權限測試",
     "crm": "客戶管理",
-    "crm.saleslead": "銷售線索"
+    "crm.lead": "銷售線索"
   },
   "validations": {
     "required": "該字段必填",
