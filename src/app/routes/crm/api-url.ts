@@ -1,25 +1,25 @@
-class Saleslead {
-  params = '/api/portal/app-crm/saleslead/params';
-  page = '/api/portal/app-crm/saleslead/page';
-  top = '/api/portal/app-crm/saleslead/page/top';
-  export = '/api/portal/app-crm/saleslead/export';
-  importBegin = '/api/portal/app-crm/saleslead/import/begin';
-  importAdd = '/api/portal/app-crm/saleslead/import/add';
-  importCommit = '/api/portal/app-crm/saleslead/import/commit';
-  save = '/api/portal/app-crm/saleslead/save';
-  deleteById = '/api/portal/app-crm/saleslead/deleteById/';
-  findById = '/api/portal/app-crm/saleslead/findById/';
+class Lead {
+  params = '/api/portal/app-crm/lead/params';
+  page = '/api/portal/app-crm/lead/page';
+  top = '/api/portal/app-crm/lead/page/top';
+  export = '/api/portal/app-crm/lead/export';
+  importBegin = '/api/portal/app-crm/lead/import/begin';
+  importAdd = '/api/portal/app-crm/lead/import/add';
+  importCommit = '/api/portal/app-crm/lead/import/commit';
+  save = '/api/portal/app-crm/lead/save';
+  deleteById = '/api/portal/app-crm/lead/deleteById/';
+  findById = '/api/portal/app-crm/lead/findById/';
 
   detail = {
-    findBySn: '/api/portal/app-crm/saleslead/detail/findBySn/',
-    findById: '/api/portal/app-crm/saleslead/detail/findById/',
+    findBySn: '/api/portal/app-crm/lead/detail/findBySn/',
+    findById: '/api/portal/app-crm/lead/detail/findById/',
   };
 }
 
 class CrmApi {
   constructor() {}
 
-  saleslead = new Saleslead();
+  lead = new Lead();
 }
 
 const CRM_API = new CrmApi();

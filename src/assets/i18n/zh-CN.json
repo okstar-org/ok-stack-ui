@@ -76,7 +76,7 @@
     "permissions": "权限管理",
     "permissions.test": "权限测试",
     "crm": "客户管理",
-    "crm.saleslead": "线索管理",
+    "crm.lead": "线索管理",
     "crm.customer": "客户列表",
     "crm.opportunity": "商机管理",
     "crm.order": "订单管理",
@@ -157,8 +157,11 @@
     "ok": "确定",
     "close": "关闭"
   },
+  "table_common_fields": {
+    "top": "置顶"
+  },
   "crm": {
-    "saleslead": {
+    "lead": {
       "title": "销售线索",
       "keyword": "关键词",
       "changeToCustomer": "转为客户",
@@ -168,17 +171,17 @@
       "contactName": "联系人姓名",
       "mobilePhone": "手机号码",
       "ownerName": "归属人员",
-      "leadFrom": "线索来源",
-      "leadStatus": "线索状态",
+      "source": "线索来源",
+      "status": "线索状态",
       "lastFollowUpTime": "最后跟进",
       "unFollowUpDays": "未跟进天数",
-      "leadStatusSelect": {
+      "statusSelect": {
         "null": "--",
         "InitialIntention": "初步意向",
         "NextInvite": "下次邀约",
         "IsCustomer": "已转客户"
       },
-      "leadFromSelect": {
+      "sourceSelect": {
         "null": "--",
         "Marketing": "电话营销",
         "CallIn": "主动来电",
@@ -224,6 +227,24 @@
       "lastFollowUpTime": "最后跟进",
       "unFollowUpDays": "未跟进天数"
     },
+    "order": {
+      "title": "订单列表",
+      "sn": "编号",
+      "name": "标题",
+      "amount": "订单金额",
+      "collectAmount": "回款金额",
+      "invoiceAmount": "开票金额"
+    },
+    "contact": {
+      "title": "联系人列表",
+      "name": "姓名",
+      "customer": "关联客户",
+      "phone": "手机号码",
+      "birthday": "生日",
+      "role": "角色",
+      "position": "部门职务",
+      "lastCall": "最后联系"
+    },
     "finance": {
       "tab": {
         "collection-plan": "回款计划",
@@ -232,6 +253,33 @@
         "cost": "费用管理",
         "invoice": "发票管理"
       }
+    },
+    "call": {
+      "callerName": "主叫人",
+      "callerNumber": "主叫号码",
+      "calleeName": "被叫人",
+      "calleeNumber": "被叫号码",
+      "type": "呼叫类型",
+      "length": "通话时长",
+      "time": "呼叫时间"
+    },
+    "sms": {
+      "callerName": "主叫人",
+      "callerNumber": "主叫号码",
+      "calleeName": "被叫人",
+      "calleeNumber": "被叫号码",
+      "time": "发送时间",
+      "content": "短信内容"
+    },
+    "log": {
+      "title": "操作日志",
+      "biz": "业务类型",
+      "type": "操作类型",
+      "time": "操作时间",
+      "userName": "操作人员",
+      "id": "数据ID",
+      "beforeData": "旧值",
+      "afterData": "新值"
     }
   },
   "common": {

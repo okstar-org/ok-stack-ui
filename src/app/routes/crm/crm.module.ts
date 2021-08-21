@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
 import { crmRoutes } from './crm.routing';
 
-import { SalesleadComponent } from './saleslead/saleslead.component';
-import { AddComponent } from './saleslead/dialog/add/add.component';
-import { ImportComponent } from './saleslead/dialog/import/import.component';
+import { LeadComponent } from './lead/lead.component';
+import { AddComponent } from './lead/dialog/add/add.component';
+import { ImportComponent } from './lead/dialog/import/import.component';
 
 @NgModule({
-  declarations: [SalesleadComponent, AddComponent, ImportComponent],
+  declarations: [LeadComponent, AddComponent, ImportComponent],
   imports: [CommonModule, SharedModule, crmRoutes],
   entryComponents: [AddComponent, ImportComponent],
 })

@@ -76,7 +76,7 @@
     "permissions": "Permissions",
     "permissions.test": "Permission Test",
     "crm": "CRM",
-    "crm.saleslead": "Sales Leads"
+    "crm.lead": "Sales Leads"
   },
   "validations": {
     "required": "This field is required",

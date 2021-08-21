@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OkPaginatorService } from '@shared/services/ok-paginator.service';
 import { NGXLogger } from 'ngx-logger';
-import { orderApi } from './opportunity.api';
+import { orderApi } from './order.api';
 
 @Injectable({
   providedIn: 'root',

@@ -45,11 +45,11 @@ export class OkPaginatorComponent {
   }
 
   changeSelect(e: any) {
-    console.log(e);
+    console.log('changeSelect', e);
   }
 
   changeSort(e: any) {
-    console.log(e);
+    console.log('changeSort', e);
   }
 
   getBackParams(param) {
