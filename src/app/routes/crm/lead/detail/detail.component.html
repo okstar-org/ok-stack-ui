@@ -47,7 +47,7 @@
      routerLinkActive #rla="routerLinkActive"
      [active]="rla.isActive"
      >
-    {{"crm.lead.detail.tab."+ tabLink.label | translate}}
+     {{"crm."+ tabLink.label +".title" | translate}}
   </a>
 </nav>
 <router-outlet></router-outlet>

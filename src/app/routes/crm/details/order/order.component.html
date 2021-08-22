@@ -6,7 +6,7 @@
           <mat-icon class="icon-40">bookmark</mat-icon>
         </li>
         <li>
-          操作日志
+          {{"crm.order.title" | translate}}
         </li>
       </ul>
     </div>
@@ -18,7 +18,7 @@
       </div>
 
       <mtx-grid
-          [toolbarTitle]="'crm.log.title' | translate"
+          [toolbarTitle]="'crm.order.title' | translate"
           [data]="list"
           [columns]="columns"
           [length]="total"
@@ -39,15 +39,15 @@
       </mtx-grid>
 
       <ng-template #statusTpl let-row let-index="index" let-col="colDef">
-        {{"crm.log.statusSelect." +row.status | translate}}
+        {{"crm.order.statusSelect." +row.status | translate}}
       </ng-template>
 
       <ng-template #sourceTpl let-row let-index="index" let-col="colDef">
-        {{"crm.log.sourceSelect." +row.source | translate}}
+        {{"crm.order.sourceSelect." +row.source | translate}}
       </ng-template>
 
       <ng-template #nameTpl let-row let-index="index" let-col="colDef">
-        <a [routerLink] = "['/crm/log/detail', row.id ]" >
+        <a [routerLink] = "['/crm/order/detail', row.id ]" >
           {{ row.customerName }}
         </a>
       </ng-template>

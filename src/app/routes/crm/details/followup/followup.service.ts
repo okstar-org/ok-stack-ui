@@ -1,14 +1,15 @@
 import { OkPaginatorService } from '@shared/services/ok-paginator.service';
 import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
+import { followApi } from '../../lead/lead.api';
 import { HttpClient } from '@angular/common/http';
-import { api } from './invoice.api';
+import { OkDetailService } from '@shared/services/ok-detail.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class InvoiceService extends OkPaginatorService {
+export class FollowupService extends OkDetailService {
   constructor(protected logger: NGXLogger, protected http: HttpClient) {
-    super(logger, http, api);
+    super(logger, http, followApi);
   }
 }

@@ -1,17 +1,17 @@
-import { LogService } from './log.service';
+import { OwnerLogService } from './owner-log.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { OkDetailComponent } from '@shared/components/ok/ok-detail.component';
 import { MtxGridColumn } from '@ng-matero/extensions';
 
 @Component({
-  selector: 'app-log',
-  templateUrl: './log.component.html',
-  styleUrls: ['./log.component.scss'],
+  selector: 'app-owner-log',
+  templateUrl: './owner-log.component.html',
+  styleUrls: ['./owner-log.component.scss'],
 })
-export class LogComponent extends OkDetailComponent implements OnInit {
+export class OwnerLogComponent extends OkDetailComponent implements OnInit {
   searchControls = [
     {
       name: 'keyword',
@@ -32,32 +32,32 @@ export class LogComponent extends OkDetailComponent implements OnInit {
 
   columns: MtxGridColumn[] = [
     {
-      header: this.translate.stream('crm.log.time'),
+      header: this.translate.stream('crm.owner-log.time'),
       field: 'time',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.log.userName'),
+      header: this.translate.stream('crm.owner-log.userName'),
       field: 'userName',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.log.type'),
+      header: this.translate.stream('crm.owner-log.type'),
       field: 'type',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.log.id'),
+      header: this.translate.stream('crm.owner-log.id'),
       field: 'id',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.log.beforeData'),
+      header: this.translate.stream('crm.owner-log.beforeData'),
       field: 'beforeData',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.log.afterData'),
+      header: this.translate.stream('crm.owner-log.afterData'),
       field: 'afterData',
       sortable: true,
     },
@@ -103,11 +103,12 @@ export class LogComponent extends OkDetailComponent implements OnInit {
     protected fb: FormBuilder,
     protected cdr: ChangeDetectorRef,
     private translate: TranslateService,
-    protected svc: LogService
+    protected svc: OwnerLogService
   ) {
     super(logger, fb, svc, {
       keyword: '',
-      time: [null],
+      beginTime: [null],
+      endTime: [null],
     });
   }
 

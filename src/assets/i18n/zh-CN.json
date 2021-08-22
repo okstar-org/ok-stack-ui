@@ -191,17 +191,6 @@
         "NetSearch": "网络搜索",
         "Exhibition": "展会促销",
         "Others": "展会促销"
-      },
-      "detail": {
-        "tab": {
-          "info": "概况信息",
-          "followup": "跟进记录",
-          "task": "任务记录",
-          "call": "呼叫记录",
-          "sms": "短信记录",
-          "attach": "相关附件",
-          "log": "操作日志"
-        }
       }
     },
     "customer": {
@@ -224,16 +213,10 @@
       "priceAmount": "报价金额",
       "estimateAmount": "预计销售金额",
       "estimateDate": "预计签单日期",
+      "dealProbability": "成交机率",
       "lastFollowUpTime": "最后跟进",
-      "unFollowUpDays": "未跟进天数"
-    },
-    "order": {
-      "title": "订单列表",
-      "sn": "编号",
-      "name": "标题",
-      "amount": "订单金额",
-      "collectAmount": "回款金额",
-      "invoiceAmount": "开票金额"
+      "unFollowUpDays": "未跟进天数",
+      "createdAt": "商机时间"
     },
     "contact": {
       "title": "联系人列表",
@@ -287,7 +270,7 @@
       "title": "相关附件",
       "name": "附件名称",
       "type": "附件格式",
-      "size": "文件大小",
+      "length": "文件大小",
       "time": "上传时间",
       "creator": "上传人员",
       "note": "备注"
@@ -306,6 +289,33 @@
       "title": "跟进记录",
       "time": "跟进时间",
       "source": "来自线索"
+    },
+    "invoice": {
+      "title": "发票记录",
+      "time": "开票日期",
+      "no": "发票号码",
+      "type": "发票类型",
+      "executor": "发票经手人",
+      "createdAt": "录入时间",
+      "order": "关联订单"
+    },
+    "order": {
+      "title": "订单记录",
+      "name": "订单名称",
+      "amount": "订单金额",
+      "auditStatus": "审批状态",
+      "collectedAmount": "已回款金额",
+      "invoicedAmount": "已开票金额",
+      "createdAt": "创建时间"
+    },
+    "cost": {
+      "title": "费用记录",
+      "name": "费用名称",
+      "type": "费用类型",
+      "amount": "费用金额",
+      "createdAt": "发生时间",
+      "status": "报销状态",
+      "executor": "负责人员"
     },
     "info": {
       "title": "概况信息"

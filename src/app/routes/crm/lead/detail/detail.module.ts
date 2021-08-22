@@ -1,10 +1,10 @@
-import { LogComponent } from './log/log.component';
-import { SmsComponent } from './sms/sms.component';
-import { TaskComponent } from './task/task.component';
+import { LogComponent } from '../../details/log/log.component';
+import { SmsComponent } from '../../details/sms/sms.component';
+import { TaskComponent } from '../../details/task/task.component';
 import { SharedModule } from './../../../../shared/shared.module';
-import { AttachComponent } from './attach/attach.component';
-import { CallComponent } from './call/call.component';
-import { FollowupComponent } from './followup/followup.component';
+import { AttachComponent } from '../../details/attach/attach.component';
+import { CallComponent } from '../../details/call/call.component';
+import { FollowupComponent } from '../../details/followup/followup.component';
 import { InfoComponent } from './info/info.component';
 import { detailRoutes } from './detail.routing';
 import { NgModule } from '@angular/core';

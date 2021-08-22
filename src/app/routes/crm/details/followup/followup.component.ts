@@ -1,5 +1,5 @@
 import { FollowupService } from './followup.service';
-import { OkPaginatorComponent } from './../../../../../shared/components/ok/ok-paginator.component';
+import { OkPaginatorComponent } from '../../../../shared/components/ok/ok-paginator.component';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { FormBuilder, FormGroup } from '@angular/forms';

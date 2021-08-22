@@ -1,6 +1,8 @@
 import { OkApi } from './../../../shared/api/ok';
 
-class CustomerApi implements OkApi {
+export interface DTO {}
+
+class Api implements OkApi {
   params = '/api/portal/app-crm/customer/params';
   page = '/api/portal/app-crm/customer/page';
   top = '/api/portal/app-crm/customer/page/top';
@@ -17,6 +19,6 @@ class CustomerApi implements OkApi {
   };
 }
 
-const customerApi = new CustomerApi();
+const api = new Api();
 
-export { customerApi };
+export { api };

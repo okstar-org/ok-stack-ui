@@ -1,12 +1,12 @@
-import { SmsComponent } from './sms/sms.component';
-import { TaskComponent } from './task/task.component';
-import { AttachComponent } from './attach/attach.component';
-import { CallComponent } from './call/call.component';
-import { FollowupComponent } from './followup/followup.component';
+import { SmsComponent } from '../../details/sms/sms.component';
+import { TaskComponent } from '../../details/task/task.component';
+import { AttachComponent } from '../../details/attach/attach.component';
+import { CallComponent } from '../../details/call/call.component';
+import { FollowupComponent } from '../../details/followup/followup.component';
 import { InfoComponent } from './info/info.component';
 import { DetailComponent } from './detail.component';
 import { Routes, RouterModule } from '@angular/router';
-import { LogComponent } from './log/log.component';
+import { LogComponent } from '../../details/log/log.component';
 
 const childrenRoutes: Routes = [
   { path: '', redirectTo: 'info', pathMatch: 'full' },

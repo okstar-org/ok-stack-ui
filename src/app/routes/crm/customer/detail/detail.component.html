@@ -1,0 +1,56 @@
+<page-header class="bg-purple-500"></page-header>
+
+<mat-card *ngIf="data">
+  <mat-card-header>
+    <mat-card-title>
+      <ul class="ok-item-list crm-lead-header">
+        <li class="crm-lead-logo">
+          <img matListAvatar [src]="data.avatar" alt="">
+        </li>
+        <li class="crm-lead-customer-name">{{data.customerName}}</li>
+        <li>[标志] </li>
+        <li>客户网络咨询</li>
+      </ul>
+    </mat-card-title>
+    <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
+  </mat-card-header>
+  <!-- <img matCardImage src="Card wide image source"> -->
+  <mat-card-content style="margin: 0;">
+    <ul class="ok-item-list crm-lead-detail">
+      <li class="m-8">线索归属：[张翠花]</li>
+      <li class="m-8">联系人员：{{data.contactName}} </li>
+      <li class="m-8">下次跟进：{{data.nextFollowUpTime}}</li>
+    </ul>
+  </mat-card-content>
+  <mat-card-actions align="start" style="margin: 0;">
+    <button mat-button mat-raised-button class="m-8">添加</button>
+    <button mat-button mat-raised-button class="m-8">写跟进</button>
+    <button mat-button mat-raised-button class="m-8">添加协作</button>
+    <button mat-button mat-raised-button class="m-8">发送短信</button>
+    <button mat-button mat-raised-button class="m-8">重点关注</button>
+    <button mat-button mat-raised-button class="m-8">编辑客户</button>
+    <button mat-button mat-raised-button class="m-8">删除客户</button>
+    <button mat-button mat-raised-button class="m-8">转移客户</button>
+    <button mat-button mat-raised-button class="m-8">移入公海</button>
+  </mat-card-actions>
+
+  <div class="ok-arrow-box">
+    <a routerLink="../111">
+      <mat-icon class="mat-18" color="'#999'">keyboard_arrow_left</mat-icon>
+    </a>
+    <a routerLink="../222">
+      <mat-icon class="mat-18" color="primary">keyboard_arrow_right</mat-icon>
+    </a>
+  </div>
+</mat-card>
+
+<nav mat-tab-nav-bar aria-label="sale leads navigation links">
+  <a mat-tab-link
+     *ngFor="let tabLink of tabLinks; let i = index"
+     [routerLink]="tabLink.link"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    {{"crm."+ tabLink.label +".title" | translate}}
+  </a>
+</nav>
+<router-outlet></router-outlet>

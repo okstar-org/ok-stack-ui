@@ -6,7 +6,7 @@
           <mat-icon class="icon-40">bookmark</mat-icon>
         </li>
         <li>
-          {{ "crm.call.title" | translate }}
+          {{"crm.cost.title" | translate}}
         </li>
       </ul>
     </div>
@@ -14,11 +14,12 @@
 
       <div class="ok-search-controls">
         <app-ok-search [formGroup]="group" [controls]="searchControls"></app-ok-search>
-        <button mat-button mat-raised-button class="m-8" (click)="onSearch()">{{"common.search" | translate}}</button>
+        <button mat-button mat-raised-button class="m-8" (click)="onSearch()">{{"common.search" |
+          translate}}</button>
       </div>
 
       <mtx-grid
-                [toolbarTitle]="'crm.lead.title' | translate"
+                [toolbarTitle]="'crm.cost.title' | translate"
                 [data]="list"
                 [columns]="columns"
                 [length]="total"
@@ -34,11 +35,21 @@
                 [pageSizeOptions]="[5,10,20]"
                 (sortChange)="changeSort($event)"
                 (page)="getNextPage($event)"
-                [cellTemplate]="{time: timeTpl}">
+                [cellTemplate]="{status: statusTpl, source: sourceTpl, customerName: nameTpl}">
       </mtx-grid>
 
-      <ng-template #timeTpl let-row let-index="index" let-col="colDef">
-        {{ row.time | date:'y-M-d HH:mm:ss z'}}
+      <ng-template #statusTpl let-row let-index="index" let-col="colDef">
+        {{"crm.cost.statusSelect." +row.status | translate}}
+      </ng-template>
+
+      <ng-template #sourceTpl let-row let-index="index" let-col="colDef">
+        {{"crm.cost.sourceSelect." +row.source | translate}}
+      </ng-template>
+
+      <ng-template #nameTpl let-row let-index="index" let-col="colDef">
+        <a [routerLink]="['/crm/cost/detail', row.id ]">
+          {{ row.customerName }}
+        </a>
       </ng-template>
 
     </div>
