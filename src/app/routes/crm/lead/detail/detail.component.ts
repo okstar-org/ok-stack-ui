@@ -15,7 +15,7 @@ export class DetailComponent implements OnInit {
 
   tabLinks = [
     { label: 'info', link: 'info' },
-    { label: 'followup', link: 'followup' },
+    { label: 'follow-up', link: 'follow-up' },
     { label: 'task', link: 'task' },
     { label: 'call', link: 'call' },
     { label: 'sms', link: 'sms' },

@@ -4,7 +4,7 @@ import { TaskComponent } from '../../details/task/task.component';
 import { SharedModule } from './../../../../shared/shared.module';
 import { AttachComponent } from '../../details/attach/attach.component';
 import { CallComponent } from '../../details/call/call.component';
-import { FollowupComponent } from '../../details/followup/followup.component';
+import { FollowUpComponent } from '../../details/follow-up/follow-up.component';
 import { InfoComponent } from './info/info.component';
 import { detailRoutes } from './detail.routing';
 import { NgModule } from '@angular/core';
@@ -16,7 +16,7 @@ import { DetailComponent } from './detail.component';
   declarations: [
     DetailComponent,
     InfoComponent,
-    FollowupComponent,
+    FollowUpComponent,
     TaskComponent,
     CallComponent,
     AttachComponent,

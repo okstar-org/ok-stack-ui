@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { OkDetailComponent } from '@shared/components/ok/ok-detail.component';
 import { NGXLogger } from 'ngx-logger';
-import { FollowupService } from '../followup/followup.service';
+import { FollowUpService } from '../follow-up/follow-up.service';
 import { TaskService } from './task.service';
 
 @Component({

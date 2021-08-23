@@ -8,7 +8,7 @@ import { OkDetailService } from '@shared/services/ok-detail.service';
 @Injectable({
   providedIn: 'root',
 })
-export class FollowupService extends OkDetailService {
+export class FollowUpService extends OkDetailService {
   constructor(protected logger: NGXLogger, protected http: HttpClient) {
     super(logger, http, followApi);
   }

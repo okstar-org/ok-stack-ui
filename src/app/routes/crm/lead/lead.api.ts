@@ -9,8 +9,8 @@ const infoApi = new InfoApi();
 export { infoApi };
 
 class FollowApi implements OkApi {
-  findById = '/api/portal/app-crm/lead/detail/followUp/page';
-  page = '/api/portal/app-crm/lead/detail/followUp/page';
+  findById = '/api/portal/app-crm/lead/detail/follow-up/page';
+  page = '/api/portal/app-crm/lead/detail/follow-up/page';
 }
 
 const followApi = new FollowApi();

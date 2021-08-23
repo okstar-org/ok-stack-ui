@@ -1,4 +1,4 @@
-import { FollowupService } from './followup.service';
+import { FollowUpService } from './follow-up.service';
 import { OkPaginatorComponent } from '../../../../shared/components/ok/ok-paginator.component';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
@@ -8,11 +8,11 @@ import { OkDetailComponent } from '@shared/components/ok/ok-detail.component';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
-  selector: 'app-followup',
-  templateUrl: './followup.component.html',
-  styleUrls: ['./followup.component.scss'],
+  selector: 'app-follow-up',
+  templateUrl: './follow-up.component.html',
+  styleUrls: ['./follow-up.component.scss'],
 })
-export class FollowupComponent extends OkDetailComponent implements OnInit {
+export class FollowUpComponent extends OkDetailComponent implements OnInit {
   searchControls = [
     {
       name: 'keyword',
@@ -35,7 +35,7 @@ export class FollowupComponent extends OkDetailComponent implements OnInit {
     protected logger: NGXLogger,
     protected fb: FormBuilder,
     protected cdr: ChangeDetectorRef,
-    protected svc: FollowupService
+    protected svc: FollowUpService
   ) {
     super(logger, fb, svc, {
       keyword: '',

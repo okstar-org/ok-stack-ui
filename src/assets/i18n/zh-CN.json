@@ -285,7 +285,7 @@
       "important": "紧急程度",
       "details": "详情"
     },
-    "followup": {
+    "follow-up": {
       "title": "跟进记录",
       "time": "跟进时间",
       "source": "来自线索"

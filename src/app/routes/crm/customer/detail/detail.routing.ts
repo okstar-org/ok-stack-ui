@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CallComponent } from '../../details/call/call.component';
 import { DetailComponent } from './detail.component';
 import { InfoComponent } from './info/info.component';
-import { FollowupComponent } from '../../details/followup/followup.component';
+import { FollowUpComponent } from '../../details/follow-up/follow-up.component';
 import { TaskComponent } from '../../details/task/task.component';
 import { SmsComponent } from '../../details/sms/sms.component';
 import { AttachComponent } from '../../details/attach/attach.component';
@@ -17,7 +17,7 @@ import { OwnerLogComponent } from '../../details/owner-log/owner-log.component';
 const childrenRoutes: Routes = [
   { path: '', redirectTo: 'info', pathMatch: 'full' },
   { path: 'info', component: InfoComponent },
-  { path: 'followup', component: FollowupComponent },
+  { path: 'follow-up', component: FollowUpComponent },
   { path: 'task', component: TaskComponent },
   { path: 'call', component: CallComponent },
   { path: 'attach', component: AttachComponent },
