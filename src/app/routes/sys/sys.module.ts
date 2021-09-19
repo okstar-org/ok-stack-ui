@@ -1,4 +1,4 @@
-import { SharedModule } from './../../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 import { OrgComponent } from './org/org.component';
 import { sysRoutes } from './sys.routing';
 import { NgModule } from '@angular/core';

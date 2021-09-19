@@ -89,6 +89,7 @@
     "crm.finance.invoice": "发票管理",
     "sys": "系统管理",
     "sys.org": "组织架构",
+    "sys.conn": "对接设置",
     "workflow": "工作流程",
     "workflow.approve": "流程审批",
     "workflow.instance": "流程实例",
@@ -319,6 +320,15 @@
     },
     "info": {
       "title": "概况信息"
+    }
+  },
+  "sys": {
+    "conn": {
+      "tab": {
+        "dt": "钉钉",
+        "wx": "企微",
+        "fs": "飞书"
+      }
     }
   },
   "common": {

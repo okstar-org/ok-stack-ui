@@ -19,8 +19,8 @@ export class AddComponent implements OnInit {
   constructor(
     private logger: NGXLogger,
     private fb: FormBuilder,
-    private service: AddService,
-    @Inject(MAT_DIALOG_DATA) public data: Form
+    @Inject(MAT_DIALOG_DATA) public data: Form,
+    private service: AddService
   ) {
     this.logger.debug('data:', data);
     this.addForm = this.fb.group(data);

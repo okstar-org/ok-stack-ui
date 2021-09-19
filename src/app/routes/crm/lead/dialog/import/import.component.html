@@ -149,7 +149,6 @@
         <button mat-raised-button matStepperPrevious>上一步</button>
         <button mat-raised-button *ngIf="isUploading()" (click)="doCancel()">取消</button>
         <button mat-raised-button *ngIf="isFinished()" (click)="doSubmit()">提交</button>
-        <!-- (click)="stepper.reset()" -->
       </mat-dialog-actions>
     </mat-step>
   </mat-horizontal-stepper>

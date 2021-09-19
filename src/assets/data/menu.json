@@ -105,6 +105,11 @@
       "icon": "settings",
       "children": [
         {
+          "route": "conn",
+          "name": "conn",
+          "type": "link"
+        },
+        {
           "route": "org",
           "name": "org",
           "type": "link"
