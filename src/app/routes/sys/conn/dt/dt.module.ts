@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DtComponent } from './dt.component';
+import { SharedModule } from '@shared';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [DtComponent],
+  imports: [CommonModule, SharedModule],
+  declarations: [],
 })
 export class DtModule {}

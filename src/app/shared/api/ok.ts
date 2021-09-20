@@ -21,6 +21,7 @@ class OkPageGroup implements OkGroup, OkPageParams {
 export interface OkApi {
   findById: string;
   page: string;
+  findByType?: string;
 }
 
 export interface OkPageApi extends OkApi {

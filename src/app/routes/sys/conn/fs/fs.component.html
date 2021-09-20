@@ -1,3 +1,39 @@
-<p>
-  fs works!
-</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>应用配置</mat-card-title>
+    <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
+  </mat-card-header>
+  <mat-card-content>
+
+    <form [formGroup]="group">
+
+      <mat-form-field class="demo-full-width m-8">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field class="demo-full-width m-8">
+        <mat-label>AppId</mat-label>
+        <input matInput formControlName="appKey" required>
+        <mat-error *ngIf="group.get('appKey').invalid">
+          {{'validations.required' | translate}}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="demo-full-width m-8 app-conn-cert">
+        <mat-label>AppSecret：</mat-label>
+        <input matInput formControlName="appSecret" required>
+        <mat-error *ngIf="group.get('appSecret').invalid">
+          {{'validations.required' | translate}}
+        </mat-error>
+      </mat-form-field>
+
+    </form>
+
+  </mat-card-content>
+
+  <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-raised-button (click)="onSave">保存</button>
+  </mat-card-actions>
+
+</mat-card>

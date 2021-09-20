@@ -5,36 +5,33 @@
   </mat-card-header>
   <mat-card-content>
 
-    <form [formGroup]="addForm">
+    <form [formGroup]="group">
 
-      <mat-form-field class="demo-full-width" class="m-r-8">
+      <mat-form-field class="demo-full-width m-8">
         <mat-label>Name</mat-label>
-        <input matInput formControlName="name" required>
-        <mat-error *ngIf="addForm.get('name').invalid">
-          {{'validations.required' | translate}}
-        </mat-error>
+        <input matInput formControlName="name">
       </mat-form-field>
 
-      <mat-form-field class="demo-full-width" class="m-r-8">
+      <mat-form-field class="demo-full-width m-8">
         <mat-label>AgentId</mat-label>
         <input matInput formControlName="agentId" required>
-        <mat-error *ngIf="addForm.get('agentId').invalid">
+        <mat-error *ngIf="group.get('agentId').invalid">
           {{'validations.required' | translate}}
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="demo-full-width" class="m-r-8">
+      <mat-form-field class="demo-full-width m-8">
         <mat-label>AppKey：</mat-label>
         <input matInput formControlName="appKey" required>
-        <mat-error *ngIf="addForm.get('appKey').invalid">
+        <mat-error *ngIf="group.get('appKey').invalid">
           {{'validations.required' | translate}}
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="demo-full-width" class="m-r-8">
+      <mat-form-field class="demo-full-width app-conn-cert m-8">
         <mat-label>AppSecret：</mat-label>
         <input matInput formControlName="appSecret" required>
-        <mat-error *ngIf="addForm.get('appSecret').invalid">
+        <mat-error *ngIf="group.get('appSecret').invalid">
           {{'validations.required' | translate}}
         </mat-error>
       </mat-form-field>
@@ -42,6 +39,11 @@
     </form>
 
   </mat-card-content>
+
+  <mat-card-footer class="m-8">
+    连接状态：【正常】 访问次数：100  访问明细：【明细链接】 访问日志：【日志链接】
+  </mat-card-footer>
+
   <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
     <button mat-raised-button (click)="onSave">保存</button>
   </mat-card-actions>

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FsComponent } from './fs.component';
+import { SharedModule } from '@shared';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [FsComponent],
+  imports: [CommonModule, SharedModule],
+  declarations: [],
 })
 export class FsModule {}

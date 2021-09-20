@@ -32,9 +32,9 @@ export class AuthService {
   }
 
   check() {
-    this.logger.debug('check...');
+    // this.logger.debug('check...');
     const v = this.token.valid();
-    this.logger.debug('check...', v);
+    // this.logger.debug('check...', v);
     return v;
   }
 
