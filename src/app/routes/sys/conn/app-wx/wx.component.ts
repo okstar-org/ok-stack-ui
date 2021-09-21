@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { AppInfo } from './../conn.api';
+import { AppInfo } from '../conn.api';
 import { WxService } from './wx.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -18,6 +18,7 @@ import { OkPayload } from '@shared/api/ok';
 })
 export class WxComponent extends OkItemComponent implements OnInit, OkOnSave {
   form: FormGroup;
+  type = ConnType.WX;
 
   constructor(
     protected logger: NGXLogger,
@@ -31,18 +32,24 @@ export class WxComponent extends OkItemComponent implements OnInit, OkOnSave {
       name: [''],
       certKey: ['', [Validators.required]],
       certSecret: ['', [Validators.required]],
+      type: [ConnType.WX, [Validators.required]],
     });
 
     this.form = this.group;
   }
 
   ngOnInit() {
+    this.loadForm();
+  }
+
+  loadForm() {
     this.svc.findByType(ConnType.WX).subscribe(r => {
-      const data: { id: number; name: string; certKey: string; certSecret: string } = r.data;
+      const data: AppInfo = r.data;
       this.form.get('name').setValue(data.name);
       this.form.get('certKey').setValue(data.certKey);
       this.form.get('certSecret').setValue(data.certSecret);
       this.form.get('id').setValue(data.id);
+      this.form.get('type').setValue(data.type);
     });
   }
 
@@ -64,6 +71,7 @@ export class WxComponent extends OkItemComponent implements OnInit, OkOnSave {
 
     f.subscribe(r => {
       this.logger.info('==>', r);
+      this.loadForm();
     });
   }
 }

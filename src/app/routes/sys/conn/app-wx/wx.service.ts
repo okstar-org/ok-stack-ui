@@ -1,4 +1,4 @@
-import { AppInfo } from './../conn.api';
+import { AppInfo } from '../conn.api';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OkPayload, OkResult } from '@shared/api/ok';

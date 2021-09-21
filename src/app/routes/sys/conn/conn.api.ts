@@ -11,4 +11,5 @@ export class AppInfo {
   name: string;
   certKey: string;
   certSecret: string;
+  type: ConnType;
 }

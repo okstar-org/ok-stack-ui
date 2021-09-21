@@ -12,23 +12,15 @@
         <input matInput formControlName="name">
       </mat-form-field>
 
-      <!-- <mat-form-field class="demo-full-width m-8">
-        <mat-label>AgentId</mat-label>
-        <input matInput formControlName="agentId" required>
-        <mat-error *ngIf="form.get('agentId').invalid">
-          {{'validations.required' | translate}}
-        </mat-error>
-      </mat-form-field> -->
-
       <mat-form-field class="demo-full-width m-8">
-        <mat-label>AppKey：</mat-label>
+        <mat-label>AppId</mat-label>
         <input matInput formControlName="certKey" required>
         <mat-error *ngIf="form.get('certKey').invalid">
           {{'validations.required' | translate}}
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="demo-full-width app-conn-cert m-8">
+      <mat-form-field class="demo-full-width m-8 app-conn-cert">
         <mat-label>AppSecret：</mat-label>
         <input matInput formControlName="certSecret" required>
         <mat-error *ngIf="form.get('certSecret').invalid">
@@ -40,12 +32,10 @@
 
   </mat-card-content>
 
-  <mat-card-footer class="m-8">
-    连接状态：【正常】 访问次数：100  访问明细：【明细链接】 访问日志：【日志链接】
-  </mat-card-footer>
-
-  <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+  <mat-card-actions class="m-8" fxLayout="row" fxLayoutAlign="start">
     <button mat-raised-button (click)="onSave()">保存</button>
   </mat-card-actions>
 
 </mat-card>
+
+<app-status [type]="type"></app-status>

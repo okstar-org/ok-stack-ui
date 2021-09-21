@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>连接状态</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list fxLayout="row" fxLayoutAlign="start">
+      <mat-list-item>连接状态：【异常/正常/同步中】</mat-list-item>
+      <mat-list-item>同步次数：【100】</mat-list-item>
+      <mat-list-item>部门个数：【100】</mat-list-item>
+      <mat-list-item>员工个数：【100】</mat-list-item>
+    </mat-list>
+
+
+  </mat-card-content>
+
+  <mat-card-actions class="m-8" fxLayout="row" fxLayoutAlign="start">
+    <button mat-raised-button (click)="onSync()">同步</button>
+  </mat-card-actions>
+
+</mat-card>

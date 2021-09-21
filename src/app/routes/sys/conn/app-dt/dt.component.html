@@ -12,15 +12,23 @@
         <input matInput formControlName="name">
       </mat-form-field>
 
+      <!-- <mat-form-field class="demo-full-width m-8">
+        <mat-label>AgentId</mat-label>
+        <input matInput formControlName="agentId" required>
+        <mat-error *ngIf="form.get('agentId').invalid">
+          {{'validations.required' | translate}}
+        </mat-error>
+      </mat-form-field> -->
+
       <mat-form-field class="demo-full-width m-8">
-        <mat-label>AppId</mat-label>
+        <mat-label>AppKey：</mat-label>
         <input matInput formControlName="certKey" required>
         <mat-error *ngIf="form.get('certKey').invalid">
           {{'validations.required' | translate}}
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="demo-full-width m-8 app-conn-cert">
+      <mat-form-field class="demo-full-width app-conn-cert m-8">
         <mat-label>AppSecret：</mat-label>
         <input matInput formControlName="certSecret" required>
         <mat-error *ngIf="form.get('certSecret').invalid">
@@ -32,8 +40,9 @@
 
   </mat-card-content>
 
-  <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+  <mat-card-actions class="m-8" fxLayout="row" fxLayoutAlign="start">
     <button mat-raised-button (click)="onSave()">保存</button>
   </mat-card-actions>
-
 </mat-card>
+
+<app-status [type]="type"></app-status>

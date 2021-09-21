@@ -1,7 +1,6 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>应用配置</mat-card-title>
-    <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
   </mat-card-header>
   <mat-card-content>
 
@@ -32,8 +31,9 @@
 
   </mat-card-content>
 
-  <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+  <mat-card-actions class="m-8" fxLayout="row" fxLayoutAlign="start">
     <button mat-raised-button (click)="onSave()">保存</button>
   </mat-card-actions>
-
 </mat-card>
+
+<app-status [type]="type"></app-status>

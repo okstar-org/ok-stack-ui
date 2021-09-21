@@ -1,6 +1,6 @@
-import { FsComponent } from './fs/fs.component';
-import { DtComponent } from './dt/dt.component';
-import { WxComponent } from './wx/wx.component';
+import { FsComponent } from './app-fs/fs.component';
+import { DtComponent } from './app-dt/dt.component';
+import { WxComponent } from './app-wx/wx.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ConnComponent } from './conn.component';
 
