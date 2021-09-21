@@ -5,7 +5,7 @@ import { OkItemService } from '@shared/services/ok-item.service';
 import { NGXLogger } from 'ngx-logger';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ConnType } from '../conn.api';
+import { AppInfo, ConnType } from '../conn.api';
 import { api } from './fs.api';
 
 @Injectable({
@@ -18,7 +18,15 @@ export class FsService extends OkItemService {
 
   findByType(type: ConnType, params = {}): Observable<OkPayload> {
     return this.http
-      .get<OkResult>(this.api.findByType + type.toString(), { params })
+      .get<OkResult>(api.findByType + type.toString(), { params })
       .pipe(map((r: OkResult) => r.payload));
+  }
+
+  save(appInfo: AppInfo): Observable<OkPayload> {
+    return super.saveItem(api.save, appInfo);
+  }
+
+  update(appInfo: AppInfo): Observable<OkPayload> {
+    return super.updateItem(api.update, appInfo);
   }
 }

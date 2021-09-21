@@ -3,6 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { OkGroup, OkPayload } from '@shared/api/ok';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { OkItemService } from '@shared/services/ok-item.service';
+import { OkOnSave } from './ok-on-save';
 
 export class OkItemComponent {
   translateSubscription: Subscription;

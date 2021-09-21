@@ -5,3 +5,10 @@ enum ConnType {
 }
 
 export { ConnType };
+
+export class AppInfo {
+  id: string;
+  name: string;
+  certKey: string;
+  certSecret: string;
+}

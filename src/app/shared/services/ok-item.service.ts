@@ -9,9 +9,15 @@ import { map } from 'rxjs/operators';
 export class OkItemService {
   constructor(protected logger: NGXLogger, protected http: HttpClient, protected api: OkApi) {}
 
-  getDetail(id: string, params = {}): Observable<OkPayload> {
-    return this.http
-      .get<OkResult>(this.api.findById + id, { params })
-      .pipe(map((r: OkResult) => r.payload));
+  getDetail(url: string, params = {}): Observable<OkPayload> {
+    return this.http.get<OkResult>(url, { params }).pipe(map((r: OkResult) => r.payload));
+  }
+
+  saveItem(url: string, params = {}): Observable<any> {
+    return this.http.post<any>(url, params).pipe(map((r: any) => r.payload));
+  }
+
+  updateItem(url: string, params = {}): Observable<any> {
+    return this.http.put<any>(url, params).pipe(map((r: any) => r.payload));
   }
 }

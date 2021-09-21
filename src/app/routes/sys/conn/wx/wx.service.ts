@@ -1,3 +1,4 @@
+import { AppInfo } from './../conn.api';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OkPayload, OkResult } from '@shared/api/ok';
@@ -18,7 +19,15 @@ export class WxService extends OkItemService {
 
   findByType(type: ConnType, params = {}): Observable<OkPayload> {
     return this.http
-      .get<OkResult>(this.api.findByType + type.toString(), { params })
+      .get<OkResult>(api.findByType + type.toString(), { params })
       .pipe(map((r: OkResult) => r.payload));
+  }
+
+  save(appInfo: AppInfo): Observable<OkPayload> {
+    return super.saveItem(api.save, appInfo);
+  }
+
+  update(appInfo: AppInfo): Observable<OkPayload> {
+    return super.updateItem(api.update, appInfo);
   }
 }

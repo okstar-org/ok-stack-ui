@@ -1,3 +1,4 @@
+import { AppInfo } from './../conn.api';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,13 +8,18 @@ import { NGXLogger } from 'ngx-logger';
 import { ConnType } from '../conn.api';
 import { WxService } from '../wx/wx.service';
 import { FsService } from './fs.service';
+import { Observable } from 'rxjs';
+import { OkPayload } from '@shared/api/ok';
+import { OkOnSave } from '@shared/components/ok/ok-on-save';
 
 @Component({
   selector: 'app-fs',
   templateUrl: './fs.component.html',
   styleUrls: ['./fs.component.scss'],
 })
-export class FsComponent extends OkItemComponent implements OnInit {
+export class FsComponent extends OkItemComponent implements OnInit, OkOnSave {
+  form: FormGroup;
+
   constructor(
     protected logger: NGXLogger,
     protected fb: FormBuilder,
@@ -22,20 +28,42 @@ export class FsComponent extends OkItemComponent implements OnInit {
     protected svc: FsService
   ) {
     super(logger, fb, svc, {
+      id: [''],
       name: [''],
-      appKey: ['', [Validators.required]],
-      appSecret: ['', [Validators.required]],
+      certKey: ['', [Validators.required]],
+      certSecret: ['', [Validators.required]],
     });
+    this.form = this.group;
   }
 
   ngOnInit() {
     this.svc.findByType(ConnType.FS).subscribe(r => {
-      const data: { name: string; certKey: string; certSecret: string } = r.data;
+      const data: AppInfo = r.data;
       this.group.get('name').setValue(data.name);
-      this.group.get('appKey').setValue(data.certKey);
-      this.group.get('appSecret').setValue(data.certSecret);
+      this.group.get('certKey').setValue(data.certKey);
+      this.group.get('certSecret').setValue(data.certSecret);
+      this.form.get('id').setValue(data.id);
     });
   }
 
-  onSave() {}
+  onSave() {
+    this.logger.debug('save', this.form.value);
+
+    if (!this.form.valid) {
+      return;
+    }
+
+    const appInfo: AppInfo = this.form.value;
+
+    let f: Observable<OkPayload>;
+    if (!appInfo.id) {
+      f = this.svc.save(appInfo);
+    } else {
+      f = this.svc.update(appInfo);
+    }
+
+    f.subscribe(r => {
+      this.logger.info('==>', r);
+    });
+  }
 }
