@@ -96,7 +96,7 @@ job-build:
     paths:
       - dist/ng-matero
   script:
-    - npm run build
+    - npm run build --prod --aot
     - ls .
 
 job-pack:
