@@ -6,6 +6,8 @@ class Api implements OkApi {
   page = '/api/portal/sys/conn/app/page';
   save = '/api/portal/sys/conn/app/save';
   update = '/api/portal/sys/conn/app/update';
+  test = '/api/portal/sys/conn/app/test/';
+  sync = '/api/portal/sys/conn/app/sync/';
 }
 
 const api = new Api();

@@ -74,4 +74,8 @@ export class FsComponent extends OkItemComponent implements OnInit, OkOnSave {
       this.loadForm();
     });
   }
+
+  onTest() {
+    this.logger.debug('test', this.form.value);
+  }
 }

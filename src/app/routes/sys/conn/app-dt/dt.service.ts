@@ -29,4 +29,10 @@ export class DtService extends OkItemService {
   update(appInfo: AppInfo): Observable<OkPayload> {
     return super.updateItem(api.update, appInfo);
   }
+
+  test(type: ConnType, params = {}): Observable<OkPayload> {
+    return this.http
+      .get<OkResult>(api.test + type.toString(), { params })
+      .pipe(map((r: OkResult) => r.payload));
+  }
 }
