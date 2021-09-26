@@ -20,6 +20,7 @@ import { OkOnSave } from '@shared/components/ok/ok-on-save';
 export class FsComponent extends OkItemComponent implements OnInit, OkOnSave {
   form: FormGroup;
   type = ConnType.FS;
+  accessToken: string;
 
   constructor(
     protected logger: NGXLogger,
@@ -77,5 +78,9 @@ export class FsComponent extends OkItemComponent implements OnInit, OkOnSave {
 
   onTest() {
     this.logger.debug('test', this.form.value);
+    this.svc.test(this.type).subscribe(r => {
+      this.logger.debug('test=>', r);
+      this.accessToken = r.data;
+    });
   }
 }

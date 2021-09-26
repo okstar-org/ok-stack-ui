@@ -18,6 +18,7 @@ import { Observable } from 'rxjs';
 export class DtComponent extends OkItemComponent implements OnInit {
   form: FormGroup;
   type = ConnType.DT;
+  accessToken: string;
 
   constructor(
     protected logger: NGXLogger,
@@ -71,6 +72,14 @@ export class DtComponent extends OkItemComponent implements OnInit {
     f.subscribe(r => {
       this.logger.info('==>', r);
       this.loadForm();
+    });
+  }
+
+  onTest() {
+    this.logger.debug('test', this.form.value);
+    this.svc.test(this.type).subscribe(r => {
+      this.logger.debug('test=>', r);
+      this.accessToken = r.data;
     });
   }
 }

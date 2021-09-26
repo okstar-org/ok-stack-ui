@@ -19,7 +19,6 @@ import { OkPayload } from '@shared/api/ok';
 export class WxComponent extends OkItemComponent implements OnInit, OkOnSave {
   form: FormGroup;
   type = ConnType.WX;
-  accessToken: string;
 
   constructor(
     protected logger: NGXLogger,
@@ -73,14 +72,6 @@ export class WxComponent extends OkItemComponent implements OnInit, OkOnSave {
     f.subscribe(r => {
       this.logger.info('==>', r);
       this.loadForm();
-    });
-  }
-
-  onTest() {
-    this.logger.debug('test', this.form.value);
-    this.svc.test(this.type).subscribe(r => {
-      this.logger.debug('test=>', r);
-      this.accessToken = r.data;
     });
   }
 }
