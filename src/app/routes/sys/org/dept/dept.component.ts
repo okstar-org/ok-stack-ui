@@ -1,11 +1,14 @@
+import { DeptService } from './dept.service';
 import { CollectionViewer, SelectionChange } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { NGXLogger } from 'ngx-logger';
 
 export class DynamicFlatNode {
   constructor(
+    public id: number,
     public item: string,
     public level = 1,
     public expandable = false,
@@ -19,6 +22,8 @@ export class DynamicFlatNode {
  */
 @Injectable()
 export class DynamicDatabase {
+  constructor(private deptService: DeptService) {}
+
   dataMap = new Map<string, string[]>([
     ['Fruits', ['Apple', 'Orange', 'Banana']],
     ['Vegetables', ['Tomato', 'Potato', 'Onion']],
@@ -26,15 +31,21 @@ export class DynamicDatabase {
     ['Onion', ['Yellow', 'White', 'Purple']],
   ]);
 
-  rootLevelNodes: string[] = ['Fruits', 'Vegetables'];
-
   /** Initial data from database */
-  initialData(): DynamicFlatNode[] {
-    return this.rootLevelNodes.map(name => new DynamicFlatNode(name, 0, true));
+  initialData(): Observable<DynamicFlatNode[]> {
+    return this.deptService.children(0).pipe(
+      map(r => {
+        return r.data.map(dept => new DynamicFlatNode(dept.id, dept.name, dept.level, true));
+      })
+    );
   }
 
-  getChildren(node: string): string[] | undefined {
-    return this.dataMap.get(node);
+  getChildren(node: number): Observable<DynamicFlatNode[]> {
+    return this.deptService.children(node).pipe(
+      map(r => {
+        return r.data.map(dept => new DynamicFlatNode(dept.id, dept.name, dept.level, true));
+      })
+    );
   }
 
   isExpandable(node: string): boolean {
@@ -96,50 +107,50 @@ export class DynamicDataSource {
    * Toggle the node, remove from display list
    */
   toggleNode(node: DynamicFlatNode, expand: boolean) {
-    const children = this.database.getChildren(node.item);
     const index = this.data.indexOf(node);
-    if (!children || index < 0) {
-      // If no children, or cannot find the node, no op
-      return;
-    }
+    console.log('toggleNode', node, index, expand);
 
-    node.isLoading = true;
+    if (expand) {
+      node.isLoading = true;
+      this.database.getChildren(node.id).subscribe(r => {
+        node.isLoading = false;
 
-    setTimeout(() => {
-      if (expand) {
-        const nodes = children.map(
-          name => new DynamicFlatNode(name, node.level + 1, this.database.isExpandable(name))
-        );
-        this.data.splice(index + 1, 0, ...nodes);
-      } else {
-        let count = 0;
-        for (
-          let i = index + 1;
-          i < this.data.length && this.data[i].level > node.level;
-          i++, count++
-        ) {}
-        this.data.splice(index + 1, count);
-      }
+        if (!r || r.length <= 0) {
+          return;
+        }
 
-      // notify the change
+        this.data.splice(index + 1, 0, ...r);
+
+        // notify the change
+        this.dataChange.next(this.data);
+      });
+    } else {
+      let count = 0;
+      for (
+        let i = index + 1;
+        i < this.data.length && this.data[i].level > node.level;
+        i++, count++
+      ) {}
+      this.data.splice(index + 1, count);
       this.dataChange.next(this.data);
-      node.isLoading = false;
-    }, 1000);
+    }
   }
 }
 
 @Component({
-  selector: 'app-org',
-  templateUrl: './org.component.html',
-  styleUrls: ['./org.component.scss'],
+  selector: 'app-dept',
+  templateUrl: './dept.component.html',
+  styleUrls: ['./dept.component.scss'],
   providers: [DynamicDatabase],
 })
-export class OrgComponent implements OnInit {
-  constructor(database: DynamicDatabase) {
+export class DeptComponent implements OnInit {
+  constructor(protected logger: NGXLogger, database: DynamicDatabase) {
     this.treeControl = new FlatTreeControl<DynamicFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new DynamicDataSource(this.treeControl, database);
 
-    this.dataSource.data = database.initialData();
+    database.initialData().subscribe(r => {
+      this.dataSource.data = r;
+    });
   }
 
   treeControl: FlatTreeControl<DynamicFlatNode>;
@@ -153,4 +164,8 @@ export class OrgComponent implements OnInit {
   hasChild = (_: number, nodeData: DynamicFlatNode) => nodeData.expandable;
 
   ngOnInit() {}
+
+  onClickDept(node) {
+    this.logger.info('click', node);
+  }
 }

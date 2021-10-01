@@ -36,4 +36,10 @@ export class WxService extends OkItemService {
       .get<OkResult>(api.test + type.toString(), { params })
       .pipe(map((r: OkResult) => r.payload));
   }
+
+  sync(type: ConnType, params = {}): Observable<OkPayload> {
+    return this.http
+      .put<OkResult>(api.sync + type.toString(), { params })
+      .pipe(map((r: OkResult) => r.payload));
+  }
 }

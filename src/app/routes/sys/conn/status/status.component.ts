@@ -31,6 +31,30 @@ export class StatusComponent implements OnInit {
 
   onSync() {
     this.logger.info('sync', this.type);
+
+    this.isLoadingTest = true;
+    this.isTestYes = null;
+
+    let obs: Observable<OkPayload>;
+    switch (this.type) {
+      case ConnType.DT: {
+        obs = this.dtService.sync(this.type);
+        break;
+      }
+      case ConnType.WX: {
+        obs = this.wxService.sync(this.type);
+        break;
+      }
+      case ConnType.FS: {
+        obs = this.fsService.sync(this.type);
+        break;
+      }
+    }
+
+    obs.subscribe(r => {
+      this.logger.debug('sync=>', r);
+      this.isLoadingTest = false;
+    });
   }
 
   onTest() {
