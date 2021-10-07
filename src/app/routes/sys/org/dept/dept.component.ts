@@ -198,7 +198,6 @@ export class StaffDataSource extends DataSource<Staff> {
 
   constructor() {
     super();
-    // this.dataChange.next(exampleData);
   }
 
   connect(): Observable<Staff[]> {
