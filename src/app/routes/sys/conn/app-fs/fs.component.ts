@@ -63,7 +63,7 @@ export class FsComponent extends OkItemComponent implements OnInit, OkOnSave {
 
     const appInfo: AppInfo = this.form.value;
 
-    let f: Observable<OkPayload>;
+    let f: Observable<OkPayload<any>>;
     if (!appInfo.id) {
       f = this.svc.save(appInfo);
     } else {

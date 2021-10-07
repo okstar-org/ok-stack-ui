@@ -339,7 +339,8 @@
     "import": "导入",
     "export": "导出",
     "detail": "详情",
-    "comment": "评论"
+    "comment": "评论",
+    "sync": "同步"
   },
   "support": {
     "can_not": "您的浏览器不支持该功能，请升级最新版谷歌或者火狐浏览器！"

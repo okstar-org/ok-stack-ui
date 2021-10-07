@@ -35,7 +35,7 @@ export class StatusComponent implements OnInit {
     this.isLoadingTest = true;
     this.isTestYes = null;
 
-    let obs: Observable<OkPayload>;
+    let obs: Observable<OkPayload<any>>;
     switch (this.type) {
       case ConnType.DT: {
         obs = this.dtService.sync(this.type);
@@ -63,7 +63,7 @@ export class StatusComponent implements OnInit {
     this.isLoadingTest = true;
     this.isTestYes = null;
 
-    let obs: Observable<OkPayload>;
+    let obs: Observable<OkPayload<any>>;
     switch (this.type) {
       case ConnType.DT: {
         obs = this.dtService.test(this.type);

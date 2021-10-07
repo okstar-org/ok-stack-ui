@@ -1,11 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+  HttpResponse,
+} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { OkResult } from '@shared/api/ok';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ParamsInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private toastr: ToastrService) {}
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let { params } = req;
@@ -24,10 +32,12 @@ export class ParamsInterceptor implements HttpInterceptor {
         })
       )
       .pipe(
-        map((r: any) => {
-          console.log('response', r);
-          // return  r.body.header ? r.body.payload.data : r.body
-          return r;
+        map((response: any) => {
+          const r: OkResult<any> = response.body;
+          if (typeof r !== 'undefined' && typeof r.success !== 'undefined' && !r.success) {
+            this.toastr.error(`${r.status.text}`);
+          }
+          return response;
         })
       );
   }

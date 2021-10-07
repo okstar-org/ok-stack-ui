@@ -9,17 +9,17 @@ import { map } from 'rxjs/operators';
 export class OkDetailService {
   constructor(protected logger: NGXLogger, protected http: HttpClient, protected api: OkApi) {}
 
-  getDetail(id: string, params = {}): Observable<OkPayload> {
+  getDetail(id: string, params = {}): Observable<OkPayload<any>> {
     return this.http
-      .get<OkResult>(this.api.findById + id, { params })
-      .pipe(map((r: OkResult) => r.payload));
+      .get<OkResult<any>>(this.api.findById + id, { params })
+      .pipe(map((r: OkResult<any>) => r.payload));
   }
 
-  getPage(params = {}): Observable<OkPayload> {
+  getPage(params = {}): Observable<OkPayload<any>> {
     const url = this.api.page;
 
     this.logger.debug(url, params);
 
-    return this.http.get<OkResult>(url, { params }).pipe(map((r: OkResult) => r.payload));
+    return this.http.get<OkResult<any>>(url, { params }).pipe(map((r: OkResult<any>) => r.payload));
   }
 }

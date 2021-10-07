@@ -34,14 +34,15 @@ export interface OkPageApi extends OkApi {
   deleteById: string;
 }
 
-export interface OkPayload {
-  data: any;
+export interface OkPayload<D> {
+  data: D;
   extra: any;
 }
 
-export interface OkResult {
+export interface OkResult<D> {
   header: { cts: Date; sts: Date };
-  payload: OkPayload;
+  status: { code: number; name: string; text: string };
+  payload: OkPayload<D>;
   success: boolean;
 }
 

@@ -17,29 +17,29 @@ export class WxService extends OkItemService {
     super(logger, http, api);
   }
 
-  findByType(type: ConnType, params = {}): Observable<OkPayload> {
+  findByType(type: ConnType, params = {}): Observable<OkPayload<any>> {
     return this.http
-      .get<OkResult>(api.findByType + type.toString(), { params })
-      .pipe(map((r: OkResult) => r.payload));
+      .get<OkResult<any>>(api.findByType + type.toString(), { params })
+      .pipe(map((r: OkResult<any>) => r.payload));
   }
 
-  save(appInfo: AppInfo): Observable<OkPayload> {
+  save(appInfo: AppInfo): Observable<OkPayload<any>> {
     return super.saveItem(api.save, appInfo);
   }
 
-  update(appInfo: AppInfo): Observable<OkPayload> {
+  update(appInfo: AppInfo): Observable<OkPayload<any>> {
     return super.updateItem(api.update, appInfo);
   }
 
-  test(type: ConnType, params = {}): Observable<OkPayload> {
+  test(type: ConnType, params = {}): Observable<OkPayload<any>> {
     return this.http
-      .get<OkResult>(api.test + type.toString(), { params })
-      .pipe(map((r: OkResult) => r.payload));
+      .get<OkResult<any>>(api.test + type.toString(), { params })
+      .pipe(map((r: OkResult<any>) => r.payload));
   }
 
-  sync(type: ConnType, params = {}): Observable<OkPayload> {
+  sync(type: ConnType, params = {}): Observable<OkPayload<any>> {
     return this.http
-      .put<OkResult>(api.sync + type.toString(), { params })
-      .pipe(map((r: OkResult) => r.payload));
+      .put<OkResult<any>>(api.sync + type.toString(), { params })
+      .pipe(map((r: OkResult<any>) => r.payload));
   }
 }

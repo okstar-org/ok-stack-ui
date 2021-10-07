@@ -8,7 +8,21 @@ class Api implements OkApi {
   update = '/api/portal/sys/org/dept/update';
 
   children = '/api/portal/sys/org/dept/children/';
+  findByDept = '/api/portal/sys/org/staff/findByDept/';
 }
 
 const api = new Api();
 export { api };
+
+export interface Dept {
+  id: number;
+  name: string;
+  level: number;
+  sourceList: string[];
+}
+
+export interface Staff {
+  no: number;
+  name: string;
+  gender: string;
+}

@@ -26,9 +26,11 @@ export class OkPaginatorService {
     }
   }
 
-  getPage(params = {}): Observable<OkPayload> {
+  getPage(params = {}): Observable<OkPayload<any>> {
     this.logger.debug(this.api.page, params);
-    return this.http.get<OkResult>(this.api.page, { params }).pipe(map((r: OkResult) => r.payload));
+    return this.http
+      .get<OkResult<any>>(this.api.page, { params })
+      .pipe(map((r: OkResult<any>) => r.payload));
   }
 
   getExport(params = {}, fileName: string) {
@@ -38,22 +40,24 @@ export class OkPaginatorService {
       .subscribe(r => this.downLoadFile(r, fileName, 'application/ms-excel'));
   }
 
-  getParams(params = {}): Observable<OkPayload> {
+  getParams(params = {}): Observable<OkPayload<any>> {
     this.logger.debug(this.api.params, params);
-    return this.http.get<OkPayload>(this.api.params, { params }).pipe(map((r: any) => r.OkPayload));
-  }
-
-  delete(params: ID): Observable<OkPayload> {
-    this.logger.debug(this.api.deleteById, params);
     return this.http
-      .delete<OkPayload>(this.api.deleteById + params.id)
+      .get<OkPayload<any>>(this.api.params, { params })
       .pipe(map((r: any) => r.OkPayload));
   }
 
-  top(params: ID): Observable<OkPayload> {
+  delete(params: ID): Observable<OkPayload<any>> {
+    this.logger.debug(this.api.deleteById, params);
+    return this.http
+      .delete<OkPayload<any>>(this.api.deleteById + params.id)
+      .pipe(map((r: any) => r.OkPayload));
+  }
+
+  top(params: ID): Observable<OkPayload<any>> {
     this.logger.debug(this.api.top, params);
     return this.http
-      .put<OkPayload>(this.api.top, params.id, {
+      .put<OkPayload<any>>(this.api.top, params.id, {
         headers: { 'content-type': 'application/json' },
       })
       .pipe(map((r: any) => r.OkPayload));

@@ -21,7 +21,7 @@ export class OkItemComponent {
     this.group = this.fb.group(this.okGroup);
   }
 
-  getDetail(id: string, params = {}): Observable<OkPayload> {
+  getDetail(id: string, params = {}): Observable<OkPayload<any>> {
     return this.service.getDetail(id);
   }
 
