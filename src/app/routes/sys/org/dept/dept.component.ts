@@ -152,6 +152,9 @@ export class DynamicDataSource {
 })
 export class DeptComponent implements OnInit {
   displayedColumns = ['no', 'name', 'gender'];
+
+  dataSource: DynamicDataSource;
+
   staffDataSource: StaffDataSource;
 
   constructor(
@@ -168,7 +171,7 @@ export class DeptComponent implements OnInit {
 
   treeControl: FlatTreeControl<DynamicFlatNode>;
 
-  dataSource: DynamicDataSource | any;
+  dataSourcea: DynamicDataSource | any;
 
   getLevel = (node: DynamicFlatNode) => node.level;
 
@@ -177,12 +180,16 @@ export class DeptComponent implements OnInit {
   hasChild = (_: number, nodeData: DynamicFlatNode) => nodeData.expandable;
 
   ngOnInit() {
+    this.database.initialData().subscribe(r => {
+      this.dataSource.data = r;
+    });
+
     this.staffDataSource = new StaffDataSource();
   }
 
   onClickDept(node: DynamicFlatNode) {
     this.logger.info('click', node);
-    this.svc.staff(node.id).subscribe(r => {
+    this.svc.findByDept(node.id).subscribe(r => {
       this.logger.info('r', r);
       this.staffDataSource.setData(r.data);
     });
@@ -190,7 +197,15 @@ export class DeptComponent implements OnInit {
 
   onAdd() {}
 
-  onSync() {}
+  onSync() {
+    this.logger.info('sync');
+    this.svc.sync().subscribe(r => {
+      this.logger.info('sync=>', r);
+      this.database.initialData().subscribe(r2 => {
+        this.dataSource.data = r2;
+      });
+    });
+  }
 }
 
 export class StaffDataSource extends DataSource<Staff> {

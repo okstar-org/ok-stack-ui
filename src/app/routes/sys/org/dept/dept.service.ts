@@ -21,9 +21,15 @@ export class DeptService extends OkItemService {
       .pipe(map((r: OkResult<Dept[]>) => r.payload));
   }
 
-  staff(deptId: number, params = {}): Observable<OkPayload<Staff[]>> {
+  findByDept(deptId: number, params = {}): Observable<OkPayload<Staff[]>> {
     return this.http
       .get<OkResult<Staff[]>>(api.findByDept + deptId, { params })
+      .pipe(map((r: OkResult<Staff[]>) => r.payload));
+  }
+
+  sync(params = {}): Observable<OkPayload<Staff[]>> {
+    return this.http
+      .put<OkResult<Staff[]>>(api.sync, { params })
       .pipe(map((r: OkResult<Staff[]>) => r.payload));
   }
 }
