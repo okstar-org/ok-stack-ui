@@ -5,27 +5,37 @@
 
   <mat-card-content>
     <mat-list fxLayout="row" fxLayoutAlign="center">
-      <mat-list-item>连接状态：【异常/正常/同步中】</mat-list-item>
+      <mat-list-item>
+        连接状态：
+        <button mat-raised-button (click)="onTest()">测试</button>
+        <div *ngIf="isTestYes">
+          <span *ngIf="isTestYes === true">连接成功</span>
+          <span *ngIf="isTestYes === false">连接失败</span>
+        </div>
+      </mat-list-item>
       <mat-divider [vertical]="true"></mat-divider>
-      <mat-list-item>同步次数：【100】</mat-list-item>
+
       <mat-divider [vertical]="true"></mat-divider>
-      <mat-list-item>部门个数：【100】</mat-list-item>
+      <mat-list-item>
+        部门个数：【100】
+        <button mat-raised-button (click)="onSync()">同步</button>
+      </mat-list-item>
       <mat-divider [vertical]="true"></mat-divider>
-      <mat-list-item>员工个数：【100】</mat-list-item>
+      <mat-list-item>
+        员工个数：【100】
+        <button mat-raised-button (click)="onSyncUser()">同步</button>
+
+      </mat-list-item>
     </mat-list>
 
 
   </mat-card-content>
 
   <mat-card-actions class="m-8" fxLayout="row" fxLayoutAlign="start">
-    <button mat-raised-button (click)="onTest()">测试</button>
-    <button mat-raised-button (click)="onSync()">同步</button>
+
 
     <mat-spinner *ngIf="isLoadingTest" color="accent" aria-label="Loading"></mat-spinner>
-    <div *ngIf="isTestYes">
-      <span *ngIf="isTestYes === true">连接成功</span>
-      <span *ngIf="isTestYes === false">连接失败</span>
-    </div>
+
 
   </mat-card-actions>
 

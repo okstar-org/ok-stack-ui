@@ -9,7 +9,7 @@ class Api implements OkApi {
 
   children = '/api/portal/sys/org/dept/children/';
   sync = '/api/portal/sys/org/dept/sync';
-  findByDept = '/api/portal/sys/org/staff/findByDept/';
+  findByDept = '/api/portal/sys/org/user/findByDept/';
 }
 
 const api = new Api();
@@ -22,7 +22,7 @@ export interface Dept {
   sourceList: string[];
 }
 
-export interface Staff {
+export interface User {
   no: number;
   name: string;
   gender: string;

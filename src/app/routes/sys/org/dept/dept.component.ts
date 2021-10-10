@@ -6,7 +6,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
-import { Staff } from './dept.api';
+import { User } from './dept.api';
 
 export class DynamicFlatNode {
   constructor(
@@ -155,7 +155,7 @@ export class DeptComponent implements OnInit {
 
   dataSource: DynamicDataSource;
 
-  staffDataSource: StaffDataSource;
+  userDataSource: UserDataSource;
 
   constructor(
     protected logger: NGXLogger,
@@ -184,14 +184,14 @@ export class DeptComponent implements OnInit {
       this.dataSource.data = r;
     });
 
-    this.staffDataSource = new StaffDataSource();
+    this.userDataSource = new UserDataSource();
   }
 
   onClickDept(node: DynamicFlatNode) {
     this.logger.info('click', node);
     this.svc.findByDept(node.id).subscribe(r => {
       this.logger.info('r', r);
-      this.staffDataSource.setData(r.data);
+      this.userDataSource.setData(r.data);
     });
   }
 
@@ -208,20 +208,20 @@ export class DeptComponent implements OnInit {
   }
 }
 
-export class StaffDataSource extends DataSource<Staff> {
-  dataChange: BehaviorSubject<Staff[]> = new BehaviorSubject<Staff[]>([]);
+export class UserDataSource extends DataSource<User> {
+  dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
 
   constructor() {
     super();
   }
 
-  connect(): Observable<Staff[]> {
+  connect(): Observable<User[]> {
     return this.dataChange;
   }
 
   disconnect() {}
 
-  setData(list: Staff[]) {
+  setData(list: User[]) {
     this.dataChange.next(list);
   }
 }

@@ -41,4 +41,10 @@ export class FsService extends OkItemService {
       .put<OkResult<any>>(api.sync + type.toString(), { params })
       .pipe(map((r: OkResult<any>) => r.payload));
   }
+
+  syncUser(type: ConnType, params = {}): Observable<OkPayload<any>> {
+    return this.http
+      .put<OkResult<any>>(api.syncUser + type.toString(), { params })
+      .pipe(map((r: OkResult<any>) => r.payload));
+  }
 }

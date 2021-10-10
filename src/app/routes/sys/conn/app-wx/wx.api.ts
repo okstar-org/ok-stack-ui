@@ -9,6 +9,7 @@ class Api implements OkApi {
 
   test = '/api/portal/sys/conn/app/test/';
   sync = '/api/portal/sys/conn/app/sync/';
+  syncUser = '/api/portal/sys/conn/app/syncUser/';
 }
 
 const api = new Api();

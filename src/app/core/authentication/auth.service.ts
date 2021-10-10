@@ -6,6 +6,7 @@ import { map, share, switchMap, tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
 import { R, Token, User } from './interface';
 import { guest } from './user';
+import { SimpleToken } from './token';
 
 @Injectable({
   providedIn: 'root',
@@ -48,7 +49,7 @@ export class AuthService {
       })
       .pipe(
         map((r: R) => this.payload(r)),
-        tap(token => this.token.set(token)),
+        tap((token: Token) => this.token.set(token)),
         map(() => this.check())
       );
   }
@@ -59,7 +60,8 @@ export class AuthService {
   }
 
   refresh() {
-    return this.http.post<R>('/api/portal/sys/passport/refresh', {}).pipe(
+    const simpleToken: SimpleToken = this.token.get();
+    return this.http.post<R>('/api/portal/sys/passport/refresh', simpleToken).pipe(
       map((r: R) => this.payload(r)),
       tap(token => this.token.set(token, true)),
       map(() => this.check())

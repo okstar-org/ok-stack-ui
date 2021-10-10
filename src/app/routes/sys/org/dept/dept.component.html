@@ -45,8 +45,8 @@
       </button>
 
       <mat-table aria-readonly="true"
-                 [dataSource]="staffDataSource"
-                 aria-label="Staff List">
+                 [dataSource]="UserDataSource"
+                 aria-label="User List">
         <ng-container cdkColumnDef="no">
           <mat-header-cell *cdkHeaderCellDef>No.</mat-header-cell>
           <mat-cell *cdkCellDef="let row;">{{row.no}}</mat-cell>

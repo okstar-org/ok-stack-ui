@@ -27,7 +27,8 @@ export interface User {
 }
 
 export interface Token {
-  access_token?: string;
+  access_token: string;
+  refreshToken: string;
   token?: string;
   token_type?: string;
   expires_in?: number;
@@ -36,6 +37,7 @@ export interface Token {
 export interface RefreshToken {
   refresh: boolean;
   accessToken: string;
+  refreshToken: string;
   tokenType: string;
   exp: number;
 
