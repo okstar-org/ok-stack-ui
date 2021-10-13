@@ -37,7 +37,7 @@
   <div class="matero-col" fxFlex.gt-sm="80" fxFlex="100">
     <mat-card class="ok-sys-card">
 
-      <button mat-stroked-button color="primary" (click)="onSync()" class="m-8" >
+      <button mat-stroked-button color="primary" (click)="onSyncUser()" class="m-8" >
         <mat-icon class="icon-8">sync</mat-icon>{{"common.sync"|translate}}
       </button>
       <button mat-stroked-button color="primary" (click)="onAdd()" class="m-8" >
@@ -52,15 +52,34 @@
           <mat-cell *cdkCellDef="let row;">{{row.no}}</mat-cell>
         </ng-container>
 
+        <ng-container cdkColumnDef="avatar">
+          <mat-header-cell *cdkHeaderCellDef>Avatar</mat-header-cell>
+          <mat-cell *cdkCellDef="let row;">
+            <img mat-card-user
+                   [src]="row.avatar"/>
+          </mat-cell>
+        </ng-container>
+
         <ng-container cdkColumnDef="name">
           <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
           <mat-cell *cdkCellDef="let row;">{{row.name}}</mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="mobile">
+          <mat-header-cell *cdkHeaderCellDef>Mobile</mat-header-cell>
+          <mat-cell *cdkCellDef="let row;">{{row.mobile}}</mat-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="gender">
           <mat-header-cell *cdkHeaderCellDef>Gender</mat-header-cell>
           <mat-cell *cdkCellDef="let row;">{{row.gender}}</mat-cell>
         </ng-container>
+
+        <ng-container cdkColumnDef="active">
+          <mat-header-cell *cdkHeaderCellDef>Active</mat-header-cell>
+          <mat-cell *cdkCellDef="let row;">{{row.active}}</mat-cell>
+        </ng-container>
+
 
         <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>

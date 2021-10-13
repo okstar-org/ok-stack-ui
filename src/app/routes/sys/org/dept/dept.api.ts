@@ -9,6 +9,7 @@ class Api implements OkApi {
 
   children = '/api/portal/sys/org/dept/children/';
   sync = '/api/portal/sys/org/dept/sync';
+  syncUser = '/api/portal/sys/org/user/sync';
   findByDept = '/api/portal/sys/org/user/findByDept/';
 }
 
@@ -26,4 +27,7 @@ export interface User {
   no: number;
   name: string;
   gender: string;
+  mobile: string;
+  active: string;
+  avatar: string;
 }

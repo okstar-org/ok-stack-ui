@@ -32,4 +32,10 @@ export class DeptService extends OkItemService {
       .put<OkResult<User[]>>(api.sync, { params })
       .pipe(map((r: OkResult<User[]>) => r.payload));
   }
+
+  syncUser(params = {}): Observable<OkPayload<User[]>> {
+    return this.http
+      .put<OkResult<User[]>>(api.syncUser, { params })
+      .pipe(map((r: OkResult<User[]>) => r.payload));
+  }
 }
