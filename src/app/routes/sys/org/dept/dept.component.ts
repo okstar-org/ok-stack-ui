@@ -151,7 +151,7 @@ export class DynamicDataSource {
   providers: [DynamicDatabase],
 })
 export class DeptComponent implements OnInit {
-  displayedColumns = ['avatar', 'no', 'name', 'gender', 'mobile', 'active'];
+  displayedColumns = ['avatar', 'no', 'name', 'gender', 'mobile', 'active', 'sourceObjectList'];
 
   dataSource: DynamicDataSource;
 

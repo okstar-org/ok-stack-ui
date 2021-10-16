@@ -25,7 +25,9 @@
               {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
             </mat-icon>
           </button>
-          <a href="javascript:;" (click)="onClickDept(node)">{{node.item}}[{{node.resourceList}}]</a>
+          <a href="javascript:;" (click)="onClickDept(node)">{{node.item}}
+              [<span *ngFor="let item of node.resourceList">{{"common.con."+ item | translate}} </span>]
+          </a>
           <mat-progress-bar *ngIf="node.isLoading" mode="indeterminate"
                             class="example-tree-progress-bar"></mat-progress-bar>
         </mat-tree-node>
@@ -47,17 +49,18 @@
       <mat-table aria-readonly="true"
                  [dataSource]="userDataSource"
                  aria-label="User List">
-        <ng-container cdkColumnDef="no">
-          <mat-header-cell *cdkHeaderCellDef>No.</mat-header-cell>
-          <mat-cell *cdkCellDef="let row;">{{row.no}}</mat-cell>
-        </ng-container>
 
         <ng-container cdkColumnDef="avatar">
           <mat-header-cell *cdkHeaderCellDef>Avatar</mat-header-cell>
           <mat-cell *cdkCellDef="let row;">
-            <img mat-card-user
-                   [src]="row.avatar" style="width: 2em; height: 2em;"/>
+            <img mat-card-user *ngIf="row.avatar"
+                  [src]="row.avatar" style="width: 2em; height: 2em;"/>
           </mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="no">
+          <mat-header-cell *cdkHeaderCellDef>No.</mat-header-cell>
+          <mat-cell *cdkCellDef="let row;">{{row.no}}</mat-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="name">
@@ -80,6 +83,14 @@
           <mat-cell *cdkCellDef="let row;">{{row.active}}</mat-cell>
         </ng-container>
 
+        <ng-container cdkColumnDef="sourceObjectList">
+          <mat-header-cell *cdkHeaderCellDef>Sources Info</mat-header-cell>
+          <mat-cell *cdkCellDef="let row;">
+              <p *ngFor="let item of row.sourceObjectList">
+                <button mat-raised-button [matTooltip]="item|json">{{"common.con." + item.source | translate}}</button>
+              </p>
+          </mat-cell>
+        </ng-container>
 
         <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>
