@@ -16,7 +16,8 @@ export class DynamicFlatNode {
     public level: number,
     public resourceList: string[],
     public expandable = false,
-    public isLoading = false
+    public isLoading = false,
+    public isActive = false
   ) {}
 }
 
@@ -27,13 +28,6 @@ export class DynamicFlatNode {
 @Injectable()
 export class DynamicDatabase {
   constructor(private deptService: DeptService) {}
-
-  dataMap = new Map<string, string[]>([
-    ['Fruits', ['Apple', 'Orange', 'Banana']],
-    ['Vegetables', ['Tomato', 'Potato', 'Onion']],
-    ['Apple', ['Fuji', 'Macintosh']],
-    ['Onion', ['Yellow', 'White', 'Purple']],
-  ]);
 
   /** Initial data from database */
   initialData(): Observable<DynamicFlatNode[]> {
@@ -57,7 +51,8 @@ export class DynamicDatabase {
   }
 
   isExpandable(node: string): boolean {
-    return this.dataMap.has(node);
+    // return this.dataMap.has(node);
+    return false;
   }
 }
 /**
@@ -187,6 +182,12 @@ export class OrgComponent implements OnInit {
   }
 
   onClickDept(node: DynamicFlatNode) {
+    this.treeControl.dataNodes.forEach(c => {
+      c.isActive = false;
+    });
+
+    node.isActive = true;
+
     this.svc.findUserByDept(node.id).subscribe(r => {
       this.userDataSource.setData(r.data);
     });
