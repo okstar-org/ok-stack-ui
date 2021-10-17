@@ -189,7 +189,7 @@ export class DeptComponent implements OnInit {
 
   onClickDept(node: DynamicFlatNode) {
     this.logger.info('click', node);
-    this.svc.findByDept(node.id).subscribe(r => {
+    this.svc.findUserByDept(node.id).subscribe(r => {
       this.logger.info('r', r);
       this.userDataSource.setData(r.data);
     });

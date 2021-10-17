@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { OkResult } from '@shared/api/ok';
 import { ToastrService } from 'ngx-toastr';
@@ -36,6 +36,7 @@ export class ParamsInterceptor implements HttpInterceptor {
           const r: OkResult<any> = response.body;
           if (typeof r !== 'undefined' && typeof r.success !== 'undefined' && !r.success) {
             this.toastr.error(`${r.status.text}`);
+            return throwError(`${r.status.text}`);
           }
           return response;
         })

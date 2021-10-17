@@ -1,13 +1,20 @@
-import { CollectionViewer, SelectionChange } from '@angular/cdk/collections';
+import { DeptService } from './dept/dept.service';
+import { CollectionViewer, DataSource, SelectionChange } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { NGXLogger } from 'ngx-logger';
+import { User } from './dept/dept.api';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogDeleteComponent } from '../dialog/dialog.component';
 
 export class DynamicFlatNode {
   constructor(
+    public id: number,
     public item: string,
-    public level = 1,
+    public level: number,
+    public resourceList: string[],
     public expandable = false,
     public isLoading = false
   ) {}
@@ -19,6 +26,8 @@ export class DynamicFlatNode {
  */
 @Injectable()
 export class DynamicDatabase {
+  constructor(private deptService: DeptService) {}
+
   dataMap = new Map<string, string[]>([
     ['Fruits', ['Apple', 'Orange', 'Banana']],
     ['Vegetables', ['Tomato', 'Potato', 'Onion']],
@@ -26,15 +35,25 @@ export class DynamicDatabase {
     ['Onion', ['Yellow', 'White', 'Purple']],
   ]);
 
-  rootLevelNodes: string[] = ['Fruits', 'Vegetables'];
-
   /** Initial data from database */
-  initialData(): DynamicFlatNode[] {
-    return this.rootLevelNodes.map(name => new DynamicFlatNode(name, 0, true));
+  initialData(): Observable<DynamicFlatNode[]> {
+    return this.deptService.children(0).pipe(
+      map(r => {
+        return r.data.map(
+          dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
+        );
+      })
+    );
   }
 
-  getChildren(node: string): string[] | undefined {
-    return this.dataMap.get(node);
+  getChildren(node: number): Observable<DynamicFlatNode[]> {
+    return this.deptService.children(node).pipe(
+      map(r => {
+        return r.data.map(
+          dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
+        );
+      })
+    );
   }
 
   isExpandable(node: string): boolean {
@@ -96,35 +115,33 @@ export class DynamicDataSource {
    * Toggle the node, remove from display list
    */
   toggleNode(node: DynamicFlatNode, expand: boolean) {
-    const children = this.database.getChildren(node.item);
     const index = this.data.indexOf(node);
-    if (!children || index < 0) {
-      // If no children, or cannot find the node, no op
-      return;
-    }
+    console.log('toggleNode', node, index, expand);
 
-    node.isLoading = true;
+    if (expand) {
+      node.isLoading = true;
+      this.database.getChildren(node.id).subscribe(r => {
+        node.isLoading = false;
 
-    setTimeout(() => {
-      if (expand) {
-        const nodes = children.map(
-          name => new DynamicFlatNode(name, node.level + 1, this.database.isExpandable(name))
-        );
-        this.data.splice(index + 1, 0, ...nodes);
-      } else {
-        let count = 0;
-        for (
-          let i = index + 1;
-          i < this.data.length && this.data[i].level > node.level;
-          i++, count++
-        ) {}
-        this.data.splice(index + 1, count);
-      }
+        if (!r || r.length <= 0) {
+          return;
+        }
 
-      // notify the change
+        this.data.splice(index + 1, 0, ...r);
+
+        // notify the change
+        this.dataChange.next(this.data);
+      });
+    } else {
+      let count = 0;
+      for (
+        let i = index + 1;
+        i < this.data.length && this.data[i].level > node.level;
+        i++, count++
+      ) {}
+      this.data.splice(index + 1, count);
       this.dataChange.next(this.data);
-      node.isLoading = false;
-    }, 1000);
+    }
   }
 }
 
@@ -135,16 +152,25 @@ export class DynamicDataSource {
   providers: [DynamicDatabase],
 })
 export class OrgComponent implements OnInit {
-  constructor(database: DynamicDatabase) {
+  displayedColumns = ['avatar', 'no', 'name', 'gender', 'mobile', 'active', 'sourceObjectList'];
+
+  dataSource: DynamicDataSource;
+
+  userDataSource: UserDataSource;
+
+  constructor(
+    protected logger: NGXLogger,
+    public dialog: MatDialog,
+    private database: DynamicDatabase,
+    private svc: DeptService
+  ) {
     this.treeControl = new FlatTreeControl<DynamicFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new DynamicDataSource(this.treeControl, database);
-
-    this.dataSource.data = database.initialData();
   }
 
   treeControl: FlatTreeControl<DynamicFlatNode>;
 
-  dataSource: DynamicDataSource | any;
+  dataSourcea: DynamicDataSource | any;
 
   getLevel = (node: DynamicFlatNode) => node.level;
 
@@ -152,5 +178,70 @@ export class OrgComponent implements OnInit {
 
   hasChild = (_: number, nodeData: DynamicFlatNode) => nodeData.expandable;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.database.initialData().subscribe(r => {
+      this.dataSource.data = r;
+    });
+
+    this.userDataSource = new UserDataSource();
+  }
+
+  onClickDept(node: DynamicFlatNode) {
+    this.svc.findUserByDept(node.id).subscribe(r => {
+      this.userDataSource.setData(r.data);
+    });
+  }
+
+  onDeleteDept(node: DynamicFlatNode) {
+    const dialogRef = this.dialog.open(DialogDeleteComponent);
+    dialogRef.afterClosed().subscribe(r0 => {
+      if (r0 === 'Y') {
+        this.svc.deleteById(node.id).subscribe(r => {
+          const i = this.treeControl.dataNodes.findIndex(e => e.id === node.id);
+          this.treeControl.dataNodes.splice(i, 1);
+          this.dataSource.dataChange.next(this.treeControl.dataNodes);
+        });
+      }
+    });
+  }
+
+  onAdd() {}
+
+  onSync() {
+    this.logger.info('sync');
+    this.svc.sync().subscribe(r => {
+      this.logger.info('sync=>', r);
+      this.database.initialData().subscribe(r2 => {
+        this.dataSource.data = r2;
+      });
+    });
+  }
+
+  onSyncUser() {
+    this.logger.info('syncUser');
+    this.svc.syncUser().subscribe(r => {
+      this.logger.info('syncUser=>', r);
+      // this.database.initialData().subscribe(r2 => {
+      //   this.userDataSource.setData(r2);
+      // });
+    });
+  }
+}
+
+export class UserDataSource extends DataSource<User> {
+  dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
+
+  constructor() {
+    super();
+  }
+
+  connect(): Observable<User[]> {
+    return this.dataChange;
+  }
+
+  disconnect() {}
+
+  setData(list: User[]) {
+    this.dataChange.next(list);
+  }
 }

@@ -1,3 +1,15 @@
-.ok-sys-dept-tree {
-  width: 230px;
+.ok-sys-card {
+  min-height: 560px;
+
+  .ok-sys-dept-item {
+    .ok-sys-dept-item-delete {
+      display: none;
+    }
+
+    &:hover {
+      .ok-sys-dept-item-delete {
+        display: block;
+      }
+    }
+  }
 }

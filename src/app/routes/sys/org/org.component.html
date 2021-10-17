@@ -3,31 +3,103 @@
 <div class="matero-row" fxLayout="row wrap">
 
 
-<div class=" matero-col ok-sys-dept-tree" fxFlex="100" fxFlex.gt-sm="20">
+  <div class=" matero-col ok-sys-dept-tree" fxFlex="100" fxFlex.gt-sm="20">
 
-  <mat-card >
-    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" >
-      <mat-tree-node *matTreeNodeDef="let node;" matTreeNodePadding>
-        <button mat-icon-button disabled></button>
-        {{node.item}}
-      </mat-tree-node>
-      <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-        <button mat-icon-button [attr.aria-label]="'toggle ' + node.filename" matTreeNodeToggle>
-          <mat-icon class="mat-icon-rtl-mirror">
-            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-          </mat-icon>
-        </button>
-        {{node.item}}
-        <mat-progress-bar *ngIf="node.isLoading" mode="indeterminate"
-                          class="example-tree-progress-bar"></mat-progress-bar>
-      </mat-tree-node>
-    </mat-tree>
-  </mat-card>
+    <mat-card class="ok-sys-card">
 
-</div>
+      <button mat-stroked-button color="primary" (click)="onSync()" class="m-8" >
+        <mat-icon class="icon-8">sync</mat-icon>{{"common.sync"|translate}}
+      </button>
+      <button mat-stroked-button color="primary" (click)="onAdd()" class="m-8" >
+        <mat-icon class="icon-8">add</mat-icon>{{"common.add"|translate}}
+      </button>
 
-<div class="matero-col" fxFlex.gt-sm="80" fxFlex="100">
-  <mat-card></mat-card>
-</div>
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node;" matTreeNodePadding>
+          <button mat-icon-button disabled></button>
+          <a href="javascript:;" (click)="onClickDept(node)">{{node.item}}</a>
+        </mat-tree-node>
+        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding class="ok-sys-dept-item">
+          <button mat-icon-button [attr.aria-label]="'toggle ' + node.filename" matTreeNodeToggle>
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+          <a href="javascript:;" (click)="onClickDept(node)">{{node.item}}
+              [<span *ngFor="let item of node.resourceList"> {{"common.con."+ item | translate}} </span>]
+          </a>
+          <!-- delete -->
+          <button class="ok-sys-dept-item-delete" mat-icon-button aria-label="Delete" (click)="onDeleteDept(node)">
+            <mat-icon color="accent">delete</mat-icon>
+          </button>
+          <mat-progress-bar *ngIf="node.isLoading" mode="indeterminate" class="example-tree-progress-bar"></mat-progress-bar>
+        </mat-tree-node>
+      </mat-tree>
+    </mat-card>
+
+  </div>
+
+  <div class="matero-col" fxFlex.gt-sm="80" fxFlex="100">
+    <mat-card class="ok-sys-card">
+
+      <button mat-stroked-button color="primary" (click)="onSyncUser()" class="m-8" >
+        <mat-icon class="icon-8">sync</mat-icon>{{"common.sync"|translate}}
+      </button>
+      <button mat-stroked-button color="primary" (click)="onAdd()" class="m-8" >
+        <mat-icon class="icon-8">add</mat-icon>{{"common.add"|translate}}
+      </button>
+
+      <mat-table aria-readonly="true"
+                 [dataSource]="userDataSource"
+                 aria-label="User List">
+
+        <ng-container cdkColumnDef="avatar">
+          <mat-header-cell *cdkHeaderCellDef>Avatar</mat-header-cell>
+          <mat-cell *cdkCellDef="let row;">
+            <img mat-card-user *ngIf="row.avatar"
+                  [src]="row.avatar" style="width: 2em; height: 2em;"/>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="no">
+          <mat-header-cell *cdkHeaderCellDef>No.</mat-header-cell>
+          <mat-cell *cdkCellDef="let row;">{{row.no}}</mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="name">
+          <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
+          <mat-cell *cdkCellDef="let row;">{{row.name}}</mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="mobile">
+          <mat-header-cell *cdkHeaderCellDef>Mobile</mat-header-cell>
+          <mat-cell *cdkCellDef="let row;">{{row.mobile}}</mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="gender">
+          <mat-header-cell *cdkHeaderCellDef>Gender</mat-header-cell>
+          <mat-cell *cdkCellDef="let row;">{{row.gender}}</mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="active">
+          <mat-header-cell *cdkHeaderCellDef>Active</mat-header-cell>
+          <mat-cell *cdkCellDef="let row;">{{row.active}}</mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="sourceObjectList">
+          <mat-header-cell *cdkHeaderCellDef>Sources Info</mat-header-cell>
+          <mat-cell *cdkCellDef="let row;">
+              <p *ngFor="let item of row.sourceObjectList">
+                <button mat-raised-button [matTooltip]="item|json">{{"common.con." + item.source | translate}}</button>
+              </p>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+    </mat-card>
+  </div>
 
 </div>
