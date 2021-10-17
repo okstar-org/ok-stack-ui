@@ -28,7 +28,7 @@ export interface User {
 
 export interface Token {
   access_token: string;
-  refreshToken: string;
+  refresh_token: string;
   token?: string;
   token_type?: string;
   expires_in?: number;
