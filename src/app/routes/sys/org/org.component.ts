@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
 import { User } from './dept/dept.api';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogDeleteComponent } from '../dialog/dialog.component';
+import { DialogDeleteComponent, DialogType } from '../dialog/dialog.component';
 
 export class DynamicFlatNode {
   constructor(
@@ -194,7 +194,13 @@ export class OrgComponent implements OnInit {
   }
 
   onDeleteDept(node: DynamicFlatNode) {
-    const dialogRef = this.dialog.open(DialogDeleteComponent);
+    const dialogRef = this.dialog.open(DialogDeleteComponent, {
+      // width: '560px',
+      // height: '480px',
+      data: {
+        content: '确定删除？',
+      },
+    });
     dialogRef.afterClosed().subscribe(r0 => {
       if (r0 === 'Y') {
         this.svc.deleteById(node.id).subscribe(r => {

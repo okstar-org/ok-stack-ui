@@ -42,18 +42,23 @@ export class OrderComponent extends OkPaginatorComponent implements OnInit {
       sortable: true,
     },
     {
+      header: this.translate.stream('crm.order.customer'),
+      field: 'customer',
+      sortable: true,
+    },
+    {
       header: this.translate.stream('crm.order.amount'),
       field: 'amount',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.order.collectAmount'),
-      field: 'collectAmount',
+      header: this.translate.stream('crm.order.collectedAmount'),
+      field: 'collectedAmount',
       sortable: true,
     },
     {
-      header: this.translate.stream('crm.order.invoiceAmount'),
-      field: 'invoiceAmount',
+      header: this.translate.stream('crm.order.invoicedAmount'),
+      field: 'invoicedAmount',
       sortable: true,
     },
 

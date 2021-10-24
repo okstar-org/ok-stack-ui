@@ -302,10 +302,14 @@
     },
     "order": {
       "title": "订单记录",
+      "sn": "订单编号",
       "name": "订单名称",
+      "customer": "关联客户",
       "amount": "订单金额",
       "auditStatus": "审批状态",
+      "collectAmount": "回款金额",
       "collectedAmount": "已回款金额",
+      "invoiceAmount": "开票金额",
       "invoicedAmount": "已开票金额",
       "createdAt": "创建时间"
     },
