@@ -9,4 +9,4 @@ const routes: Routes = [
   },
 ];
 
-export const salesleadRoutes = RouterModule.forChild(routes);
+export const leadRoutes = RouterModule.forChild(routes);

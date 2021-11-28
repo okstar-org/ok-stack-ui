@@ -90,10 +90,12 @@
     "sys": "系统管理",
     "sys.org": "组织架构",
     "sys.conn": "对接设置",
-    "workflow": "工作流程",
-    "workflow.approve": "流程审批",
-    "workflow.instance": "流程实例",
-    "workflow.model": "流程设计"
+    "bpm": "流程管理",
+    "bpm.task": "我的任务",
+    "bpm.approve": "我的审批",
+    "bpm.initiate": "发起申请",
+    "bpm.instance": "流程实例",
+    "bpm.model": "流程设计"
   },
   "validations": {
     "required": "该字段必填",
@@ -335,6 +337,19 @@
       }
     }
   },
+  "bpm": {
+    "task":{
+      "title":"我的任务",
+      "name":"任务名称",
+      "containerId":"流程业务",
+      "processId":"流程实例",
+      "createdAt":"创建时间",
+      "status":"任务状态",
+      "actualOwner":"操作人",
+      "claim":"接受",
+      "release":"释放"
+    }
+  },
   "common": {
     "all": "全部",
     "search": "搜索",
@@ -344,7 +359,9 @@
     "export": "导出",
     "detail": "详情",
     "comment": "评论",
+    "operation":"操作",
     "sync": "同步",
+    "resume":"继续",
     "con": {
       "WX":"企微",
       "DT":"钉钉",

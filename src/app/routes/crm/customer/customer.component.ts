@@ -27,6 +27,7 @@ export class CustomerComponent extends OkPaginatorComponent implements OnInit {
   columnMovable = true;
   multiSelectable = true;
   showToolbar = true;
+
   columns: MtxGridColumn[] = [
     {
       header: this.translate.stream('crm.customer.name'),

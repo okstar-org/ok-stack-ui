@@ -16,12 +16,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'crm', pathMatch: 'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'crm', loadChildren: () => import('./crm/crm.module').then(m => m.CrmModule) },
       {
-        path: 'workflow',
-        loadChildren: () => import('./workflow/workflow.module').then(m => m.WorkflowModule),
+        path: 'bpm',
+        loadChildren: () => import('./bpm/bpm.module').then(m => m.WorkflowModule),
       },
       { path: 'sys', loadChildren: () => import('./sys/sys.module').then(m => m.SysModule) },
       {

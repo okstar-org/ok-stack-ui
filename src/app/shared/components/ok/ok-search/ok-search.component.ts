@@ -5,6 +5,7 @@ enum Type {
   input,
   select,
   date,
+  checkbox,
 }
 
 @Component({

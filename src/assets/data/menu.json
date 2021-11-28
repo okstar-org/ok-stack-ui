@@ -76,14 +76,24 @@
       ]
     },
     {
-      "route": "workflow",
-      "name": "workflow",
+      "route": "bpm",
+      "name": "bpm",
       "type": "sub",
-      "icon": "settings",
+      "icon": "polymer",
       "children": [
+        {
+          "route": "task",
+          "name": "task",
+          "type": "link"
+        },
         {
           "route": "approve",
           "name": "approve",
+          "type": "link"
+        },
+        {
+          "route": "initiate",
+          "name": "initiate",
           "type": "link"
         },
         {

@@ -34,8 +34,8 @@
       ]
     },
     {
-      "route": "workflow",
-      "name": "workflow",
+      "route": "bpm",
+      "name": "bpm",
       "type": "sub",
       "icon": "settings",
       "children": [
