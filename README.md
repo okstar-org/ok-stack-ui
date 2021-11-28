@@ -9,7 +9,6 @@ NG-MATERO
 </h1>
 
 <div align="center">
-
 Ng-Matero is an Angular admin template made with Material components.
 
 [![npm](https://img.shields.io/npm/v/ng-matero.svg)](https://www.npmjs.com/package/ng-matero)
