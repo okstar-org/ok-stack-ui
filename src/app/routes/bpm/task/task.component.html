@@ -15,27 +15,26 @@
         </div>
       </form>
     </mat-card>
-    
+
     <mat-card>
       <mtx-grid
-      [toolbarTitle]="'bpm.task.title' | translate"
-      [data]="list"
-      [columns]="columns"
-      [length]="total"
-      [loading]="isLoading"
-      [showToolbar]="showToolbar"
-      [rowSelectable]="rowSelectable"
-      [columnHideable]="columnHideable"
-      [columnMovable]="columnMovable"
-      [multiSelectable]="multiSelectable"
-      [pageOnFront]="false"
-      [pageIndex]="pageIndex"
-      [pageSize]="pageSize"
-      [pageSizeOptions]="[5,10,20]"
-      (sortChange)="changeSort($event)"
-      (page)="getNextPage($event)"
-      >
-  </mtx-grid>
+                [toolbarTitle]="'bpm.task.title' | translate"
+                [data]="list"
+                [columns]="columns"
+                [length]="total"
+                [loading]="isLoading"
+                [showToolbar]="showToolbar"
+                [rowSelectable]="rowSelectable"
+                [columnHideable]="columnHideable"
+                [columnMovable]="columnMovable"
+                [multiSelectable]="multiSelectable"
+                [pageOnFront]="false"
+                [pageIndex]="pageIndex"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="[5,10,20]"
+                (sortChange)="changeSort($event)"
+                (page)="getNextPage($event)">
+      </mtx-grid>
     </mat-card>
   </div>
 </div>
