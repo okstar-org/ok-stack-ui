@@ -49,45 +49,6 @@ job-install:
     - yarn install
     - ls .
 
-# job-lint:
-#   stage: lint
-#   <<: *templateDef
-#   script:
-#     - npm run lint
-
-# job-unit:
-#   stage: unit
-#   <<: *templateDef
-#   script:
-#     - npm run unit
-# job-clear:
-#   stage: clear
-#   <<: *templateDef
-#   script:
-#     - npm run clean
-
-job-build-pre:
-  stage: build
-  <<: *templateDef
-  only:
-    - develop
-  script:
-    - echo 'build for develop ...'
-    - ls
-  variables:
-    DEPLOYMENT_NODE: "192.168.1.6"
-
-job-build-pre:
-  stage: build
-  <<: *templateDef
-  only:
-    - release
-  script:
-    - echo 'build for release ...'
-    - ls
-  variables:
-    DEPLOYMENT_NODE: "192.168.1.6"
-
 job-build:
   stage: build
   <<: *templateDef
