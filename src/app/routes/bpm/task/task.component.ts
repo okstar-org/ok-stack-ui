@@ -14,6 +14,11 @@ import { TaskService } from './task.service';
 export class TaskComponent extends OkPaginatorComponent implements OnInit {
   columns: MtxGridColumn[] = [
     {
+      header: this.translate.stream('bpm.task.id'),
+      field: 'id',
+      sortable: true,
+    },
+    {
       header: this.translate.stream('bpm.task.name'),
       field: 'name',
       sortable: true,
@@ -32,6 +37,16 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
     {
       header: this.translate.stream('bpm.task.createdAt'),
       field: 'createdOn',
+      sortable: true,
+    },
+    {
+      header: this.translate.stream('bpm.task.activationTime'),
+      field: 'activationTime',
+      sortable: true,
+    },
+    {
+      header: this.translate.stream('bpm.task.expirationTime'),
+      field: 'expirationTime',
       sortable: true,
     },
     {

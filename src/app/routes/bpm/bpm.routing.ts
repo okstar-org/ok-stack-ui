@@ -17,6 +17,9 @@ const routes: Routes = [
   {
     path: 'initiate',
     loadChildren: () => import('./initiate/initiate.module').then(m => m.InitiateModule),
+  },{
+    path: 'instance',
+    loadChildren: () => import('./instance/instance.module').then(m => m.InstanceModule),
   },
 ];
 

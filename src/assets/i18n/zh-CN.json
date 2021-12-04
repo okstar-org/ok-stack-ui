@@ -338,16 +338,32 @@
     }
   },
   "bpm": {
-    "task":{
-      "title":"我的任务",
-      "name":"任务名称",
-      "containerId":"流程业务",
-      "processId":"流程实例",
-      "createdAt":"创建时间",
-      "status":"任务状态",
-      "actualOwner":"操作人",
-      "claim":"接受",
-      "release":"释放"
+    "task": {
+      "title": "我的任务",
+      "id": "ID",
+      "name": "任务名称",
+      "containerId": "流程业务",
+      "processId": "流程实例",
+      "createdAt": "创建时间",
+      "activationTime": "激活时间",
+      "expirationTime": "过期时间",
+      "status": "任务状态",
+      "actualOwner": "操作人",
+      "claim": "接受",
+      "release": "释放"
+    },
+    "instance": {
+      "title": "流程实例",
+      "id": "ID",
+      "processId": "流程ID",
+      "processName": "流程名称",
+      "processVersion": "流程版本",
+      "containerId": "流程容器",
+      "state": "流程状态",
+      "date": "启动时间",
+      "slaDueDate": "截止时间",
+      "initiator": "操作人",
+      "processInstanceDescription": "实例描述"
     }
   },
   "common": {
@@ -359,13 +375,13 @@
     "export": "导出",
     "detail": "详情",
     "comment": "评论",
-    "operation":"操作",
+    "operation": "操作",
     "sync": "同步",
-    "resume":"继续",
+    "resume": "继续",
     "con": {
-      "WX":"企微",
-      "DT":"钉钉",
-      "FS":"飞书"
+      "WX": "企微",
+      "DT": "钉钉",
+      "FS": "飞书"
     }
   },
   "support": {

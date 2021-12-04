@@ -26,6 +26,12 @@ const PROXY_CONFIG = {
     pathRewrite: {
       "^/api": ""
     }
+  },
+  '/bpm/model/designer': {
+    target: 'http://192.168.8.40:8080/business-central/kie-wb.jsp?standalone&perspective=LibraryPerspective',
+    changeOrigin: true,
+    secure: false,
+    logLevel: 'debug',
   }
 };
 
