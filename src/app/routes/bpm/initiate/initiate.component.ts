@@ -10,7 +10,7 @@ export class InitiateComponent implements OnInit {
     {
       name: '假勤',
       items: [
-        { name: '请假', icon: 'spa' },
+        { name: '请假', icon: 'date_range' },
         { name: '出差', icon: 'train' },
         { name: '外出', icon: 'local_taxi' },
         { name: '加班', icon: 'work' },

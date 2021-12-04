@@ -35,7 +35,7 @@ export class SimpleToken implements RefreshToken {
   }
 
   refreshTime() {
-    return timeLeft(this.exp - 5000);
+    return timeLeft(this.exp - 15000);
   }
 
   clone(attributes: any = {}) {
