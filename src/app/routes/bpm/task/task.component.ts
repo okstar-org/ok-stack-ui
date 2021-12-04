@@ -117,6 +117,14 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
           iif: row => row.status === 'Ready'||row.status === 'Reserved'||row.status === 'InProgress',
           click: row => this.doSuspend(row),
         },
+        {
+          color: 'primary',
+          icon: 'check_circle_outline',
+          text: this.translate.stream('common.complete'),
+          tooltip: this.translate.stream('common.complete'),
+          iif: row => row.status === 'InProgress',
+          click: row => this.doComplete(row),
+        },
       ],
     },
   ];
@@ -205,6 +213,14 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
     this.logger.info('doSuspend', row);
     this.svc.doSuspend(row).subscribe(r => {
       console.log('doSuspend=>', r);
+      this.getPage();
+    });
+  }
+
+  doComplete(row: ID){
+    this.logger.info('doComplete', row);
+    this.svc.doComplete(row, {}).subscribe(r => {
+      console.log('doComplete=>', r);
       this.getPage();
     });
   }

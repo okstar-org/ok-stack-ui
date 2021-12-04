@@ -20,6 +20,7 @@ class Api implements OkApi {
   stop = '/api/portal/app-bpm/task/stop';
   resume = '/api/portal/app-bpm/task/resume';
   start = '/api/portal/app-bpm/task/start';
+  complete = '/api/portal/app-bpm/task/complete/';
 
   detail: {
     findById: '/api/portal/app-bpm/task/detail/findById/';

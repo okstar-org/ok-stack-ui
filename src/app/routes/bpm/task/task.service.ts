@@ -38,4 +38,8 @@ export class TaskService extends OkPaginatorService {
   doStart(params: ID): Observable<OkPayload<any>> {
     return this.http.post<OkPayload<any>>(api.start, params.id);
   }
+
+  doComplete(params: ID, data: any): Observable<OkPayload<any>> {
+    return this.http.post<OkPayload<any>>(api.complete + params.id, data);
+  }
 }
