@@ -350,7 +350,11 @@
       "status": "任务状态",
       "actualOwner": "操作人",
       "claim": "接受",
-      "release": "释放"
+      "release": "释放",
+      "suspend": "挂起",
+      "resume": "继续",
+      "start": "启动",
+      "stop": "停止"
     },
     "instance": {
       "title": "流程实例",
@@ -378,6 +382,8 @@
     "operation": "操作",
     "sync": "同步",
     "resume": "继续",
+    "start": "启动",
+    "stop": "停止",
     "con": {
       "WX": "企微",
       "DT": "钉钉",

@@ -2,8 +2,9 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MtxGridColumn } from '@ng-matero/extensions';
 import { TranslateService } from '@ngx-translate/core';
-import { OkPaginatorComponent } from '@shared/components/ok/ok-paginator.component';
 import { NGXLogger } from 'ngx-logger';
+import { OkPaginatorComponent } from '@shared/components/ok/ok-paginator.component';
+import { ID } from '@shared/api/ok';
 import { TaskService } from './task.service';
 
 @Component({
@@ -67,9 +68,34 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
       pinned: 'right',
       type: 'button',
       buttons: [
+
+        {
+          color: 'primary',
+          icon: 'add_to_queue',
+          text: this.translate.stream('bpm.task.claim'),
+          tooltip: this.translate.stream('bpm.task.claim'),
+          iif: row => row.status === 'Ready',
+          click: (row: ID) => this.doClaim(row),
+        },
+        {
+          color: 'primary',
+          icon: 'remove_from_queue',
+          text: this.translate.stream('bpm.task.release'),
+          tooltip: this.translate.stream('bpm.task.release'),
+          iif: row => row.status === 'Reserved',
+          click: (row: ID) => this.doRelease(row),
+        },
         {
           color: 'primary',
           icon: 'play_arrow',
+          text: this.translate.stream('common.start'),
+          tooltip: this.translate.stream('common.start'),
+          iif: row => row.status === 'Reserved',
+          click: row => this.doStart(row),
+        },
+        {
+          color: 'primary',
+          icon: 'play_circle_outline',
           text: this.translate.stream('common.resume'),
           tooltip: this.translate.stream('common.resume'),
           iif: row => row.status === 'Suspended',
@@ -77,19 +103,19 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
         },
         {
           color: 'primary',
-          icon: 'check',
-          text: this.translate.stream('bpm.task.claim'),
-          tooltip: this.translate.stream('bpm.task.claim'),
-          iif: row => row.status === 'Ready',
-          click: row => this.doClaim(row),
+          icon: 'stop',
+          text: this.translate.stream('common.stop'),
+          tooltip: this.translate.stream('common.stop'),
+          iif: row => row.status === 'InProgress',
+          click: row => this.doStop(row),
         },
         {
           color: 'primary',
-          icon: 'close',
-          text: this.translate.stream('bpm.task.release'),
-          tooltip: this.translate.stream('bpm.task.release'),
-          iif: row => row.status === 'InProgress',
-          click: row => this.doResume(row),
+          icon: 'pause_circle_outline',
+          text: this.translate.stream('bpm.task.suspend'),
+          tooltip: this.translate.stream('bpm.task.suspend'),
+          iif: row => row.status === 'Ready'||row.status === 'Reserved'||row.status === 'InProgress',
+          click: row => this.doSuspend(row),
         },
       ],
     },
@@ -135,11 +161,51 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
     this.getPage();
   }
 
-  doResume(row: any) {
+  doResume(row: ID){
     this.logger.info('doResume', row);
+    this.svc.doResume(row).subscribe(r => {
+      console.log('doResume=>', r);
+      this.getPage();
+    });
   }
 
-  doClaim(row: any) {
+  doStop(row: ID){
+    this.logger.info('doStop', row);
+    this.svc.doStop(row).subscribe(r => {
+      console.log('doStop=>', r);
+      this.getPage();
+    });
+  }
+
+  doStart(row: ID){
+    this.logger.info('doStart', row);
+    this.svc.doStart(row).subscribe(r => {
+      console.log('doStart=>', r);
+      this.getPage();
+    });
+  }
+
+  doClaim(row: ID) {
     this.logger.info('doClaim', row);
+    this.svc.doClaim(row).subscribe(r => {
+      console.log('doClaim=>', r);
+      this.getPage();
+    });
+  }
+
+  doRelease(row: ID){
+    this.logger.info('doRelease', row);
+    this.svc.doRelease(row).subscribe(r => {
+      console.log('doRelease=>', r);
+      this.getPage();
+    });
+  }
+
+  doSuspend(row: ID){
+    this.logger.info('doSuspend', row);
+    this.svc.doSuspend(row).subscribe(r => {
+      console.log('doSuspend=>', r);
+      this.getPage();
+    });
   }
 }
