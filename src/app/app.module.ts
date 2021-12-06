@@ -1,4 +1,3 @@
-import { FooterComponent } from './footer/footer.component';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,7 +33,6 @@ import { FooterModule } from './footer/footer.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    FooterModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
