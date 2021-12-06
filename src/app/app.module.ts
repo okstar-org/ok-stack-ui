@@ -1,3 +1,4 @@
+import { FooterComponent } from './footer/footer.component';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,10 +29,12 @@ import { InMemDataService } from './shared/in-mem/in-mem-data.service';
 import { BASE_URL } from '@core/interceptors/base-url-interceptor';
 import { environment } from '@env/environment';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { FooterModule } from './footer/footer.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    FooterModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
