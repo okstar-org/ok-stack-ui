@@ -28,7 +28,6 @@ import { InMemDataService } from './shared/in-mem/in-mem-data.service';
 import { BASE_URL } from '@core/interceptors/base-url-interceptor';
 import { environment } from '@env/environment';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
-import { FooterModule } from './footer/footer.module';
 
 @NgModule({
   declarations: [AppComponent],
