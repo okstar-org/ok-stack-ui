@@ -67,7 +67,6 @@ export class ModelComponent implements OnInit {
       });
   }
 
-
   openDiagram(xml){
     // console.log('openDiagram', xml);
   //   this.bpmnModeler.importXML(xml, function(err) {
@@ -82,6 +81,6 @@ export class ModelComponent implements OnInit {
   //         //   .addClass('with-diagram');
   //       }
   //   });
-  // }
+  }
 
 }
