@@ -30,6 +30,7 @@ export class InfoComponent extends OkDetailComponent implements OnInit, OnDestro
 
   id: string;
   data: any;
+  
   constructor(
     protected logger: NGXLogger,
     protected fb: FormBuilder,

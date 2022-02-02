@@ -1,8 +1,8 @@
 import { NavigationEnd } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
-// import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
-import axios from 'axios'
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+// import axios from 'axios'
 
 // import BpmnJS from 'bpmn-js' // 引入 bpmn-js
 // import BpmnModeler from 'bpmn-js/lib/Modeler';
@@ -11,6 +11,7 @@ import axios from 'axios'
 // const newDiagram = require('../../../../assets/bpm/newDiagram.bpmn');
 
 import { HttpClient } from '@angular/common/http';
+import { ModelService } from './model.service';
 
 @Component({
   selector: 'app-model',
@@ -19,19 +20,26 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class ModelComponent implements OnInit {
-  // iframe: SafeResourceUrl;
-  //private sanitizer: DomSanitizer
+  iframe: SafeResourceUrl;
 
   // private bpmnModeler : BpmnModeler;
 
   constructor(
     protected logger: NGXLogger,
-    protected http: HttpClient
+    protected http: HttpClient,
+    private sanitizer: DomSanitizer,
+    private service : ModelService
   ) {
 
   }
 
   ngOnInit() {
+
+    this.service.getConfig().subscribe(r => {
+      const { data: { webUrl } } = r;
+      const src = `${webUrl}/business-central/kie-wb.jsp?standalone&perspective=LibraryPerspective&header=UberfireBreadcrumbsContainer`;
+      this.iframe = this.sanitizer.bypassSecurityTrustResourceUrl(src);
+    })
 
     // this.viewer = new BpmnJS({
     //   container: '#bpm-modeler-canvas'
@@ -53,21 +61,21 @@ export class ModelComponent implements OnInit {
   }
 
   // 注意：必须先加载一个bpmn文件，新建就是加载一个空的bpmn文件，否则不能拖拽节点
-  createNewDiagram() {
+  // createNewDiagram() {
     // var diagramUrl = 'https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/dfceecba/starter/diagram.bpmn';
-    var diagramUrl = '/assets/bpm/newDiagram.bpmn';
+    // var diagramUrl = '/assets/bpm/newDiagram.bpmn';
     // this.http.get(diagramUrl).subscribe((res) => {
     //     console.log('read bpmn xml', res)
     //     this.openDiagram(res)
     //   });
 
-      axios.get(diagramUrl).then((res)=>{
+      // axios.get(diagramUrl).then((res)=>{
         // console.log('read', res);
-        this.openDiagram(res.data);
-      });
-  }
+        // this.openDiagram(res.data);
+      // });
+  // }
 
-  openDiagram(xml){
+  // openDiagram(xml){
     // console.log('openDiagram', xml);
   //   this.bpmnModeler.importXML(xml, function(err) {
   //       if (err) {
@@ -81,6 +89,6 @@ export class ModelComponent implements OnInit {
   //         //   .addClass('with-diagram');
   //       }
   //   });
-  }
+  // }
 
 }

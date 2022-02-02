@@ -11,7 +11,7 @@ export class OkDetailService {
 
   getDetail(id: string, params = {}): Observable<OkPayload<any>> {
     return this.http
-      .get<OkResult<any>>(this.api.findById + id, { params })
+      .get<OkResult<any>>(this.api.findById +'/'+ id, { params })
       .pipe(map((r: OkResult<any>) => r.payload));
   }
 
