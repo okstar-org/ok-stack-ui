@@ -1,9 +1,11 @@
+import { Form } from './../lead.api';
+import { MatDialog } from '@angular/material/dialog';
 import { NGXLogger } from 'ngx-logger';
 import { DetailService } from './detail.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DTO } from '../lead.api';
-
+import { AddComponent } from '../dialog/add/add.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -11,7 +13,9 @@ import { DTO } from '../lead.api';
 })
 export class DetailComponent implements OnInit {
   id: string;
-  data: DTO;
+  formGroup: FormGroup;
+  data: any;
+  order: string[] = [];
 
   tabLinks = [
     { label: 'info', link: 'info' },
@@ -26,7 +30,9 @@ export class DetailComponent implements OnInit {
   constructor(
     private logger: NGXLogger,
     private activedRoute: ActivatedRoute,
-    private svc: DetailService
+    private svc: DetailService,
+   
+    private fb: FormBuilder,
   ) {
     this.activedRoute.params.subscribe((params: { id: string }) => {
       console.log('params=>', params);
@@ -41,7 +47,10 @@ export class DetailComponent implements OnInit {
   getData() {
     this.svc.getData(this.id).subscribe(r => {
       this.logger.info(r);
-      this.data = r.data;
+      this.formGroup = this.fb.group(r.data);
+      this.data= r.data;
     });
   }
+
+
 }

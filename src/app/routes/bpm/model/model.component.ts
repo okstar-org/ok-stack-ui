@@ -21,8 +21,10 @@ import { ModelService } from './model.service';
 
 export class ModelComponent implements OnInit {
   iframe: SafeResourceUrl;
-
+  initiated = -1;
+  loaded = false;
   // private bpmnModeler : BpmnModeler;
+
 
   constructor(
     protected logger: NGXLogger,
@@ -36,9 +38,18 @@ export class ModelComponent implements OnInit {
   ngOnInit() {
 
     this.service.getConfig().subscribe(r => {
-      const { data: { webUrl } } = r;
-      const src = `${webUrl}/business-central/kie-wb.jsp?standalone&perspective=LibraryPerspective&header=UberfireBreadcrumbsContainer`;
-      this.iframe = this.sanitizer.bypassSecurityTrustResourceUrl(src);
+      this.loaded = true;
+
+      const { data } = r;
+      if(data){
+        const {webUrl} = data;
+
+        const src = `${webUrl}${webUrl.endsWith('/')?'':'/'}business-central/kie-wb.jsp?standalone&perspective=LibraryPerspective&header=UberfireBreadcrumbsContainer`;
+        this.iframe = this.sanitizer.bypassSecurityTrustResourceUrl(src);
+        this.initiated = 1;
+      }else{
+        this.initiated = 0;
+      }
     })
 
     // this.viewer = new BpmnJS({

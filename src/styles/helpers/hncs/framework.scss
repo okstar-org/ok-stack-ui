@@ -122,3 +122,33 @@ ul.ok-item-list {
     vertical-align: middle;
   }
 }
+
+.ok-table-view {
+  > dl {
+    display: inline-block;
+    margin: 0 2em 0 0;
+    font-size: 12px;
+
+
+    > dt , > dd {
+      display: inline-block;
+      vertical-align: middle;
+      width: 8em;
+      height: 2.4em;
+      line-height: 2.4em;
+      border: 1px solid #e9e9e9;
+      margin: 0;
+    }
+    > dt {
+      background: whitesmoke;
+      padding-right: .2em;
+      font-weight: bold;
+      text-align: right;
+    }
+    > dd {
+      width: 16em;
+      padding-left: .2em;
+      text-align: left;
+    }
+  }
+}

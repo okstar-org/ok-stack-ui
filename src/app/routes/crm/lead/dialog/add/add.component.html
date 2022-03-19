@@ -1,134 +1,30 @@
-<h2 mat-dialog-title>添加线索</h2>
+<h2 mat-dialog-title>{{formGroup.get('id') ? '编辑' :'添加' }}线索</h2>
 
 <mat-dialog-content>
-  <form [formGroup]="addForm">
+  <form [formGroup]="formGroup">
     <!-- <mat-form-field class="demo-full-width">
       <mat-label>Company (disabled)</mat-label>
       <input matInput disabled value="Google">
     </mat-form-field> -->
     <mat-card>
-      <div class="demo-full-width">
+      <div class="ok-view-edit">
+          <ul>
+            <li *ngFor="let item of fields ">
+              <!-- {{item.key}} - {{item.value}} -->
 
-            <mat-form-field class="demo-full-width" class="m-r-8">
-              <mat-label>客户名称</mat-label>
-              <input matInput formControlName="customerName" required>
-              <mat-error *ngIf="addForm.get('customerName').invalid">
-                {{'validations.required' | translate}}
-              </mat-error>
-            </mat-form-field>
+              <mat-form-field class="m-r-8">
+                <mat-label>{{item.label}}</mat-label>
+                <input matInput (formControlName)="item.name" >
+                <!-- {{item.value}} -->
+                <!-- required (value)="item.value" -->
+                <!-- <mat-error *ngIf="formGroup.get('customerName').invalid">
+                  {{'validations.required' | translate}}
+                </mat-error> -->
+              </mat-form-field>
 
-            <mat-form-field class="demo-full-width" class="m-r-8">
-              <mat-label>联系人姓名</mat-label>
-              <input matInput formControlName="contactName" required>
-              <mat-error *ngIf="addForm.get('contactName').invalid">
-                {{'validations.required' | translate}}
-              </mat-error>
-            </mat-form-field>
+            </li>
+          </ul>
 
-            <mat-form-field class="demo-full-width" class="m-r-8">
-              <mat-label>尊称</mat-label>
-              <input matInput>
-            </mat-form-field>
-
-            <mat-form-field class="demo-full-width" class="m-r-8">
-              <mat-label>角色</mat-label>
-              <input matInput>
-            </mat-form-field>
-
-            <mat-form-field class="demo-full-width" class="m-r-8">
-              <mat-label>手机号码</mat-label>
-              <input matInput formControlName="mobilePhone">
-              <mat-icon matSuffix>smartphone</mat-icon>
-            </mat-form-field>
-
-            <mat-form-field class="demo-full-width" class="m-r-8">
-              <mat-label>固定号码</mat-label>
-              <input matInput formControlName="landPhone">
-              <mat-icon matSuffix>phone</mat-icon>
-            </mat-form-field>
-
-            <mat-form-field class="demo-full-width" class="m-r-8">
-              <mat-label>电子邮箱</mat-label>
-              <input matInput formControlName="mail">
-              <mat-icon matSuffix>mail</mat-icon>
-            </mat-form-field>
-
-            <mat-form-field class="demo-full-width" class="m-r-8">
-              <mat-label>传真号码</mat-label>
-              <input matInput formControlName="faxPhone">
-            </mat-form-field>
-
-            <mat-form-field class="demo-full-width" class="m-r-8">
-              <mat-label>微信账号</mat-label>
-              <input matInput>
-            </mat-form-field>
-
-            <mat-form-field class="demo-full-width" class="m-r-8">
-              <mat-label>QQ号码</mat-label>
-              <input matInput>
-            </mat-form-field>
-
-            <mat-form-field class="demo-full-width" class="m-r-8" *ngIf="params">
-              <mat-label>线索来源</mat-label>
-              <mtx-select formControlName="source" *ngIf="params">
-                <mtx-option *ngFor="let item of params['source']"
-                [value]="item">
-                  {{'crm.lead.sourceSelect.' + item | translate}}
-                </mtx-option>
-              </mtx-select>
-            </mat-form-field>
-
-            <mat-form-field class="demo-full-width" class="m-r-8" *ngIf="params">
-              <mat-label>线索状态</mat-label>
-              <mtx-select formControlName="status">
-                <mtx-option *ngFor="let item of params['statuses']"
-                [value]="item">
-                  {{'crm.lead.statusSelect.' + item | translate}}
-                </mtx-option>
-              </mtx-select>
-            </mat-form-field>
-
-            <mat-form-field class="demo-full-width" class="m-r-8" *ngIf="params">
-              <mat-label>归属人员</mat-label>
-              <input matInput formControlName="ownerName">
-            </mat-form-field>
-
-          <mat-form-field class="demo-full-width" class="m-r-8">
-            <mat-label>备注</mat-label>
-            <textarea matInput formControlName="note"></textarea>
-          </mat-form-field>
-
-          <div>
-
-          <!-- <mat-form-field class="demo-full-width" class="m-r-8"> -->
-            <mat-label>创建跟进任务</mat-label>
-            <mat-checkbox aria-label="创建跟进任务" formControlName="isCreateFollowUpTask"></mat-checkbox>
-          <!-- </mat-form-field> -->
-
-        <div *ngIf="isCreateFollowUpTask.value">
-
-          <mat-form-field class="demo-full-width">
-            <mat-label>下次跟进</mat-label>
-            <input matInput>
-          </mat-form-field>
-
-          <mat-form-field class="demo-full-width">
-            <mat-label>跟进内容</mat-label>
-            <input matInput>
-          </mat-form-field>
-
-          <mat-form-field class="demo-full-width">
-            <mat-label>跟进人员</mat-label>
-            <input matInput>
-          </mat-form-field>
-
-          <mat-form-field class="demo-full-width">
-            <mat-label>任务提醒</mat-label>
-            <input matInput>
-          </mat-form-field>
-
-        </div>
-      </div>
 
       </div>
     </mat-card>

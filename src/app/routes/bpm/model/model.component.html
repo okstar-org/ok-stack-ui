@@ -1,10 +1,22 @@
 <page-header class="bg-purple-500"></page-header>
-<div>
-  <div>用户名和密码：wbadmin/wbadmin</div>
-  <iframe *ngIf="iframe" [src]="iframe" frameborder="0"></iframe>
-</div>
+<ng-container *ngIf="loaded">
+  <ng-container *ngIf="initiated; then thenTemplate; else elseTemplate"></ng-container>
+  <ng-template #thenTemplate>
+    <mat-card>
+      <div >用户名和密码：wbadmin,wbadmin</div>
+      <iframe [src]="iframe" frameborder="0"></iframe>
+    </mat-card>
 
-<!-- <mat-card>
+  </ng-template>
+  <ng-template #elseTemplate>
+    <mat-card>
+      <!-- 获取服务信息（技术/业务/售前/售后） -->
+      <div>为开通流程引擎，请联系业务人员（412555203@qq.com）！</div>
+    </mat-card>
+  </ng-template>
+</ng-container>
+
+  <!-- <mat-card>
   <div class="app-container">
 
     <div class="containers">

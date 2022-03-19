@@ -6,6 +6,7 @@ class Lead {
   importBegin = '/api/portal/app-crm/lead/import/begin';
   importAdd = '/api/portal/app-crm/lead/import/add';
   importCommit = '/api/portal/app-crm/lead/import/commit';
+  form = '/api/portal/app-crm/lead/form';
   save = '/api/portal/app-crm/lead/save';
   deleteById = '/api/portal/app-crm/lead/deleteById/';
   findById = '/api/portal/app-crm/lead/findById/';

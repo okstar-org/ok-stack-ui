@@ -9,56 +9,19 @@
         <li>
           基本信息
         </li>
+        <li>
+          <button mat-button  mat-raised-button class="m-8" (click)="edit()">编辑线索</button>
+        </li>
       </ul>
     </div>
     <div class="ok-content-wrapper" *ngIf="data">
-      <table>
-        <tr>
-          <td>客户名称：</td>
-          <td>{{data.customerName}}</td>
-          <td>联系人姓名：</td>
-          <td>{{data.contactName}}</td>
-        </tr>
-        <tr>
-          <td>尊称：</td>
-          <td>{{data.honorificTitle}}</td>
-          <td>角色：</td>
-          <td>{{data.role}}</td>
-        </tr>
-        <tr>
-          <td>部门职务：</td>
-          <td>{{data.position}}</td>
-          <td>手机号码：</td>
-          <td>{{data.mobilePhone}}</td>
-        </tr>
-        <tr>
-          <td>固定电话：</td>
-          <td>{{data.landPhone}}</td>
-          <td>传真号码：</td>
-          <td>{{data.faxPhone}}</td>
-        </tr>
+      <div class="ok-table-view">
+          <dl *ngFor="let item of fields">
+            <dt>{{item.label}}：</dt>
+            <dd>{{formGroup.get(item.name).value}}</dd>
+          </dl>
+      </div>
 
-        <tr>
-          <td>电子邮箱：</td>
-          <td>{{data.mail}}</td>
-          <td>微信账号：</td>
-          <td>[wx23%#SDa]</td>
-        </tr>
-
-        <tr>
-          <td>QQ号码：</td>
-          <td>[123456]</td>
-          <td>线索来源：</td>
-          <td>{{data.source}}</td>
-        </tr>
-        <tr>
-          <td>线索状态：</td>
-          <td>{{data.leadState}}</td>
-          <td></td>
-          <td></td>
-        </tr>
-
-      </table>
     </div>
   </div>
 

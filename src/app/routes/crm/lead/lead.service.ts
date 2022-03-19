@@ -40,6 +40,10 @@ export class LeadService {
       .subscribe(r => this.downLoadFile(r, fileName, 'application/ms-excel'));
   }
 
+  getForm(params = {}): Observable<Payload> {
+    return this.http.get<Payload>(CRM_API.lead.form, { params }).pipe(map((r: any) => r.payload));
+  }
+
   getParams(params = {}): Observable<Payload> {
     this.logger.debug('getParams', params);
     return this.http.get<Payload>(CRM_API.lead.params, { params }).pipe(map((r: any) => r.payload));

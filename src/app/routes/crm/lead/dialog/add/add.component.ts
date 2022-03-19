@@ -1,3 +1,4 @@
+import { OkFormResult, OkFormControl } from './../../../../../shared/api/ok';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddService } from './add.service';
 import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
@@ -13,21 +14,33 @@ import { Form } from '../../lead.api';
 export class AddComponent implements OnInit {
   emitter = new EventEmitter<void>();
 
-  addForm: FormGroup;
+  formGroup: FormGroup;
+  fields : OkFormControl[] = [];
+
   params = { select: { status: [] } };
 
   constructor(
     private logger: NGXLogger,
     private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: Form,
+    @Inject(MAT_DIALOG_DATA) public data: OkFormResult,
     private service: AddService
   ) {
-    this.logger.debug('data:', data);
-    this.addForm = this.fb.group(data);
+    this.logger.debug('formGroup:', this.data);
+
+    this.formGroup = this.fb.group(this.data.controlsConfig);
+    for(const k in this.formGroup.controls) {
+      console.log('formGroup=>', k, this.formGroup.get(k).value);
+    };
+
+    this.fields = this.data.fields;
+
   }
 
   ngOnInit(): void {
-    this.service.params(CRM_API.lead.params).subscribe((r: { data: any }) => {
+
+
+    this.service.params(CRM_API.lead.params)
+    .subscribe((r: { data: any }) => {
       this.params = r.data;
     });
   }
@@ -40,16 +53,16 @@ export class AddComponent implements OnInit {
   }
 
   get isCreateFollowUpTask() {
-    return this.addForm.get('isCreateFollowUpTask');
+    return this.formGroup.get('isCreateFollowUpTask');
   }
 
   doSave() {
-    this.logger.debug('save', this.addForm.value);
-    if (!this.addForm.valid) {
+    this.logger.debug('save', this.formGroup.value);
+    if (!this.formGroup.valid) {
       return false;
     }
 
-    this.service.save(this.addForm.value).subscribe(r => {
+    this.service.save(this.formGroup.value).subscribe(r => {
       this.logger.debug('==>', r);
       this.emitter.emit();
     });

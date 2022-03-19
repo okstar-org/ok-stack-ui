@@ -46,6 +46,16 @@ export interface OkResult<D> {
   success: boolean;
 }
 
+export interface OkFormControl {
+  name: string;
+  label: string;
+  value: string;
+}
+export interface OkFormResult{
+  controlsConfig: any;
+  fields: OkFormControl[];
+}
+
 const okPageGroup = new OkPageGroup();
 
 export { okPageGroup };

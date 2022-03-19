@@ -1,6 +1,8 @@
-import { OkDetailComponent } from './../../../../../shared/components/ok/ok-detail.component';
+import { MatDialog } from '@angular/material/dialog';
+import { OkFormResult, OkFormControl } from './../../../../../shared/api/ok';
+import { OkDetailComponent } from '@shared/components/ok/ok-detail.component';
 import { map } from 'rxjs/operators';
-import { OkPayload, OkApi, OkResult } from './../../../../../shared/api/ok';
+import { OkPayload, OkApi, OkResult } from '@shared/api/ok';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -9,7 +11,8 @@ import { LeadDTO } from '../../lead.api';
 import { ActivatedRoute } from '@angular/router';
 import { OkDetailService } from '@shared/services/ok-detail.service';
 import { InfoService } from './info.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AddComponent } from '../../dialog/add/add.component';
 
 @Component({
   selector: 'app-info',
@@ -35,10 +38,16 @@ export class InfoComponent extends OkDetailComponent implements OnInit, OnDestro
   ];
 
   id: string;
-  data: LeadDTO;
+  data: OkFormResult;
+
+  formGroup: FormGroup;
+
+  fields: OkFormControl[] = [];
+
 
   constructor(
     protected logger: NGXLogger,
+    private dialog: MatDialog,
     protected fb: FormBuilder,
     protected service: InfoService,
     private activedRoute: ActivatedRoute
@@ -51,12 +60,27 @@ export class InfoComponent extends OkDetailComponent implements OnInit, OnDestro
 
   ngOnInit() {
     this.logger.info('info init...', this.id);
-    this.getDetail(this.id).subscribe(r => {
-      this.data = r.data;
-    });
+    this.refresh();
   }
 
   ngOnDestroy(): void {
     this.logger.info('info destroy...', this.id);
+  }
+
+  edit(){
+    this.logger.debug('edit...');
+    const dialogRef = this.dialog.open(AddComponent, { data: this.data });
+    dialogRef.componentInstance.emitter.subscribe(() => {
+      this.refresh();
+      dialogRef.close();
+    });
+  }
+
+  refresh(){
+    this.getDetail(this.id).subscribe(r => {
+      this.data = r.data;
+      this.formGroup = this.fb.group(this.data.controlsConfig);
+      this.fields = this.data.fields;
+    });
   }
 }

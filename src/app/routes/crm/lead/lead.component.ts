@@ -1,3 +1,4 @@
+import { OkFormResult } from './../../../shared/api/ok';
 import { supports } from '../../../shared/utils/support';
 import { NGXLogger } from 'ngx-logger';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
@@ -5,14 +6,15 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { LeadService } from './lead.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { MtxGridColumn } from '@ng-matero/extensions';
 import { PageEvent } from '@angular/material/paginator';
+
+import { Form } from './lead.api';
 import { AddComponent } from './dialog/add/add.component';
 import { ImportComponent } from './dialog/import/import.component';
-import { Form } from './lead.api';
 
 @Component({
   selector: 'app-lead',
@@ -263,30 +265,35 @@ export class LeadComponent implements OnInit, OnDestroy {
 
   add() {
     this.logger.debug('add...');
-    const data: Form = {
-      isCreateFollowUpTask: false,
-      customerName: ['', Validators.required],
-      contactName: ['', Validators.required],
-      customerState: 0,
-      avatar: '',
-      faxPhone: [null],
-      landPhone: [null],
-      mobilePhone: [null],
-      lastFollowUpTime: new Date(),
-      source: null,
-      status: null,
-      nextFollowUpTime: new Date(),
-      note: '',
-      owner: '',
-      ownerName: '',
-      unFollowUpDays: null,
-      mail: [null, Validators.email],
-    };
-    const dialogRef = this.dialog.open(AddComponent, { data });
-    dialogRef.componentInstance.emitter.subscribe(() => {
-      this.getData();
-      dialogRef.close();
-    });
+    // const from: Form = {
+    //   isCreateFollowUpTask: false,
+    //   customerName: ['', Validators.required],
+    //   contactName: ['', Validators.required],
+    //   customerState: 0,
+    //   avatar: '',
+    //   faxPhone: [null],
+    //   landPhone: [null],
+    //   mobilePhone: [null],
+    //   lastFollowUpTime: new Date(),
+    //   source: null,
+    //   status: null,
+    //   nextFollowUpTime: new Date(),
+    //   note: '',
+    //   owner: '',
+    //   ownerName: '',
+    //   unFollowUpDays: null,
+    //   mail: [null, Validators.email],
+    // };
+
+    this.service.getForm().subscribe(r => {
+      const webForm: OkFormResult = r.data;
+      const dialogRef = this.dialog.open(AddComponent, { data : webForm });
+      dialogRef.componentInstance.emitter.subscribe(() => {
+        this.getData();
+        dialogRef.close();
+      });
+    })
+
 
     // dialogRef.afterClosed().subscribe(() => {
     //   this.logger.debug('closed');
@@ -294,10 +301,10 @@ export class LeadComponent implements OnInit, OnDestroy {
     // });
   }
 
-  edit(data: any) {
+  edit(data: Form) {
     this.logger.debug('edit...');
 
-    const dialogRef = this.dialog.open(AddComponent, { data });
+    const dialogRef = this.dialog.open(AddComponent, { data: this.fb.group(data) });
     dialogRef.componentInstance.emitter.subscribe(() => {
       this.getData();
       dialogRef.close();
