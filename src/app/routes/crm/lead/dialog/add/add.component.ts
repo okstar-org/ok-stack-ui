@@ -1,11 +1,10 @@
-import { OkFormResult, OkFormControl } from './../../../../../shared/api/ok';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AddService } from './add.service';
-import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { CRM_API } from 'app/routes/crm/api-url';
-import { Form } from '../../lead.api';
+import { OkFormResult, OkFormField, ID } from '@shared/api/ok';
+import { AddService } from './add.service';
 
 @Component({
   templateUrl: './add.component.html',
@@ -14,8 +13,10 @@ import { Form } from '../../lead.api';
 export class AddComponent implements OnInit {
   emitter = new EventEmitter<void>();
 
-  formGroup: FormGroup;
-  fields : OkFormControl[] = [];
+  id: ID;
+  formGroup : FormGroup;
+  fields : OkFormField[] = [];
+  names : string[] = [];
 
   params = { select: { status: [] } };
 
@@ -25,14 +26,24 @@ export class AddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: OkFormResult,
     private service: AddService
   ) {
-    this.logger.debug('formGroup:', this.data);
+    this.logger.info('formGroup:', this.data);
 
-    this.formGroup = this.fb.group(this.data.controlsConfig);
-    for(const k in this.formGroup.controls) {
-      console.log('formGroup=>', k, this.formGroup.get(k).value);
-    };
+    this.id = {id: this.data.id, version: this.data.version};
 
     this.fields = this.data.fields;
+    this.names = this.data.names;
+    this.formGroup = this.fb.group(this.data.controlsConfig);
+    // for(const k in this.formGroup.controls) {
+    //   this.formGroup.get(k).setValidators(Validators.required);
+    //   console.log('formGroup=>', k, this.formGroup.get(k));
+    // };
+
+    this.fields.forEach(field => {
+      const required = field.validations['Required']
+      if(required){
+        this.formGroup.get(field.name).setValidators(Validators.required);
+      }
+    })
 
   }
 
@@ -57,12 +68,14 @@ export class AddComponent implements OnInit {
   }
 
   doSave() {
-    this.logger.debug('save', this.formGroup.value);
     if (!this.formGroup.valid) {
       return false;
     }
 
-    this.service.save(this.formGroup.value).subscribe(r => {
+    const data = {...this.formGroup.value, ...this.id};
+    this.logger.debug('save', data);
+
+    this.service.save(data).subscribe(r => {
       this.logger.debug('==>', r);
       this.emitter.emit();
     });

@@ -1,5 +1,5 @@
 import { MatDialog } from '@angular/material/dialog';
-import { OkFormResult, OkFormControl } from './../../../../../shared/api/ok';
+import { OkFormResult, OkFormField } from './../../../../../shared/api/ok';
 import { OkDetailComponent } from '@shared/components/ok/ok-detail.component';
 import { map } from 'rxjs/operators';
 import { OkPayload, OkApi, OkResult } from '@shared/api/ok';
@@ -42,7 +42,7 @@ export class InfoComponent extends OkDetailComponent implements OnInit, OnDestro
 
   formGroup: FormGroup;
 
-  fields: OkFormControl[] = [];
+  fields: OkFormField[] = [];
 
 
   constructor(
@@ -69,6 +69,7 @@ export class InfoComponent extends OkDetailComponent implements OnInit, OnDestro
 
   edit(){
     this.logger.debug('edit...');
+    this.data.id = this.id;
     const dialogRef = this.dialog.open(AddComponent, { data: this.data });
     dialogRef.componentInstance.emitter.subscribe(() => {
       this.refresh();

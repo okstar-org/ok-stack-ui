@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>{{formGroup.get('id') ? '编辑' :'添加' }}线索</h2>
+<h2 mat-dialog-title>{{ id ? '编辑' :'添加' }}线索</h2>
 
 <mat-dialog-content>
   <form [formGroup]="formGroup">
@@ -9,17 +9,15 @@
     <mat-card>
       <div class="ok-view-edit">
           <ul>
-            <li *ngFor="let item of fields ">
-              <!-- {{item.key}} - {{item.value}} -->
-
+            <li *ngFor="let item of names; let i = index">
               <mat-form-field class="m-r-8">
-                <mat-label>{{item.label}}</mat-label>
-                <input matInput (formControlName)="item.name" >
-                <!-- {{item.value}} -->
-                <!-- required (value)="item.value" -->
-                <!-- <mat-error *ngIf="formGroup.get('customerName').invalid">
-                  {{'validations.required' | translate}}
-                </mat-error> -->
+                <mat-label>{{fields[i].label}}</mat-label>
+
+                <input matInput [formControlName]="item" [required]="fields[i].validations['Required']">
+                <mat-error *ngIf="formGroup.get(item).invalid">
+                  {{ fields[i].validations['Required'] }}
+                </mat-error>
+
               </mat-form-field>
 
             </li>

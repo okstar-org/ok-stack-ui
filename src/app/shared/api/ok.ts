@@ -1,5 +1,6 @@
 export interface ID {
   id: string;
+  version: number;
 }
 
 export interface OkGroup {}
@@ -46,14 +47,17 @@ export interface OkResult<D> {
   success: boolean;
 }
 
-export interface OkFormControl {
+export interface OkFormField {
   name: string;
   label: string;
   value: string;
+  validations: Map<string, string>;
 }
-export interface OkFormResult{
+export interface OkFormResult extends ID {
+
   controlsConfig: any;
-  fields: OkFormControl[];
+  names: string[];
+  fields: OkFormField[];
 }
 
 const okPageGroup = new OkPageGroup();
