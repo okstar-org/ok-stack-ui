@@ -1,4 +1,5 @@
-import { OkFormResult } from './../../../shared/api/ok';
+import { OkPayload } from '@shared/api/ok';
+import { ID, OkFormResult } from './../../../shared/api/ok';
 import { supports } from '../../../shared/utils/support';
 import { NGXLogger } from 'ngx-logger';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
@@ -15,6 +16,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Form } from './lead.api';
 import { AddComponent } from './dialog/add/add.component';
 import { ImportComponent } from './dialog/import/import.component';
+import { OkPaginatorComponent } from '@shared/components/ok/ok-paginator.component';
 
 @Component({
   selector: 'app-lead',
@@ -22,7 +24,7 @@ import { ImportComponent } from './dialog/import/import.component';
   styleUrls: ['./lead.component.scss'],
   providers: [LeadService],
 })
-export class LeadComponent implements OnInit, OnDestroy {
+export class LeadComponent extends OkPaginatorComponent implements OnInit, OnDestroy {
   type = 'moment';
 
   group: FormGroup;
@@ -128,14 +130,15 @@ export class LeadComponent implements OnInit, OnDestroy {
   ];
 
   constructor(
-    private logger: NGXLogger,
-    private fb: FormBuilder,
+    logger: NGXLogger,
+    fb: FormBuilder,
+    cdr: ChangeDetectorRef,
+    private dialog: MatDialog,
     private service: LeadService,
-    private dateAdapter: DateAdapter<any>,
     private translate: TranslateService,
-    private cdr: ChangeDetectorRef,
-    private dialog: MatDialog
+    private dateAdapter: DateAdapter<any>,
   ) {
+    super(fb, cdr, logger, service, {});
     this.group = this.fb.group({
       sort: 'ordinal,desc',
       page: 0,
@@ -175,15 +178,15 @@ export class LeadComponent implements OnInit, OnDestroy {
   }
 
   loadBackParams() {
-    this.service.getParams().subscribe(res => {
-      this.backParams = res.data;
+    this.service.getParams().subscribe((payload: OkPayload<any>) => {
+      this.backParams = payload.data;
     });
   }
 
   getData() {
     this.isLoading = true;
 
-    this.service.getData(this.params).subscribe(
+    this.service.getPage(this.params).subscribe(
       res => {
         this.list = res.data.content;
         this.total = res.data.totalElements;
@@ -287,13 +290,12 @@ export class LeadComponent implements OnInit, OnDestroy {
 
     this.service.getForm().subscribe(r => {
       const webForm: OkFormResult = r.data;
-      const dialogRef = this.dialog.open(AddComponent, { data : webForm });
+      const dialogRef = this.dialog.open(AddComponent, { data: webForm });
       dialogRef.componentInstance.emitter.subscribe(() => {
         this.getData();
         dialogRef.close();
       });
-    })
-
+    });
 
     // dialogRef.afterClosed().subscribe(() => {
     //   this.logger.debug('closed');
@@ -301,13 +303,17 @@ export class LeadComponent implements OnInit, OnDestroy {
     // });
   }
 
-  edit(data: Form) {
-    this.logger.debug('edit...');
+  edit(data: ID) {
+    this.logger.debug('edit...', data);
 
-    const dialogRef = this.dialog.open(AddComponent, { data: this.fb.group(data) });
-    dialogRef.componentInstance.emitter.subscribe(() => {
-      this.getData();
-      dialogRef.close();
+    this.service.getDetail(data.id).subscribe(r => {
+      console.log(r);
+      //  const data = r.data;
+      const dialogRef = this.dialog.open(AddComponent, { data: r.data });
+      dialogRef.componentInstance.emitter.subscribe(() => {
+        this.getData();
+        dialogRef.close();
+      });
     });
 
     // dialogRef.afterClosed().subscribe(() => {
@@ -327,13 +333,13 @@ export class LeadComponent implements OnInit, OnDestroy {
   }
 
   export() {
-    if (!supports.canDownload()) {
-      this.translate.get('support.can_not').subscribe(r => {
-        alert(r);
-      });
-      return;
-    }
-    this.service.getExport(this.params, '客户管理-销售线索-导出.xls');
+    // if (!supports.canDownload()) {
+    //   this.translate.get('support.can_not').subscribe(r => {
+    //     alert(r);
+    //   });
+    //   return;
+    // }
+    // this.service.getExport(this.params, '客户管理-销售线索-导出.xls');
   }
 
   change() {}

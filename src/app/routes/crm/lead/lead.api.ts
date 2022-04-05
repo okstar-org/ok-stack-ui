@@ -1,12 +1,30 @@
 import { OkApi, OkPageApi } from './../../../shared/api/ok';
 
+class Api implements OkApi {
+  params = '/api/portal/app-crm/lead/params';
+  page = '/api/portal/app-crm/lead/page';
+  top = '/api/portal/app-crm/lead/page/top';
+  export = '/api/portal/app-crm/lead/export';
+  importBegin = '/api/portal/app-crm/lead/import/begin';
+  importAdd = '/api/portal/app-crm/lead/import/add';
+  importCommit = '/api/portal/app-crm/lead/import/commit';
+  save = '/api/portal/app-crm/lead/save';
+  deleteById = '/api/portal/app-crm/lead/deleteById/';
+  findById = '/api/portal/app-crm/lead/findById/';
+  form = '/api/portal/app-crm/lead/form';
+}
+
+const api = new Api();
+export { api };
+
+
 class InfoApi implements OkApi {
   page = 'string';
   findById = '/api/portal/app-crm/lead/detail/info/findById/';
 }
 
 const infoApi = new InfoApi();
-export { infoApi };
+export { OkPageApi, infoApi };
 
 class FollowApi implements OkApi {
   findById = '/api/portal/app-crm/lead/detail/follow-up/page';

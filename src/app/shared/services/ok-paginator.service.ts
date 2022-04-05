@@ -43,23 +43,23 @@ export class OkPaginatorService {
   getParams(params = {}): Observable<OkPayload<any>> {
     this.logger.debug(this.api.params, params);
     return this.http
-      .get<OkPayload<any>>(this.api.params, { params })
-      .pipe(map((r: any) => r.OkPayload));
+      .get<OkResult<any>>(this.api.params, { params })
+      .pipe(map((r: OkResult<any>) => r.payload));
   }
 
   delete(params: ID): Observable<OkPayload<any>> {
     this.logger.debug(this.api.deleteById, params);
     return this.http
-      .delete<OkPayload<any>>(this.api.deleteById + params.id)
-      .pipe(map((r: any) => r.OkPayload));
+      .delete<OkResult<any>>(this.api.deleteById + params.id)
+      .pipe(map((r: OkResult<any>) => r.payload));
   }
 
   top(params: ID): Observable<OkPayload<any>> {
     this.logger.debug(this.api.top, params);
     return this.http
-      .put<OkPayload<any>>(this.api.top, params.id, {
+      .put<OkResult<any>>(this.api.top, params.id, {
         headers: { 'content-type': 'application/json' },
       })
-      .pipe(map((r: any) => r.OkPayload));
+      .pipe(map((r: OkResult<any>) => r.payload));
   }
 }

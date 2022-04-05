@@ -1,6 +1,6 @@
 export interface ID {
   id: string;
-  version: number;
+  version?: number;
 }
 
 export interface OkGroup {}
