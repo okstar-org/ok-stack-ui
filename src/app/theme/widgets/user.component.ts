@@ -1,41 +1,55 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SettingsService } from '@core';
 import { AuthService } from '@core/authentication/auth.service';
-import { debounceTime, tap } from 'rxjs/operators';
 import { User } from '@core/authentication/interface';
+import { debounceTime, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
   template: `
-    <button
-      class="matero-toolbar-button matero-avatar-button"
-      mat-button
-      [matMenuTriggerFor]="menu"
-    >
-      <img class="matero-avatar" [src]="user.avatar" width="32" alt="avatar" />
-      <span class="matero-username" fxHide.lt-sm>{{ user.name }}</span>
+    <button class="r-full" mat-button [matMenuTriggerFor]="menu">
+      <img matButtonIcon class="avatar r-full" [src]="user.avatar" width="24" alt="avatar" />
+      <span class="m-x-8">{{ user.name }}</span>
     </button>
 
     <mat-menu #menu="matMenu">
       <button routerLink="/profile/overview" mat-menu-item>
         <mat-icon>account_circle</mat-icon>
-        <span>{{ 'user.profile' | translate }}</span>
+        <span>{{ 'profile' | translate }}</span>
       </button>
       <button routerLink="/profile/settings" mat-menu-item>
-        <mat-icon>settings</mat-icon>
-        <span>{{ 'user.settings' | translate }}</span>
+        <mat-icon>edit</mat-icon>
+        <span>{{ 'edit_profile' | translate }}</span>
+      </button>
+      <button mat-menu-item (click)="restore()">
+        <mat-icon>restore</mat-icon>
+        <span>{{ 'restore_defaults' | translate }}</span>
       </button>
       <button mat-menu-item (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
-        <span>{{ 'user.logout' | translate }}</span>
+        <span>{{ 'logout' | translate }}</span>
       </button>
     </mat-menu>
   `,
+  styles: [
+    `
+      .avatar {
+        width: 24px;
+        height: 24px;
+      }
+    `,
+  ],
 })
 export class UserComponent implements OnInit {
-  user: User;
+  user!: User;
 
-  constructor(private router: Router, private auth: AuthService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private cdr: ChangeDetectorRef,
+    private settings: SettingsService
+  ) {}
 
   ngOnInit(): void {
     this.auth
@@ -48,6 +62,13 @@ export class UserComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout().subscribe(() => this.router.navigateByUrl('/auth/login'));
+    this.auth.logout().subscribe(() => {
+      this.router.navigateByUrl('/auth/login');
+    });
+  }
+
+  restore() {
+    this.settings.reset();
+    window.location.reload();
   }
 }

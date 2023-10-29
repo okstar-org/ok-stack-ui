@@ -1,6 +1,7 @@
-@import '../style/variables';
-@import '../style/transitions';
-@import '../style/breakpoints';
+@use '@angular/material' as mat;
+@use '../style/variables';
+@use '../style/transitions';
+@use '../style/breakpoints';
 
 .matero-container-wrap,
 .matero-container {
@@ -9,25 +10,19 @@
 
 .matero-content {
   position: relative;
-  padding: $gutter;
+  padding: variables.$gutter;
 }
 
 .matero-sidenav {
   position: absolute;
   overflow-x: hidden;
-  transition: swift-ease-out(width); // Only set width property
-
-  @include mat-elevation(2);
-
-  &.mat-drawer-side {
-    border-width: 0;
-  }
+  transition: transitions.swift-ease-out(width); // Only set width property
 }
 
 // Layout control
 .matero-header-above {
   .matero-container {
-    height: calc(100% - #{$toolbar-height-desktop}) !important;
+    height: calc(100% - #{variables.$toolbar-height-desktop}) !important;
   }
 
   .matero-sidebar-main {
@@ -39,7 +34,7 @@
 .matero-sidenav-collapsed,
 .matero-sidenav-collapsed-fix {
   .matero-sidenav {
-    width: $sidenav-collapsed-width;
+    width: variables.$sidenav-collapsed-width;
 
     .menu-name,
     .menu-label,
@@ -56,7 +51,7 @@
     }
 
     &:hover {
-      width: $sidenav-width;
+      width: variables.$sidenav-width;
 
       .menu-name,
       .menu-label,
@@ -78,17 +73,17 @@
 // Layout control
 .matero-sidenav-collapsed {
   .matero-content-wrap {
-    margin-left: $sidenav-collapsed-width !important;
+    margin-left: variables.$sidenav-collapsed-width !important;
 
     [dir='rtl'] & {
+      margin-right: variables.$sidenav-collapsed-width !important;
       margin-left: auto !important;
-      margin-right: $sidenav-collapsed-width !important;
     }
   }
 
   &[dir='rtl'] .matero-content-wrap {
+    margin-right: variables.$sidenav-collapsed-width !important;
     margin-left: auto !important;
-    margin-right: $sidenav-collapsed-width !important;
   }
 }
 
@@ -102,8 +97,8 @@
     margin-left: 16px;
 
     [dir='rtl'] & {
-      margin-left: auto;
       margin-right: 16px;
+      margin-left: auto;
     }
   }
 }
@@ -113,23 +108,18 @@
   .matero-header {
     position: sticky;
     top: 0;
+    // Fix header's positioning problem on Firefox
+    // https://github.com/ng-matero/ng-matero/issues/522
+    display: block;
   }
 
   .matero-topmenu {
-    top: $topmenu-sticky-position-desktop;
+    top: variables.$topmenu-sticky-position-desktop;
 
-    @include bp-lt(small) {
+    @include breakpoints.bp-lt(small) {
       & {
-        top: $topmenu-sticky-position-mobile;
+        top: variables.$topmenu-sticky-position-mobile;
       }
-    }
-  }
-
-  &.matero-navbar-side {
-    .matero-toolbar {
-      border-bottom: unset;
-
-      @include mat-elevation(2);
     }
   }
 }
@@ -137,11 +127,11 @@
 // Fix the init content width
 .matero-content-width-fix {
   .matero-content-wrap {
-    margin-left: $sidenav-width !important;
+    margin-left: variables.$sidenav-width !important;
 
     [dir='rtl'] & {
+      margin-right: variables.$sidenav-width !important;
       margin-left: auto !important;
-      margin-right: $sidenav-width !important;
     }
   }
 }

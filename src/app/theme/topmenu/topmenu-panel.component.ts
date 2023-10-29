@@ -19,10 +19,10 @@ import { TopmenuState } from './topmenu.component';
   templateUrl: './topmenu-panel.component.html',
 })
 export class TopmenuPanelComponent implements OnInit, OnDestroy {
-  @ViewChild(MatMenu, { static: true }) menuPanel: MatMenu;
+  @ViewChild(MatMenu, { static: true }) menuPanel!: MatMenu;
 
   @Input() items: MenuChildrenItem[] = [];
-  @Input() parentRoute = [];
+  @Input() parentRoute: string[] = [];
   @Input() level = 1;
   @Output() routeChange = new EventEmitter<any>();
 
@@ -30,9 +30,12 @@ export class TopmenuPanelComponent implements OnInit, OnDestroy {
 
   buildRoute = this.menu.buildRoute;
 
-  private routerSubscription: Subscription;
+  private routerSubscription = Subscription.EMPTY;
 
-  constructor(private menu: MenuService, private router: Router) {}
+  constructor(
+    private menu: MenuService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.items.forEach(item => {
@@ -41,7 +44,7 @@ export class TopmenuPanelComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.routerSubscription?.unsubscribe();
+    this.routerSubscription.unsubscribe();
   }
 
   checkRoute(item: MenuChildrenItem) {
@@ -52,7 +55,7 @@ export class TopmenuPanelComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkChildRoute(menuItems: MenuChildrenItem[]) {
+  checkChildRoute(menuItems: MenuChildrenItem[] = []) {
     return menuItems.some(child => {
       if (this.router.url.split('/').includes(child.route)) {
         return true;
@@ -60,6 +63,7 @@ export class TopmenuPanelComponent implements OnInit, OnDestroy {
       if (!child.route && child.children) {
         this.checkChildRoute(child.children);
       }
+      return false;
     });
   }
 
@@ -70,7 +74,7 @@ export class TopmenuPanelComponent implements OnInit, OnDestroy {
   onRouteChange(rla: RouterLinkActive, index: number) {
     this.routeChange.emit(rla);
 
-    this.routerSubscription?.unsubscribe();
+    this.routerSubscription.unsubscribe();
     this.routerSubscription = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(e => {

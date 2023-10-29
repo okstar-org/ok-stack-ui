@@ -14,20 +14,18 @@ import { ToastrModule } from 'ngx-toastr';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-// Required for AOT compilation
-export function TranslateHttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
-
 import { httpInterceptorProviders } from '@core/interceptors';
 import { appInitializerProviders } from '@core/initializers';
 import { FormlyConfigModule } from './formly-config.module';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemDataService } from './shared/in-mem/in-mem-data.service';
 import { BASE_URL } from '@core/interceptors/base-url-interceptor';
 import { environment } from '@env/environment';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+
+// Required for AOT compilation
+export function TranslateHttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -48,11 +46,6 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
         useFactory: TranslateHttpLoaderFactory,
         deps: [HttpClient],
       },
-    }),
-    // Demo purposes only for GitHub Pages
-    HttpClientInMemoryWebApiModule.forRoot(InMemDataService, {
-      dataEncapsulation: false,
-      passThruUnknownUrl: true,
     }),
     LoggerModule.forRoot({
       serverLoggingUrl: '/api/logs',

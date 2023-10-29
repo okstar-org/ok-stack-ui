@@ -5,7 +5,7 @@ import { SettingsService } from '@core';
 @Component({
   selector: 'app-translate',
   template: `
-    <button mat-icon-button class="matero-toolbar-button" [matMenuTriggerFor]="menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>translate</mat-icon>
     </button>
 
@@ -15,7 +15,6 @@ import { SettingsService } from '@core';
       </button>
     </mat-menu>
   `,
-  styles: [],
 })
 export class TranslateComponent {
   langs = {
@@ -24,7 +23,10 @@ export class TranslateComponent {
     'zh-TW': '中文繁体',
   };
 
-  constructor(private translate: TranslateService, private settings: SettingsService) {
+  constructor(
+    private translate: TranslateService,
+    private settings: SettingsService
+  ) {
     translate.addLangs(['en-US', 'zh-CN', 'zh-TW']);
   }
 

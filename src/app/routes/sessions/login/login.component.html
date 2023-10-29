@@ -6,31 +6,19 @@
 
       <mat-form-field appearance="outline">
         <mat-label>{{'login.username' | translate}}</mat-label>
-        <input matInput placeholder="username"
-                formControlName="username" required>
-        <mat-error *ngIf="username.invalid">
-          <span *ngIf="username.errors.required">
-            {{'login.please_enter' | translate}}
-          </span>
-
-          <span *ngIf="username.errors.remote">
-            {{ username.errors.remote }}
-          </span>
+        <input matInput placeholder="username" formControlName="username" required>
+        <mat-error *ngIf="username?.invalid">
+          <span *ngIf="username?.errors?.required">{{'login.please_enter' | translate}}</span>
+          <span *ngIf="username?.errors?.remote">{{ username?.errors?.remote }}</span>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>{{'login.password' | translate}}</mat-label>
-        <input matInput placeholder="password" type="password"
-               formControlName="password" required>
-        <mat-error *ngIf="password.invalid">
-          <span *ngIf="password.errors.required">
-            {{'login.please_enter' | translate}}
-          </span>
-
-          <span *ngIf="password.errors.remote">
-            {{ password.errors.remote }}
-          </span>
+        <input matInput placeholder="password" type="password" formControlName="password" required>
+        <mat-error *ngIf="password?.invalid">
+          <span *ngIf="password?.errors?.required">{{'login.please_enter' | translate}}</span>
+          <span *ngIf="password?.errors?.remote">{{ password?.errors?.remote }}</span>
         </mat-error>
       </mat-form-field>
 

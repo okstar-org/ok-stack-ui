@@ -1,8 +1,10 @@
-@import '../style/variables';
-@import '../style/transitions';
+@use '../style/transitions';
 
 .matero-user-panel {
-  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0;
 }
 
 // Set default width and height can avoid flashing before avatar image loaded.
@@ -11,13 +13,13 @@
   height: 64px;
   margin-bottom: 8px;
   border-radius: 50rem;
-  transition: swift-ease-out(transform);
+  transition: transitions.swift-ease-out(transform);
 }
 
 .matero-user-panel-name,
 .matero-user-panel-email {
   margin-top: 0;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   font-weight: normal;
 }
 
@@ -25,15 +27,22 @@
 .matero-user-panel-email,
 .matero-user-panel-icons {
   opacity: 1;
-  transition: swift-ease-out(opacity);
+  transition: transitions.swift-ease-out(opacity);
 }
 
 .matero-user-panel-icons {
   white-space: nowrap;
 
-  .mat-icon-button {
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
+  .mat-mdc-button-base,
+  .mat-mdc-button-touch-target {
+    width: 32px;
+    height: 32px;
+  }
+
+  .mat-mdc-button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
   }
 }

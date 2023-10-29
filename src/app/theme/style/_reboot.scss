@@ -1,11 +1,11 @@
-// Reboot
+@use 'variables';
 
 body {
   margin: 0;
-  line-height: normal;
-  font-family: $font-family-base;
+  font-family: variables.$font-family-base;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
 }
@@ -30,22 +30,11 @@ ul {
   margin-bottom: 1rem;
 }
 
-input,
-button,
-select,
-optgroup,
-textarea {
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
-
 code,
 kbd,
 pre,
 samp {
-  font-family: $font-family-monospace;
+  font-family: variables.$font-family-monospace;
 }
 
 code {

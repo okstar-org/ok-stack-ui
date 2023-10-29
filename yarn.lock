@@ -263,12 +263,12 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/flex-layout@^11.0.0-beta.33":
-  version "11.0.0-beta.33"
-  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-11.0.0-beta.33.tgz#c2d08f90164701b66a62b8c4365b4e22c1e95789"
-  integrity sha512-unfhw3abZuKtdwQicRStHCYGbANPTHYg4WNRQk/RC5Mxq+4WOp4Q8HI7GqRHCGUYDCGUP7w1sU/oDt8f09nM8w==
+"@angular/flex-layout@^15.0.0-beta.42":
+  version "15.0.0-beta.42"
+  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-15.0.0-beta.42.tgz#ad5e1dda32ee6280ba73765be10fd916c222e38e"
+  integrity sha512-cTAPVMMxnyIFwpZwdq0PL5mdP9Qh+R8MB7ZBezVaN3Rz2fRrkagzKpLvPX3TFzepXrvHBdpKsU4b8u+NxEC/6g==
   dependencies:
-    tslib "^2.0.0"
+    tslib "^2.3.0"
 
 "@angular/forms@^16.2.11":
   version "16.2.11"
@@ -2611,6 +2611,13 @@
     "@material/feature-targeting" "15.0.0-canary.bc9ae6c9c.0"
     "@material/theme" "15.0.0-canary.bc9ae6c9c.0"
     tslib "^2.1.0"
+
+"@ng-matero/extensions-moment-adapter@^16.0.0":
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/@ng-matero/extensions-moment-adapter/-/extensions-moment-adapter-16.0.0.tgz#87189045a211b9c0c587281dfa56f95a79f29d9e"
+  integrity sha512-+Ue/Vy+iCAKBbZzOjKyw2GiTPBx8+yepTx9rb5Vny5u3T0hONGk4Gb5HV5TiYY5NwjMx5PxYAekJzqEUunIoQA==
+  dependencies:
+    tslib "^2.4.0"
 
 "@ng-matero/extensions@^16.1.2":
   version "16.1.2"

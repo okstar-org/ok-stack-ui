@@ -1,4 +1,4 @@
-@mixin scrollbar-thin() {
+@mixin thin() {
   &::-webkit-scrollbar {
     width: 4px;
     height: 4px;
@@ -6,10 +6,10 @@
 
   &::-webkit-scrollbar-track,
   &::-webkit-scrollbar-thumb {
-    border-radius: 50rem;
-    border-width: 0;
-    border-style: solid;
     border-color: transparent;
+    border-style: solid;
+    border-width: 0;
+    border-radius: 50rem;
     border-image: initial;
   }
 
@@ -31,7 +31,7 @@
   }
 }
 
-@mixin scrollbar-none {
+@mixin none {
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
