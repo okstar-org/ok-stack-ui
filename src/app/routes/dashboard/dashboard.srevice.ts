@@ -54,7 +54,9 @@ const MESSAGES = [
   },
 ];
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class DashboardService {
   stats = [
     {

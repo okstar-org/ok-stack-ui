@@ -14,9 +14,9 @@ export class AddComponent implements OnInit {
   emitter = new EventEmitter<void>();
 
   id: ID;
-  formGroup : FormGroup;
-  fields : OkFormField[] = [];
-  names : string[] = [];
+  formGroup: FormGroup;
+  fields: OkFormField[] = [];
+  names: string[] = [];
 
   params = { select: { status: [] } };
 
@@ -28,7 +28,7 @@ export class AddComponent implements OnInit {
   ) {
     this.logger.info('formGroup:', this.data);
 
-    this.id = {id: this.data.id, version: this.data.version};
+    this.id = { id: this.data.id, version: this.data.version };
 
     this.fields = this.data.fields;
     this.names = this.data.names;
@@ -39,19 +39,15 @@ export class AddComponent implements OnInit {
     // };
 
     this.fields.forEach(field => {
-      const required = field.validations['Required']
-      if(required){
-        this.formGroup.get(field.name).setValidators(Validators.required);
+      const required = field.validations.Required;
+      if (required) {
+        this.formGroup.get(field.name)?.setValidators(Validators.required);
       }
-    })
-
+    });
   }
 
   ngOnInit(): void {
-
-
-    this.service.params(CRM_API.lead.params)
-    .subscribe((r: { data: any }) => {
+    this.service.params(CRM_API.lead.params).subscribe(r => {
       this.params = r.data;
     });
   }
@@ -69,10 +65,10 @@ export class AddComponent implements OnInit {
 
   doSave() {
     if (!this.formGroup.valid) {
-      return false;
+      return;
     }
 
-    const data = {...this.formGroup.value, ...this.id};
+    const data = { ...this.formGroup.value, ...this.id };
     this.logger.debug('save', data);
 
     this.service.save(data).subscribe(r => {

@@ -2,9 +2,9 @@ import { OkApi } from '@shared/api/ok';
 
 export interface DTO {}
 
-class Api implements OkApi  {
+class Api implements OkApi {
   findById = '/api/portal/app-bpm/engine/getConfig';
-  page: string;
+  page: string = '';
   findByType?: string;
 }
 

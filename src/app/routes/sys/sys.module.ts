@@ -10,6 +10,5 @@ const COMPONENTS_DYNAMIC = [DialogDeleteComponent];
 @NgModule({
   imports: [CommonModule, SharedModule, sysRoutes],
   declarations: [COMPONENTS, COMPONENTS_DYNAMIC],
-  entryComponents: [COMPONENTS_DYNAMIC],
 })
 export class SysModule {}

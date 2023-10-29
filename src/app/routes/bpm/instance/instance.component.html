@@ -17,8 +17,7 @@
     </mat-card>
 
     <mat-card>
-      <mtx-grid
-                [toolbarTitle]="'bpm.instance.title' | translate"
+      <mtx-grid [toolbarTitle]="'bpm.instance.title' | translate"
                 [data]="list"
                 [columns]="columns"
                 [length]="total"
@@ -26,7 +25,7 @@
                 [showToolbar]="showToolbar"
                 [rowSelectable]="rowSelectable"
                 [columnHideable]="columnHideable"
-                [columnMovable]="columnMovable"
+                [columnSortable]="columnMovable"
                 [multiSelectable]="multiSelectable"
                 [pageOnFront]="false"
                 [pageIndex]="pageIndex"

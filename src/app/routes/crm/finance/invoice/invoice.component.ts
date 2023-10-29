@@ -6,7 +6,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { NGXLogger } from 'ngx-logger';
 
 import { InvoiceService } from './invoice.service';
-import { MtxGridColumn } from '@ng-matero/extensions';
+import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { OkPaginatorComponent } from '@shared/components/ok/ok-paginator.component';
 
 @Component({
@@ -16,7 +16,7 @@ import { OkPaginatorComponent } from '@shared/components/ok/ok-paginator.compone
   providers: [InvoiceService],
 })
 export class InvoiceComponent extends OkPaginatorComponent implements OnInit {
-  group: FormGroup;
+  group = new FormGroup({});
   backParams = {};
 
   list = [];
@@ -73,7 +73,7 @@ export class InvoiceComponent extends OkPaginatorComponent implements OnInit {
           type: 'icon',
           icon: 'chat',
           text: '跟进',
-          popTitle: '跟进',
+          pop: { title: '跟进' },
           tooltip: '跟进',
         },
         {
@@ -92,10 +92,11 @@ export class InvoiceComponent extends OkPaginatorComponent implements OnInit {
           icon: 'delete',
           text: this.translate.stream('table_kitchen_sink.delete'),
           tooltip: this.translate.stream('table_kitchen_sink.delete'),
-          pop: true,
-          popTitle: this.translate.stream('table_kitchen_sink.confirm_delete'),
-          popCloseText: this.translate.stream('table_kitchen_sink.close'),
-          popOkText: this.translate.stream('table_kitchen_sink.ok'),
+          pop: {
+            title: this.translate.stream('table_kitchen_sink.confirm_delete'),
+            closeText: this.translate.stream('table_kitchen_sink.close'),
+            okText: this.translate.stream('table_kitchen_sink.ok'),
+          },
           // click: record => this.delete(record),
         },
         {

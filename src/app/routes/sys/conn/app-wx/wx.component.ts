@@ -45,11 +45,11 @@ export class WxComponent extends OkItemComponent implements OnInit, OkOnSave {
   loadForm() {
     this.svc.findByType(ConnType.WX).subscribe(r => {
       const data: AppInfo = r.data;
-      this.form.get('name').setValue(data.name);
-      this.form.get('certKey').setValue(data.certKey);
-      this.form.get('certSecret').setValue(data.certSecret);
-      this.form.get('id').setValue(data.id);
-      this.form.get('type').setValue(data.type);
+      this.form.get('name')?.setValue(data.name);
+      this.form.get('certKey')?.setValue(data.certKey);
+      this.form.get('certSecret')?.setValue(data.certSecret);
+      this.form.get('id')?.setValue(data.id);
+      this.form.get('type')?.setValue(data.type);
     });
   }
 

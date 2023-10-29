@@ -51,9 +51,10 @@ export interface OkFormField {
   name: string;
   label: string;
   value: string;
-  validations: Map<string, string>;
+  validations: any;
 }
 export interface OkFormResult extends ID {
+  [k: string]: any;
 
   controlsConfig: any;
   names: string[];

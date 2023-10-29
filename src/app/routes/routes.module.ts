@@ -7,11 +7,10 @@ import { LoginComponent } from './sessions/login/login.component';
 import { RegisterComponent } from './sessions/register/register.component';
 
 const COMPONENTS = [DashboardComponent, LoginComponent, RegisterComponent];
-const COMPONENTS_DYNAMIC = [];
+const COMPONENTS_DYNAMIC: any[] = [];
 
 @NgModule({
   imports: [SharedModule, RoutesRoutingModule],
   declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],
-  entryComponents: COMPONENTS_DYNAMIC,
 })
 export class RoutesModule {}

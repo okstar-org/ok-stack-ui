@@ -6,11 +6,11 @@ import { OkItemService } from '@shared/services/ok-item.service';
 import { OkOnSave } from './ok-on-save';
 
 export class OkItemComponent {
-  translateSubscription: Subscription;
+  translateSubscription = Subscription.EMPTY;
   backParams = {};
   group: FormGroup;
 
-  isLoading: boolean;
+  isLoading: boolean = false;
 
   constructor(
     protected logger: NGXLogger,

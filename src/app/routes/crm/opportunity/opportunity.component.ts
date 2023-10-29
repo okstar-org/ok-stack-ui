@@ -7,7 +7,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { NGXLogger } from 'ngx-logger';
 
 import { OpportunityService } from './opportunity.service';
-import { MtxGridColumn } from '@ng-matero/extensions';
+import { MtxGridColumn } from '@ng-matero/extensions/grid';
 
 @Component({
   selector: 'app-opportunity',
@@ -16,8 +16,8 @@ import { MtxGridColumn } from '@ng-matero/extensions';
   providers: [OpportunityService],
 })
 export class OpportunityComponent extends OkPaginatorComponent implements OnInit {
-  group: FormGroup;
-  backParams = {};
+  group = new FormGroup({});
+  backParams: any = {};
 
   list = [];
   total = 0;
@@ -73,7 +73,9 @@ export class OpportunityComponent extends OkPaginatorComponent implements OnInit
           type: 'icon',
           icon: 'chat',
           text: '跟进',
-          popTitle: '跟进',
+          pop: {
+            title: '跟进',
+          },
           tooltip: '跟进',
         },
         {
@@ -92,10 +94,11 @@ export class OpportunityComponent extends OkPaginatorComponent implements OnInit
           icon: 'delete',
           text: this.translate.stream('table_kitchen_sink.delete'),
           tooltip: this.translate.stream('table_kitchen_sink.delete'),
-          pop: true,
-          popTitle: this.translate.stream('table_kitchen_sink.confirm_delete'),
-          popCloseText: this.translate.stream('table_kitchen_sink.close'),
-          popOkText: this.translate.stream('table_kitchen_sink.ok'),
+          pop: {
+            title: this.translate.stream('table_kitchen_sink.confirm_delete'),
+            closeText: this.translate.stream('table_kitchen_sink.close'),
+            okText: this.translate.stream('table_kitchen_sink.ok'),
+          },
           // click: record => this.delete(record),
         },
         {
@@ -113,7 +116,7 @@ export class OpportunityComponent extends OkPaginatorComponent implements OnInit
     },
   ];
 
-  searchControls = [
+  searchControls: any[] = [
     {
       name: 'keyword',
       type: 'input',
@@ -169,7 +172,7 @@ export class OpportunityComponent extends OkPaginatorComponent implements OnInit
   changeSort(e: any) {
     console.log(e);
   }
-  getBackParams(param) {
+  getBackParams(param: any) {
     return this.backParams[param];
   }
   add() {}

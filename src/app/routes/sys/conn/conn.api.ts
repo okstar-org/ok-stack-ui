@@ -7,9 +7,9 @@ enum ConnType {
 export { ConnType };
 
 export class AppInfo {
-  id: string;
-  name: string;
-  certKey: string;
-  certSecret: string;
-  type: ConnType;
+  id: string = '';
+  name: string = '';
+  certKey: string = '';
+  certSecret: string = '';
+  type: ConnType = ConnType.WX;
 }

@@ -15,12 +15,15 @@ enum Type {
 })
 export class OkSearchComponent implements OnInit {
   @Input() controls: {
-    type: Type;
+    type: 'input' | 'select' | 'date' | 'checkbox';
     name: string;
     placeholder?: string;
     label?: string;
+
+    [k: string]: any;
   }[] = [];
-  @Input() formGroup: FormGroup;
+
+  @Input() formGroup = new FormGroup({});
 
   constructor() {}
 

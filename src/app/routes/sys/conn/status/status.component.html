@@ -8,7 +8,7 @@
       <mat-list-item>
         连接状态：
         <button mat-raised-button (click)="onTest()">测试</button>
-        <div *ngIf="isTestYes">
+        <div *ngIf="isTestYes!==null">
           <span *ngIf="isTestYes === true">连接成功</span>
           <span *ngIf="isTestYes === false">连接失败</span>
         </div>

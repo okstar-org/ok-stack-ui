@@ -4,7 +4,7 @@ import { NGXLogger } from 'ngx-logger';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { OkDetailComponent } from '@shared/components/ok/ok-detail.component';
-import { MtxGridColumn } from '@ng-matero/extensions';
+import { MtxGridColumn } from '@ng-matero/extensions/grid';
 
 @Component({
   selector: 'app-attach',
@@ -12,7 +12,7 @@ import { MtxGridColumn } from '@ng-matero/extensions';
   styleUrls: ['./attach.component.scss'],
 })
 export class AttachComponent extends OkDetailComponent implements OnInit {
-  searchControls = [
+  searchControls: any[] = [
     {
       name: 'keyword',
       type: 'input',
@@ -77,10 +77,11 @@ export class AttachComponent extends OkDetailComponent implements OnInit {
           icon: 'delete',
           text: this.translate.stream('table_kitchen_sink.delete'),
           tooltip: this.translate.stream('table_kitchen_sink.delete'),
-          pop: true,
-          popTitle: this.translate.stream('table_kitchen_sink.confirm_delete'),
-          popCloseText: this.translate.stream('table_kitchen_sink.close'),
-          popOkText: this.translate.stream('table_kitchen_sink.ok'),
+          pop: {
+            title: this.translate.stream('table_kitchen_sink.confirm_delete'),
+            closeText: this.translate.stream('table_kitchen_sink.close'),
+            okText: this.translate.stream('table_kitchen_sink.ok'),
+          },
           click: record => this.delete(record),
         },
         {

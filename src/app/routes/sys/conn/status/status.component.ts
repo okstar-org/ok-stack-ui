@@ -13,12 +13,12 @@ import { OkPayload } from '@shared/api/ok';
   styleUrls: ['./status.component.scss'],
 })
 export class StatusComponent implements OnInit {
-  @Input() type: ConnType;
+  @Input() type!: ConnType;
 
-  accessToken: { valid: boolean; accessToken: string };
+  accessToken!: { valid: boolean; accessToken: string };
 
   isLoadingTest = false;
-  isTestYes: boolean = null;
+  isTestYes: boolean | null = null;
 
   constructor(
     protected logger: NGXLogger,

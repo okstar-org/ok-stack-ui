@@ -37,13 +37,12 @@ export class InfoComponent extends OkDetailComponent implements OnInit, OnDestro
     { name: '操作日志', amount: '110233' },
   ];
 
-  id: string;
-  data: OkFormResult;
+  id: string = '';
+  data!: OkFormResult;
 
-  formGroup: FormGroup;
+  formGroup = new FormGroup({});
 
   fields: OkFormField[] = [];
-
 
   constructor(
     protected logger: NGXLogger,
@@ -53,7 +52,7 @@ export class InfoComponent extends OkDetailComponent implements OnInit, OnDestro
     private activedRoute: ActivatedRoute
   ) {
     super(logger, fb, service, {});
-    this.activedRoute.parent.params.subscribe((p: { id: string }) => {
+    this.activedRoute.parent?.params.subscribe(p => {
       this.id = p.id;
     });
   }
@@ -67,7 +66,7 @@ export class InfoComponent extends OkDetailComponent implements OnInit, OnDestro
     this.logger.info('info destroy...', this.id);
   }
 
-  edit(){
+  edit() {
     this.logger.debug('edit...');
     this.data.id = this.id;
     const dialogRef = this.dialog.open(AddComponent, { data: this.data });
@@ -77,7 +76,7 @@ export class InfoComponent extends OkDetailComponent implements OnInit, OnDestro
     });
   }
 
-  refresh(){
+  refresh() {
     this.getDetail(this.id).subscribe(r => {
       this.data = r.data;
       this.formGroup = this.fb.group(this.data.controlsConfig);

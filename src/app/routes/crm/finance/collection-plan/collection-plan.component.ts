@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 
 import { CollectionPlanService } from './collection-plan.service';
-import { MtxGridColumn } from '@ng-matero/extensions';
+import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { OkPaginatorComponent } from '@shared/components/ok/ok-paginator.component';
 
 @Component({
@@ -15,8 +15,8 @@ import { OkPaginatorComponent } from '@shared/components/ok/ok-paginator.compone
   providers: [CollectionPlanService],
 })
 export class CollectionPlanComponent extends OkPaginatorComponent implements OnInit {
-  group: FormGroup;
-  backParams = {};
+  group = new FormGroup({});
+  backParams: any = {};
 
   list = [];
   total = 0;
@@ -72,7 +72,7 @@ export class CollectionPlanComponent extends OkPaginatorComponent implements OnI
           type: 'icon',
           icon: 'chat',
           text: '跟进',
-          popTitle: '跟进',
+          pop: { title: '跟进' },
           tooltip: '跟进',
         },
         {
@@ -91,10 +91,11 @@ export class CollectionPlanComponent extends OkPaginatorComponent implements OnI
           icon: 'delete',
           text: this.translate.stream('table_kitchen_sink.delete'),
           tooltip: this.translate.stream('table_kitchen_sink.delete'),
-          pop: true,
-          popTitle: this.translate.stream('table_kitchen_sink.confirm_delete'),
-          popCloseText: this.translate.stream('table_kitchen_sink.close'),
-          popOkText: this.translate.stream('table_kitchen_sink.ok'),
+          pop: {
+            title: this.translate.stream('table_kitchen_sink.confirm_delete'),
+            closeText: this.translate.stream('table_kitchen_sink.close'),
+            okText: this.translate.stream('table_kitchen_sink.ok'),
+          },
           // click: record => this.delete(record),
         },
         {
@@ -160,7 +161,7 @@ export class CollectionPlanComponent extends OkPaginatorComponent implements OnI
   changeSort(e: any) {
     console.log(e);
   }
-  getBackParams(param) {
+  getBackParams(param: any) {
     return this.backParams[param];
   }
   edit(row: any) {}

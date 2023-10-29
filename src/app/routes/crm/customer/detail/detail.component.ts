@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
-  id: string;
+  id: string = '';
   data: any;
 
   tabLinks = [
@@ -31,7 +31,7 @@ export class DetailComponent implements OnInit {
     private activedRoute: ActivatedRoute,
     private svc: DetailService
   ) {
-    this.activedRoute.params.subscribe((params: { id: string }) => {
+    this.activedRoute.params.subscribe(params => {
       console.log('params=>', params);
       this.id = params.id;
     });

@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { MtxGridColumn } from '@ng-matero/extensions';
+import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { TranslateService } from '@ngx-translate/core';
 import { NGXLogger } from 'ngx-logger';
 import { OkPaginatorComponent } from '@shared/components/ok/ok-paginator.component';
@@ -68,7 +68,6 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
       pinned: 'right',
       type: 'button',
       buttons: [
-
         {
           color: 'primary',
           icon: 'add_to_queue',
@@ -114,7 +113,8 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
           icon: 'pause_circle_outline',
           text: this.translate.stream('bpm.task.suspend'),
           tooltip: this.translate.stream('bpm.task.suspend'),
-          iif: row => row.status === 'Ready'||row.status === 'Reserved'||row.status === 'InProgress',
+          iif: row =>
+            row.status === 'Ready' || row.status === 'Reserved' || row.status === 'InProgress',
           click: row => this.doSuspend(row),
         },
         {
@@ -129,7 +129,7 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
     },
   ];
 
-  searchControls = [
+  searchControls: any[] = [
     {
       name: 'keyword',
       type: 'input',
@@ -169,7 +169,7 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
     this.getPage();
   }
 
-  doResume(row: ID){
+  doResume(row: ID) {
     this.logger.info('doResume', row);
     this.svc.doResume(row).subscribe(r => {
       console.log('doResume=>', r);
@@ -177,7 +177,7 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
     });
   }
 
-  doStop(row: ID){
+  doStop(row: ID) {
     this.logger.info('doStop', row);
     this.svc.doStop(row).subscribe(r => {
       console.log('doStop=>', r);
@@ -185,7 +185,7 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
     });
   }
 
-  doStart(row: ID){
+  doStart(row: ID) {
     this.logger.info('doStart', row);
     this.svc.doStart(row).subscribe(r => {
       console.log('doStart=>', r);
@@ -201,7 +201,7 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
     });
   }
 
-  doRelease(row: ID){
+  doRelease(row: ID) {
     this.logger.info('doRelease', row);
     this.svc.doRelease(row).subscribe(r => {
       console.log('doRelease=>', r);
@@ -209,7 +209,7 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
     });
   }
 
-  doSuspend(row: ID){
+  doSuspend(row: ID) {
     this.logger.info('doSuspend', row);
     this.svc.doSuspend(row).subscribe(r => {
       console.log('doSuspend=>', r);
@@ -217,7 +217,7 @@ export class TaskComponent extends OkPaginatorComponent implements OnInit {
     });
   }
 
-  doComplete(row: ID){
+  doComplete(row: ID) {
     this.logger.info('doComplete', row);
     this.svc.doComplete(row, {}).subscribe(r => {
       console.log('doComplete=>', r);

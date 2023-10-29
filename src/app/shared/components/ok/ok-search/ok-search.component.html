@@ -1,7 +1,7 @@
 <ng-container *ngFor="let c of controls; let i = index">
 
   <mat-form-field class="m-8" *ngIf="c.type === 'input'" [formGroup]="formGroup">
-    <mat-placeholder>{{c.label}}</mat-placeholder>
+    <mat-label>{{c.label}}</mat-label>
     <input matInput [formControlName]="c.name" [name]="c.controlName">
   </mat-form-field>
 
@@ -26,7 +26,7 @@
   </div>
 
   <mat-form-field class="m-8" *ngIf="c.type === 'date'" [formGroup]="formGroup">
-    <mat-placeholder>{{c.label}}</mat-placeholder>
+    <mat-label>{{c.label}}</mat-label>
     <mat-datepicker-toggle [for]="datetimePicker" matSuffix></mat-datepicker-toggle>
     <mat-datepicker #datetimePicker startView="month" type="date"></mat-datepicker>
     <input [matDatepicker]="datetimePicker"

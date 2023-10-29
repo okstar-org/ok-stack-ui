@@ -18,7 +18,7 @@
       <div class="ok-table-view">
           <dl *ngFor="let item of fields">
             <dt>{{item.label}}：</dt>
-            <dd>{{formGroup.get(item.name).value}}</dd>
+            <dd>{{formGroup.get(item.name)?.value}}</dd>
           </dl>
       </div>
 

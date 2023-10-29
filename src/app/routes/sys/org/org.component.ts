@@ -82,11 +82,8 @@ export class DynamicDataSource {
   connect(collectionViewer: CollectionViewer): Observable<DynamicFlatNode[]> {
     // tslint:disable-next-line: deprecation
     this.treeControl.expansionModel.changed.subscribe(change => {
-      if (
-        (change as SelectionChange<DynamicFlatNode>).added ||
-        (change as SelectionChange<DynamicFlatNode>).removed
-      ) {
-        this.handleTreeControl(change as SelectionChange<DynamicFlatNode>);
+      if (change.added || change.removed) {
+        this.handleTreeControl(change);
       }
     });
 
@@ -133,7 +130,9 @@ export class DynamicDataSource {
         let i = index + 1;
         i < this.data.length && this.data[i].level > node.level;
         i++, count++
-      ) {}
+      ) {
+        //
+      }
       this.data.splice(index + 1, count);
       this.dataChange.next(this.data);
     }
@@ -149,9 +148,9 @@ export class DynamicDataSource {
 export class OrgComponent implements OnInit {
   displayedColumns = ['avatar', 'no', 'name', 'gender', 'mobile', 'active', 'sourceObjectList'];
 
-  dataSource: DynamicDataSource;
+  dataSource: any;
 
-  userDataSource: UserDataSource;
+  userDataSource!: UserDataSource;
 
   constructor(
     protected logger: NGXLogger,
@@ -165,7 +164,7 @@ export class OrgComponent implements OnInit {
 
   treeControl: FlatTreeControl<DynamicFlatNode>;
 
-  dataSourcea: DynamicDataSource | any;
+  dataSourcea: any;
 
   getLevel = (node: DynamicFlatNode) => node.level;
 

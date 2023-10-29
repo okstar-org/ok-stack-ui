@@ -1,4 +1,4 @@
- import { OkApi } from '@shared/api/ok';
+import { OkApi } from '@shared/api/ok';
 
 export interface DTO {}
 
@@ -22,8 +22,8 @@ class Api implements OkApi {
   start = '/api/portal/app-bpm/task/start';
   complete = '/api/portal/app-bpm/task/complete/';
 
-  detail: {
-    findById: '/api/portal/app-bpm/task/detail/findById/';
+  detail = {
+    findById: '/api/portal/app-bpm/task/detail/findById/',
   };
 }
 

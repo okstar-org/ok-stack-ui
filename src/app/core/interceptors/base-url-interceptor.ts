@@ -6,6 +6,8 @@ export const BASE_URL = new InjectionToken<string>('BASE_URL');
 
 @Injectable()
 export class BaseUrlInterceptor implements HttpInterceptor {
+  private hasScheme = (url: string) => this.baseUrl && new RegExp('^http(s)?://', 'i').test(url);
+
   constructor(@Optional() @Inject(BASE_URL) private baseUrl?: string) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -14,12 +16,8 @@ export class BaseUrlInterceptor implements HttpInterceptor {
       : next.handle(request);
   }
 
-  private hasScheme(url: string) {
-    return this.baseUrl && new RegExp('^http(s)?://', 'i').test(url);
-  }
-
   private prependBaseUrl(url: string) {
-    return [this.baseUrl.replace(/\/$/g, ''), url.replace(/^\.?\//, '')]
+    return [this.baseUrl?.replace(/\/$/g, ''), url.replace(/^\.?\//, '')]
       .filter(val => val)
       .join('/');
   }

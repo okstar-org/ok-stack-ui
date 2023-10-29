@@ -8,5 +8,5 @@ export enum Status {
 }
 
 export class DTO {
-  _isUploaded: boolean;
+  _isUploaded: boolean = false;
 }

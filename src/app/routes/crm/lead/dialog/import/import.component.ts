@@ -14,14 +14,14 @@ export class ImportComponent implements OnInit {
   emitter = new EventEmitter<void>();
 
   isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  firstFormGroup = new FormGroup({});
+  secondFormGroup = new FormGroup({});
   processed = 0;
 
   max = 3000;
   files = [];
 
-  data: DTO[];
+  data: DTO[] = [];
   displayedColumns: string[] = [
     '客户名称',
     '联系人姓名',
@@ -32,7 +32,7 @@ export class ImportComponent implements OnInit {
     '线索状态',
     '备注',
   ];
-  status: Status;
+  status!: Status;
   interval: any;
 
   constructor(
@@ -44,7 +44,7 @@ export class ImportComponent implements OnInit {
   ngOnInit() {}
 
   clear() {
-    this.data = null;
+    this.data = [];
   }
 
   doImport() {
@@ -112,7 +112,7 @@ export class ImportComponent implements OnInit {
     });
   }
 
-  updateFile($event) {
+  updateFile($event: any) {
     console.log('updateFile', $event);
 
     const target: DataTransfer = $event.target as DataTransfer;

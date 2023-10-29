@@ -18,7 +18,7 @@ import { Observable } from 'rxjs';
 export class DtComponent extends OkItemComponent implements OnInit {
   form: FormGroup;
   type = ConnType.DT;
-  accessToken: string;
+  accessToken: string = '';
 
   constructor(
     protected logger: NGXLogger,
@@ -45,11 +45,11 @@ export class DtComponent extends OkItemComponent implements OnInit {
   loadForm() {
     this.svc.findByType(ConnType.DT).subscribe(r => {
       const data: AppInfo = r.data;
-      this.group.get('name').setValue(data.name);
-      this.group.get('certKey').setValue(data.certKey);
-      this.group.get('certSecret').setValue(data.certSecret);
-      this.form.get('id').setValue(data.id);
-      this.form.get('type').setValue(data.type);
+      this.group.get('name')?.setValue(data.name);
+      this.group.get('certKey')?.setValue(data.certKey);
+      this.group.get('certSecret')?.setValue(data.certSecret);
+      this.form.get('id')?.setValue(data.id);
+      this.form.get('type')?.setValue(data.type);
     });
   }
 

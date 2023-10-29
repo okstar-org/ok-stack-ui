@@ -12,8 +12,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
-  id: string;
-  formGroup: FormGroup;
+  id: string = '';
+  formGroup = new FormGroup({});
   data: any;
   order: string[] = [];
 
@@ -31,10 +31,10 @@ export class DetailComponent implements OnInit {
     private logger: NGXLogger,
     private activedRoute: ActivatedRoute,
     private svc: DetailService,
-   
-    private fb: FormBuilder,
+
+    private fb: FormBuilder
   ) {
-    this.activedRoute.params.subscribe((params: { id: string }) => {
+    this.activedRoute.params.subscribe(params => {
       console.log('params=>', params);
       this.id = params.id;
     });
@@ -48,9 +48,7 @@ export class DetailComponent implements OnInit {
     this.svc.getData(this.id).subscribe(r => {
       this.logger.info(r);
       this.formGroup = this.fb.group(r.data);
-      this.data= r.data;
+      this.data = r.data;
     });
   }
-
-
 }

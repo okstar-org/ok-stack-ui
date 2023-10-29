@@ -13,7 +13,7 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./follow-up.component.scss'],
 })
 export class FollowUpComponent extends OkDetailComponent implements OnInit {
-  searchControls = [
+  searchControls: any[] = [
     {
       name: 'keyword',
       type: 'input',

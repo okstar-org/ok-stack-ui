@@ -12,8 +12,8 @@ class OrderApi implements OkApi {
   deleteById = '/api/portal/app-crm/order/deleteById/';
   findById = '/api/portal/app-crm/order/findById/';
 
-  detail: {
-    findById: '/api/portal/app-crm/order/detail/findById/';
+  detail = {
+    findById: '/api/portal/app-crm/order/detail/findById/',
   };
 }
 

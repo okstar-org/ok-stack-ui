@@ -12,8 +12,8 @@ class Api implements OkApi {
   deleteById = '/api/portal/app-crm/collection-plan/deleteById/';
   findById = '/api/portal/app-crm/collection-plan/findById/';
 
-  detail: {
-    findById: '/api/portal/app-crm/collection-plan/detail/findById/';
+  detail = {
+    findById: '/api/portal/app-crm/collection-plan/detail/findById/',
   };
 }
 

@@ -6,11 +6,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 
 export class OkDetailComponent {
-  translateSubscription: Subscription;
+  translateSubscription = Subscription.EMPTY;
   backParams = {};
   group: FormGroup;
 
-  list = [];
+  list: any[] = [];
   total = 0;
   isLoading = true;
   rowSelectable = true;
@@ -40,11 +40,11 @@ export class OkDetailComponent {
   }
 
   get pageIndex() {
-    return this.group.get('page').value;
+    return this.group.get('page')?.value;
   }
 
   get pageSize() {
-    return this.group.get('size').value;
+    return this.group.get('size')?.value;
   }
 
   changeSort(e: any) {
@@ -52,8 +52,8 @@ export class OkDetailComponent {
   }
 
   getNextPage(e: PageEvent) {
-    this.group.get('page').setValue(e.pageIndex);
-    this.group.get('size').setValue(e.pageSize);
+    this.group.get('page')?.setValue(e.pageIndex);
+    this.group.get('size')?.setValue(e.pageSize);
     this.getPage();
   }
 
@@ -79,8 +79,8 @@ export class OkDetailComponent {
   }
 
   onPageEvent(e: PageEvent) {
-    this.group.get('page').setValue(e.pageIndex);
-    this.group.get('size').setValue(e.pageSize);
+    this.group.get('page')?.setValue(e.pageIndex);
+    this.group.get('size')?.setValue(e.pageSize);
     this.getPage();
   }
 }

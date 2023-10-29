@@ -10,9 +10,13 @@ import { filter } from 'rxjs/operators';
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  loginForm!: FormGroup<any>;
 
-  constructor(private fb: FormBuilder, private router: Router, private auth: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private auth: AuthService
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -23,15 +27,15 @@ export class LoginComponent implements OnInit {
   }
 
   get username() {
-    return this.loginForm.get('username');
+    return this.loginForm.get('username')!;
   }
 
   get password() {
-    return this.loginForm.get('password');
+    return this.loginForm.get('password')!;
   }
 
   get rememberMe() {
-    return this.loginForm.get('remember_me');
+    return this.loginForm.get('remember_me')!;
   }
 
   login() {
@@ -39,7 +43,9 @@ export class LoginComponent implements OnInit {
       .login(this.username.value, this.password.value, this.rememberMe.value)
       .pipe(filter(authenticated => authenticated))
       .subscribe(
-        () => this.router.navigateByUrl('/'),
+        () => {
+          this.router.navigateByUrl('/');
+        },
         (error: HttpErrorResponse) => {
           if (error.status === 422) {
             const form = this.loginForm;

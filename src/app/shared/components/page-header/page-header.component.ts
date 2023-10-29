@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-host-metadata-property */
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { MenuService } from '@core/bootstrap/menu.service';
 import { Router } from '@angular/router';
@@ -25,7 +26,10 @@ export class PageHeaderComponent implements OnInit {
   }
   private _hideBreadCrumb = false;
 
-  constructor(private router: Router, private menu: MenuService) {}
+  constructor(
+    private router: Router,
+    private menu: MenuService
+  ) {}
 
   ngOnInit() {
     this.nav = Array.isArray(this.nav) ? this.nav : [];

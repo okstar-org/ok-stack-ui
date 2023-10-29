@@ -23,7 +23,7 @@
       <mat-form-field class="demo-full-width m-8">
         <mat-label>AppKey：</mat-label>
         <input matInput formControlName="certKey" required>
-        <mat-error *ngIf="form.get('certKey').invalid">
+        <mat-error *ngIf="form.get('certKey')?.invalid">
           {{'validations.required' | translate}}
         </mat-error>
       </mat-form-field>
@@ -31,7 +31,7 @@
       <mat-form-field class="demo-full-width app-conn-cert m-8">
         <mat-label>AppSecret：</mat-label>
         <input matInput formControlName="certSecret" required>
-        <mat-error *ngIf="form.get('certSecret').invalid">
+        <mat-error *ngIf="form.get('certSecret')?.invalid">
           {{'validations.required' | translate}}
         </mat-error>
       </mat-form-field>

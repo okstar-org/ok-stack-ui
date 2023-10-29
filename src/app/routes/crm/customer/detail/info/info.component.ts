@@ -28,9 +28,9 @@ export class InfoComponent extends OkDetailComponent implements OnInit, OnDestro
     { name: '操作日志', amount: '110233' },
   ];
 
-  id: string;
+  id: string = '';
   data: any;
-  
+
   constructor(
     protected logger: NGXLogger,
     protected fb: FormBuilder,
@@ -38,7 +38,7 @@ export class InfoComponent extends OkDetailComponent implements OnInit, OnDestro
     protected service: InfoService
   ) {
     super(logger, fb, service, {});
-    this.activedRoute.parent.params.subscribe((p: { id: string }) => {
+    this.activedRoute.parent?.params.subscribe(p => {
       this.id = p.id;
     });
   }

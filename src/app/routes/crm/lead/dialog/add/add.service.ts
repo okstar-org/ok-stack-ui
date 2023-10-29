@@ -5,13 +5,18 @@ import { Observable } from 'rxjs';
 import { map, share, switchMap, tap } from 'rxjs/operators';
 import { CRM_API } from 'app/routes/crm/api-url';
 
-export interface DialogAddItem {}
+export interface DialogAddItem {
+  data: any;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AddService {
-  constructor(private logger: NGXLogger, private http: HttpClient) {}
+  constructor(
+    private logger: NGXLogger,
+    private http: HttpClient
+  ) {}
 
   params(params = {}): Observable<DialogAddItem> {
     this.logger.debug('params', params);

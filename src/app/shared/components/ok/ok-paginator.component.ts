@@ -7,9 +7,9 @@ import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 
 export class OkPaginatorComponent {
-  translateSubscription: Subscription;
-  group: FormGroup;
-  backParams = {};
+  translateSubscription = Subscription.EMPTY;
+  group = new FormGroup<any>({});
+  backParams: any = {};
 
   list = [];
   total = 0;
@@ -37,11 +37,11 @@ export class OkPaginatorComponent {
   }
 
   get pageIndex() {
-    return this.group.get('page').value;
+    return this.group.get('page')?.value;
   }
 
   get pageSize() {
-    return this.group.get('size').value;
+    return this.group.get('size')?.value;
   }
 
   changeSelect(e: any) {
@@ -52,7 +52,7 @@ export class OkPaginatorComponent {
     console.log('changeSort', e);
   }
 
-  getBackParams(param) {
+  getBackParams(param: any) {
     return this.backParams[param];
   }
 
@@ -72,18 +72,18 @@ export class OkPaginatorComponent {
   }
 
   getNextPage(e: PageEvent) {
-    this.group.get('page').setValue(e.pageIndex);
-    this.group.get('size').setValue(e.pageSize);
+    this.group.get('page')?.setValue(e.pageIndex);
+    this.group.get('size')?.setValue(e.pageSize);
     this.getPage();
   }
 
   resetPage() {
-    this.group.get('page').setValue(0);
-    this.group.get('size').setValue(10);
+    this.group.get('page')?.setValue(0);
+    this.group.get('size')?.setValue(10);
   }
 
   search() {
-    this.group.get('page').setValue(0);
+    this.group.get('page')?.setValue(0);
     this.getPage();
   }
 

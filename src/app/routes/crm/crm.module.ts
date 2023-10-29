@@ -10,6 +10,5 @@ import { ImportComponent } from './lead/dialog/import/import.component';
 @NgModule({
   declarations: [LeadComponent, AddComponent, ImportComponent],
   imports: [CommonModule, SharedModule, crmRoutes],
-  entryComponents: [AddComponent, ImportComponent],
 })
 export class CrmModule {}

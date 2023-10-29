@@ -10,7 +10,7 @@ import { DateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { MtxGridColumn } from '@ng-matero/extensions';
+import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { PageEvent } from '@angular/material/paginator';
 
 import { Form } from './lead.api';
@@ -29,9 +29,9 @@ export class LeadComponent extends OkPaginatorComponent implements OnInit, OnDes
 
   group: FormGroup;
 
-  translateSubscription: Subscription;
+  translateSubscription = Subscription.EMPTY;
 
-  backParams = {};
+  backParams: any = {};
 
   list = [];
   total = 0;
@@ -97,7 +97,9 @@ export class LeadComponent extends OkPaginatorComponent implements OnInit, OnDes
           type: 'icon',
           icon: 'chat',
           text: '跟进',
-          popTitle: '跟进',
+          pop: {
+            title: '跟进',
+          },
           tooltip: '跟进',
         },
         {
@@ -105,25 +107,26 @@ export class LeadComponent extends OkPaginatorComponent implements OnInit, OnDes
           icon: 'edit',
           text: this.translate.stream('table_kitchen_sink.edit'),
           tooltip: this.translate.stream('table_kitchen_sink.edit'),
-          click: record => this.edit(record),
+          click: (record: any) => this.edit(record),
         },
         {
           color: 'warn',
           icon: 'delete',
           text: this.translate.stream('table_kitchen_sink.delete'),
           tooltip: this.translate.stream('table_kitchen_sink.delete'),
-          pop: true,
-          popTitle: this.translate.stream('table_kitchen_sink.confirm_delete'),
-          popCloseText: this.translate.stream('table_kitchen_sink.close'),
-          popOkText: this.translate.stream('table_kitchen_sink.ok'),
-          click: record => this.delete(record),
+          pop: {
+            title: this.translate.stream('table_kitchen_sink.confirm_delete'),
+            closeText: this.translate.stream('table_kitchen_sink.close'),
+            okText: this.translate.stream('table_kitchen_sink.ok'),
+          },
+          click: (record: any) => this.delete(record),
         },
         {
           color: 'accent',
           icon: 'arrow_upward',
           text: '置顶',
           tooltip: '置顶',
-          click: record => this.top(record),
+          click: (record: any) => this.top(record),
         },
       ],
     },
@@ -136,7 +139,7 @@ export class LeadComponent extends OkPaginatorComponent implements OnInit, OnDes
     private dialog: MatDialog,
     private service: LeadService,
     private translate: TranslateService,
-    private dateAdapter: DateAdapter<any>,
+    private dateAdapter: DateAdapter<any>
   ) {
     super(fb, cdr, logger, service, {});
     this.group = this.fb.group({
@@ -210,18 +213,18 @@ export class LeadComponent extends OkPaginatorComponent implements OnInit, OnDes
   }
 
   get pageIndex() {
-    return this.group.get('page').value;
+    return this.group.get('page')?.value;
   }
 
   get pageSize() {
-    return this.group.get('size').value;
+    return this.group.get('size')?.value;
   }
 
-  getBackParams(param) {
+  getBackParams(param: any) {
     return this.backParams[param];
   }
 
-  delete(record) {
+  delete(record: any) {
     this.logger.info('delete...', record);
     this.service.delete(record).subscribe(r => {
       this.logger.debug('delete==>', r);
@@ -230,14 +233,14 @@ export class LeadComponent extends OkPaginatorComponent implements OnInit, OnDes
   }
 
   getNextPage(e: PageEvent) {
-    this.group.get('page').setValue(e.pageIndex);
-    this.group.get('size').setValue(e.pageSize);
+    this.group.get('page')?.setValue(e.pageIndex);
+    this.group.get('size')?.setValue(e.pageSize);
     this.getData();
   }
 
   resetPage() {
-    this.group.get('page').setValue(0);
-    this.group.get('size').setValue(10);
+    this.group.get('page')?.setValue(0);
+    this.group.get('size')?.setValue(10);
   }
 
   changeSelect(e: any) {
@@ -256,7 +259,7 @@ export class LeadComponent extends OkPaginatorComponent implements OnInit, OnDes
   }
 
   search() {
-    this.group.get('page').setValue(0);
+    this.group.get('page')?.setValue(0);
     this.getData();
   }
 

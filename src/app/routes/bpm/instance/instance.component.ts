@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { MtxGridColumn } from '@ng-matero/extensions';
+import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { TranslateService } from '@ngx-translate/core';
 import { OkPaginatorComponent } from '@shared/components/ok/ok-paginator.component';
 import { NGXLogger } from 'ngx-logger';
@@ -9,7 +9,7 @@ import { InstanceService } from './instance.service';
 @Component({
   selector: 'app-instance',
   templateUrl: './instance.component.html',
-  styleUrls: ['./instance.component.scss']
+  styleUrls: ['./instance.component.scss'],
 })
 export class InstanceComponent extends OkPaginatorComponent implements OnInit {
   columns: MtxGridColumn[] = [
@@ -102,7 +102,7 @@ export class InstanceComponent extends OkPaginatorComponent implements OnInit {
     },
   ];
 
-  searchControls = [
+  searchControls: any[] = [
     {
       name: 'keyword',
       type: 'input',
@@ -140,5 +140,4 @@ export class InstanceComponent extends OkPaginatorComponent implements OnInit {
   ngOnInit() {
     this.getPage();
   }
-
 }

@@ -7,6 +7,5 @@ import { leadRoutes } from './lead.routing';
 @NgModule({
   declarations: [],
   imports: [CommonModule, SharedModule, leadRoutes],
-  entryComponents: [],
 })
 export class LeadModule {}

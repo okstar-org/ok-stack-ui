@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { MtxGridColumn } from '@ng-matero/extensions';
+import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { OkDetailComponent } from '@shared/components/ok/ok-detail.component';
 import { InvoiceService } from './invoice.service';
 
@@ -12,7 +12,7 @@ import { InvoiceService } from './invoice.service';
   styleUrls: ['./invoice.component.scss'],
 })
 export class InvoiceComponent extends OkDetailComponent implements OnInit {
-  searchControls = [
+  searchControls: any[] = [
     {
       name: 'keyword',
       type: 'input',
@@ -81,10 +81,11 @@ export class InvoiceComponent extends OkDetailComponent implements OnInit {
           icon: 'delete',
           text: this.translate.stream('table_kitchen_sink.delete'),
           tooltip: this.translate.stream('table_kitchen_sink.delete'),
-          pop: true,
-          popTitle: this.translate.stream('table_kitchen_sink.confirm_delete'),
-          popCloseText: this.translate.stream('table_kitchen_sink.close'),
-          popOkText: this.translate.stream('table_kitchen_sink.ok'),
+          pop: {
+            title: this.translate.stream('table_kitchen_sink.confirm_delete'),
+            closeText: this.translate.stream('table_kitchen_sink.close'),
+            okText: this.translate.stream('table_kitchen_sink.ok'),
+          },
           click: record => this.delete(record),
         },
         {

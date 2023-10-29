@@ -12,8 +12,8 @@ class OpportunityApi implements OkApi {
   deleteById = '/api/portal/app-crm/opportunity/deleteById/';
   findById = '/api/portal/app-crm/opportunity/findById/';
 
-  detail: {
-    findById: '/api/portal/app-crm/opportunity/detail/findById/';
+  detail = {
+    findById: '/api/portal/app-crm/opportunity/detail/findById/',
   };
 }
 

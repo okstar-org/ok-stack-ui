@@ -14,11 +14,11 @@
 
       <div class="ok-search-controls">
         <app-ok-search [formGroup]="group" [controls]="searchControls"></app-ok-search>
-        <button mat-button mat-raised-button class="m-8" (click)="onSearch()">{{"common.search" | translate}}</button>
+        <button mat-button mat-raised-button class="m-8" (click)="onSearch()">{{"common.search" |
+          translate}}</button>
       </div>
 
-      <mtx-grid
-                [toolbarTitle]="'crm.attach.title' | translate"
+      <mtx-grid [toolbarTitle]="'crm.attach.title' | translate"
                 [data]="list"
                 [columns]="columns"
                 [length]="total"
@@ -26,7 +26,7 @@
                 [showToolbar]="showToolbar"
                 [rowSelectable]="rowSelectable"
                 [columnHideable]="columnHideable"
-                [columnMovable]="columnMovable"
+                [columnSortable]="columnMovable"
                 [multiSelectable]="multiSelectable"
                 [pageOnFront]="false"
                 [pageIndex]="pageIndex"

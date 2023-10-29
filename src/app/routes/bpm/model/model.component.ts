@@ -18,39 +18,36 @@ import { ModelService } from './model.service';
   templateUrl: './model.component.html',
   styleUrls: ['./model.component.scss'],
 })
-
 export class ModelComponent implements OnInit {
-  iframe: SafeResourceUrl;
+  iframe: SafeResourceUrl = '';
   initiated = -1;
   loaded = false;
   // private bpmnModeler : BpmnModeler;
-
 
   constructor(
     protected logger: NGXLogger,
     protected http: HttpClient,
     private sanitizer: DomSanitizer,
-    private service : ModelService
-  ) {
-
-  }
+    private service: ModelService
+  ) {}
 
   ngOnInit() {
-
     this.service.getConfig().subscribe(r => {
       this.loaded = true;
 
       const { data } = r;
-      if(data){
-        const {webUrl} = data;
+      if (data) {
+        const { webUrl } = data;
 
-        const src = `${webUrl}${webUrl.endsWith('/')?'':'/'}business-central/kie-wb.jsp?standalone&perspective=LibraryPerspective&header=UberfireBreadcrumbsContainer`;
+        const src = `${webUrl}${
+          webUrl.endsWith('/') ? '' : '/'
+        }business-central/kie-wb.jsp?standalone&perspective=LibraryPerspective&header=UberfireBreadcrumbsContainer`;
         this.iframe = this.sanitizer.bypassSecurityTrustResourceUrl(src);
         this.initiated = 1;
-      }else{
+      } else {
         this.initiated = 0;
       }
-    })
+    });
 
     // this.viewer = new BpmnJS({
     //   container: '#bpm-modeler-canvas'
@@ -73,21 +70,21 @@ export class ModelComponent implements OnInit {
 
   // 注意：必须先加载一个bpmn文件，新建就是加载一个空的bpmn文件，否则不能拖拽节点
   // createNewDiagram() {
-    // var diagramUrl = 'https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/dfceecba/starter/diagram.bpmn';
-    // var diagramUrl = '/assets/bpm/newDiagram.bpmn';
-    // this.http.get(diagramUrl).subscribe((res) => {
-    //     console.log('read bpmn xml', res)
-    //     this.openDiagram(res)
-    //   });
+  // var diagramUrl = 'https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/dfceecba/starter/diagram.bpmn';
+  // var diagramUrl = '/assets/bpm/newDiagram.bpmn';
+  // this.http.get(diagramUrl).subscribe((res) => {
+  //     console.log('read bpmn xml', res)
+  //     this.openDiagram(res)
+  //   });
 
-      // axios.get(diagramUrl).then((res)=>{
-        // console.log('read', res);
-        // this.openDiagram(res.data);
-      // });
+  // axios.get(diagramUrl).then((res)=>{
+  // console.log('read', res);
+  // this.openDiagram(res.data);
+  // });
   // }
 
   // openDiagram(xml){
-    // console.log('openDiagram', xml);
+  // console.log('openDiagram', xml);
   //   this.bpmnModeler.importXML(xml, function(err) {
   //       if (err) {
   //           // container
@@ -101,5 +98,4 @@ export class ModelComponent implements OnInit {
   //       }
   //   });
   // }
-
 }

@@ -14,7 +14,7 @@
                 <mat-label>{{fields[i].label}}</mat-label>
 
                 <input matInput [formControlName]="item" [required]="fields[i].validations['Required']">
-                <mat-error *ngIf="formGroup.get(item).invalid">
+                <mat-error *ngIf="formGroup.get(item)?.invalid">
                   {{ fields[i].validations['Required'] }}
                 </mat-error>
 

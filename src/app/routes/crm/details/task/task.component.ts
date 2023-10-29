@@ -11,7 +11,7 @@ import { TaskService } from './task.service';
   styleUrls: ['./task.component.scss'],
 })
 export class TaskComponent extends OkDetailComponent implements OnInit {
-  searchControls = [
+  searchControls: any[] = [
     {
       name: 'keyword',
       type: 'input',
