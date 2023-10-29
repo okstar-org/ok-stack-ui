@@ -1,20 +1,18 @@
-// Material components style fix
+/** Override Material styles */
 
-.mat-card {
-  margin-bottom: $gutter;
+@use '../../app/theme/style/variables';
+
+.mat-mdc-card {
+  margin-bottom: variables.$gutter;
 }
 
-.mat-accordion {
+.mat-mdc-accordion {
   display: block;
-  margin-bottom: $gutter;
-}
-
-.mat-list-base {
-  position: relative;
+  margin-bottom: variables.$gutter;
 }
 
 .form-field-full {
-  .mat-form-field {
+  .mat-mdc-form-field {
     width: 100%;
   }
 }
