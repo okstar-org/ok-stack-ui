@@ -22,5 +22,5 @@ $ npm run hmr
 ## 编译项目
 
 ```
-$ npm run build:prod
+$ npm run build
 ```
