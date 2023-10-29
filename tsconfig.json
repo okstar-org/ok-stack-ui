@@ -1,12 +1,13 @@
 {
   "compileOnSave": false,
-  "angularCompilerOptions": {
-    "enableIvy": false
-  },
   "compilerOptions": {
-    "baseUrl": "src/",
+    "baseUrl": "src",
     "downlevelIteration": true,
     "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
     "module": "es2020",
@@ -14,9 +15,9 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "ES2022",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom"],
+    "lib": ["es2019", "dom"],
     "paths": {
       "@core": ["app/core"],
       "@core/*": ["app/core/*"],
@@ -28,6 +29,13 @@
       "@testing/*": ["testing/*"],
       "@env": ["environments"],
       "@env/*": ["environments/*"]
-    }
+    },
+    "useDefineForClassFields": false
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
   }
 }
