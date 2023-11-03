@@ -4,7 +4,7 @@ import { BehaviorSubject, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map, share, switchMap, tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
-import { R, Token, User } from './interface';
+import { R, Token, User, SignUpForm } from './interface';
 import { guest } from './user';
 import { SimpleToken } from './token';
 
@@ -16,7 +16,11 @@ export class AuthService {
 
   private userReq$ = this.http.get<R>('/api/portal/sys/me');
 
-  constructor(private logger: NGXLogger, private http: HttpClient, private token: TokenService) {
+  constructor(
+    private logger: NGXLogger,
+    private http: HttpClient,
+    private token: TokenService
+  ) {
     this.token
       .change()
       .pipe(
@@ -41,7 +45,7 @@ export class AuthService {
 
   login(email: string, password: string, rememberMe = false) {
     return this.http
-      .post<R>('/api/portal/sys/passport/login', {
+      .post<R>('/api/auth/passport/login', {
         account: email,
         password,
         grantType: 'password',
@@ -52,6 +56,13 @@ export class AuthService {
         tap((token: Token) => this.token.set(token)),
         map(() => this.check())
       );
+  }
+
+  register(signUpForm: SignUpForm) {
+    return this.http.post<R>('/api/auth/passport/signUp', signUpForm).pipe(
+      map((r: R) => this.payload(r)),
+      map(() => this.check())
+    );
   }
 
   payload(r: R) {

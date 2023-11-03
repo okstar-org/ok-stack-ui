@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
+import { AuthService } from '@core/authentication/auth.service';
+import { SignUpForm } from '@core/authentication/interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,15 +12,43 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    protected logger: NGXLogger,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.registerForm = this.fb.group({
-      username: ['', [Validators.required]],
+      iso: ['CN', [Validators.required]],
+      accountType: ['phone', [Validators.required]],
+      account: ['', [Validators.required]],
       password: ['', [Validators.required]],
       confirmPassword: ['', [this.confirmValidator]],
     });
   }
 
   ngOnInit() {}
+
+  doRegister() {
+    this.logger.debug('doRegister...');
+
+    this.authService
+      .register({
+        iso: this.registerForm.get('iso')?.value,
+        accountType: this.registerForm.get('accountType')?.value,
+        account: this.registerForm.get('account')?.value,
+        password: this.registerForm.get('password')?.value,
+      })
+
+      .subscribe(
+        () => {
+          this.router.navigateByUrl('/');
+        },
+        error => {
+          this.logger.error(error);
+        }
+      );
+  }
 
   confirmValidator = (control: FormControl): { [k: string]: boolean } => {
     if (!control.value) {

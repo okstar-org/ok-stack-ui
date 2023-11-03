@@ -104,6 +104,11 @@
     "please_enter": "Please enter"
   },
   "register": {
+    "iso": "Your country",
+    "account_type": "Account Type",
+    "mail": "E Mail",
+    "phone": "Phone number",
+    "account": "Account",
     "welcome": "Welcome",
     "title": "It only takes a few seconds to create your account",
     "confirm_password": "Confirm Password",

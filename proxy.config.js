@@ -17,13 +17,13 @@ const PROXY_CONFIG = {
       // proxyReq.setHeader('cookie', cookie);
     },
   },
-  '/api/**': {
-    target: 'http://localhost:9100',
+  '/api/auth/**': {
+    target: 'http://localhost:9000',
     changeOrigin: true,
     secure: false,
     logLevel: 'debug',
     pathRewrite: {
-      "^/api": ""
+      "^/api/auth": ""
     }
   },
   // '/bpm/model/designer/business-central/**': {

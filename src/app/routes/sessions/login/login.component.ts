@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '@core/authentication/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { filter } from 'rxjs/operators';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    protected logger: NGXLogger
   ) {}
 
   ngOnInit() {
@@ -39,6 +41,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.logger.debug('doLogin...');
+
     this.auth
       .login(this.username.value, this.password.value, this.rememberMe.value)
       .pipe(filter(authenticated => authenticated))

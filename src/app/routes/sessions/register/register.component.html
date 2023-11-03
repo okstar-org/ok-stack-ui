@@ -9,10 +9,26 @@
 
     <mat-card-content>
       <form class="form-field-full" [formGroup]="registerForm">
+
+        <mat-form-field class="m-r-8" appearance="outline">
+          <mat-label>{{ 'register.iso' | translate }}</mat-label>
+          <mat-select matInput formControlName="iso" required>
+            <mat-option value="CN">中国</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="m-r-8" appearance="outline">
+          <mat-label>{{ 'register.account_type' | translate }}</mat-label>
+          <mat-select matInput formControlName="accountType" required>
+            <mat-option value="phone">{{'register.phone' | translate}}</mat-option>
+            <mat-option value="mail">{{'register.mail' | translate}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <mat-form-field appearance="outline">
-          <mat-label>{{'login.username' | translate}}</mat-label>
-          <input matInput formControlName="username" required>
-          <mat-error *ngIf="registerForm.get('username')?.invalid">
+          <mat-label>{{ 'login.account' | translate }}</mat-label>
+          <input matInput formControlName="account" required>
+          <mat-error *ngIf="registerForm.get('account')?.invalid">
             {{'validations.required' | translate}}
           </mat-error>
         </mat-form-field>
@@ -41,7 +57,7 @@
           <mat-checkbox>{{'register.agree' | translate}}</mat-checkbox>
         </div>
 
-        <button class="w-full" mat-raised-button color="primary">
+        <button class="w-full" mat-raised-button color="primary" (click)="doRegister()">
           {{'register.register' | translate}}
         </button>
 

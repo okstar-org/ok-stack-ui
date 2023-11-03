@@ -26,6 +26,24 @@ export interface User {
   avatar?: string;
 }
 
+export interface SignUpForm {
+  //帐号类型
+  accountType: string;
+
+  //国家代号
+  iso: string;
+
+  //帐号(手机号或者邮箱)
+  account: string;
+
+  //密码
+  password: string;
+
+  firstName?: string;
+
+  lastName?: string;
+}
+
 export interface Token {
   access_token: string;
   refresh_token: string;

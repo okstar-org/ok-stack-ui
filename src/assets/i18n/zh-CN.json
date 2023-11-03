@@ -115,6 +115,7 @@
   "login": {
     "title": "欢迎回来",
     "username": "用户名",
+    "account": "帐号",
     "password": "密码",
     "remember_me": "记住我",
     "login": "登入",
@@ -123,6 +124,11 @@
     "please_enter": "请输入"
   },
   "register": {
+    "iso": "国家",
+    "account_type": "帐号类型",
+    "mail": "邮箱帐号",
+    "phone": "手机号码",
+    "account": "帐号",
     "welcome": "欢迎",
     "title": "创建您的帐户只需几秒钟",
     "confirm_password": "确认密码",
