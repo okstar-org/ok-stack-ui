@@ -21,15 +21,20 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       iso: ['CN', [Validators.required]],
       accountType: ['phone', [Validators.required]],
-      account: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      account: [null, [Validators.required]],
+      password: [null, [Validators.required]],
       confirmPassword: ['', [this.confirmValidator]],
+      agree: [false, [Validators.requiredTrue]],
     });
   }
 
   ngOnInit() {}
 
   doRegister() {
+    if (!this.registerForm.valid) {
+      return;
+    }
+
     this.logger.debug('doRegister...');
 
     this.authService
