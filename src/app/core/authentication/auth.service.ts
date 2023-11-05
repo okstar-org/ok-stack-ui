@@ -45,7 +45,7 @@ export class AuthService {
 
   login(email: string, password: string, rememberMe = false) {
     return this.http
-      .post<R>('/api/auth/passport/login', {
+      .post<R>('/api/auth/passport/signIn', {
         account: email,
         password,
         grantType: 'password',
@@ -66,13 +66,12 @@ export class AuthService {
   }
 
   payload(r: R) {
-    this.logger.debug('r', r);
     return r.payload.data;
   }
 
   refresh() {
     const simpleToken: SimpleToken = this.token.get();
-    return this.http.post<R>('/api/portal/sys/passport/refresh', simpleToken).pipe(
+    return this.http.post<R>('/api/auth/passport/refresh', simpleToken).pipe(
       map((r: R) => this.payload(r)),
       tap(token => this.token.set(token, true)),
       map(() => this.check())
@@ -80,7 +79,7 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post('/api/portal/sys/passport/logout', {}).pipe(
+    return this.http.post('/api/auth/passport/signOut', {}).pipe(
       tap(() => this.token.clear()),
       map(() => !this.check())
     );

@@ -44,15 +44,15 @@ export class RegisterComponent implements OnInit {
         account: this.registerForm.get('account')?.value,
         password: this.registerForm.get('password')?.value,
       })
-
-      .subscribe(
-        () => {
+      .subscribe({
+        complete: () => {
+          console.log('complete');
           this.router.navigateByUrl('/');
         },
-        error => {
-          this.logger.error(error);
-        }
-      );
+        error: err => {
+          console.error(err);
+        },
+      });
   }
 
   confirmValidator = (control: FormControl): { [k: string]: boolean } => {

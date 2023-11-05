@@ -46,11 +46,11 @@ export class LoginComponent implements OnInit {
     this.auth
       .login(this.username.value, this.password.value, this.rememberMe.value)
       .pipe(filter(authenticated => authenticated))
-      .subscribe(
-        () => {
+      .subscribe({
+        next: () => {
           this.router.navigateByUrl('/');
         },
-        (error: HttpErrorResponse) => {
+        error: (error: HttpErrorResponse) => {
           if (error.status === 422) {
             const form = this.loginForm;
             const errors = error.error.errors;
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
               });
             });
           }
-        }
-      );
+        },
+      });
   }
 }
