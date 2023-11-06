@@ -1,21 +1,8 @@
-export interface Header {
-  cts: string;
-  sts: string;
-  traceId: string;
-  status: {
-    code: number;
-    text: string;
-  };
-}
-
-export interface Payload {
+export interface Res {
+  takes: number;
+  code: number;
+  msg: string;
   data: any;
-  extra: any;
-}
-
-export interface R {
-  header: Header;
-  payload: Payload;
 }
 
 export interface User {

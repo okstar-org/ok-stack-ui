@@ -8,7 +8,7 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { mergeMap, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
@@ -35,8 +35,13 @@ export class ErrorInterceptor implements HttpInterceptor {
     private translate: TranslateService
   ) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request).pipe(catchError((error: any) => this.handleError(error)));
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<HttpErrorResponse>> {
+    return next
+      .handle(request)
+      .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
   }
 
   private handleError(error: any) {

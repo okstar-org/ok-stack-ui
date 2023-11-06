@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      remember_me: [false],
+      rememberMe: [false],
     });
   }
 
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   get rememberMe() {
-    return this.loginForm.get('remember_me')!;
+    return this.loginForm.get('rememberMe')!;
   }
 
   login() {
@@ -45,9 +45,9 @@ export class LoginComponent implements OnInit {
 
     this.auth
       .login(this.username.value, this.password.value, this.rememberMe.value)
-      .pipe(filter(authenticated => authenticated))
+      // .pipe(filter(authenticated => authenticated))
       .subscribe({
-        next: () => {
+        complete: () => {
           this.router.navigateByUrl('/');
         },
         error: (error: HttpErrorResponse) => {

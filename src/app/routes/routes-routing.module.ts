@@ -18,7 +18,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'crm', loadChildren: () => import('./crm/crm.module').then(m => m.CrmModule) },
+      // { path: 'crm', loadChildren: () => import('./crm/crm.module').then(m => m.CrmModule) },
       {
         path: 'bpm',
         loadChildren: () => import('./bpm/bpm.module').then(m => m.WorkflowModule),
