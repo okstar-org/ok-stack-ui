@@ -37,10 +37,14 @@ export class AuthService {
   }
 
   check() {
-    // this.logger.debug('check...');
+    console.debug('check...');
     const v = this.token.valid();
-    // this.logger.debug('check...', v);
+    console.debug('check=>', v);
     return v;
+  }
+
+  payload(r: R) {
+    return r.payload.data;
   }
 
   login(email: string, password: string, rememberMe = false) {
@@ -59,14 +63,9 @@ export class AuthService {
   }
 
   register(signUpForm: SignUpForm) {
-    return this.http.post<R>('/api/auth/passport/signUp', signUpForm).pipe(
-      map((r: R) => this.payload(r)),
-      map(() => this.check())
-    );
-  }
-
-  payload(r: R) {
-    return r.payload.data;
+    return this.http
+      .post<R>('/api/auth/passport/signUp', signUpForm)
+      .pipe(map((r: R) => this.payload(r)));
   }
 
   refresh() {

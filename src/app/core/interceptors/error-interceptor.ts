@@ -5,11 +5,13 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpErrorResponse,
+  HttpResponse,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, throwError, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 export enum STATUS {
   UNAUTHORIZED = 401,
@@ -29,27 +31,29 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   constructor(
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private translate: TranslateService
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next
-      .handle(request)
-      .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
+    return next.handle(request).pipe(catchError((error: any) => this.handleError(error)));
   }
 
-  private handleError(error: HttpErrorResponse) {
+  private handleError(error: any) {
     if (error.status === STATUS.UNAUTHORIZED) {
       this.router.navigateByUrl('/auth/login');
-    } else if (this.errorPages.includes(error.status)) {
-      this.router.navigateByUrl(`/sessions/${error.status}`, {
-        skipLocationChange: true,
-      });
-    } else if (error instanceof HttpErrorResponse) {
-      console.error('ERROR', error);
+    }
+    // else if (this.errorPages.includes(error.status)) {
+    // this.router.navigateByUrl(`/sessions/${error.status}`, {
+    // skipLocationChange: true,
+    // });
+    // }
+    else if (error instanceof HttpErrorResponse) {
+      console.error('handleError', error);
       this.toastr.error(error.error.msg || `${error.status} ${error.statusText}`);
+      return throwError(() => error);
     }
 
-    return throwError(error);
+    return of(error);
   }
 }

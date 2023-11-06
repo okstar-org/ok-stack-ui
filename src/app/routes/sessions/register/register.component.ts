@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.logger.debug('doRegister...');
+    console.debug('doRegister...', this.registerForm.get('account')?.value);
 
     this.authService
       .register({
@@ -46,11 +46,11 @@ export class RegisterComponent implements OnInit {
       })
       .subscribe({
         complete: () => {
-          console.log('complete');
-          this.router.navigateByUrl('/');
+          console.log('ok');
+          this.router.navigateByUrl('/auth/login');
         },
         error: err => {
-          console.error(err);
+          console.error('doRegister=>', err);
         },
       });
   }

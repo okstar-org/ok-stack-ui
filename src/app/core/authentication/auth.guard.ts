@@ -13,7 +13,10 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.authenticate();
@@ -27,6 +30,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   private authenticate(): boolean | UrlTree {
-    return this.auth.check() ? true : this.router.parseUrl('/auth/login');
+    return this.auth.check() ? true : false; //this.router.parseUrl('/auth/login');
   }
 }
