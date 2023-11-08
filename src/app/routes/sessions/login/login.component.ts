@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       // .pipe(filter(authenticated => authenticated))
       .subscribe({
         complete: () => {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/dashboard');
         },
         error: (error: HttpErrorResponse) => {
           if (error.status === 422) {

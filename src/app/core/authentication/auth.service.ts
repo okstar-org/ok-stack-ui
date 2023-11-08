@@ -14,7 +14,7 @@ import { SimpleToken } from './token';
 export class AuthService {
   private user$ = new BehaviorSubject<User>(guest);
 
-  private userReq$ = this.http.get<Res>('/api/portal/sys/me');
+  private userReq$ = this.http.get<Res>('/api/auth/me');
 
   constructor(
     private logger: NGXLogger,
@@ -37,14 +37,10 @@ export class AuthService {
   }
 
   check() {
-    console.debug('check...');
-    const v = this.token.valid();
-    console.debug('check=>', v);
-    return v;
+    return this.token.valid();
   }
 
   payload(r: Res) {
-    console.log('res', r);
     return r.data;
   }
 
@@ -57,18 +53,9 @@ export class AuthService {
         rememberMe,
       })
       .pipe(
-        map((r: Res) => {
-          console.log('res', r);
-          return this.payload(r);
-        }),
-        tap((token: Token) => {
-          console.log('token', token);
-          this.token.set(token);
-        }),
-        map(() => {
-          console.log('check');
-          this.check();
-        })
+        map((r: Res) => this.payload(r)),
+        tap((token: Token) => this.token.set(token)),
+        map(() => this.check())
       );
   }
 
@@ -80,6 +67,7 @@ export class AuthService {
 
   refresh() {
     const simpleToken: SimpleToken = this.token.get();
+    console.log('refresh', simpleToken);
     return this.http.post<Res>('/api/auth/passport/refresh', simpleToken).pipe(
       map((r: Res) => this.payload(r)),
       tap(token => this.token.set(token, true)),

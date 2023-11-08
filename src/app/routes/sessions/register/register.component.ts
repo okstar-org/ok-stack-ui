@@ -46,7 +46,6 @@ export class RegisterComponent implements OnInit {
       })
       .subscribe({
         complete: () => {
-          console.log('ok');
           this.router.navigateByUrl('/auth/login');
         },
       });

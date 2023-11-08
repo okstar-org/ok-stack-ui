@@ -18,7 +18,6 @@ export class SimpleToken implements RefreshToken {
     const refreshToken = token.refresh_token;
     const expiresIn = token.expires_in || 0;
     const exp = expiresIn <= 0 ? 0 : now() + expiresIn * 1000;
-
     return new SimpleToken({ accessToken, refreshToken, tokenType, exp });
   }
 

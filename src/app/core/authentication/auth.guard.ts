@@ -30,6 +30,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   private authenticate(): boolean | UrlTree {
-    return this.auth.check() ? true : false; //this.router.parseUrl('/auth/login');
+    return this.auth.check() ? true : this.router.parseUrl('/auth/login');
   }
 }

@@ -9,9 +9,13 @@ import { TokenService } from '../authentication/token.service';
   providedIn: 'root',
 })
 export class StartupService {
-  private menuReq$ = this.http.get('/me/menu');
+  private menuReq$ = this.http.get('/assets/data/menu.json');
 
-  constructor(private token: TokenService, private menu: MenuService, private http: HttpClient) {}
+  constructor(
+    private token: TokenService,
+    private menu: MenuService,
+    private http: HttpClient
+  ) {}
 
   /** Load the application only after get the menu or other essential informations such as roles and permissions. */
   load(): Promise<any> {
