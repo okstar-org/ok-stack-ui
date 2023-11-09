@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
 import { User } from './dept/dept.api';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogDeleteComponent, DialogType } from '../dialog/dialog.component';
+import { DialogDeleteComponent, DialogType } from '../../commons/dialog/dialog.component';
 
 export class DynamicFlatNode {
   constructor(

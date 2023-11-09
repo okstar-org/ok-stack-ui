@@ -11,67 +11,51 @@
       }
     },
     {
-      "route": "crm",
-      "name": "crm",
+      "route": "org",
+      "name": "org",
       "type": "sub",
-      "icon": "people",
+      "icon": "domain",
       "children": [
         {
-          "route": "lead",
-          "name": "lead",
+          "route": "dept",
+          "name": "dept",
           "type": "link"
         },
         {
-          "route": "customer",
-          "name": "customer",
+          "route": "staff",
+          "name": "staff",
           "type": "link"
         },
         {
-          "route": "opportunity",
-          "name": "opportunity",
+          "route": "perm",
+          "name": "perm",
           "type": "link"
-        },
+        }
+      ]
+    },
+    {
+      "route": "chat",
+      "name": "chat",
+      "type": "sub",
+      "icon": "chat",
+      "children": [
         {
-          "route": "order",
-          "name": "order",
+          "route": "history",
+          "name": "history",
           "type": "link"
-        },
+        }
+      ]
+    },
+    {
+      "route": "meet",
+      "name": "meet",
+      "type": "sub",
+      "icon": "meeting_room",
+      "children": [
         {
-          "route": "contact",
-          "name": "contact",
+          "route": "history",
+          "name": "history",
           "type": "link"
-        },
-        {
-          "route": "finance",
-          "name": "finance",
-          "type": "sub",
-          "children": [
-            {
-              "route": "collection-plan",
-              "name": "collection-plan",
-              "type": "link"
-            },
-            {
-              "route": "collection-manage",
-              "name": "collection-manage",
-              "type": "link"
-            },
-            {
-              "route": "refund",
-              "name": "refund",
-              "type": "link"
-            },
-            {
-              "route": "cost",
-              "name": "cost",
-              "type": "link"
-            },
-            {
-              "route":"invoice",
-              "name":"invoice",
-              "type": "link"
-            }
-          ]
         }
       ]
     },
@@ -104,6 +88,19 @@
         {
           "route": "instance",
           "name": "instance",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "route": "work",
+      "name": "work",
+      "type": "sub",
+      "icon": "apps",
+      "children": [
+        {
+          "route": "app",
+          "name": "app",
           "type": "link"
         }
       ]

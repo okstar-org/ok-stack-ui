@@ -67,7 +67,6 @@ export class AuthService {
 
   refresh() {
     const simpleToken: SimpleToken = this.token.get();
-    console.log('refresh', simpleToken);
     return this.http.post<Res>('/api/auth/passport/refresh', simpleToken).pipe(
       map((r: Res) => this.payload(r)),
       tap(token => this.token.set(token, true)),

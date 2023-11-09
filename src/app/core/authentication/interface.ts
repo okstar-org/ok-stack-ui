@@ -32,9 +32,12 @@ export interface SignUpForm {
 }
 
 export interface Token {
-  access_token: string;
-  refresh_token: string;
+  accessToken: string;
+  access_token?: string;
+  refreshToken: string;
+  refresh_token?: string;
   token?: string;
+  tokenType?: string;
   token_type?: string;
   expires_in?: number;
 }

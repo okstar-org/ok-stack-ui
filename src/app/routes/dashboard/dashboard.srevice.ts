@@ -60,7 +60,7 @@ const MESSAGES = [
 export class DashboardService {
   stats = [
     {
-      title: 'Total Sales',
+      title: '组织人数',
       amount: '180,200',
       progress: {
         value: 50,
@@ -68,7 +68,7 @@ export class DashboardService {
       color: 'bg-indigo-500',
     },
     {
-      title: 'Revenue',
+      title: '部门数量',
       amount: '70,205',
       progress: {
         value: 70,
@@ -76,7 +76,7 @@ export class DashboardService {
       color: 'bg-blue-500',
     },
     {
-      title: 'Traffic',
+      title: '岗位数量',
       amount: '1,291,922',
       progress: {
         value: 80,
@@ -84,7 +84,7 @@ export class DashboardService {
       color: 'bg-green-500',
     },
     {
-      title: 'New User',
+      title: '消息数量',
       amount: '1,922',
       progress: {
         value: 40,
