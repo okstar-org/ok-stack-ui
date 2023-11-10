@@ -20,7 +20,7 @@
 
 # 🏢 软件架构
 
-![架构图](./docs/assets/soft-arch.png "架构图")
+![架构图](./docs/assets/OkMSG-arch.png "架构图")
 
 # 🖼️ 界面展示
 - 规划中
@@ -58,8 +58,6 @@
 
 # 🧑‍🤝‍🧑 贡献者
 > 欢迎加入参与社区建设
-- Joy1024
-- 赵慧
 - [更多](https://gitee.com/okstar-org/ok-stack-backend/contributors?ref=master)
 
 # 💰 赞助商
