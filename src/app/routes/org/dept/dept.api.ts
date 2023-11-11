@@ -4,7 +4,9 @@ class Api implements OkApi {
   findById = '/api/portal/sys/org/dept/findById/';
   findByType = '/api/portal/sys/org/dept/findByType/';
   deleteById = '/api/portal/sys/org/dept/deleteById/';
-  children = '/api/portal/sys/org/dept/children/';
+  children = '/api/org/dept/children/';
+  getChildren = '/api/org/dept/children';
+  getCurrentOrg = '/api/org/current';
   page = '/api/portal/sys/org/dept/page';
   save = '/api/portal/sys/org/dept/save';
   update = '/api/portal/sys/org/dept/update';
@@ -16,6 +18,13 @@ class Api implements OkApi {
 
 const api = new Api();
 export { api };
+
+export interface Org {
+  id: number;
+  name: string;
+  level: number;
+  sourceList: string[];
+}
 
 export interface Dept {
   id: number;

@@ -13,14 +13,17 @@ import { ConnType } from '../conn.api';
   providedIn: 'root',
 })
 export class WxService extends OkItemService {
-  constructor(protected logger: NGXLogger, protected http: HttpClient) {
+  constructor(
+    protected logger: NGXLogger,
+    protected http: HttpClient
+  ) {
     super(logger, http, api);
   }
 
   findByType(type: ConnType, params = {}): Observable<OkPayload<any>> {
     return this.http
       .get<OkResult<any>>(api.findByType + type.toString(), { params })
-      .pipe(map((r: OkResult<any>) => r.payload));
+      .pipe(map((r: OkResult<any>) => r.data));
   }
 
   save(appInfo: AppInfo): Observable<OkPayload<any>> {
@@ -34,18 +37,18 @@ export class WxService extends OkItemService {
   test(type: ConnType, params = {}): Observable<OkPayload<any>> {
     return this.http
       .get<OkResult<any>>(api.test + type.toString(), { params })
-      .pipe(map((r: OkResult<any>) => r.payload));
+      .pipe(map((r: OkResult<any>) => r.data));
   }
 
   sync(type: ConnType, params = {}): Observable<OkPayload<any>> {
     return this.http
       .put<OkResult<any>>(api.sync + type.toString(), { params })
-      .pipe(map((r: OkResult<any>) => r.payload));
+      .pipe(map((r: OkResult<any>) => r.data));
   }
 
   syncUser(type: ConnType, params = {}): Observable<OkPayload<any>> {
     return this.http
       .put<OkResult<any>>(api.syncUser + type.toString(), { params })
-      .pipe(map((r: OkResult<any>) => r.payload));
+      .pipe(map((r: OkResult<any>) => r.data));
   }
 }

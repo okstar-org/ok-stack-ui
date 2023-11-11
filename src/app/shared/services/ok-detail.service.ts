@@ -7,12 +7,16 @@ import { OkPayload } from '@shared/api/ok';
 import { map } from 'rxjs/operators';
 
 export class OkDetailService {
-  constructor(protected logger: NGXLogger, protected http: HttpClient, protected api: OkApi) {}
+  constructor(
+    protected logger: NGXLogger,
+    protected http: HttpClient,
+    protected api: OkApi
+  ) {}
 
   getDetail(id: string, params = {}): Observable<OkPayload<any>> {
     return this.http
-      .get<OkResult<any>>(this.api.findById +'/'+ id, { params })
-      .pipe(map((r: OkResult<any>) => r.payload));
+      .get<OkResult<any>>(this.api.findById + '/' + id, { params })
+      .pipe(map((r: OkResult<any>) => r.data));
   }
 
   getPage(params = {}): Observable<OkPayload<any>> {
@@ -20,6 +24,6 @@ export class OkDetailService {
 
     this.logger.debug(url, params);
 
-    return this.http.get<OkResult<any>>(url, { params }).pipe(map((r: OkResult<any>) => r.payload));
+    return this.http.get<OkResult<any>>(url, { params }).pipe(map((r: OkResult<any>) => r.data));
   }
 }

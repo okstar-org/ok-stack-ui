@@ -33,7 +33,7 @@ export class DynamicDatabase {
   initialData(): Observable<DynamicFlatNode[]> {
     return this.deptService.children(0).pipe(
       map(r => {
-        return r.data.map(
+        return r.map(
           dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
         );
       })
@@ -43,7 +43,7 @@ export class DynamicDatabase {
   getChildren(node: number): Observable<DynamicFlatNode[]> {
     return this.deptService.children(node).pipe(
       map(r => {
-        return r.data.map(
+        return r.map(
           dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
         );
       })

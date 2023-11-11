@@ -36,23 +36,39 @@ export class DynamicDatabase {
 
   /** Initial data from database */
   initialData(): Observable<DynamicFlatNode[]> {
-    return this.deptService.children(0).pipe(
-      map(r => {
-        return r.data.map(
+    // return this.deptService.children(0).pipe(
+    //   map(r => {
+    //     return r.data.map(
+    //       dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
+    //     );
+    //   })
+    // );
+    return this.getChildren();
+  }
+  children(node: number): Observable<DynamicFlatNode[]> {
+    return this.deptService.children(node).pipe(
+      map(depts => {
+        return depts.map(
           dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
         );
       })
     );
   }
 
-  getChildren(node: number): Observable<DynamicFlatNode[]> {
-    return this.deptService.children(node).pipe(
-      map(r => {
-        return r.data.map(
+  getChildren(): Observable<DynamicFlatNode[]> {
+    return this.deptService.getChildren().pipe(
+      map(depts => {
+        return depts.map(
           dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
         );
       })
     );
+  }
+
+  getCurrentOrg(): Observable<DynamicFlatNode[]> {
+    return this.deptService
+      .getCurrentOrg()
+      .pipe(map(org => [new DynamicFlatNode(org.id, org.name, org.level, org.sourceList, true)]));
   }
 
   isExpandable(node: string): boolean {
@@ -116,7 +132,7 @@ export class DynamicDataSource {
 
     if (expand) {
       node.isLoading = true;
-      this.database.getChildren(node.id).subscribe(r => {
+      this.database.children(node.id).subscribe(r => {
         node.isLoading = false;
 
         if (!r || r.length <= 0) {

@@ -41,9 +41,10 @@ export interface OkPayload<D> {
 }
 
 export interface OkResult<D> {
-  header: { cts: Date; sts: Date };
-  status: { code: number; name: string; text: string };
-  payload: OkPayload<D>;
+  takes: number;
+  code: number;
+  msg: string;
+  data: any;
   success: boolean;
 }
 

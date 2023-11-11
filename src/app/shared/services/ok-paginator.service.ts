@@ -7,7 +7,11 @@ import { OkPayload } from '@shared/api/ok';
 import { map } from 'rxjs/operators';
 
 export class OkPaginatorService {
-  constructor(protected logger: NGXLogger, protected http: HttpClient, protected api: OkPageApi) {}
+  constructor(
+    protected logger: NGXLogger,
+    protected http: HttpClient,
+    protected api: OkPageApi
+  ) {}
 
   downLoadFile(data: any, fileName: string, type: string) {
     try {
@@ -30,7 +34,7 @@ export class OkPaginatorService {
     this.logger.debug(this.api.page, params);
     return this.http
       .get<OkResult<any>>(this.api.page, { params })
-      .pipe(map((r: OkResult<any>) => r.payload));
+      .pipe(map((r: OkResult<any>) => r.data));
   }
 
   getExport(params = {}, fileName: string) {
@@ -44,14 +48,14 @@ export class OkPaginatorService {
     this.logger.debug(this.api.params, params);
     return this.http
       .get<OkResult<any>>(this.api.params, { params })
-      .pipe(map((r: OkResult<any>) => r.payload));
+      .pipe(map((r: OkResult<any>) => r.data));
   }
 
   delete(params: ID): Observable<OkPayload<any>> {
     this.logger.debug(this.api.deleteById, params);
     return this.http
       .delete<OkResult<any>>(this.api.deleteById + params.id)
-      .pipe(map((r: OkResult<any>) => r.payload));
+      .pipe(map((r: OkResult<any>) => r.data));
   }
 
   top(params: ID): Observable<OkPayload<any>> {
@@ -60,6 +64,6 @@ export class OkPaginatorService {
       .put<OkResult<any>>(this.api.top, params.id, {
         headers: { 'content-type': 'application/json' },
       })
-      .pipe(map((r: OkResult<any>) => r.payload));
+      .pipe(map((r: OkResult<any>) => r.data));
   }
 }
