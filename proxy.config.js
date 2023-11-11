@@ -18,7 +18,7 @@ const PROXY_CONFIG = {
     },
   },
   '/api/auth/**': {
-    target: 'http://localhost:9000',
+    target: 'http://chuanshaninfo.com:9000',
     changeOrigin: true,
     secure: false,
     logLevel: 'debug',
