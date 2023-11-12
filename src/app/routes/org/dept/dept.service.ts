@@ -2,10 +2,11 @@ import { OkItemService } from './../../../shared/services/ok-item.service';
 import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { HttpClient } from '@angular/common/http';
-import { api, Dept, Org, User } from './dept.api';
+import { api, Dept, User } from './dept.api';
 import { OkPayload, OkResult } from '@shared/api/ok';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Org } from '../org.api';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +35,7 @@ export class DeptService extends OkItemService {
       .pipe(map((r: OkResult<Dept[]>) => r.data));
   }
 
-  findUserByDept(id: number, params = {}): Observable<OkPayload<User[]>> {
+  findUserByDept(id: number, params = {}): Observable<User[]> {
     return this.http
       .get<OkResult<User[]>>(api.findUserByDept + id, { params })
       .pipe(map((r: OkResult<User[]>) => r.data));

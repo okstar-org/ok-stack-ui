@@ -13,18 +13,11 @@ class Api implements OkApi {
   sync = '/api/portal/sys/org/dept/sync';
 
   syncUser = '/api/portal/sys/org/user/sync';
-  findUserByDept = '/api/portal/sys/org/user/findByDept/';
+  findUserByDept = '/api/org/post/findByDept/';
 }
 
 const api = new Api();
 export { api };
-
-export interface Org {
-  id: number;
-  name: string;
-  level: number;
-  sourceList: string[];
-}
 
 export interface Dept {
   id: number;

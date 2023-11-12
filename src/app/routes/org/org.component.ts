@@ -188,7 +188,7 @@ export class OrgComponent implements OnInit {
     node.isActive = true;
 
     this.svc.findUserByDept(node.id).subscribe(r => {
-      this.userDataSource.setData(r.data);
+      this.userDataSource.setData(r);
     });
   }
 

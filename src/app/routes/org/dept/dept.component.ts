@@ -7,6 +7,7 @@ import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
 import { User } from './dept.api';
+import { Org } from '../org.api';
 
 export class DynamicFlatNode {
   constructor(
@@ -27,22 +28,8 @@ export class DynamicFlatNode {
 export class DynamicDatabase {
   constructor(private deptService: DeptService) {}
 
-  dataMap = new Map<string, string[]>([
-    ['Fruits', ['Apple', 'Orange', 'Banana']],
-    ['Vegetables', ['Tomato', 'Potato', 'Onion']],
-    ['Apple', ['Fuji', 'Macintosh']],
-    ['Onion', ['Yellow', 'White', 'Purple']],
-  ]);
-
   /** Initial data from database */
   initialData(): Observable<DynamicFlatNode[]> {
-    // return this.deptService.children(0).pipe(
-    //   map(r => {
-    //     return r.data.map(
-    //       dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
-    //     );
-    //   })
-    // );
     return this.getChildren();
   }
   children(node: number): Observable<DynamicFlatNode[]> {
@@ -63,16 +50,6 @@ export class DynamicDatabase {
         );
       })
     );
-  }
-
-  getCurrentOrg(): Observable<DynamicFlatNode[]> {
-    return this.deptService
-      .getCurrentOrg()
-      .pipe(map(org => [new DynamicFlatNode(org.id, org.name, org.level, org.sourceList, true)]));
-  }
-
-  isExpandable(node: string): boolean {
-    return this.dataMap.has(node);
   }
 }
 /**
@@ -166,11 +143,13 @@ export class DynamicDataSource {
   providers: [DynamicDatabase],
 })
 export class DeptComponent implements OnInit {
-  displayedColumns = ['avatar', 'no', 'name', 'gender', 'mobile', 'active', 'sourceObjectList'];
+  displayedColumns = ['no', 'name', 'recruit', 'assignFor', 'createAt', 'updateAt'];
 
   dataSource: any;
 
   userDataSource!: UserDataSource;
+
+  org!: Org;
 
   constructor(
     protected logger: NGXLogger,
@@ -182,11 +161,13 @@ export class DeptComponent implements OnInit {
     this.database.initialData().subscribe(r => {
       this.dataSource.data = r;
     });
+
+    this.svc.getCurrentOrg().subscribe(r => {
+      this.org = r;
+    });
   }
 
   treeControl: FlatTreeControl<DynamicFlatNode>;
-
-  dataSourcea: any;
 
   getLevel = (node: DynamicFlatNode) => node.level;
 
@@ -203,10 +184,8 @@ export class DeptComponent implements OnInit {
   }
 
   onClickDept(node: DynamicFlatNode) {
-    this.logger.info('click', node);
     this.svc.findUserByDept(node.id).subscribe(r => {
-      this.logger.info('r', r);
-      this.userDataSource.setData(r.data);
+      this.userDataSource.setData(r);
     });
   }
 

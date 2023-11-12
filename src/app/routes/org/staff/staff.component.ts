@@ -1,5 +1,6 @@
 import { OkItemComponent } from '@shared/components/ok/ok-item.component';
 import { StaffService } from './staff.service';
+import { DeptService } from '../dept/dept.service';
 import { CollectionViewer, DataSource, SelectionChange } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, Injectable, OnInit } from '@angular/core';
@@ -7,6 +8,8 @@ import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
 import { User } from './staff.api';
+import { Org } from '../org.api';
+import { OrgService } from '../org.service';
 
 export class DynamicFlatNode {
   constructor(
@@ -25,38 +28,34 @@ export class DynamicFlatNode {
  */
 @Injectable()
 export class DynamicDatabase {
-  constructor(private staffService: StaffService) {}
-
-  dataMap = new Map<string, string[]>([
-    ['Fruits', ['Apple', 'Orange', 'Banana']],
-    ['Vegetables', ['Tomato', 'Potato', 'Onion']],
-    ['Apple', ['Fuji', 'Macintosh']],
-    ['Onion', ['Yellow', 'White', 'Purple']],
-  ]);
+  constructor(
+    private deptService: DeptService,
+    private staffService: StaffService,
+    private orgService: OrgService
+  ) {}
 
   /** Initial data from database */
   initialData(): Observable<DynamicFlatNode[]> {
-    return this.staffService.children(0).pipe(
-      map(r => {
-        return r.data.map(
+    return this.getChildren();
+  }
+  children(node: number): Observable<DynamicFlatNode[]> {
+    return this.deptService.children(node).pipe(
+      map(depts => {
+        return depts.map(
           dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
         );
       })
     );
   }
 
-  getChildren(node: number): Observable<DynamicFlatNode[]> {
-    return this.staffService.children(node).pipe(
-      map(r => {
-        return r.data.map(
+  getChildren(): Observable<DynamicFlatNode[]> {
+    return this.deptService.getChildren().pipe(
+      map(depts => {
+        return depts.map(
           dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
         );
       })
     );
-  }
-
-  isExpandable(node: string): boolean {
-    return this.dataMap.has(node);
   }
 }
 /**
@@ -116,7 +115,7 @@ export class DynamicDataSource {
 
     if (expand) {
       node.isLoading = true;
-      this.database.getChildren(node.id).subscribe(r => {
+      this.database.children(node.id).subscribe(r => {
         node.isLoading = false;
 
         if (!r || r.length <= 0) {
@@ -150,27 +149,34 @@ export class DynamicDataSource {
   providers: [DynamicDatabase],
 })
 export class StaffComponent implements OnInit {
-  displayedColumns = ['avatar', 'no', 'name', 'gender', 'mobile', 'active', 'sourceObjectList'];
+  displayedColumns = ['no', 'name', 'recruit', 'assignFor', 'createAt', 'updateAt'];
 
   dataSource: any;
 
   userDataSource!: UserDataSource;
 
+  org!: Org;
+
   constructor(
     protected logger: NGXLogger,
     private database: DynamicDatabase,
-    private svc: StaffService
+    private svc: StaffService,
+    private orgService: OrgService,
+    private deptService: DeptService
   ) {
     this.treeControl = new FlatTreeControl<DynamicFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new DynamicDataSource(this.treeControl, database);
+
     this.database.initialData().subscribe(r => {
       this.dataSource.data = r;
+    });
+
+    this.orgService.getCurrentOrg().subscribe(r => {
+      this.org = r;
     });
   }
 
   treeControl: FlatTreeControl<DynamicFlatNode>;
-
-  dataSourcea: any;
 
   getLevel = (node: DynamicFlatNode) => node.level;
 
@@ -187,10 +193,8 @@ export class StaffComponent implements OnInit {
   }
 
   onClickDept(node: DynamicFlatNode) {
-    this.logger.info('click', node);
     this.svc.findUserByDept(node.id).subscribe(r => {
-      this.logger.info('r', r);
-      this.userDataSource.setData(r.data);
+      this.userDataSource.setData(r);
     });
   }
 
