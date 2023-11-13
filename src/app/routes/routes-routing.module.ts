@@ -19,10 +19,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'org', loadChildren: () => import('./org/org.module').then(m => m.OrgModule) },
-      {
-        path: 'bpm',
-        loadChildren: () => import('./bpm/bpm.module').then(m => m.WorkflowModule),
-      },
+      { path: 'bpm', loadChildren: () => import('./bpm/bpm.module').then(m => m.WorkflowModule) },
       { path: 'sys', loadChildren: () => import('./sys/sys.module').then(m => m.SysModule) },
     ],
   },

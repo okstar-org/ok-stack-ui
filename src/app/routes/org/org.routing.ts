@@ -1,6 +1,5 @@
-import { DeptComponent } from './dept/dept.component';
-import { StaffComponent } from './staff/staff.component';
 import { Routes, RouterModule } from '@angular/router';
+import { DeptComponent } from './dept/dept.component';
 
 const routes: Routes = [
   {
@@ -9,7 +8,7 @@ const routes: Routes = [
     redirectTo: 'dept',
   },
   { path: 'dept', component: DeptComponent },
-  { path: 'staff', component: StaffComponent },
+  { path: 'staff', loadChildren: () => import('./staff/staff.module').then(m => m.StaffModule) },
 ];
 
 export const orgRoutes = RouterModule.forChild(routes);

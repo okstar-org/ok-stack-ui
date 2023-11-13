@@ -1,15 +1,15 @@
 import { OkApi } from '@shared/api/ok';
 
 class Api implements OkApi {
-  findById = '/api/portal/sys/org/dept/findById/';
-  findByType = '/api/portal/sys/org/dept/findByType/';
-  deleteById = '/api/portal/sys/org/dept/deleteById/';
-  children = '/api/portal/sys/org/dept/children/';
+  findById = '/api/org/staff/findById/';
+  findByType = '/api/org/staff/findByType/';
+  deleteById = '/api/org/staff/deleteById/';
+  children = '/api/org/staff/children/';
   getChildren = '/api/org/staff/children';
-  page = '/api/portal/sys/org/dept/page';
-  save = '/api/portal/sys/org/dept/save';
-  update = '/api/portal/sys/org/dept/update';
-  sync = '/api/portal/sys/org/dept/sync';
+  page = '/api/org/staff/page';
+  save = '/api/org/staff/save';
+  update = '/api/org/staff/update';
+  sync = '/api/org/staff/sync';
 
   findUserByDept = '/api/org/staff/findByDept/';
   syncUser = '/api/portal/sys/org/user/sync';

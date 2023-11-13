@@ -1,94 +1,19 @@
 <page-header class="bg-purple-500"></page-header>
 
-<div class="matero-row" fxLayout="row wrap">
+<mat-card>
+  <mat-card-content>
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel" aria-label="weather navigation links">
+      <a mat-tab-link
+         *ngFor="let tabLink of tabLinks; let i = index"
+         [routerLink]="tabLink.link"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive">
+        {{tabLink.label}}
+      </a>
+    </nav>
+    <mat-tab-nav-panel #tabPanel>
+      <router-outlet></router-outlet>
+    </mat-tab-nav-panel>
+  </mat-card-content>
+</mat-card>
 
-  <div class="matero-col   ok-sys-dept-tree" fxFlex="100" fxFlex.gt-sm="30">
-    <mat-card class="ok-sys-card">
-      <mat-card-header>
-        <mat-card-subtitle *ngIf="org">{{org.name}}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-        <mat-tree-node *matTreeNodeDef="let node;" matTreeNodePadding>
-          <button mat-icon-button disabled></button>
-          <a href="javascript:;" (click)="onClickDept(node)">{{node.item}}</a>
-        </mat-tree-node>
-        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-          <button mat-icon-button [attr.aria-label]="'toggle ' + node.filename" matTreeNodeToggle>
-            <mat-icon class="mat-icon-rtl-mirror">
-              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-            </mat-icon>
-          </button>
-          <a href="javascript:;" (click)="onClickDept(node)">{{node.item}}
-            <!-- [<span *ngFor="let item of node.resourceList">{{"common.con."+ item | translate}} </span>] -->
-          </a>
-          <mat-progress-bar *ngIf="node.isLoading" mode="indeterminate"
-                            class="example-tree-progress-bar"></mat-progress-bar>
-        </mat-tree-node>
-      </mat-tree>
-
-      <!-- <button mat-stroked-button color="primary" (click)="onSync()" class="m-8">
-        <mat-icon class="icon-8">sync</mat-icon>{{"common.sync"|translate}}
-      </button>
-      <button mat-stroked-button color="primary" (click)="onAdd()" class="m-8">
-        <mat-icon class="icon-8">add</mat-icon>{{"common.add"|translate}}
-      </button> -->
-    </mat-card>
-  </div>
-
-  <div class="matero-col col-md-5" fxFlex.gt-sm="70" fxFlex="100">
-    <mat-card class="ok-sys-card">
-
-      <mat-table aria-readonly="true"
-                 [dataSource]="userDataSource"
-                 aria-label="User List">
-
-        <ng-container matColumnDef="no">
-          <mat-header-cell *matHeaderCellDef>No.</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.no}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.name}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="createAt">
-          <mat-header-cell *matHeaderCellDef>Create At</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.createAt}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="updateAt">
-          <mat-header-cell *matHeaderCellDef>Update At</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.updateAt}}</mat-cell>
-        </ng-container>
-
-
-        <ng-container matColumnDef="recruit">
-          <mat-header-cell *matHeaderCellDef>Recruit</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.recruit}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="assignFor">
-          <mat-header-cell *matHeaderCellDef>Assigned</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.assignFor}}</mat-cell>
-        </ng-container>
-
-        <!-- <ng-container matColumnDef="sourceObjectList">
-          <mat-header-cell *matHeaderCellDef>Sources Info</mat-header-cell>
-          <mat-cell *matCellDef="let row;">
-            <p *ngFor="let item of row.sourceObjectList">
-              <button mat-raised-button [matTooltip]="item|json">{{"common.con." + item.source |
-                translate}}</button>
-            </p>
-          </mat-cell>
-        </ng-container> -->
-
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-      </mat-table>
-    </mat-card>
-  </div>
-
-
-</div>

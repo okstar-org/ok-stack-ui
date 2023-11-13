@@ -1,0 +1,68 @@
+<div class="matero-row" fxLayout="row wrap">
+
+  <div class="matero-col col-md-5" fxFlex="100">
+
+
+    <mat-card class="ok-sys-card">
+
+      <button mat-button color="primary" (click)="doAdd()"  >
+        <mat-icon class="icon-8">add</mat-icon>{{"common.add"|translate}}
+      </button>
+
+      <mat-table aria-readonly="true"
+                 [dataSource]="userDataSource"
+                 aria-label="User List">
+
+        <ng-container matColumnDef="no">
+          <mat-header-cell *matHeaderCellDef>No.</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.no}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+          <mat-header-cell *matHeaderCellDef>Gender</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.gender}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="birthday">
+          <mat-header-cell *matHeaderCellDef>Birthday</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.birthday}}</mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="phone">
+          <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.phone}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="descr">
+          <mat-header-cell *matHeaderCellDef>Descr.</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.descr}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="createAt">
+          <mat-header-cell *matHeaderCellDef >Operation</mat-header-cell>
+          <mat-cell *matCellDef="let row;">
+
+            <button mat-button color="primary" class="m-8">
+              Entry
+            </button>
+
+          </mat-cell>
+        </ng-container>
+
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+    </mat-card>
+  </div>
+
+
+</div>
