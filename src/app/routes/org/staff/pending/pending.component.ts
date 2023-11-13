@@ -32,7 +32,7 @@ export class UserDataSource extends DataSource<Staff> {
   styleUrls: ['./pending.component.scss'],
 })
 export class PendingComponent implements OnInit {
-  displayedColumns = ['no', 'name', 'gender', 'birthday', 'phone', 'descr', 'createAt'];
+  displayedColumns = ['no', 'name', 'gender', 'phone', 'descr', 'createAt', 'operation'];
 
   dataSource: any;
 

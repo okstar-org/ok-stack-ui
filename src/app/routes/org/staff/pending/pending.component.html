@@ -1,6 +1,6 @@
 <div class="matero-row" fxLayout="row wrap">
 
-  <div class="matero-col col-md-5" fxFlex="100">
+  <div class="matero-col" fxFlex="100">
 
 
     <mat-card class="ok-sys-card">
@@ -28,12 +28,6 @@
           <mat-cell *matCellDef="let row;">{{row.gender}}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="birthday">
-          <mat-header-cell *matHeaderCellDef>Birthday</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.birthday}}</mat-cell>
-        </ng-container>
-
-
         <ng-container matColumnDef="phone">
           <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.phone}}</mat-cell>
@@ -45,8 +39,13 @@
         </ng-container>
 
         <ng-container matColumnDef="createAt">
+          <mat-header-cell *matHeaderCellDef>Create At</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.createAt}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="operation">
           <mat-header-cell *matHeaderCellDef >Operation</mat-header-cell>
-          <mat-cell *matCellDef="let row;">
+          <mat-cell  *matCellDef="let row;">
 
             <button mat-button color="primary" class="m-8">
               Entry
