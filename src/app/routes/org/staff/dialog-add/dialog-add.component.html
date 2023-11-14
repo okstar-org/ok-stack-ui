@@ -1,0 +1,61 @@
+<h2 mat-dialog-title>{{"org.staff.add.title"|translate}}</h2>
+
+<mat-dialog-content>
+  <form>
+    <table class="demo-full-width" cellspacing="0">
+      <tr>
+        <td><mat-form-field class="demo-full-width">
+            <mat-label>{{"org.staff.add.firstName"|translate}}</mat-label>
+            <input matInput>
+          </mat-form-field></td>
+        <td><mat-form-field class="demo-full-width">
+            <mat-label> {{"org.staff.add.lastName"|translate}}</mat-label>
+            <input matInput>
+          </mat-form-field></td>
+      </tr>
+      <tr>
+        <td><mat-form-field class="demo-full-width">
+            <mat-label>{{"org.staff.add.name"|translate}}</mat-label>
+            <input matInput>
+          </mat-form-field></td>
+        <td>
+          <mat-form-field class="demo-full-width">
+            <mat-label>{{"org.staff.add.identity"|translate}}</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td><mat-form-field class="demo-full-width">
+            <mat-label>{{"common.country"|translate}}</mat-label>
+            <input matInput>
+          </mat-form-field></td>
+        <td><mat-form-field class="demo-full-width">
+            <mat-label>{{"common.phone"|translate}}</mat-label>
+            <input matInput>
+          </mat-form-field></td>
+
+      </tr>
+
+      <tr>
+        <td><mat-form-field class="demo-full-width">
+            <mat-label>{{"org.staff.add.livingIn"|translate}}</mat-label>
+            <textarea matInput></textarea>
+          </mat-form-field></td>
+
+        <td><mat-form-field class="demo-full-width">
+            <mat-label>{{"org.staff.add.descr"|translate}}</mat-label>
+            <textarea matInput></textarea>
+          </mat-form-field></td>
+
+      </tr>
+    </table>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>{{"common.close"|translate}}</button>
+  <button mat-raised-button color="primary" mat-dialog-close
+          cdkFocusInitial>{{"common.submit"|translate}}</button>
+</mat-dialog-actions>

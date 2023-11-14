@@ -187,6 +187,17 @@
         "descr": "描述",
         "createAt": "创建时间"
       },
+      "add": {
+        "title": "添加待入职人员",
+        "name": "名称",
+        "firstName": "姓",
+        "lastName": "名",
+        "no": "编号",
+        "iso": "国家",
+        "identity": "身份证ID",
+        "descr": "备注",
+        "livingIn": "居住地址"
+      },
       "pending": {
         "no": "编号",
         "name": "姓名",
@@ -448,6 +459,10 @@
     "close": "关闭",
     "submit": "提交",
     "check": "选择",
+    "phone": "手机号码",
+    "descr": "描述",
+    "country": "国家",
+    "name": "名称",
     "con": {
       "WX": "企微",
       "DT": "钉钉",

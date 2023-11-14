@@ -8,7 +8,7 @@ import { Staff, User } from '../staff.api';
 import { DynamicDataSource } from '../../org.component';
 import { LeftService } from './left.service';
 import { MatDialog } from '@angular/material/dialog';
-import { JoinDialogComponent } from '../join-dialog/join-dialog.component';
+import { JoinDialogComponent } from '../dialog-join/join-dialog.component';
 
 export class UserDataSource extends DataSource<Staff> {
   dataChange: BehaviorSubject<Staff[]> = new BehaviorSubject<Staff[]>([]);

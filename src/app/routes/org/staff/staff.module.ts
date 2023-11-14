@@ -7,7 +7,8 @@ import { StaffComponent } from './staff.component';
 import { EmployedComponent } from './employed/employed.component';
 import { LeftComponent } from './left/left.component';
 import { PendingComponent } from './pending/pending.component';
-import { JoinDialogComponent } from './join-dialog/join-dialog.component';
+import { JoinDialogComponent } from './dialog-join/join-dialog.component';
+import { DialogAddComponent } from './dialog-add/dialog-add.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, staffRoutes],
@@ -17,6 +18,7 @@ import { JoinDialogComponent } from './join-dialog/join-dialog.component';
     EmployedComponent,
     LeftComponent,
     JoinDialogComponent,
+    DialogAddComponent,
   ],
 })
 export class StaffModule {}
