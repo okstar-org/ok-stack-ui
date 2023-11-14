@@ -6,6 +6,7 @@ import { PendingService } from './pending.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { MtxDialog } from '@ng-matero/extensions/dialog';
+import { JoinDialogComponent } from '../join-dialog/join-dialog.component';
 
 export class UserDataSource extends DataSource<Staff> {
   dataChange: BehaviorSubject<Staff[]> = new BehaviorSubject<Staff[]>([]);
@@ -39,9 +40,7 @@ export class PendingComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private translate: TranslateService,
-    private pendingService: PendingService,
-    private mtxDialog: MtxDialog
+    private pendingService: PendingService
   ) {}
 
   ngOnInit() {
@@ -55,17 +54,7 @@ export class PendingComponent implements OnInit {
 
   doJoin(id: number) {
     console.log('doJoin', id);
-
-    this.mtxDialog.confirm(
-      this.translate.stream('org.staff.pending.join_dialog_msg'),
-      '',
-      () => {
-        console.log('ok');
-      },
-      () => {
-        console.log('no');
-        // this.mtxDialog.alert(`I don't know.`);
-      }
-    );
+    //TODO(nzb) 传递ID
+    this.dialog.open(JoinDialogComponent);
   }
 }

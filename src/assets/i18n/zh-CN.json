@@ -179,6 +179,14 @@
   },
   "org": {
     "staff": {
+      "dept": {
+        "list": "岗位列表",
+        "no": "编号",
+        "name": "名称",
+        "deptName": "部门",
+        "descr": "描述",
+        "createAt": "创建时间"
+      },
       "pending": {
         "no": "编号",
         "name": "姓名",
@@ -188,7 +196,7 @@
         "createAt": "创建时间",
         "operation": "操作",
         "join": "入职",
-        "join_dialog_msg":"确定入职该人员吗？"
+        "join_dialog_msg": "确定入职该人员吗？"
       },
       "employed": {
         "no": "编号",
@@ -200,8 +208,8 @@
         "createAt": "创建时间",
         "joinedDate": "入职时间",
         "operation": "操作",
-        "join": "入职",
-        "leave": "离职"
+        "leave": "离职",
+        "leave_dialog_msg": "确定离职该人员吗？"
       },
       "left": {
         "no": "编号",
@@ -209,9 +217,9 @@
         "gender": "性别",
         "phone": "电话",
         "descr": "描述",
-        "leftDate": "创建时间",
+        "leftDate": "离职时间",
         "operation": "操作",
-        "entry": "入职"
+        "join": "入职"
       }
     }
   },
@@ -437,6 +445,9 @@
     "start": "启动",
     "stop": "停止",
     "complete": "完成",
+    "close": "关闭",
+    "submit": "提交",
+    "check": "选择",
     "con": {
       "WX": "企微",
       "DT": "钉钉",

@@ -10,9 +10,10 @@ class Api implements OkApi {
   save = '/api/org/staff/save';
   update = '/api/org/staff/update';
   sync = '/api/org/staff/sync';
+  syncUser = '/api/portal/sys/org/user/sync';
 
   findUserByDept = '/api/org/staff/findByDept/';
-  syncUser = '/api/portal/sys/org/user/sync';
+  listDept = '/api/org/staff/post/list';
 }
 
 const api = new Api();
@@ -32,4 +33,10 @@ export interface User {
   mobile: string;
   active: string;
   avatar: string;
+}
+
+/**员工入职请求 */
+export interface OrgStaffJoinReq {
+  staffId: number;
+  postIds: number[];
 }

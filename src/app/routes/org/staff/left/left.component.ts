@@ -7,6 +7,8 @@ import { Staff, User } from '../staff.api';
 
 import { DynamicDataSource } from '../../org.component';
 import { LeftService } from './left.service';
+import { MatDialog } from '@angular/material/dialog';
+import { JoinDialogComponent } from '../join-dialog/join-dialog.component';
 
 export class UserDataSource extends DataSource<Staff> {
   dataChange: BehaviorSubject<Staff[]> = new BehaviorSubject<Staff[]>([]);
@@ -38,7 +40,10 @@ export class LeftComponent implements OnInit {
 
   userDataSource!: UserDataSource;
 
-  constructor(private leftService: LeftService) {}
+  constructor(
+    public dialog: MatDialog,
+    private leftService: LeftService
+  ) {}
 
   ngOnInit() {
     this.userDataSource = new UserDataSource();
@@ -47,5 +52,9 @@ export class LeftComponent implements OnInit {
     });
   }
 
-  doAdd() {}
+  doJoin(id: number) {
+    console.log('doJoin', id);
+    //TODO(nzb) 传递ID
+    this.dialog.open(JoinDialogComponent);
+  }
 }

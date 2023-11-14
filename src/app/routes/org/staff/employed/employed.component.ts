@@ -1,14 +1,17 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { CollectionViewer, DataSource, SelectionChange } from '@angular/cdk/collections';
-import { Org } from '../../org.api';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { NGXLogger } from 'ngx-logger';
+import { TranslateService } from '@ngx-translate/core';
+import { MtxDialog } from '@ng-matero/extensions/dialog';
+import { Org } from '../../org.api';
 import { StaffService } from '../staff.service';
 import { DeptService } from '../../dept/dept.service';
 import { OrgService } from '../../org.service';
-import { User } from '../staff.api';
-import { NGXLogger } from 'ngx-logger';
+import { Staff, User } from '../staff.api';
+import { EmployedService } from './employed.service';
 
 export class DynamicFlatNode {
   constructor(
@@ -179,11 +182,13 @@ export class EmployedComponent implements OnInit {
   hasChild = (_: number, nodeData: DynamicFlatNode) => nodeData.expandable;
 
   constructor(
+    private translate: TranslateService,
+    private mtxDialog: MtxDialog,
     private database: DynamicDatabase,
     private orgService: OrgService,
     private logger: NGXLogger,
     private svc: StaffService,
-    private deptService: DeptService
+    private employedService: EmployedService
   ) {
     this.treeControl = new FlatTreeControl<DynamicFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new DynamicDataSource(this.treeControl, database);
@@ -206,7 +211,22 @@ export class EmployedComponent implements OnInit {
     });
   }
 
-  onAdd() {}
+  onAdd() {
+    console.log('onAdd...');
+  }
+
+  doLeave(staff: Staff) {
+    console.log('doLeave', staff);
+    this.mtxDialog.confirm(
+      this.translate.stream('org.staff.employed.leave_dialog_msg'),
+      staff.name,
+      () => {
+        this.employedService.leavel(staff.id).subscribe(r => {
+          console.log('=>', r);
+        });
+      }
+    );
+  }
 
   onSync() {
     this.logger.info('sync');

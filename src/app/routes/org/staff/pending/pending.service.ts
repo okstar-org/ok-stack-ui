@@ -6,7 +6,7 @@ import { OkResult } from '@shared/api/ok';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { OkItemService } from '@shared/services/ok-item.service';
-import { Staff } from '../staff.api';
+import { OrgStaffJoinReq, Staff } from '../staff.api';
 
 @Injectable({
   providedIn: 'root',
@@ -21,5 +21,11 @@ export class PendingService extends OkItemService {
 
   page(): Observable<Staff[]> {
     return this.http.get<OkResult<Staff[]>>(api.page).pipe(map((r: OkResult<Staff[]>) => r.data));
+  }
+
+  join(req: OrgStaffJoinReq): Observable<boolean> {
+    return this.http
+      .post<OkResult<boolean>>(api.join, req)
+      .pipe(map((r: OkResult<boolean>) => r.data));
   }
 }
