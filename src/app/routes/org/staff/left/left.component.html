@@ -1,1 +1,69 @@
-<p>left works!</p>
+<div class="matero-row" fxLayout="row wrap">
+
+  <div class="matero-col" fxFlex="100">
+
+    <mat-card class="ok-sys-card">
+
+      <mat-table aria-readonly="true"
+                 [dataSource]="userDataSource"
+                 aria-label="User List">
+
+        <ng-container matColumnDef="no">
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.left.no" |
+            translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.no}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.left.name" |
+            translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.left.gender" |
+            translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.gender}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.left.phone" |
+            translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.phone}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="descr">
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.left.descr" |
+            translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.descr}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="leftDate">
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.left.leftDate" |
+            translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.leftDate}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="operation">
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.left.operation" |
+            translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let row;">
+
+            <button mat-button color="primary" class="m-8">
+              {{"org.staff.left.entry"|translate}}
+            </button>
+
+          </mat-cell>
+        </ng-container>
+
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+    </mat-card>
+  </div>
+
+
+</div>

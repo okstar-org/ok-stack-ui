@@ -5,7 +5,7 @@
 
     <mat-card class="ok-sys-card">
 
-      <button mat-button color="primary" (click)="doAdd()"  >
+      <button mat-button color="primary" (click)="doAdd()">
         <mat-icon class="icon-8">add</mat-icon>{{"common.add"|translate}}
       </button>
 
@@ -14,41 +14,41 @@
                  aria-label="User List">
 
         <ng-container matColumnDef="no">
-          <mat-header-cell *matHeaderCellDef>No.</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.pending.no" | translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.no}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.pending.name" | translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.name}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="gender">
-          <mat-header-cell *matHeaderCellDef>Gender</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.pending.gender" | translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.gender}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="phone">
-          <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.pending.phone" | translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.phone}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="descr">
-          <mat-header-cell *matHeaderCellDef>Descr.</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.pending.descr" | translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.descr}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="createAt">
-          <mat-header-cell *matHeaderCellDef>Create At</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.pending.createAt" | translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.createAt}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="operation">
-          <mat-header-cell *matHeaderCellDef >Operation</mat-header-cell>
-          <mat-cell  *matCellDef="let row;">
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.pending.operation" | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let row;">
 
-            <button mat-button color="primary" class="m-8">
-              Entry
+            <button mat-button color="primary" class="m-8" (click)="doJoin(row.id)">
+              {{"org.staff.pending.join"|translate}}
             </button>
 
           </mat-cell>

@@ -153,7 +153,16 @@ export class UserDataSource extends DataSource<User> {
   providers: [DynamicDatabase],
 })
 export class EmployedComponent implements OnInit {
-  displayedColumns = ['no', 'name', 'gender', 'birthday', 'phone', 'descr', 'joinedDate'];
+  displayedColumns = [
+    'no',
+    'name',
+    'gender',
+    'birthday',
+    'phone',
+    'descr',
+    'joinedDate',
+    'operation',
+  ];
 
   dataSource: any;
 

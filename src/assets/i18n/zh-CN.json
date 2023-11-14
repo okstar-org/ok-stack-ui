@@ -92,7 +92,7 @@
     "org.staff": "人员管理",
     "org.perm": "权限管理",
     "sys": "系统管理",
-    "meet":"会议管理",
+    "meet": "会议管理",
     "meet.history": "记录管理",
     "work": "工作平台",
     "work.app": "应用管理",
@@ -176,6 +176,44 @@
   },
   "table_common_fields": {
     "top": "置顶"
+  },
+  "org": {
+    "staff": {
+      "pending": {
+        "no": "编号",
+        "name": "姓名",
+        "gender": "性别",
+        "phone": "电话",
+        "descr": "描述",
+        "createAt": "创建时间",
+        "operation": "操作",
+        "join": "入职",
+        "join_dialog_msg":"确定入职该人员吗？"
+      },
+      "employed": {
+        "no": "编号",
+        "name": "姓名",
+        "gender": "性别",
+        "phone": "电话",
+        "descr": "描述",
+        "birthday": "生日",
+        "createAt": "创建时间",
+        "joinedDate": "入职时间",
+        "operation": "操作",
+        "join": "入职",
+        "leave": "离职"
+      },
+      "left": {
+        "no": "编号",
+        "name": "姓名",
+        "gender": "性别",
+        "phone": "电话",
+        "descr": "描述",
+        "leftDate": "创建时间",
+        "operation": "操作",
+        "entry": "入职"
+      }
+    }
   },
   "crm": {
     "lead": {
