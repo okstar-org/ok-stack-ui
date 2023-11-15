@@ -10,7 +10,7 @@ import { Org } from '../../org.api';
 import { StaffService } from '../staff.service';
 import { DeptService } from '../../dept/dept.service';
 import { OrgService } from '../../org.service';
-import { Staff, User } from '../staff.api';
+import { Staff } from '../staff.api';
 import { EmployedService } from './employed.service';
 
 export class DynamicFlatNode {
@@ -131,20 +131,20 @@ export class DynamicDataSource {
   }
 }
 
-export class UserDataSource extends DataSource<User> {
-  dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
+export class UserDataSource extends DataSource<Staff> {
+  dataChange: BehaviorSubject<Staff[]> = new BehaviorSubject<Staff[]>([]);
 
   constructor() {
     super();
   }
 
-  connect(): Observable<User[]> {
+  connect(): Observable<Staff[]> {
     return this.dataChange;
   }
 
   disconnect() {}
 
-  setData(list: User[]) {
+  setData(list: Staff[]) {
     this.dataChange.next(list);
   }
 }

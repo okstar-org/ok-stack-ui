@@ -2,7 +2,7 @@ import { OkItemService } from '../../../shared/services/ok-item.service';
 import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { HttpClient } from '@angular/common/http';
-import { api, Staff, User } from './staff.api';
+import { api, OrgStaffReq, Staff } from './staff.api';
 import { OkResult } from '@shared/api/ok';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -18,6 +18,12 @@ export class StaffService extends OkItemService {
     super(logger, http, api);
   }
 
+  save(req: OrgStaffReq): Observable<boolean> {
+    return this.http
+      .post<OkResult<boolean>>(api.save, req)
+      .pipe(map((r: OkResult<boolean>) => r.data));
+  }
+
   children(parentId: number, params = {}): Observable<Staff[]> {
     return this.http
       .get<OkResult<Staff[]>>(api.children + parentId, { params })
@@ -30,27 +36,27 @@ export class StaffService extends OkItemService {
       .pipe(map((r: OkResult<Staff[]>) => r.data));
   }
 
-  findUserByDept(id: number, params = {}): Observable<User[]> {
+  findUserByDept(id: number, params = {}): Observable<Staff[]> {
     return this.http
-      .get<OkResult<User[]>>(api.findUserByDept + id, { params })
-      .pipe(map((r: OkResult<User[]>) => r.data));
+      .get<OkResult<Staff[]>>(api.findUserByDept + id, { params })
+      .pipe(map((r: OkResult<Staff[]>) => r.data));
   }
 
-  deleteById(id: number, params = {}): Observable<User[]> {
+  deleteById(id: number, params = {}): Observable<Staff[]> {
     return this.http
-      .delete<OkResult<User[]>>(api.deleteById + id, { params })
-      .pipe(map((r: OkResult<User[]>) => r.data));
+      .delete<OkResult<Staff[]>>(api.deleteById + id, { params })
+      .pipe(map((r: OkResult<Staff[]>) => r.data));
   }
 
-  sync(params = {}): Observable<User[]> {
+  sync(params = {}): Observable<Staff[]> {
     return this.http
-      .put<OkResult<User[]>>(api.sync, { params })
-      .pipe(map((r: OkResult<User[]>) => r.data));
+      .put<OkResult<Staff[]>>(api.sync, { params })
+      .pipe(map((r: OkResult<Staff[]>) => r.data));
   }
 
-  syncUser(params = {}): Observable<User[]> {
+  syncUser(params = {}): Observable<Staff[]> {
     return this.http
-      .put<OkResult<User[]>>(api.syncUser, { params })
-      .pipe(map((r: OkResult<User[]>) => r.data));
+      .put<OkResult<Staff[]>>(api.syncUser, { params })
+      .pipe(map((r: OkResult<Staff[]>) => r.data));
   }
 }

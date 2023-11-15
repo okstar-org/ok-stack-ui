@@ -18,10 +18,6 @@ export class StaffComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    // 获取当前路由的路径
-    const currentPath = this.activatedRoute.snapshot.url.map(segment => segment.path).join('/');
-    console.log('currentPath', currentPath);
-
     // 导航到子路由
     this.router.navigateByUrl('/org/staff/pending');
   }

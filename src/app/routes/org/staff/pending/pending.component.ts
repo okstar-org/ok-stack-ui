@@ -1,6 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
-import { BehaviorSubject, merge, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, timer as Timer } from 'rxjs';
 import { Staff } from '../staff.api';
 import { PendingService } from './pending.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -42,22 +42,39 @@ export class PendingComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private pendingService: PendingService
-  ) {}
+  ) {
+    this.userDataSource = new UserDataSource();
+  }
 
   ngOnInit() {
-    this.userDataSource = new UserDataSource();
+    this.load();
+  }
+  load() {
     this.pendingService.page().subscribe(r => {
       this.userDataSource.setData(r);
     });
   }
-
   doAdd() {
-    this.dialog.open(DialogAddComponent);
+    const ref = this.dialog.open(DialogAddComponent);
+    // 在这里编写要延迟执行的代码
+    ref.afterClosed().subscribe(r => {
+      Timer(1000).subscribe(() => {
+        console.log('close=>', r);
+        if (r) {
+          this.load();
+        }
+      });
+    });
   }
+
+  onEdit(id: number) {}
 
   doJoin(id: number) {
     console.log('doJoin', id);
     //TODO(nzb) 传递ID
     this.dialog.open(JoinDialogComponent);
   }
+}
+function timer(arg0: number) {
+  throw new Error('Function not implemented.');
 }

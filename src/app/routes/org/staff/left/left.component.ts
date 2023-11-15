@@ -1,13 +1,11 @@
 import { Component, Injectable, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { DataSource } from '@angular/cdk/collections';
 
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 
-import { Staff, User } from '../staff.api';
-
-import { DynamicDataSource } from '../../org.component';
+import { Staff } from '../staff.api';
 import { LeftService } from './left.service';
-import { MatDialog } from '@angular/material/dialog';
 import { JoinDialogComponent } from '../dialog-join/join-dialog.component';
 
 export class UserDataSource extends DataSource<Staff> {

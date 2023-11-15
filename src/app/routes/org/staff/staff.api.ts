@@ -21,18 +21,68 @@ export { api };
 
 export interface Staff {
   id: number;
-  name: string;
-  level: number;
-  sourceList: string[];
-}
-
-export interface User {
   no: number;
   name: string;
   gender: string;
   mobile: string;
   active: string;
   avatar: string;
+  // sourceList: string[];
+}
+export enum Gender {
+  NONE,
+  MALE,
+  FEMALE,
+}
+export interface OrgStaffFragment {
+  /**
+   * 编号
+   */
+  no: string;
+
+  /**
+   * 性
+   */
+  firstName: string;
+
+  /**
+   * 名
+   */
+  lastName: string;
+
+  /**
+   * 性别
+   */
+  // gender: Gender;
+
+  /**
+   * 身份证ID
+   */
+  identity: string;
+
+  /**
+   * 电话
+   */
+  phone: string;
+
+  /**
+   * email
+   */
+  email: string;
+
+  /**
+   * 备注
+   */
+  descr: string;
+
+  /**
+   * 居住地址
+   */
+  livingIn: string;
+}
+
+export interface OrgStaffReq {
+  fragment: OrgStaffFragment;
 }
 
 /**员工入职请求 */
