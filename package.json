@@ -1,13 +1,18 @@
 {
-  "name": "ng-matero",
-  "version": "0.0.0-NOT-USED",
+  "name": "ok-stack",
+  "version": "0.0.0",
+  "engines": {
+    "node": ">=16.0.0 <20.0.0",
+    "yarn": ">=1.22.0 <2",
+    "npm": "Please use Yarn instead of NPM to install dependencies"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "test": "ng test",
     "e2e": "ng e2e",
     "build": "ng build",
-    "build:release": "ng build --prod --baseHref=/ng-matero/",
+    "build:release": "ng build --prod --baseHref=/ok-stack/",
     "lint": "npm run lint:ts && npm run lint:scss",
     "lint:ts": "eslint \"src/**/*.ts\" --fix",
     "lint:scss": "stylelint \"src/**/*.scss\" --fix",
@@ -40,6 +45,7 @@
     "apexcharts": "^3.26.3",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
+    "ng-matero": "^16.1.3",
     "ngx-logger": "^5.0.12",
     "ngx-permissions": "^16.0.1",
     "ngx-progressbar": "^11.1.0",

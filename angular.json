@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-matero": {
+    "ok-stack": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -22,7 +22,7 @@
               "moment",
               "photoviewer"
             ],
-            "outputPath": "dist/ng-matero",
+            "outputPath": "dist/ok-stack",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -76,15 +76,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-matero:build",
+            "browserTarget": "ok-stack:build",
             "proxyConfig": "proxy.config.js"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-matero:build:production"
+              "browserTarget": "ok-stack:build:production"
             },
             "development": {
-              "browserTarget": "ng-matero:build:development"
+              "browserTarget": "ok-stack:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -92,7 +92,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-matero:build"
+            "browserTarget": "ok-stack:build"
           }
         },
         "test": {
@@ -130,18 +130,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ng-matero:serve"
+            "devServerTarget": "ok-stack:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ng-matero:serve:production"
+              "devServerTarget": "ok-stack:serve:production"
             }
           }
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/ng-matero/",
+            "baseHref": "/ok-stack/",
             "noSilent": true
           }
         }

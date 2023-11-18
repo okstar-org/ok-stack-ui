@@ -3,7 +3,7 @@ image: node:16
 variables:
   DOCKER_DRIVER: overlay2
   GIT_STRATEGY: "fetch"
-  PACK_NAME: 'dist/ng-matero'
+  PACK_NAME: 'dist/ok-stack'
   DEPLOYMENT_NODE: "192.168.1.6"
 
 stages:
@@ -20,7 +20,7 @@ cache:
     policy: pull
     key: "$CI_COMMIT_REF_NAME"
     paths:
-      - dist/ng-matero
+      - dist/ok-stack
       - node_modules/
       - .eslintcache
 
@@ -55,7 +55,7 @@ job-build:
   cache:
     key: "$CI_COMMIT_REF_NAME"
     paths:
-      - dist/ng-matero
+      - dist/ok-stack
   script:
     - npm run build --prod --aot
     - ls .
