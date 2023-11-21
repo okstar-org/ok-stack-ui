@@ -1,12 +1,14 @@
 <breadcrumb></breadcrumb>
 
-<div class="matero-row" fxLayout="row wrap">
+<div class="row" fxLayout="row wrap">
 
   <!-- Statistics -->
-  <div class="matero-col" fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100"
+  <div class="col-sm-6 col-md-3" fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100"
        *ngFor="let stat of stats">
     <mat-card [ngClass]="['text-white', stat.color]">
-      <mat-card-title class="f-s-12 f-w-100">{{stat.title}}</mat-card-title>
+      <mat-card-header>
+        <mat-card-subtitle class="text-white">{{stat.title}}</mat-card-subtitle>
+      </mat-card-header>
       <mat-card-content>
         <h2>{{stat.amount}}</h2>
         <mtx-progress [value]="stat.progress.value"
@@ -20,22 +22,22 @@
   </div>
 
   <!-- Charts -->
-  <div class="matero-col" fxFlex="100" fxFlex.gt-sm="60">
+  <!-- <div class="col-sm-6 col-md-3" fxFlex="100" fxFlex.gt-sm="60">
     <mat-card>
       <mat-card-subtitle>Traffic</mat-card-subtitle>
       <div id="chart1"></div>
     </mat-card>
   </div>
-  <div class="matero-col" fxFlex="100" fxFlex.gt-sm="40">
+  <div class="col-sm-6 col-md-3" fxFlex="100" fxFlex.gt-sm="40">
     <mat-card>
       <mat-card-subtitle>Weekly Revenue</mat-card-subtitle>
       <div id="chart2"></div>
     </mat-card>
-  </div>
+  </div> -->
 
   <!-- Others -->
 
-  <!-- <div class="matero-col" fxFlex.gt-sm="50" fxFlex="100">
+  <!-- <div class="col" fxFlex.gt-sm="50" fxFlex="100">
     <mat-card>
       <mat-tab-group class="m--16">
         <mat-tab label="First">
@@ -106,7 +108,7 @@
     </mat-card>
   </div>
 
-  <div class="matero-col" fxFlex.gt-sm="50" fxFlex="100">
+  <div class="col" fxFlex.gt-sm="50" fxFlex="100">
     <mat-card>
       <mat-card-subtitle>Avatar List</mat-card-subtitle>
       <mat-list>

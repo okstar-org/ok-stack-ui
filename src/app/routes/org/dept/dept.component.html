@@ -1,8 +1,8 @@
 <page-header class="bg-purple-500"></page-header>
 
-<div class="matero-row" fxLayout="row wrap">
+<div class="row" fxLayout="row wrap">
 
-  <div class="matero-col   ok-sys-dept-tree" fxFlex="100" fxFlex.gt-sm="30">
+  <div class="col-sm-4" >
     <mat-card class="ok-sys-card">
       <mat-card-header>
         <mat-card-subtitle *ngIf="org">{{org.name}} - 部门结构</mat-card-subtitle>
@@ -35,7 +35,7 @@
     </mat-card>
   </div>
 
-  <div class="matero-col col-md-5" fxFlex.gt-sm="70" fxFlex="100">
+  <div class="col-sm-8 col-md-8">
     <mat-card class="ok-sys-card">
       <mat-card-header>
         <mat-card-subtitle>岗位列表</mat-card-subtitle>
