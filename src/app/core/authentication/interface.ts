@@ -5,6 +5,16 @@ export interface Res {
   data: any;
 }
 
+export interface MyPostInfo {
+  dept: string;
+  post: string;
+}
+
+export interface MyOrgInfo {
+  org: string;
+  postInfo: MyPostInfo[];
+}
+
 export interface User {
   [propName: string]: any;
   id: number | string | null;

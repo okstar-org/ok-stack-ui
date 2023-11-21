@@ -1,4 +1,3 @@
-import { NGXLogger } from 'ngx-logger';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -15,9 +14,9 @@ export class AuthService {
   private user$ = new BehaviorSubject<User>(guest);
 
   private userReq$ = this.http.get<Res>('/api/auth/me');
+  private orgReq$ = this.http.get<Res>('/api/org/me');
 
   constructor(
-    private logger: NGXLogger,
     private http: HttpClient,
     private token: TokenService
   ) {
@@ -83,5 +82,9 @@ export class AuthService {
 
   user() {
     return this.user$.pipe(share());
+  }
+
+  orgReq() {
+    return this.orgReq$.pipe(map(res => res.data));
   }
 }
