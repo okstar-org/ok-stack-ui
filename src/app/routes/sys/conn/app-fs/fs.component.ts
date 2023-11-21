@@ -9,7 +9,7 @@ import { ConnType } from '../conn.api';
 import { WxService } from '../app-wx/wx.service';
 import { FsService } from './fs.service';
 import { Observable } from 'rxjs';
-import { OkPayload } from '@shared/api/ok';
+
 import { OkOnSave } from '@shared/components/ok/ok-on-save';
 
 @Component({
@@ -63,7 +63,7 @@ export class FsComponent extends OkItemComponent implements OnInit, OkOnSave {
 
     const appInfo: AppInfo = this.form.value;
 
-    let f: Observable<OkPayload<any>>;
+    let f: Observable<any>;
     if (!appInfo.id) {
       f = this.svc.save(appInfo);
     } else {

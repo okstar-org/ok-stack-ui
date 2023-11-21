@@ -44,6 +44,15 @@ const PROXY_CONFIG = {
       '^/api/org': '',
     },
   },
+  '/api/chat/**': {
+    target: 'http://localhost:9300',
+    changeOrigin: true,
+    secure: false,
+    logLevel: 'debug',
+    pathRewrite: {
+      '^/api/chat': '',
+    },
+  },
   // '/bpm/model/designer/business-central/**': {
   //   target: 'http://192.168.8.40:8080/',
   //   changeOrigin: true,

@@ -9,7 +9,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { OkItemComponent } from '@shared/components/ok/ok-item.component';
 import { ConnType } from '../conn.api';
 import { OkOnSave } from '@shared/components/ok/ok-on-save';
-import { OkPayload } from '@shared/api/ok';
 
 @Component({
   selector: 'app-wx',
@@ -62,7 +61,7 @@ export class WxComponent extends OkItemComponent implements OnInit, OkOnSave {
 
     const appInfo: AppInfo = this.form.value;
 
-    let f: Observable<OkPayload<any>>;
+    let f: Observable<any>;
     if (!appInfo.id) {
       f = this.svc.save(appInfo);
     } else {

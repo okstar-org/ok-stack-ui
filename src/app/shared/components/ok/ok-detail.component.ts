@@ -1,7 +1,7 @@
 import { NGXLogger } from 'ngx-logger';
 import { Observable, Subscription } from 'rxjs';
 import { OkDetailService } from '@shared/services/ok-detail.service';
-import { OkGroup, okPageGroup, OkPayload } from '@shared/api/ok';
+import { OkGroup, okPageGroup } from '@shared/api/ok';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 
@@ -30,7 +30,7 @@ export class OkDetailComponent {
     this.group = this.fb.group(p);
   }
 
-  getDetail(id: string, params = {}): Observable<OkPayload<any>> {
+  getDetail(id: string, params = {}): Observable<any> {
     return this.service.getDetail(id);
   }
 

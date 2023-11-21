@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { HttpClient } from '@angular/common/http';
 import { api, Dept, User } from './dept.api';
-import { OkPayload, OkResult } from '@shared/api/ok';
+import { OkResult } from '@shared/api/ok';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Org } from '../org.api';
@@ -41,19 +41,19 @@ export class DeptService extends OkItemService {
       .pipe(map((r: OkResult<User[]>) => r.data));
   }
 
-  deleteById(id: number, params = {}): Observable<OkPayload<User[]>> {
+  deleteById(id: number, params = {}): Observable<User[]> {
     return this.http
       .delete<OkResult<User[]>>(api.deleteById + id, { params })
       .pipe(map((r: OkResult<User[]>) => r.data));
   }
 
-  sync(params = {}): Observable<OkPayload<User[]>> {
+  sync(params = {}): Observable<User[]> {
     return this.http
       .put<OkResult<User[]>>(api.sync, { params })
       .pipe(map((r: OkResult<User[]>) => r.data));
   }
 
-  syncUser(params = {}): Observable<OkPayload<User[]>> {
+  syncUser(params = {}): Observable<User[]> {
     return this.http
       .put<OkResult<User[]>>(api.syncUser, { params })
       .pipe(map((r: OkResult<User[]>) => r.data));

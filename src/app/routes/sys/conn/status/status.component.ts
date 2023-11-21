@@ -5,7 +5,6 @@ import { DtService } from './../app-dt/dt.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { ConnType } from '../conn.api';
-import { OkPayload } from '@shared/api/ok';
 
 @Component({
   selector: 'app-status',
@@ -35,7 +34,7 @@ export class StatusComponent implements OnInit {
     this.isLoadingTest = true;
     this.isTestYes = null;
 
-    let obs: Observable<OkPayload<any>>;
+    let obs: Observable<any>;
     switch (this.type) {
       case ConnType.DT: {
         obs = this.dtService.sync(this.type);
@@ -63,7 +62,7 @@ export class StatusComponent implements OnInit {
     this.isLoadingTest = true;
     this.isTestYes = null;
 
-    let obs: Observable<OkPayload<any>>;
+    let obs: Observable<any>;
     switch (this.type) {
       case ConnType.DT: {
         obs = this.dtService.syncUser(this.type);
@@ -91,7 +90,7 @@ export class StatusComponent implements OnInit {
     this.isLoadingTest = true;
     this.isTestYes = null;
 
-    let obs: Observable<OkPayload<any>>;
+    let obs: Observable<any>;
     switch (this.type) {
       case ConnType.DT: {
         obs = this.dtService.test(this.type);
@@ -108,7 +107,6 @@ export class StatusComponent implements OnInit {
     }
 
     obs.subscribe(r => {
-      this.logger.debug('test=>', r);
       this.accessToken = JSON.parse(r.data);
       this.isLoadingTest = false;
       this.isTestYes = this.accessToken.valid;

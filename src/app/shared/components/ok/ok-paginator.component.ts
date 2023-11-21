@@ -97,8 +97,8 @@ export class OkPaginatorComponent {
     this.isLoading = true;
     this.okService.getPage(this.params).subscribe(
       res => {
-        this.list = res.data.content;
-        this.total = res.data.totalElements;
+        this.list = res.data;
+        this.total = res.data.length;
         this.isLoading = false;
         this.cdr.detectChanges();
       },

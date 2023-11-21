@@ -1,9 +1,7 @@
 import { ID, OkApi, OkPageApi, OkResult } from './../api/ok';
 import { NGXLogger } from 'ngx-logger';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OkPayload } from '@shared/api/ok';
 import { map } from 'rxjs/operators';
 
 export class OkPaginatorService {
@@ -30,11 +28,10 @@ export class OkPaginatorService {
     }
   }
 
-  getPage(params = {}): Observable<OkPayload<any>> {
+  getPage(params = {}): Observable<any> {
     this.logger.debug(this.api.page, params);
-    return this.http
-      .get<OkResult<any>>(this.api.page, { params })
-      .pipe(map((r: OkResult<any>) => r.data));
+    return this.http.get<OkResult<any>>(this.api.page, { params });
+    //.pipe(map((r: OkResult<any>) => r.data));
   }
 
   getExport(params = {}, fileName: string) {
@@ -44,21 +41,21 @@ export class OkPaginatorService {
       .subscribe(r => this.downLoadFile(r, fileName, 'application/ms-excel'));
   }
 
-  getParams(params = {}): Observable<OkPayload<any>> {
+  getParams(params = {}): Observable<any> {
     this.logger.debug(this.api.params, params);
     return this.http
       .get<OkResult<any>>(this.api.params, { params })
       .pipe(map((r: OkResult<any>) => r.data));
   }
 
-  delete(params: ID): Observable<OkPayload<any>> {
+  delete(params: ID): Observable<any> {
     this.logger.debug(this.api.deleteById, params);
     return this.http
       .delete<OkResult<any>>(this.api.deleteById + params.id)
       .pipe(map((r: OkResult<any>) => r.data));
   }
 
-  top(params: ID): Observable<OkPayload<any>> {
+  top(params: ID): Observable<any> {
     this.logger.debug(this.api.top, params);
     return this.http
       .put<OkResult<any>>(this.api.top, params.id, {

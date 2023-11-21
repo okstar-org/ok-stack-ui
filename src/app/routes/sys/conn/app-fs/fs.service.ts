@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { OkPayload, OkResult } from '@shared/api/ok';
+import { OkResult } from '@shared/api/ok';
 import { OkItemService } from '@shared/services/ok-item.service';
 import { NGXLogger } from 'ngx-logger';
 import { Observable } from 'rxjs';
@@ -19,33 +19,33 @@ export class FsService extends OkItemService {
     super(logger, http, api);
   }
 
-  findByType(type: ConnType, params = {}): Observable<OkPayload<any>> {
+  findByType(type: ConnType, params = {}): Observable<any> {
     return this.http
       .get<OkResult<any>>(api.findByType + type.toString(), { params })
       .pipe(map((r: OkResult<any>) => r.data));
   }
 
-  save(appInfo: AppInfo): Observable<OkPayload<any>> {
+  save(appInfo: AppInfo): Observable<any> {
     return super.saveItem(api.save, appInfo);
   }
 
-  update(appInfo: AppInfo): Observable<OkPayload<any>> {
+  update(appInfo: AppInfo): Observable<any> {
     return super.updateItem(api.update, appInfo);
   }
 
-  test(type: ConnType, params = {}): Observable<OkPayload<any>> {
+  test(type: ConnType, params = {}): Observable<any> {
     return this.http
       .get<OkResult<any>>(api.test + type.toString(), { params })
       .pipe(map((r: OkResult<any>) => r.data));
   }
 
-  sync(type: ConnType, params = {}): Observable<OkPayload<any>> {
+  sync(type: ConnType, params = {}): Observable<any> {
     return this.http
       .put<OkResult<any>>(api.sync + type.toString(), { params })
       .pipe(map((r: OkResult<any>) => r.data));
   }
 
-  syncUser(type: ConnType, params = {}): Observable<OkPayload<any>> {
+  syncUser(type: ConnType, params = {}): Observable<any> {
     return this.http
       .put<OkResult<any>>(api.syncUser + type.toString(), { params })
       .pipe(map((r: OkResult<any>) => r.data));

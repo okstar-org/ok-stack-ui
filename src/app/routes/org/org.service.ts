@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { HttpClient } from '@angular/common/http';
 import { api, Org } from './org.api';
-import { OkPayload, OkResult } from '@shared/api/ok';
+import { OkResult } from '@shared/api/ok';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 

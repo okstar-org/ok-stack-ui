@@ -40,8 +40,8 @@
       "icon": "chat",
       "children": [
         {
-          "route": "history",
-          "name": "history",
+          "route": "user",
+          "name": "user",
           "type": "link"
         }
       ]

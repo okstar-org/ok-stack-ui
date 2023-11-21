@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ID, OkPayload } from '@shared/api/ok';
+import { ID } from '@shared/api/ok';
 import { OkPaginatorService } from '@shared/services/ok-paginator.service';
 import { NGXLogger } from 'ngx-logger';
 import { Observable } from 'rxjs';
@@ -11,35 +11,38 @@ import { api } from './task.api';
   providedIn: 'root',
 })
 export class TaskService extends OkPaginatorService {
-  constructor(protected logger: NGXLogger, protected http: HttpClient) {
+  constructor(
+    protected logger: NGXLogger,
+    protected http: HttpClient
+  ) {
     super(logger, http, api);
   }
 
-  doClaim(params: ID): Observable<OkPayload<any>> {
-    return this.http.post<OkPayload<any>>(api.claim, params.id);
+  doClaim(params: ID): Observable<any> {
+    return this.http.post<any>(api.claim, params.id);
   }
 
-  doRelease(params: ID): Observable<OkPayload<any>> {
-    return this.http.post<OkPayload<any>>(api.release, params.id);
+  doRelease(params: ID): Observable<any> {
+    return this.http.post<any>(api.release, params.id);
   }
 
-  doSuspend(params: ID): Observable<OkPayload<any>> {
-    return this.http.post<OkPayload<any>>(api.suspend, params.id);
+  doSuspend(params: ID): Observable<any> {
+    return this.http.post<any>(api.suspend, params.id);
   }
 
-  doResume(params: ID): Observable<OkPayload<any>> {
-    return this.http.post<OkPayload<any>>(api.resume, params.id);
+  doResume(params: ID): Observable<any> {
+    return this.http.post<any>(api.resume, params.id);
   }
 
-  doStop(params: ID): Observable<OkPayload<any>> {
-    return this.http.post<OkPayload<any>>(api.stop, params.id);
+  doStop(params: ID): Observable<any> {
+    return this.http.post<any>(api.stop, params.id);
   }
 
-  doStart(params: ID): Observable<OkPayload<any>> {
-    return this.http.post<OkPayload<any>>(api.start, params.id);
+  doStart(params: ID): Observable<any> {
+    return this.http.post<any>(api.start, params.id);
   }
 
-  doComplete(params: ID, data: any): Observable<OkPayload<any>> {
-    return this.http.post<OkPayload<any>>(api.complete + params.id, data);
+  doComplete(params: ID, data: any): Observable<any> {
+    return this.http.post<any>(api.complete + params.id, data);
   }
 }

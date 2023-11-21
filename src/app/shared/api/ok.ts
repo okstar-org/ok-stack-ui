@@ -35,11 +35,6 @@ export interface OkPageApi extends OkApi {
   deleteById: string;
 }
 
-export interface OkPayload<D> {
-  data: D;
-  extra: any;
-}
-
 export interface OkResult<D> {
   takes: number;
   code: number;

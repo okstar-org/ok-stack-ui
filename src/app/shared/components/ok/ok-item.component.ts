@@ -1,9 +1,8 @@
 import { NGXLogger } from 'ngx-logger';
 import { Observable, Subscription } from 'rxjs';
-import { OkGroup, OkPayload } from '@shared/api/ok';
+import { OkGroup } from '@shared/api/ok';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { OkItemService } from '@shared/services/ok-item.service';
-import { OkOnSave } from './ok-on-save';
 
 export class OkItemComponent {
   translateSubscription = Subscription.EMPTY;
@@ -21,7 +20,7 @@ export class OkItemComponent {
     this.group = this.fb.group(this.okGroup);
   }
 
-  getDetail(id: string, params = {}): Observable<OkPayload<any>> {
+  getDetail(id: string): Observable<any> {
     return this.service.getDetail(id);
   }
 

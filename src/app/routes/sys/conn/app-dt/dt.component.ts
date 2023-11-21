@@ -7,7 +7,7 @@ import { OkItemComponent } from '@shared/components/ok/ok-item.component';
 import { NGXLogger } from 'ngx-logger';
 import { ConnType } from '../conn.api';
 import { DtService } from './dt.service';
-import { OkPayload } from '@shared/api/ok';
+
 import { Observable } from 'rxjs';
 
 @Component({
@@ -62,7 +62,7 @@ export class DtComponent extends OkItemComponent implements OnInit {
 
     const appInfo: AppInfo = this.form.value;
 
-    let f: Observable<OkPayload<any>>;
+    let f: Observable<any>;
     if (!appInfo.id) {
       f = this.svc.save(appInfo);
     } else {
