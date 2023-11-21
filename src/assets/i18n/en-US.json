@@ -106,7 +106,7 @@
   "register": {
     "iso": "Your country",
     "account_type": "Account Type",
-    "mail": "E Mail",
+    "email": "E Mail",
     "phone": "Phone number",
     "account": "Account",
     "welcome": "Welcome",

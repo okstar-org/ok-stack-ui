@@ -122,7 +122,7 @@
   "register": {
     "iso": "国家",
     "account_type": "帐号类型",
-    "mail": "邮箱帐号",
+    "email": "邮箱帐号",
     "phone": "手机号码",
     "account": "帐号",
     "welcome": "欢迎",

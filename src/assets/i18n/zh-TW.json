@@ -106,7 +106,7 @@
   "register": {
     "iso": "國家",
     "account_type": "帳號類型",
-    "mail": "郵箱帳號",
+    "email": "郵箱帳號",
     "phone": "手機號碼",
     "account": "帳號",
     "welcome": "歡迎",

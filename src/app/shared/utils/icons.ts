@@ -420,7 +420,7 @@ export const MAT_ICONS = {
     'link',
     'link_off',
     'low_priority',
-    'mail',
+    'email',
     'markunread',
     'move_to_inbox',
     'next_week',
