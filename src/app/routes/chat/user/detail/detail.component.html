@@ -1,26 +1,11 @@
 <page-header class="bg-purple-500"></page-header>
 
 <mat-card *ngIf="data">
-  <mat-card-header>
-    <mat-card-title>
-      <ul class="ok-item-list crm-lead-header">
-        <li class="crm-lead-logo">
-          <img matListAvatar [src]="data.avatar" alt="">
-        </li>
-        <li class="crm-lead-customer-name">{{data.customerName}}</li>
-        <li>[标志] </li>
-        <li>客户网络咨询</li>
-      </ul>
-    </mat-card-title>
-    <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
-  </mat-card-header>
-  <!-- <img matCardImage src="Card wide image source"> -->
   <mat-card-content style="margin: 0;">
-    <ul class="ok-item-list crm-lead-detail">
-      <li class="m-8">线索归属：[张翠花]</li>
-      <li class="m-8">联系人员：{{data.contactName}} </li>
-      <li class="m-8">下次跟进：{{data.nextFollowUpTime}}</li>
-    </ul>
+    <span>帐号：{{data.username}}</span>
+    <span *ngIf="data.email">
+      邮箱：{{data.email}}
+    </span>
   </mat-card-content>
   <mat-card-actions align="start" style="margin: 0;">
     <button mat-button mat-raised-button class="m-8">添加</button>

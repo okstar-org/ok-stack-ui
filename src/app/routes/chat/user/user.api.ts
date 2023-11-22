@@ -12,7 +12,7 @@ class Api implements OkApi {
   importCommit = '/api/portal/app-crm/customer/import/commit';
   save = '/api/portal/app-crm/customer/save';
   deleteById = '/api/portal/app-crm/customer/deleteById/';
-  findById = '/api/portal/app-crm/customer/findById/';
+  findById = '/api/chat/user/findByUsername/';
 
   detail = {
     findById: '/api/portal/app-crm/customer/detail/findById/',
