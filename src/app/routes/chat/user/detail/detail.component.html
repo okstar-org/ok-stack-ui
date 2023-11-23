@@ -1,13 +1,13 @@
 <page-header class="bg-purple-500"></page-header>
 
 <mat-card *ngIf="data">
-  <mat-card-content style="margin: 0;">
-    <span>帐号：{{data.username}}</span>
-    <span *ngIf="data.email">
+  <mat-card-content >
+    <span class="col">帐号：{{data.username}}</span>
+    <span *ngIf="data.email" class="col">
       邮箱：{{data.email}}
     </span>
   </mat-card-content>
-  <mat-card-actions align="start" style="margin: 0;">
+  <!-- <mat-card-actions align="start" style="margin: 0;">
     <button mat-button mat-raised-button class="m-8">添加</button>
     <button mat-button mat-raised-button class="m-8">添加协作</button>
     <button mat-button mat-raised-button class="m-8">发送短信</button>
@@ -16,16 +16,16 @@
     <button mat-button mat-raised-button class="m-8">删除客户</button>
     <button mat-button mat-raised-button class="m-8">转移客户</button>
     <button mat-button mat-raised-button class="m-8">移入公海</button>
-  </mat-card-actions>
+  </mat-card-actions> -->
 
-  <div class="ok-arrow-box">
+  <!-- <div class="ok-arrow-box">
     <a routerLink="../111">
       <mat-icon class="mat-18" color="'#999'">keyboard_arrow_left</mat-icon>
     </a>
     <a routerLink="../222">
       <mat-icon class="mat-18" color="primary">keyboard_arrow_right</mat-icon>
     </a>
-  </div>
+  </div> -->
 </mat-card>
 
 <nav mat-tab-nav-bar aria-label="sale leads navigation links">
@@ -34,7 +34,8 @@
      [routerLink]="tabLink.link"
      routerLinkActive #rla="routerLinkActive"
      [active]="rla.isActive">
-    {{"crm."+ tabLink.label +".title" | translate}}
+    {{"chat."+ tabLink.label +".title" | translate}}
   </a>
 </nav>
+
 <router-outlet></router-outlet>

@@ -4,10 +4,12 @@
 
 
     <mat-card class="ok-sys-card">
-
-      <button mat-button color="primary" (click)="doAdd()">
-        <mat-icon class="icon-8">add</mat-icon>{{"common.add"|translate}}
-      </button>
+      <mat-card-actions align="start" style="margin: 0;">
+        <button mat-button mat-raised-button class="m-8" class=" m-x-26" (click)="doAdd()">
+          <!-- <mat-icon class="icon-8">add</mat-icon> -->
+          {{"common.add"|translate}}
+        </button>
+      </mat-card-actions>
 
       <mat-table aria-readonly="true"
                  [dataSource]="userDataSource"

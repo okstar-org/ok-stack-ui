@@ -225,65 +225,6 @@
   "chat": {
     "user": {
       "title": "用户列表"
-    }
-  },
-  "crm": {
-    "lead": {
-      "title": "销售线索",
-      "keyword": "关键词",
-      "changeToCustomer": "转为客户",
-      "newTask": "新建任务",
-      "sendMessage": "发送短信",
-      "customerName": "客户名称",
-      "contactName": "联系人姓名",
-      "mobilePhone": "手机号码",
-      "ownerName": "归属人员",
-      "source": "线索来源",
-      "status": "线索状态",
-      "lastFollowUpTime": "最后跟进",
-      "unFollowUpDays": "未跟进天数",
-      "statusSelect": {
-        "null": "--",
-        "InitialIntention": "初步意向",
-        "NextInvite": "下次邀约",
-        "IsCustomer": "已转客户"
-      },
-      "sourceSelect": {
-        "null": "--",
-        "Marketing": "电话营销",
-        "CallIn": "主动来电",
-        "Customer": "客户介绍",
-        "Friends": "朋友介绍",
-        "Develop": "独立开发",
-        "NetSearch": "网络搜索",
-        "Exhibition": "展会促销",
-        "Others": "展会促销"
-      }
-    },
-    "customer": {
-      "title": "客户列表",
-      "name": "客户名称",
-      "status": "客户状态",
-      "customerStar": "客户星级",
-      "firstContact": "首联系人",
-      "mobilePhone": "手机号码",
-      "lastFollowUpTime": "最后跟进",
-      "unFollowUpDays": "未跟进天数",
-      "ownerName": "归属人员"
-    },
-    "opportunity": {
-      "title": "商机列表",
-      "name": "商机名称",
-      "phase": "商机阶段",
-      "customerName": "关联客户",
-      "priceList": "报价记录",
-      "priceAmount": "报价金额",
-      "estimateAmount": "预计销售金额",
-      "estimateDate": "预计签单日期",
-      "dealProbability": "成交机率",
-      "lastFollowUpTime": "最后跟进",
-      "unFollowUpDays": "未跟进天数",
-      "createdAt": "商机时间"
     },
     "contact": {
       "title": "联系人列表",
@@ -322,71 +263,6 @@
       "calleeNumber": "被叫号码",
       "time": "发送时间",
       "content": "短信内容"
-    },
-    "log": {
-      "title": "操作日志",
-      "biz": "业务类型",
-      "type": "操作类型",
-      "time": "操作时间",
-      "userName": "操作人员",
-      "id": "数据ID",
-      "beforeData": "旧值",
-      "afterData": "新值"
-    },
-    "attach": {
-      "title": "相关附件",
-      "name": "附件名称",
-      "type": "附件格式",
-      "length": "文件大小",
-      "time": "上传时间",
-      "creator": "上传人员",
-      "note": "备注"
-    },
-    "task": {
-      "title": "任务记录",
-      "beginTime": "开始时间",
-      "endTime": "结束时间",
-      "name": "任务名称",
-      "executor": "执行人员",
-      "status": "任务状态",
-      "important": "紧急程度",
-      "details": "详情"
-    },
-    "follow-up": {
-      "title": "跟进记录",
-      "time": "跟进时间",
-      "source": "来自线索"
-    },
-    "invoice": {
-      "title": "发票记录",
-      "time": "开票日期",
-      "no": "发票号码",
-      "type": "发票类型",
-      "executor": "发票经手人",
-      "createdAt": "录入时间",
-      "order": "关联订单"
-    },
-    "order": {
-      "title": "订单记录",
-      "sn": "订单编号",
-      "name": "订单名称",
-      "customer": "关联客户",
-      "amount": "订单金额",
-      "auditStatus": "审批状态",
-      "collectAmount": "回款金额",
-      "collectedAmount": "已回款金额",
-      "invoiceAmount": "开票金额",
-      "invoicedAmount": "已开票金额",
-      "createdAt": "创建时间"
-    },
-    "cost": {
-      "title": "费用记录",
-      "name": "费用名称",
-      "type": "费用类型",
-      "amount": "费用金额",
-      "createdAt": "发生时间",
-      "status": "报销状态",
-      "executor": "负责人员"
     },
     "info": {
       "title": "概况信息"

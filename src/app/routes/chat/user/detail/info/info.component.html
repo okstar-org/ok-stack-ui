@@ -1,7 +1,7 @@
 <mat-card>
 
   <div class="ok-content-box">
-    <div class="ok-content-title">
+    <!-- <div class="ok-content-title">
       <ul class="ok-item-list">
         <li>
           <mat-icon class="icon-40">bookmark</mat-icon>
@@ -10,8 +10,8 @@
           基本信息
         </li>
       </ul>
-    </div>
-    <div class="ok-content-wrapper" *ngIf="data">
+    </div> -->
+    <!-- <div class="ok-content-wrapper" *ngIf="data">
       <table>
         <tr>
           <td>客户名称：</td>
@@ -59,10 +59,10 @@
         </tr>
 
       </table>
-    </div>
+    </div> -->
   </div>
 
-  <div class="ok-content-box">
+  <!-- <div class="ok-content-box">
     <div class="ok-content-title">
       <ul class="ok-item-list">
         <li><mat-icon class="icon-40">bookmark</mat-icon></li>
@@ -103,18 +103,18 @@
         </tr>
       </table>
     </div>
-  </div>
+  </div> -->
 
   <div class="ok-content-box">
-    <div class="ok-content-title">
+    <!-- <div class="ok-content-title">
       <ul class="ok-item-list">
         <li><mat-icon class="icon-40">bookmark</mat-icon></li>
         <li>相关数据</li>
       </ul>
-    </div>
+    </div> -->
     <div class="ok-content-wrapper">
-      <ul class="ok-number-box">
-        <li *ngFor="let m of meters">
+      <ul class="row ok-number-box">
+        <li class="col" *ngFor="let m of meters">
           <p class="name">{{m.name}}</p>
           <p class="count">{{m.amount}}</p>
         </li>

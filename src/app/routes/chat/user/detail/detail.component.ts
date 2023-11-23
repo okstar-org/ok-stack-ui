@@ -1,4 +1,3 @@
-import { NGXLogger } from 'ngx-logger';
 import { DetailService } from './detail.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -14,20 +13,10 @@ export class DetailComponent implements OnInit {
 
   tabLinks = [
     { label: 'info', link: 'info' },
-    { label: 'follow-up', link: 'follow-up' },
-    { label: 'task', link: 'task' },
-    { label: 'call', link: 'call' },
-    { label: 'sms', link: 'sms' },
-    { label: 'attach', link: 'attach' },
-    { label: 'log', link: 'log' },
     { label: 'contact', link: 'contact' },
-    { label: 'opportunity', link: 'opportunity' },
-    { label: 'order', link: 'order' },
-    { label: 'cost', link: 'cost' },
   ];
 
   constructor(
-    private logger: NGXLogger,
     private activedRoute: ActivatedRoute,
     private svc: DetailService
   ) {
