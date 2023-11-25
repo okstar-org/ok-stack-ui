@@ -6,38 +6,27 @@ export interface User {
   email: string;
 }
 
-export interface ChatGeneral {
-  contacts: number;
-  msgs: number;
-  groups: number;
-}
-
-export interface ChatRostItem {
-  jid: string;
-
-  nickname: string;
-
-  /**
-   * SubType
-   * * Indicates the roster item should be removed.
-   * REMOVE(-1),
-   * No subscription is established.
-   * NONE(0),
-   * * The roster owner has a subscription to the roster item's presence.
-   * TO(1),
-   * * The roster item has a subscription to the roster owner's presence.
-   * FROM(2),
-   * * The roster item and owner have a mutual subscription.
-   * BOTH(3);
-   */
-  subscriptionType: number;
-
-  groups: string[];
+export interface ChatRoom {
+  naturalName: string;
+  roomName: string;
+  subject: string;
+  description: string;
+  password: string;
+  //"owners":["okstar@meet.chuanshaninfo.com"]
+  owners: string[];
+  //最大成员数量
+  maxUsers: number;
+  //成员数量
+  members: number;
+  //是否公开
+  publicRoom: boolean;
+  //持久化房间（保存到数据库）
+  persistent: boolean;
 }
 
 class Api implements OkApi {
   params = '/api/portal/app-crm/customer/params';
-  page = '/api/chat/user/findAll';
+  page = '/api/chat/room/findAll';
   top = '/api/portal/app-crm/customer/page/top';
   export = '/api/portal/app-crm/customer/export';
   importBegin = '/api/portal/app-crm/customer/import/begin';
@@ -45,7 +34,7 @@ class Api implements OkApi {
   importCommit = '/api/portal/app-crm/customer/import/commit';
   save = '/api/portal/app-crm/customer/save';
   deleteById = '/api/portal/app-crm/customer/deleteById/';
-  findById = '/api/chat/user/findByUsername/';
+  findById = '/api/chat/room/findByName/';
   findGeneralInfo = '/api/chat/user/findGeneralByUsername/';
   findContacts = '/api/chat/user/findRosterByUsername/';
 }

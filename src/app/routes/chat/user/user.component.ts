@@ -10,7 +10,7 @@ import { CustomerService } from './user.service';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 
 @Component({
-  selector: 'app-customer',
+  selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
   providers: [CustomerService],

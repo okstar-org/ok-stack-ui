@@ -86,6 +86,8 @@
     "work.app": "应用管理",
     "chat": "聊天管理",
     "chat.user": "用户列表",
+    "chat.room": "房间列表",
+    "chat.group": "群聊列表",
     "bpm": "流程管理",
     "bpm.task": "我的任务",
     "bpm.approve": "我的审批",
@@ -236,14 +238,14 @@
       "position": "部门职务",
       "lastCall": "最后联系"
     },
-    "finance": {
-      "tab": {
-        "collection-plan": "回款计划",
-        "collection-manage": "回款管理",
-        "refund": "退款管理",
-        "cost": "费用管理",
-        "invoice": "发票管理"
-      }
+    "room": {
+      "roomName": "标识",
+      "naturalName": "名称",
+      "description": "描述",
+      "subject": "主题",
+      "owners":"拥有人",
+      "members":"成员数量",
+      "maxUsers": "成员上限"
     },
     "call": {
       "title": "通话记录",

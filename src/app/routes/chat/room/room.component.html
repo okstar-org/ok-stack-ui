@@ -1,0 +1,43 @@
+<page-header class="bg-purple-500"></page-header>
+
+<div fxLayout="row wrap" class="matero-row">
+  <div fxFlex="100" class="matero-col">
+    <mat-card class="ctrl-button-area">
+      <mtx-grid
+                [toolbarTitle]="'chat.user.title' | translate"
+                [data]="list"
+                [columns]="columns"
+                [length]="total"
+                [loading]="isLoading"
+                [showToolbar]="showToolbar"
+                [rowSelectable]="rowSelectable"
+                [columnHideable]="columnHideable"
+                [columnSortable]="columnMovable"
+                [multiSelectable]="multiSelectable"
+                [pageOnFront]="false"
+                [pageIndex]="pageIndex"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="[5,10,20]"
+                (sortChange)="changeSort($event)"
+                (page)="getNextPage($event)"
+                [cellTemplate]="{roomName: nameTpl}">
+      </mtx-grid>
+
+      <ng-template #leadStatusTpl let-row let-index="index" let-col="colDef">
+        {{"crm.customer.leadStatusSelect." +row.leadStatus | translate}}
+      </ng-template>
+
+      <ng-template #leadFromTpl let-row let-index="index" let-col="colDef">
+        {{"crm.customer.sourceSelect." +row.leadFrom | translate}}
+      </ng-template>
+
+      <ng-template #nameTpl let-row let-index="index" let-col="colDef">
+        <a [routerLink]="['/chat/room/detail', row.roomName ]">
+          {{ row.roomName }}
+        </a>
+      </ng-template>
+
+    </mat-card>
+
+  </div>
+</div>

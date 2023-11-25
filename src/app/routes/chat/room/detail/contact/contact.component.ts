@@ -43,10 +43,9 @@ export class ContactComponent extends OkDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    const username = 'okstar';
-    this.svc.getRoster(username).subscribe(r => {
-      this.list = r;
-      this.isLoading = false;
-    });
+    // this.svc.getRoster(this.id).subscribe(r => {
+    //   this.list = r;
+    //   this.isLoading = false;
+    // });
   }
 }

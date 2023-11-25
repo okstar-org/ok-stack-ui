@@ -33,13 +33,13 @@ export class InfoComponent extends OkDetailComponent implements OnInit, OnDestro
   }
 
   ngOnInit() {
-    this.getGeneralData();
+    // this.getGeneralData();
   }
 
   ngOnDestroy(): void {}
 
   getGeneralData() {
-    this.service.getGeneral(this.id).subscribe(r => {
+    this.service.getDetail(this.id).subscribe(r => {
       this.meters[0].amount = r.contacts + '';
       this.meters[1].amount = r.msgs + '';
       this.meters[2].amount = r.groups + '';
