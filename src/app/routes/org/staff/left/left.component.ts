@@ -39,7 +39,7 @@ export class LeftComponent implements OnInit {
   userDataSource!: UserDataSource;
 
   constructor(
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private leftService: LeftService
   ) {}
 
@@ -52,7 +52,9 @@ export class LeftComponent implements OnInit {
 
   doJoin(id: number) {
     console.log('doJoin', id);
-    //TODO(nzb) 传递ID
-    this.dialog.open(JoinDialogComponent);
+    this.dialog.open(JoinDialogComponent, {
+      width: '800px',
+      data: { id },
+    });
   }
 }

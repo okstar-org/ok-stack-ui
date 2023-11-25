@@ -1,24 +1,6 @@
 const PROXY_CONFIG = {
-  '/users/**': {
-    target: 'https://api.github.com',
-    changeOrigin: true,
-    secure: false,
-    logLevel: 'debug',
-    onProxyReq: (proxyReq, req, res) => {
-      // const cookieMap = {
-      //   SID: '',
-      // };
-      // let cookie = '';
-      // for (const key in cookieMap) {
-      //   if (Object.prototype.hasOwnProperty.call(cookieMap, key)) {
-      //     cookie += `${key}=${cookieMap[key]}; `;
-      //   }
-      // }
-      // proxyReq.setHeader('cookie', cookie);
-    },
-  },
   '/api/auth/**': {
-    target: 'http://localhost:9000',
+    target: 'http://chuanshaninfo.com:9000',
     changeOrigin: true,
     secure: false,
     logLevel: 'debug',
@@ -27,7 +9,7 @@ const PROXY_CONFIG = {
     },
   },
   '/api/sys/**': {
-    target: 'http://localhost:9100',
+    target: 'http://chuanshaninfo.com:9100',
     changeOrigin: true,
     secure: false,
     logLevel: 'debug',
@@ -36,7 +18,7 @@ const PROXY_CONFIG = {
     },
   },
   '/api/org/**': {
-    target: 'http://localhost:9200',
+    target: 'http://chuanshaninfo.com:9200',
     changeOrigin: true,
     secure: false,
     logLevel: 'debug',
