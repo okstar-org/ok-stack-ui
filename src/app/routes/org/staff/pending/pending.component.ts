@@ -4,8 +4,6 @@ import { BehaviorSubject, Observable, timer as Timer } from 'rxjs';
 import { Staff } from '../staff.api';
 import { PendingService } from './pending.service';
 import { MatDialog } from '@angular/material/dialog';
-import { TranslateService } from '@ngx-translate/core';
-import { MtxDialog } from '@ng-matero/extensions/dialog';
 import { JoinDialogComponent } from '../dialog-join/join-dialog.component';
 import { DialogAddComponent } from '../dialog-add/dialog-add.component';
 

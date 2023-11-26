@@ -1,6 +1,6 @@
-<div class="matero-row" fxLayout="row wrap">
+<div class="row" fxLayout="row wrap">
 
-  <div class="matero-col ok-sys-dept-tree" fxFlex="100" fxFlex.gt-sm="30">
+  <div class="col col-md-3 ok-sys-dept-tree" fxFlex="100" fxFlex.gt-sm="30">
     <mat-card class="ok-sys-card">
       <mat-card-header>
         <mat-card-subtitle *ngIf="org">{{org.name}}</mat-card-subtitle>
@@ -35,7 +35,7 @@
     </mat-card>
   </div>
 
-  <div class="matero-col col-md-5" fxFlex.gt-sm="70" fxFlex="100">
+  <div class="col" fxFlex.gt-sm="70" fxFlex="100">
     <mat-card class="ok-sys-card">
 
       <mat-table aria-readonly="true"
@@ -43,49 +43,60 @@
                  aria-label="User List">
 
         <ng-container matColumnDef="no">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.no" | translate}}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.no" |
+            translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.fragment.no}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.name" | translate}}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.name" |
+            translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.fragment.name}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="gender">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.gender" | translate}}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.gender" |
+            translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.fragment.gender}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="birthday">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.birthday" | translate}}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.birthday" |
+            translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.fragment.birthday}}</mat-cell>
         </ng-container>
 
 
         <ng-container matColumnDef="phone">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.phone" | translate}}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.phone" |
+            translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.fragment.phone}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="descr">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.descr" | translate}}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.descr" |
+            translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.fragment.descr}}</mat-cell>
         </ng-container>
-
+        <ng-container matColumnDef="postInfo">
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.postInfo" |
+            translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.postInfo}}</mat-cell>
+        </ng-container>
         <ng-container matColumnDef="joinedDate">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.joinedDate" | translate}}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.joinedDate" |
+            translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.joinedDate}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="operation">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.operation" | translate}}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.operation" |
+            translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">
 
             <button mat-button color="primary" class="m-8" (click)="doLeave(row)">
               {{ "org.staff.employed.leave" | translate}}
             </button>
-
           </mat-cell>
         </ng-container>
 

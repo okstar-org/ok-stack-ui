@@ -7,6 +7,7 @@ import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { Staff } from '../staff.api';
 import { LeftService } from './left.service';
 import { JoinDialogComponent } from '../dialog-join/join-dialog.component';
+import { Router } from '@angular/router';
 
 export class UserDataSource extends DataSource<Staff> {
   dataChange: BehaviorSubject<Staff[]> = new BehaviorSubject<Staff[]>([]);
@@ -40,7 +41,8 @@ export class LeftComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private leftService: LeftService
+    private leftService: LeftService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -52,9 +54,14 @@ export class LeftComponent implements OnInit {
 
   doJoin(id: number) {
     console.log('doJoin', id);
-    this.dialog.open(JoinDialogComponent, {
-      width: '800px',
-      data: { id },
-    });
+    this.dialog
+      .open(JoinDialogComponent, {
+        width: '800px',
+        data: { id },
+      })
+      .afterClosed()
+      .subscribe(r => {
+        this.router.navigateByUrl('/org/staff/employed');
+      });
   }
 }

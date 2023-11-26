@@ -19,7 +19,7 @@ export class StaffComponent implements OnInit {
     private router: Router
   ) {
     // 导航到子路由
-    this.router.navigateByUrl('/org/staff/pending');
+    // this.router.navigateByUrl('/org/staff/pending');
   }
 
   ngOnInit() {}

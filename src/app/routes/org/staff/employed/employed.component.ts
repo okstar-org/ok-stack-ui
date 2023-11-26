@@ -12,6 +12,7 @@ import { DeptService } from '../../dept/dept.service';
 import { OrgService } from '../../org.service';
 import { Staff } from '../staff.api';
 import { EmployedService } from './employed.service';
+import { Router } from '@angular/router';
 
 export class DynamicFlatNode {
   constructor(
@@ -163,6 +164,7 @@ export class EmployedComponent implements OnInit {
     'birthday',
     'phone',
     'descr',
+    'postInfo',
     'joinedDate',
     'operation',
   ];
@@ -188,7 +190,8 @@ export class EmployedComponent implements OnInit {
     private orgService: OrgService,
     private logger: NGXLogger,
     private svc: StaffService,
-    private employedService: EmployedService
+    private employedService: EmployedService,
+    private router: Router
   ) {
     this.treeControl = new FlatTreeControl<DynamicFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new DynamicDataSource(this.treeControl, database);
@@ -198,11 +201,14 @@ export class EmployedComponent implements OnInit {
       this.org = r;
     });
 
+    this.userDataSource = new UserDataSource();
+    this.loadData();
+  }
+
+  loadData() {
     this.database.initialData().subscribe(r => {
       this.dataSource.data = r;
     });
-
-    this.userDataSource = new UserDataSource();
   }
 
   onClickDept(node: DynamicFlatNode) {
@@ -222,7 +228,7 @@ export class EmployedComponent implements OnInit {
       staff.name,
       () => {
         this.employedService.leavel(staff.id).subscribe(r => {
-          console.log('=>', r);
+          this.router.navigateByUrl('/org/staff/left');
         });
       }
     );

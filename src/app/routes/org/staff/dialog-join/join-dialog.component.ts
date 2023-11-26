@@ -64,6 +64,7 @@ export class JoinDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<JoinDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {
+    console.log('data:', data);
     // this.deptDs = new DeptDataSource();
   }
 
@@ -75,8 +76,9 @@ export class JoinDialogComponent implements OnInit {
 
   doSubmit() {
     const ids = this.selectedRows.map(r => r.id);
-    const req: OrgStaffJoinReq = { staffId: 0, postIds: ids };
-    this.pendingSrv.join(req);
-    console.log(req);
+    const req: OrgStaffJoinReq = { staffId: this.data.id, postIds: ids };
+    this.pendingSrv.join(req).subscribe(r => {
+      console.log('=>', r);
+    });
   }
 }
