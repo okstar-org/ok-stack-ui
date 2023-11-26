@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Gender, OrgStaffFragment, OrgStaffReq } from '../staff.api';
+import { Gender, OrgStaffFragment, OrgStaffReq, StaffAddOpt, StaffJoinOpt } from '../staff.api';
 import { StaffService } from '../staff.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-add',
@@ -9,23 +10,30 @@ import { StaffService } from '../staff.service';
   styleUrls: ['./dialog-add.component.scss'],
 })
 export class DialogAddComponent implements OnInit, OnDestroy {
-  form = this.fb.nonNullable.group({
+  form = this.fb.group({
     no: ['', [Validators.required]],
+    name: ['', [Validators.required]],
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
     identity: ['', [Validators.required]],
     phone: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    livingIn: [''],
+    gender: [Gender.NONE],
     descr: [''],
+    iso: [''],
+    livingIn: [''],
+    birthday: [new Date()],
   });
 
   constructor(
     private fb: FormBuilder,
-    private svc: StaffService
+    private svc: StaffService,
+    @Inject(MAT_DIALOG_DATA) private opt: StaffAddOpt
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.opt) this.form.setValue(this.opt);
+  }
 
   ngOnDestroy() {}
 

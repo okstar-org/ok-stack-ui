@@ -178,7 +178,7 @@
         "createAt": "创建时间"
       },
       "add": {
-        "title": "添加待入职人员",
+        "title": "编辑入职人员信息",
         "name": "名称",
         "firstName": "姓",
         "lastName": "名",

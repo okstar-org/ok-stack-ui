@@ -69,7 +69,7 @@ export class JoinDialogComponent implements OnInit {
     this.joinDialogService.listPost(this.opt).subscribe(list => {
       this.list = list;
       this.list.forEach(e => {
-        if (this.opt.postIds.indexOf(e.id) >= 0) {
+        if (this.opt.postIds && this.opt.postIds.indexOf(e.id) >= 0) {
           this.selectedRows.push(e);
         }
       });

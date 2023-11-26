@@ -6,6 +6,7 @@ import { PendingService } from './pending.service';
 import { MatDialog } from '@angular/material/dialog';
 import { JoinDialogComponent } from '../dialog-join/join-dialog.component';
 import { DialogAddComponent } from '../dialog-add/dialog-add.component';
+import { Router } from '@angular/router';
 
 export class UserDataSource extends DataSource<Staff> {
   dataChange: BehaviorSubject<Staff[]> = new BehaviorSubject<Staff[]>([]);
@@ -39,6 +40,7 @@ export class PendingComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
+    private router: Router,
     private pendingService: PendingService
   ) {
     this.userDataSource = new UserDataSource();
@@ -53,25 +55,34 @@ export class PendingComponent implements OnInit {
     });
   }
   doAdd() {
-    const ref = this.dialog.open(DialogAddComponent);
-    // 在这里编写要延迟执行的代码
-    ref.afterClosed().subscribe(r => {
-      Timer(1000).subscribe(() => {
-        console.log('close=>', r);
-        if (r) {
-          this.load();
-        }
+    this.dialog
+      .open(DialogAddComponent)
+      .afterClosed()
+      .subscribe(r => {
+        this.load();
       });
-    });
   }
 
-  onEdit(id: number) {}
+  onEdit(staff: Staff) {
+    this.dialog
+      .open(DialogAddComponent, {
+        data: staff.fragment,
+      })
+      .afterClosed()
+      .subscribe(r => {
+        this.load();
+      });
+  }
 
-  doJoin(id: number) {
-    console.log('doJoin', id);
-    this.dialog.open(JoinDialogComponent, {
-      width: '800px',
-      data: { id },
-    });
+  doJoin(staff: Staff) {
+    this.dialog
+      .open(JoinDialogComponent, {
+        width: '800px',
+        data: { id: staff.id },
+      })
+      .afterClosed()
+      .subscribe(r => {
+        this.router.navigateByUrl('/org/staff/employed');
+      });
   }
 }

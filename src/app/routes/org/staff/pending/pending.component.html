@@ -56,11 +56,11 @@
             translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">
 
-            <button mat-button color="primary" class="m-8" (click)="doJoin(row.id)">
+            <button mat-button color="primary" class="m-8" (click)="doJoin(row)">
               {{"org.staff.pending.join"|translate}}
             </button>
 
-            <button mat-button color="primary" class="m-8" (click)="onEdit(row.id)">
+            <button mat-button color="primary" class="m-8" (click)="onEdit(row)">
               {{"common.edit"|translate}}
             </button>
 

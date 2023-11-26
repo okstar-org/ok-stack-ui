@@ -19,18 +19,6 @@ class Api implements OkApi {
 const api = new Api();
 export { api };
 
-export interface Staff {
-  id: number;
-  no: number;
-  name: string;
-  gender: string;
-  mobile: string;
-  active: string;
-  avatar: string;
-  postIds: number[];
-
-  // sourceList: string[];
-}
 export enum Gender {
   NONE,
   MALE,
@@ -41,6 +29,8 @@ export interface OrgStaffFragment {
    * 编号
    */
   no: string;
+
+  name: string;
 
   /**
    * 性
@@ -53,14 +43,13 @@ export interface OrgStaffFragment {
   lastName: string;
 
   /**
-   * 性别
-   */
-  // gender: Gender;
-
-  /**
    * 身份证ID
    */
   identity: string;
+
+  gender: Gender;
+
+  iso: string;
 
   /**
    * 电话
@@ -81,8 +70,23 @@ export interface OrgStaffFragment {
    * 居住地址
    */
   livingIn: string;
+
+  birthday: Date;
 }
 
+export interface Staff {
+  id: number;
+  fragment: OrgStaffFragment;
+  // no: string;
+  // firstName: string;
+  // lastName: string;
+  // identity: string;
+  // phone: string;
+  // email: string;
+  // descr: string;
+  // livingIn: string;
+  postIds?: number[];
+}
 export interface OrgStaffReq {
   fragment: OrgStaffFragment;
 }
@@ -96,5 +100,7 @@ export interface OrgStaffJoinReq {
 export interface StaffJoinOpt {
   id: number;
   reassignment: boolean;
-  postIds: number[];
+  postIds?: number[];
 }
+
+export interface StaffAddOpt extends OrgStaffFragment {}

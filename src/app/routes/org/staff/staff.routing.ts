@@ -9,9 +9,8 @@ const routes: Routes = [
   {
     path: '',
     component: StaffComponent,
-    // redirectTo: 'pending',
-    // pathMatch: 'full',
     children: [
+      { path: '', redirectTo: 'pending', pathMatch: 'full' },
       { path: 'pending', component: PendingComponent },
       { path: 'employed', component: EmployedComponent },
       { path: 'left', component: LeftComponent },
