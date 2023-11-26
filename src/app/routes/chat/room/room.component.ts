@@ -64,7 +64,11 @@ export class RoomComponent extends OkPaginatorComponent implements OnInit {
       field: 'maxUsers',
       sortable: true,
     },
-
+    {
+      header: this.translate.stream('chat.room.publicRoom'),
+      field: 'publicRoom',
+      sortable: true,
+    },
     // {
     //   header: '操作',
     //   field: 'operation',

@@ -22,6 +22,18 @@ export interface ChatRoom {
   publicRoom: boolean;
   //持久化房间（保存到数据库）
   persistent: boolean;
+  canChangeNickname: boolean;
+  canOccupantsChangeSubject: boolean;
+  canOccupantsInvite: boolean;
+  logEnabled: boolean;
+  creationDate: Date;
+  modificationDate: Date;
+}
+
+export interface ChatParticipant {
+  jid: string;
+  role: string;
+  affiliation: string;
 }
 
 class Api implements OkApi {
@@ -35,8 +47,7 @@ class Api implements OkApi {
   save = '/api/portal/app-crm/customer/save';
   deleteById = '/api/portal/app-crm/customer/deleteById/';
   findById = '/api/chat/room/findByName/';
-  findGeneralInfo = '/api/chat/user/findGeneralByUsername/';
-  findContacts = '/api/chat/user/findRosterByUsername/';
+  findParticipants = '/api/chat/room/findParticipantsByName/';
 }
 
 const api = new Api();

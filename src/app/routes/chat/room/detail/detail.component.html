@@ -2,7 +2,7 @@
 
 <mat-card *ngIf="data">
   <mat-card-content>
-    <span class="col">帐号：{{data.roomName}}</span>
+
     <span class="col">
       名称：{{data.naturalName}}
     </span>
@@ -10,25 +10,7 @@
       主题：{{data.subject}}
     </span>
   </mat-card-content>
-  <!-- <mat-card-actions align="start" style="margin: 0;">
-    <button mat-button mat-raised-button class="m-8">添加</button>
-    <button mat-button mat-raised-button class="m-8">添加协作</button>
-    <button mat-button mat-raised-button class="m-8">发送短信</button>
-    <button mat-button mat-raised-button class="m-8">重点关注</button>
-    <button mat-button mat-raised-button class="m-8">编辑客户</button>
-    <button mat-button mat-raised-button class="m-8">删除客户</button>
-    <button mat-button mat-raised-button class="m-8">转移客户</button>
-    <button mat-button mat-raised-button class="m-8">移入公海</button>
-  </mat-card-actions> -->
 
-  <!-- <div class="ok-arrow-box">
-    <a routerLink="../111">
-      <mat-icon class="mat-18" color="'#999'">keyboard_arrow_left</mat-icon>
-    </a>
-    <a routerLink="../222">
-      <mat-icon class="mat-18" color="primary">keyboard_arrow_right</mat-icon>
-    </a>
-  </div> -->
 </mat-card>
 
 <nav mat-tab-nav-bar aria-label="sale leads navigation links" [tabPanel]="tabPanel">

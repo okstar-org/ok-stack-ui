@@ -1,122 +1,43 @@
 <mat-card>
-
   <div class="ok-content-box">
-    <!-- <div class="ok-content-title">
-      <ul class="ok-item-list">
-        <li>
-          <mat-icon class="icon-40">bookmark</mat-icon>
-        </li>
-        <li>
-          基本信息
-        </li>
-      </ul>
-    </div> -->
-    <!-- <div class="ok-content-wrapper" *ngIf="data">
-      <table>
-        <tr>
-          <td>客户名称：</td>
-          <td>{{data.customerName}}</td>
-          <td>联系人姓名：</td>
-          <td>{{data.contactName}}</td>
-        </tr>
-        <tr>
-          <td>尊称：</td>
-          <td>{{data.honorific}}</td>
-          <td>角色：</td>
-          <td>{{data.role}}</td>
-        </tr>
-        <tr>
-          <td>部门职务：</td>
-          <td>{{data.position}}</td>
-          <td>手机号码：</td>
-          <td>{{data.mobilePhone}}</td>
-        </tr>
-        <tr>
-          <td>固定电话：</td>
-          <td>{{data.landPhone}}</td>
-          <td>传真号码：</td>
-          <td>{{data.faxPhone}}</td>
-        </tr>
 
-        <tr>
-          <td>电子邮箱：</td>
-          <td>{{data.email}}</td>
-          <td>微信账号：</td>
-          <td>[wx23%#SDa]</td>
-        </tr>
-
-        <tr>
-          <td>QQ号码：</td>
-          <td>[123456]</td>
-          <td>线索来源：</td>
-          <td>{{data.source}}</td>
-        </tr>
-        <tr>
-          <td>线索状态：</td>
-          <td>{{data.leadState}}</td>
-          <td></td>
-          <td></td>
-        </tr>
-
-      </table>
-    </div> -->
-  </div>
-
-  <!-- <div class="ok-content-box">
-    <div class="ok-content-title">
-      <ul class="ok-item-list">
-        <li><mat-icon class="icon-40">bookmark</mat-icon></li>
-        <li>系统信息</li>
-      </ul>
-    </div>
     <div class="ok-content-wrapper" *ngIf="data">
-      <table>
-        <tr>
-          <td>数据编号：</td>
-          <td>{{data.sn}}</td>
-          <td>数据UUID：</td>
-          <td>{{data.uuid}}</td>
-        </tr>
-        <tr>
-          <td>所属部门：</td>
-          <td>[销售一部]</td>
-          <td>创建人员：</td>
-          <td>[张脆花]</td>
-        </tr>
-        <tr>
-          <td>前归属人：</td>
-          <td>[张脆花]</td>
-          <td>前所属部门：</td>
-          <td>销售一部</td>
-        </tr>
-        <tr>
-          <td>创建时间：</td>
-          <td>{{data.createdAt}}</td>
-          <td>更新时间：</td>
-          <td>{{data.updatedAt}}</td>
-        </tr>
-        <tr>
-          <td>最后跟进：</td>
-          <td>{{data.lastFollowUpTime}}</td>
-          <td>下次跟进：</td>
-          <td>{{data.nextFollowUpTime}}</td>
-        </tr>
-      </table>
-    </div>
-  </div> -->
-
-  <div class="ok-content-box">
-    <!-- <div class="ok-content-title">
-      <ul class="ok-item-list">
-        <li><mat-icon class="icon-40">bookmark</mat-icon></li>
-        <li>相关数据</li>
-      </ul>
-    </div> -->
-    <div class="ok-content-wrapper">
       <ul class="row ok-number-box">
-        <li class="col" *ngFor="let m of meters">
-          <p class="name">{{m.name}}</p>
-          <p class="count">{{m.amount}}</p>
+        <li class="col">
+          <p class="name">帐号</p>
+          <p class="count">{{data.naturalName}}</p>
+        </li>
+        <li class="col">
+          <p class="name">成员</p>
+          <p class="count">{{data.members}}/{{data.maxUsers}}</p>
+        </li>
+        <li class="col">
+          <p class="name">密码</p>
+          <p class="count">{{data.password}}</p>
+        </li>
+        <li class="col">
+          <p class="name">允许修改昵称</p>
+          <p class="count">{{data.canChangeNickname}}</p>
+        </li>
+        <li class="col">
+          <p class="name">允许成员修改主题</p>
+          <p class="count">{{data.canOccupantsChangeSubject}}</p>
+        </li>
+        <li class="col">
+          <p class="name">允许成员邀请</p>
+          <p class="count">{{data.canOccupantsInvite}}</p>
+        </li>
+        <li class="col">
+          <p class="name">日志记录</p>
+          <p class="count">{{data.logEnabled}}</p>
+        </li>
+        <li class="col">
+          <p class="name">创建时间</p>
+          <p class="count">{{data.creationDate}}</p>
+        </li>
+        <li class="col">
+          <p class="name">修改时间</p>
+          <p class="count">{{data.modificationDate}}</p>
         </li>
       </ul>
     </div>

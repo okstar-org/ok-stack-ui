@@ -4,9 +4,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { OkDetailComponent } from '@shared/components/ok/ok-detail.component';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
-import { ContactService } from './contact.service';
-import { DetailComponent } from '../detail.component';
 import { ActivatedRoute } from '@angular/router';
+import { ContactService } from './contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -22,8 +21,8 @@ export class ContactComponent extends OkDetailComponent implements OnInit {
       sortable: true,
     },
     {
-      header: this.translate.stream('chat.contact.name'),
-      field: 'nickname',
+      header: this.translate.stream('chat.contact.role'),
+      field: 'role',
       sortable: true,
     },
   ];
@@ -43,9 +42,9 @@ export class ContactComponent extends OkDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.svc.getRoster(this.id).subscribe(r => {
-    //   this.list = r;
-    //   this.isLoading = false;
-    // });
+    this.svc.getParticipants(this.id).subscribe(r => {
+      this.list = r;
+      this.isLoading = false;
+    });
   }
 }

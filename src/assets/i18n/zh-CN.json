@@ -245,9 +245,10 @@
       "naturalName": "名称",
       "description": "描述",
       "subject": "主题",
-      "owners":"拥有人",
-      "members":"成员数量",
-      "maxUsers": "成员上限"
+      "owners": "拥有人",
+      "members": "成员数量",
+      "maxUsers": "成员上限",
+      "publicRoom": "公开房间"
     },
     "call": {
       "title": "通话记录",
