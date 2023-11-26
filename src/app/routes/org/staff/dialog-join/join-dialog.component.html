@@ -2,46 +2,8 @@
 
 <mat-dialog-content>
 
-  <!-- <mat-table aria-readonly="true"
-             [dataSource]="deptDs"
-             aria-label="User List">
-
-    <ng-container matColumnDef="check">
-      <mat-header-cell *matHeaderCellDef>{{ "common.check" | translate}}</mat-header-cell>
-      <mat-cell *matCellDef="let row;">
-        <mat-checkbox color="primary"></mat-checkbox>
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="no">
-      <mat-header-cell *matHeaderCellDef>{{ "org.staff.dept.no" | translate}}</mat-header-cell>
-      <mat-cell *matCellDef="let row;">{{row.no}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>{{ "org.staff.dept.name" |
-        translate}}</mat-header-cell>
-      <mat-cell *matCellDef="let row;">{{row.name}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="descr">
-      <mat-header-cell *matHeaderCellDef>{{ "org.staff.dept.descr" |
-        translate}}</mat-header-cell>
-      <mat-cell *matCellDef="let row;">{{row.descr}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="createAt">
-      <mat-header-cell *matHeaderCellDef>{{ "org.staff.dept.createAt" |
-        translate}}</mat-header-cell>
-      <mat-cell *matCellDef="let row;">{{row.createAt}}</mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-  </mat-table> -->
-
   <mtx-grid [data]="list" [columns]="columns" [rowSelectable]="true"
+            [rowSelected]="selectedRows"
             (rowSelectionChange)="selectedRows=$event" />
 
 </mat-dialog-content>

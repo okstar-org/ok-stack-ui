@@ -208,9 +208,10 @@
         "birthday": "生日",
         "createAt": "创建时间",
         "joinedDate": "入职时间",
-        "postInfo": "入职岗位",
+        "postNames": "入职岗位",
         "operation": "操作",
         "leave": "离职",
+        "reassignment": "调岗",
         "leave_dialog_msg": "确定离职该人员吗？"
       },
       "left": {

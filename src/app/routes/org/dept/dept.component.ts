@@ -6,8 +6,9 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
-import { User } from './dept.api';
+
 import { Org } from '../org.api';
+import { Dept } from './dept.api';
 
 export class DynamicFlatNode {
   constructor(
@@ -147,7 +148,7 @@ export class DeptComponent implements OnInit {
 
   dataSource: any;
 
-  userDataSource!: UserDataSource;
+  userDataSource!: DeptDataSource;
 
   org!: Org;
 
@@ -180,11 +181,11 @@ export class DeptComponent implements OnInit {
       this.dataSource.data = r;
     });
 
-    this.userDataSource = new UserDataSource();
+    this.userDataSource = new DeptDataSource();
   }
 
   onClickDept(node: DynamicFlatNode) {
-    this.svc.findUserByDept(node.id).subscribe(r => {
+    this.svc.findPostByDept(node.id).subscribe(r => {
       this.userDataSource.setData(r);
     });
   }
@@ -193,39 +194,39 @@ export class DeptComponent implements OnInit {
 
   onSync() {
     this.logger.info('sync');
-    this.svc.sync().subscribe(r => {
-      this.logger.info('sync=>', r);
-      this.database.initialData().subscribe(r2 => {
-        this.dataSource.data = r2;
-      });
-    });
+    // this.svc.sync().subscribe(r => {
+    //   this.logger.info('sync=>', r);
+    //   this.database.initialData().subscribe(r2 => {
+    //     this.dataSource.data = r2;
+    //   });
+    // });
   }
 
   onSyncUser() {
     this.logger.info('syncUser');
-    this.svc.syncUser().subscribe(r => {
-      this.logger.info('syncUser=>', r);
-      // this.database.initialData().subscribe(r2 => {
-      //   this.userDataSource.setData(r2);
-      // });
-    });
+    // this.svc.syncUser().subscribe(r => {
+    // this.logger.info('syncUser=>', r);
+    // this.database.initialData().subscribe(r2 => {
+    //   this.userDataSource.setData(r2);
+    // });
+    // });
   }
 }
 
-export class UserDataSource extends DataSource<User> {
-  dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
+export class DeptDataSource extends DataSource<Dept> {
+  dataChange: BehaviorSubject<Dept[]> = new BehaviorSubject<Dept[]>([]);
 
   constructor() {
     super();
   }
 
-  connect(): Observable<User[]> {
+  connect(): Observable<Dept[]> {
     return this.dataChange;
   }
 
   disconnect() {}
 
-  setData(list: User[]) {
+  setData(list: Dept[]) {
     this.dataChange.next(list);
   }
 }

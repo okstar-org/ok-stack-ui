@@ -4,7 +4,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { Dept } from '../../dept/dept.api';
 import { PendingService } from '../pending/pending.service';
-import { OrgStaffJoinReq } from '../staff.api';
+import { OrgStaffJoinReq, StaffJoinOpt } from '../staff.api';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { TranslateService } from '@ngx-translate/core';
@@ -56,27 +56,29 @@ export class JoinDialogComponent implements OnInit {
     },
   ];
   selectedRows: any[] = [];
+  // selectedRowIds: number[] = [];
 
   constructor(
     private joinDialogService: JoinDialogService,
     private pendingSrv: PendingService,
     private translate: TranslateService,
-    private dialogRef: MatDialogRef<JoinDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: any
-  ) {
-    console.log('data:', data);
-    // this.deptDs = new DeptDataSource();
-  }
+    @Inject(MAT_DIALOG_DATA) private opt: StaffJoinOpt
+  ) {}
 
   ngOnInit(): void {
-    this.joinDialogService.listDept().subscribe(list => {
+    this.joinDialogService.listPost(this.opt).subscribe(list => {
       this.list = list;
+      this.list.forEach(e => {
+        if (this.opt.postIds.indexOf(e.id) >= 0) {
+          this.selectedRows.push(e);
+        }
+      });
     });
   }
 
   doSubmit() {
     const ids = this.selectedRows.map(r => r.id);
-    const req: OrgStaffJoinReq = { staffId: this.data.id, postIds: ids };
+    const req: OrgStaffJoinReq = { staffId: this.opt.id, postIds: ids };
     this.pendingSrv.join(req).subscribe(r => {
       console.log('=>', r);
     });

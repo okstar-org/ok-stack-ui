@@ -75,6 +75,3 @@ export class PendingComponent implements OnInit {
     });
   }
 }
-function timer(arg0: number) {
-  throw new Error('Function not implemented.');
-}

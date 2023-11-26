@@ -13,7 +13,7 @@ class Api implements OkApi {
   syncUser = '/api/portal/sys/org/user/sync';
 
   findUserByDept = '/api/org/staff/findByDept/';
-  listDept = '/api/org/staff/post/list';
+  listPost = '/api/org/staff/post/list';
 }
 
 const api = new Api();
@@ -27,6 +27,8 @@ export interface Staff {
   mobile: string;
   active: string;
   avatar: string;
+  postIds: number[];
+
   // sourceList: string[];
 }
 export enum Gender {
@@ -88,5 +90,11 @@ export interface OrgStaffReq {
 /**员工入职请求 */
 export interface OrgStaffJoinReq {
   staffId: number;
+  postIds: number[];
+}
+
+export interface StaffJoinOpt {
+  id: number;
+  reassignment: boolean;
   postIds: number[];
 }

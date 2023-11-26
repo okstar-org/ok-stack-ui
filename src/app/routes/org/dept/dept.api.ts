@@ -25,12 +25,3 @@ export interface Dept {
   level: number;
   sourceList: string[];
 }
-
-export interface User {
-  no: number;
-  name: string;
-  gender: string;
-  mobile: string;
-  active: string;
-  avatar: string;
-}

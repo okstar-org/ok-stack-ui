@@ -9,10 +9,12 @@ import { MtxDialog } from '@ng-matero/extensions/dialog';
 import { Org } from '../../org.api';
 import { StaffService } from '../staff.service';
 import { DeptService } from '../../dept/dept.service';
-import { OrgService } from '../../org.service';
+
 import { Staff } from '../staff.api';
 import { EmployedService } from './employed.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { JoinDialogComponent } from '../dialog-join/join-dialog.component';
 
 export class DynamicFlatNode {
   constructor(
@@ -164,7 +166,7 @@ export class EmployedComponent implements OnInit {
     'birthday',
     'phone',
     'descr',
-    'postInfo',
+    'postNames',
     'joinedDate',
     'operation',
   ];
@@ -187,17 +189,18 @@ export class EmployedComponent implements OnInit {
     private translate: TranslateService,
     private mtxDialog: MtxDialog,
     private database: DynamicDatabase,
-    private orgService: OrgService,
+    private deptService: DeptService,
     private logger: NGXLogger,
     private svc: StaffService,
     private employedService: EmployedService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
     this.treeControl = new FlatTreeControl<DynamicFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new DynamicDataSource(this.treeControl, database);
   }
   ngOnInit(): void {
-    this.orgService.getCurrentOrg().subscribe(r => {
+    this.deptService.getCurrentOrg().subscribe(r => {
       this.org = r;
     });
 
@@ -222,7 +225,6 @@ export class EmployedComponent implements OnInit {
   }
 
   doLeave(staff: Staff) {
-    console.log('doLeave', staff);
     this.mtxDialog.confirm(
       this.translate.stream('org.staff.employed.leave_dialog_msg'),
       staff.name,
@@ -232,6 +234,29 @@ export class EmployedComponent implements OnInit {
         });
       }
     );
+  }
+
+  doReassignment(staff: Staff) {
+    //调岗
+    console.log('doReassignment', staff.id);
+    this.dialog
+      .open(JoinDialogComponent, {
+        width: '800px',
+        data: { id: staff.id, postIds: staff.postIds, assignment: true },
+      })
+      .afterClosed()
+      .subscribe(r => {
+        this.loadData();
+      });
+    // this.mtxDialog.confirm(
+    // this.translate.stream('org.staff.employed.leave_dialog_msg'),
+    // staff.name,
+    // () => {
+    // this.employedService.leavel(staff.id).subscribe(r => {
+    // this.router.navigateByUrl('/org/staff/left');
+    // });
+    // }
+    // );
   }
 
   onSync() {

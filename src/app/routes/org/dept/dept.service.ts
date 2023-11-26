@@ -2,7 +2,7 @@ import { OkItemService } from './../../../shared/services/ok-item.service';
 import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { HttpClient } from '@angular/common/http';
-import { api, Dept, User } from './dept.api';
+import { api, Dept } from './dept.api';
 import { OkResult } from '@shared/api/ok';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -35,27 +35,27 @@ export class DeptService extends OkItemService {
       .pipe(map((r: OkResult<Dept[]>) => r.data));
   }
 
-  findUserByDept(id: number, params = {}): Observable<User[]> {
+  findPostByDept(id: number, params = {}): Observable<Dept[]> {
     return this.http
-      .get<OkResult<User[]>>(api.findUserByDept + id, { params })
-      .pipe(map((r: OkResult<User[]>) => r.data));
+      .get<OkResult<Dept[]>>(api.findUserByDept + id, { params })
+      .pipe(map((r: OkResult<Dept[]>) => r.data));
   }
 
-  deleteById(id: number, params = {}): Observable<User[]> {
+  deleteById(id: number, params = {}): Observable<boolean> {
     return this.http
-      .delete<OkResult<User[]>>(api.deleteById + id, { params })
-      .pipe(map((r: OkResult<User[]>) => r.data));
+      .delete<OkResult<boolean>>(api.deleteById + id, { params })
+      .pipe(map((r: OkResult<boolean>) => r.data));
   }
 
-  sync(params = {}): Observable<User[]> {
-    return this.http
-      .put<OkResult<User[]>>(api.sync, { params })
-      .pipe(map((r: OkResult<User[]>) => r.data));
-  }
+  // sync(params = {}): Observable<User[]> {
+  //   return this.http
+  //     .put<OkResult<User[]>>(api.sync, { params })
+  //     .pipe(map((r: OkResult<User[]>) => r.data));
+  // }
 
-  syncUser(params = {}): Observable<User[]> {
-    return this.http
-      .put<OkResult<User[]>>(api.syncUser, { params })
-      .pipe(map((r: OkResult<User[]>) => r.data));
-  }
+  // syncUser(params = {}): Observable<User[]> {
+  //   return this.http
+  //     .put<OkResult<User[]>>(api.syncUser, { params })
+  //     .pipe(map((r: OkResult<User[]>) => r.data));
+  // }
 }

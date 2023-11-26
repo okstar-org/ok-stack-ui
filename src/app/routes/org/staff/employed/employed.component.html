@@ -78,10 +78,10 @@
             translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.fragment.descr}}</mat-cell>
         </ng-container>
-        <ng-container matColumnDef="postInfo">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.postInfo" |
+        <ng-container matColumnDef="postNames">
+          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.postNames" |
             translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.postInfo}}</mat-cell>
+          <mat-cell *matCellDef="let row;">{{row.postNames}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="joinedDate">
           <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.joinedDate" |
@@ -96,6 +96,9 @@
 
             <button mat-button color="primary" class="m-8" (click)="doLeave(row)">
               {{ "org.staff.employed.leave" | translate}}
+            </button>
+            <button mat-button color="primary" class="m-8" (click)="doReassignment(row)">
+              {{ "org.staff.employed.reassignment" | translate}}
             </button>
           </mat-cell>
         </ng-container>
