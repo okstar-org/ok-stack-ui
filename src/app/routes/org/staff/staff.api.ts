@@ -1,6 +1,6 @@
-import { OkApi } from '@shared/api/ok';
+import { OkApi, OkPageApi } from '@shared/api/ok';
 
-class Api implements OkApi {
+class Api implements OkPageApi {
   findById = '/api/org/staff/findById/';
   findByType = '/api/org/staff/findByType/';
   deleteById = '/api/org/staff/deleteById/';
@@ -11,7 +11,9 @@ class Api implements OkApi {
   update = '/api/org/staff/update';
   sync = '/api/org/staff/sync';
   syncUser = '/api/portal/sys/org/user/sync';
-
+  params = '';
+  top = '';
+  export = '';
   findUserByDept = '/api/org/staff/findByDept/';
   listPost = '/api/org/staff/post/list';
 }

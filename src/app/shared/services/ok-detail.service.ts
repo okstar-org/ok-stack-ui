@@ -1,4 +1,4 @@
-import { ID, OkApi, OkResult } from './../api/ok';
+import { ID, OkApi, OkPageApi, OkResult } from './../api/ok';
 import { NGXLogger } from 'ngx-logger';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,7 +8,7 @@ export class OkDetailService {
   constructor(
     protected logger: NGXLogger,
     protected http: HttpClient,
-    protected api: OkApi
+    protected api: OkPageApi
   ) {}
 
   getDetail(id: string, params = {}): Observable<any> {

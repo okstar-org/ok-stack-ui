@@ -5,6 +5,7 @@ class Api implements OkApi {
   page = '/api/org/staff/pending/page';
   join = '/api/org/staff/pending/join';
   update = '';
+  save = '';
 }
 
 const api = new Api();

@@ -250,6 +250,12 @@
       "maxUsers": "成员上限",
       "publicRoom": "公开房间"
     },
+    "group": {
+      "name": "名称",
+      "description": "描述",
+      "subject": "主题",
+      "members": "成员数量"
+    },
     "call": {
       "title": "通话记录",
       "callerName": "主叫人",

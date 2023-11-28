@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'room',
     loadChildren: () => import('./room/room.module').then(m => m.RoomModule),
   },
+  {
+    path: 'group',
+    loadChildren: () => import('./group/group.module').then(m => m.GroupModule),
+  },
 ];
 
 export const chatRoutes = RouterModule.forChild(routes);

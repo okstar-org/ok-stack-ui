@@ -4,6 +4,7 @@ class Api implements OkApi {
   findById = '';
   page = '/api/org/staff/employed/page';
   leave = '/api/org/staff/employed/leave';
+  save = '';
   update = '';
 }
 

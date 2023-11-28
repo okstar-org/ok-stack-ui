@@ -1,10 +1,4 @@
-import { OkApi } from '@shared/api/ok';
-
-export interface User {
-  name: string;
-  username: string;
-  email: string;
-}
+import { OkApi, OkPageApi } from '@shared/api/ok';
 
 export interface ChatRoom {
   naturalName: string;
@@ -36,19 +30,16 @@ export interface ChatParticipant {
   affiliation: string;
 }
 
-class Api implements OkApi {
-  params = '/api/portal/app-crm/customer/params';
+class Api implements OkPageApi {
+  params = '';
   page = '/api/chat/room/findAll';
   update = '/api/chat/room/update';
-  top = '/api/portal/app-crm/customer/page/top';
-  export = '/api/portal/app-crm/customer/export';
-  importBegin = '/api/portal/app-crm/customer/import/begin';
-  importAdd = '/api/portal/app-crm/customer/import/add';
-  importCommit = '/api/portal/app-crm/customer/import/commit';
-  save = '/api/portal/app-crm/customer/save';
-  deleteById = '/api/portal/app-crm/customer/deleteById/';
+  save = '/api/chat/room/save';
+  deleteById = '/api/chat/room/deleteById/';
   findById = '/api/chat/room/findByName/';
   findParticipants = '/api/chat/room/findParticipantsByName/';
+  top = '';
+  export = '';
 }
 
 const api = new Api();

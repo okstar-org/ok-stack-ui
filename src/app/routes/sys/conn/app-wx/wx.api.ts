@@ -6,7 +6,7 @@ class Api implements OkApi {
   page = '/api/portal/sys/conn/app/page';
   save = '/api/portal/sys/conn/app/save';
   update = '/api/portal/sys/conn/app/update';
-
+  deleteById = '';
   test = '/api/portal/sys/conn/app/test/';
   sync = '/api/portal/sys/conn/app/sync/';
   syncUser = '/api/portal/sys/conn/app/syncUser/';

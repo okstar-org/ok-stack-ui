@@ -20,19 +20,19 @@ class OkPageGroup implements OkGroup, OkPageParams {
 }
 
 export interface OkApi {
-  findById: string;
-  page: string;
+  save: string;
   update: string;
+  deleteById?: string;
+  findById: string;
 }
 
 export interface OkPageApi extends OkApi {
+  page: string;
   params: string;
   top: string;
   export: string;
-  importBegin: string;
-  importCommit: string;
-  save: string;
-  deleteById: string;
+  importBegin?: string;
+  importCommit?: string;
 }
 
 export interface OkResult<D> {
