@@ -70,41 +70,8 @@
       ]
     },
     {
-      "route": "bpm",
-      "name": "bpm",
-      "type": "sub",
-      "icon": "polymer",
-      "children": [
-        {
-          "route": "task",
-          "name": "task",
-          "type": "link"
-        },
-        {
-          "route": "approve",
-          "name": "approve",
-          "type": "link"
-        },
-        {
-          "route": "initiate",
-          "name": "initiate",
-          "type": "link"
-        },
-        {
-          "route": "model",
-          "name": "model",
-          "type": "link"
-        },
-        {
-          "route": "instance",
-          "name": "instance",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "route": "work",
-      "name": "work",
+      "route": "platform",
+      "name": "platform",
       "type": "sub",
       "icon": "apps",
       "children": [
