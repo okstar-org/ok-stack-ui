@@ -1,8 +1,9 @@
 import { OkApi } from '@shared/api/ok';
 
 class Api implements OkApi {
-  findById = '';
   page = '/api/org/staff/left/page';
+  findById = '';
+  update = '';
 }
 
 const api = new Api();

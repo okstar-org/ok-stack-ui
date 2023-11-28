@@ -39,6 +39,7 @@ export interface ChatParticipant {
 class Api implements OkApi {
   params = '/api/portal/app-crm/customer/params';
   page = '/api/chat/room/findAll';
+  update = '/api/chat/room/update';
   top = '/api/portal/app-crm/customer/page/top';
   export = '/api/portal/app-crm/customer/export';
   importBegin = '/api/portal/app-crm/customer/import/begin';

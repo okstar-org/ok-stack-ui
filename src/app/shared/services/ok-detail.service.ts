@@ -17,6 +17,12 @@ export class OkDetailService {
       .pipe(map((r: OkResult<any>) => r.data));
   }
 
+  updateDetail(body = {}): Observable<boolean> {
+    return this.http
+      .put<OkResult<boolean>>(this.api.update, body)
+      .pipe(map((r: OkResult<boolean>) => r.data));
+  }
+
   getPage(params = {}): Observable<any> {
     const url = this.api.page;
     return this.http.get<OkResult<any>>(url, { params }).pipe(map((r: OkResult<any>) => r.data));

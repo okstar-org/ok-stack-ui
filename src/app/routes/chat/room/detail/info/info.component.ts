@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { OkDetailComponent } from '@shared/components/ok/ok-detail.component';
 import { NGXLogger } from 'ngx-logger';
 import { InfoService } from './info.service';
 import { ChatRoom } from '../../room.api';
@@ -14,6 +13,7 @@ import { ChatRoom } from '../../room.api';
 export class InfoComponent implements OnInit, OnDestroy {
   id: string = '';
   data!: ChatRoom;
+  showPassword = false;
 
   constructor(
     protected logger: NGXLogger,
@@ -35,6 +35,26 @@ export class InfoComponent implements OnInit, OnDestroy {
   getGeneralData() {
     this.service.getDetail(this.id).subscribe(r => {
       this.data = r;
+    });
+  }
+
+  get passwordType() {
+    return this.showPassword ? 'text' : 'password';
+  }
+
+  get passwordToggleLabel() {
+    return this.showPassword ? 'Hide password' : 'Reveal password';
+  }
+
+  get passwordToggleIcon() {
+    return this.showPassword ? 'visibility_off' : 'visibility';
+  }
+
+  modelChanged() {
+    this.service.updateDetail(this.data).subscribe(r => {
+      if (!r) {
+        alert('修改失败');
+      }
     });
   }
 }

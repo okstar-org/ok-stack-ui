@@ -44,6 +44,7 @@ class Api implements OkApi {
   importAdd = '/api/portal/app-crm/customer/import/add';
   importCommit = '/api/portal/app-crm/customer/import/commit';
   save = '/api/portal/app-crm/customer/save';
+  update = '';
   deleteById = '/api/portal/app-crm/customer/deleteById/';
   findById = '/api/chat/user/findByUsername/';
   findGeneralInfo = '/api/chat/user/findGeneralByUsername/';

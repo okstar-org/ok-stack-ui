@@ -22,7 +22,7 @@ class OkPageGroup implements OkGroup, OkPageParams {
 export interface OkApi {
   findById: string;
   page: string;
-  findByType?: string;
+  update: string;
 }
 
 export interface OkPageApi extends OkApi {
