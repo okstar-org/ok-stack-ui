@@ -80,6 +80,8 @@
     "org.staff": "人员管理",
     "org.perm": "权限管理",
     "sys": "系统管理",
+    "sys.basic":"基础设置",
+    "sys.open": "开放设置",
     "meet": "会议管理",
     "meet.history": "记录管理",
     "platform": "工作平台",
@@ -87,13 +89,7 @@
     "chat": "聊天管理",
     "chat.user": "用户列表",
     "chat.room": "房间列表",
-    "chat.group": "群聊列表",
-    "bpm": "流程管理",
-    "bpm.task": "我的任务",
-    "bpm.approve": "我的审批",
-    "bpm.initiate": "发起申请",
-    "bpm.instance": "流程实例",
-    "bpm.model": "流程设计"
+    "chat.group": "群聊列表"
   },
   "validations": {
     "required": "该字段必填",

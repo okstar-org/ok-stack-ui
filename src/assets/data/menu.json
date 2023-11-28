@@ -89,15 +89,17 @@
       "icon": "settings",
       "children": [
         {
-          "route": "conn",
-          "name": "conn",
+          "route": "basic",
+          "name": "basic",
           "type": "link"
         },
         {
-          "route": "org",
-          "name": "org",
+          "route": "open",
+          "name": "open",
           "type": "link"
         }
+
+
       ]
     }
   ]
