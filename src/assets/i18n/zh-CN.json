@@ -276,6 +276,11 @@
     }
   },
   "sys": {
+    "basic":{
+      "account":"帐号设置",
+      "global":"全局设置",
+      "locale":"本地设置"
+    },
     "conn": {
       "tab": {
         "dt": "钉钉",

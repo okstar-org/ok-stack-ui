@@ -1,3 +1,52 @@
-<p>
-  basic works!
-</p>
+<breadcrumb></breadcrumb>
+
+<section>
+  <h2>{{"sys.basic.global"|translate}}</h2>
+  <mat-card class="demo-card" role="group">
+    <mat-card-content>
+      <p>
+        启用/停止：
+        <mat-slide-toggle color="primary"
+                          [(ngModel)]="basic.globalEnable"
+                          (ngModelChange)="modelChange()"></mat-slide-toggle>
+      </p>
+    </mat-card-content>
+
+    <mat-card-content>
+      <p>
+        语言设置：
+        <mat-select class="mat-select"
+                    [(ngModel)]="basic.locale"
+                    (ngModelChange)="modelChange()">
+          <mat-option *ngFor="let item of locales" [value]="item.value">
+            {{ item.label }}
+          </mat-option>
+        </mat-select>
+      </p>
+    </mat-card-content>
+
+    <!-- <mat-card-content>
+      <p>
+        时区设置：
+        <mat-select class="mat-select" [(ngModel)]="basic.timezone">
+          <mat-option *ngFor="let item of timezones" [value]="item.value">
+            {{ item.label }}
+          </mat-option>
+        </mat-select>
+      </p>
+    </mat-card-content> -->
+  </mat-card>
+</section>
+
+<section>
+  <h2>{{"sys.basic.account"|translate}}</h2>
+  <mat-card class="demo-card" role="group">
+    <mat-card-content>
+      <p>
+        新注册帐号验证有效性：
+        <mat-slide-toggle color="primary" [(ngModel)]="basic.verifyAccount"
+                          (ngModelChange)="modelChange()"></mat-slide-toggle>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</section>
