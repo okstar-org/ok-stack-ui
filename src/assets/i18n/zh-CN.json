@@ -166,12 +166,15 @@
   "org": {
     "staff": {
       "dept": {
-        "list": "岗位列表",
+        "list": "部门列表",
         "no": "编号",
         "name": "名称",
         "deptName": "部门",
         "descr": "描述",
         "createAt": "创建时间"
+      },
+      "post":{
+        "list":"岗位列表"
       },
       "add": {
         "title": "编辑入职人员信息",

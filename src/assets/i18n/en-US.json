@@ -75,8 +75,21 @@
     "menu-level.level-1-1.level-2-1.level-3-1.level-4-1": "Level 4.1",
     "permissions": "Permissions",
     "permissions.test": "Permission Test",
-    "crm": "CRM",
-    "crm.lead": "Sales Leads"
+    "org": "Organization",
+    "org.dept": "Depart. Management",
+    "org.staff": "Staff Management",
+    "org.perm": "Permissions",
+    "sys": "System Management",
+    "sys.basic": "Basic Settings",
+    "sys.open": "Open API",
+    "meet": "Meet Management",
+    "meet.history": "Records",
+    "platform": "Work Platform",
+    "platform.app": "APP Management",
+    "chat": "Chat Management",
+    "chat.user": "Users",
+    "chat.room": "Rooms",
+    "chat.group": "Groups"
   },
   "validations": {
     "required": "This field is required",
@@ -145,5 +158,67 @@
     "confirm_delete": "Confirm delete?",
     "ok": "Ok",
     "close": "Close"
+  },
+  "org": {
+    "staff": {
+      "dept": {
+        "list": "Departments",
+        "no": "No.",
+        "name": "Name",
+        "deptName": "Department",
+        "descr": "Description",
+        "createAt": "Create At"
+      },
+      "post": {
+        "list": "Postions"
+      },
+      "add": {
+        "title": "Edit staff information",
+        "name": "Name",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "no": "No.",
+        "iso": "Country",
+        "identity": "Your ID",
+        "descr": "Description",
+        "livingIn": "Residential address"
+      },
+      "pending": {
+        "no": "No.",
+        "name": "Name",
+        "gender": "Gender",
+        "phone": "Phone number",
+        "descr": "Description",
+        "createAt": "Create At",
+        "operation": "Operation",
+        "join": "Join",
+        "join_dialog_msg": "Are you sure you want to join this person?"
+      },
+      "employed": {
+        "no": "No.",
+        "name": "Name",
+        "gender": "Gender",
+        "phone": "Phone number",
+        "descr": "Description",
+        "birthday": "Birthday",
+        "createAt": "Create At",
+        "joinedDate": "Joined Date",
+        "postNames": "Postion",
+        "operation": "Operation",
+        "leave": "Leave",
+        "reassignment": "Reassignment",
+        "leave_dialog_msg": "Are you sure you want to depart this person?"
+      },
+      "left": {
+        "no": "No.",
+        "name": "Name",
+        "gender": "Gender",
+        "phone": "Phone number",
+        "descr": "Description",
+        "leftDate": "Left date",
+        "operation": "Operation",
+        "join": "Join"
+      }
+    }
   }
 }

@@ -2,10 +2,10 @@
 
 <div class="row" fxLayout="row wrap">
 
-  <div class="col-sm-4" >
+  <div class="col-sm-4">
     <mat-card class="ok-sys-card">
       <mat-card-header>
-        <mat-card-subtitle *ngIf="org">{{org.name}} - 部门结构</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="org">{{org.name}}</mat-card-subtitle>
       </mat-card-header>
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let node;" matTreeNodePadding>
@@ -38,7 +38,7 @@
   <div class="col-sm-8 col-md-8">
     <mat-card class="ok-sys-card">
       <mat-card-header>
-        <mat-card-subtitle>岗位列表</mat-card-subtitle>
+        <mat-card-subtitle>{{'org.staff.post.list'|translate}}</mat-card-subtitle>
       </mat-card-header>
       <mat-table aria-readonly="true"
                  [dataSource]="userDataSource"

@@ -1,9 +1,9 @@
 <breadcrumb></breadcrumb>
-
+<!--
 <section>
   <h2>{{"sys.basic.global"|translate}}</h2>
-  <mat-card class="demo-card" role="group">
-    <mat-card-content>
+  <mat-card class="demo-card" role="group" *ngIf="basic">
+     <mat-card-content>
       <p>
         启用/停止：
         <mat-slide-toggle color="primary"
@@ -24,23 +24,12 @@
         </mat-select>
       </p>
     </mat-card-content>
-
-    <!-- <mat-card-content>
-      <p>
-        时区设置：
-        <mat-select class="mat-select" [(ngModel)]="basic.timezone">
-          <mat-option *ngFor="let item of timezones" [value]="item.value">
-            {{ item.label }}
-          </mat-option>
-        </mat-select>
-      </p>
-    </mat-card-content> -->
   </mat-card>
 </section>
-
+-->
 <section>
   <h2>{{"sys.basic.account"|translate}}</h2>
-  <mat-card class="demo-card" role="group">
+  <mat-card class="demo-card" role="group" *ngIf="basic">
     <mat-card-content>
       <p>
         新注册帐号验证有效性：
