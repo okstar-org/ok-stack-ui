@@ -11,6 +11,13 @@ export interface SysSetPersonal {
   locale: string;
 }
 
+export interface SysSetLocale {
+  //中文(中国)
+  label: string;
+  //zh-CN
+  value: string;
+}
+
 class Api implements OkApi {
   save = '';
   update = '/api/sys/settings/basic/global';

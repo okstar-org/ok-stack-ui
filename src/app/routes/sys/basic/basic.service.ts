@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OkItemService } from '@shared/services/ok-item.service';
 import { NGXLogger } from 'ngx-logger';
-import { api } from './basic.api';
+import { SysSetLocale, api } from './basic.api';
 import { OkResult } from '@shared/api/ok';
 import { Observable, map } from 'rxjs';
 
@@ -17,10 +17,10 @@ export class BasicService extends OkItemService {
     super(logger, http, api);
   }
 
-  findLocales(): Observable<any[]> {
+  findLocales(): Observable<SysSetLocale[]> {
     return this.http
-      .get<OkResult<any[]>>(api.findLocales) //
-      .pipe(map((r: OkResult<any[]>) => r.data));
+      .get<OkResult<SysSetLocale[]>>(api.findLocales) //
+      .pipe(map((r: OkResult<SysSetLocale[]>) => r.data));
   }
 
   getPersonal(params = {}): Observable<any> {

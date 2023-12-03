@@ -1,6 +1,8 @@
+import { SysSetPersonal } from './../../routes/sys/basic/basic.api';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService } from '@core';
+import { BasicService } from './../../routes/sys/basic/basic.service';
 
 @Component({
   selector: 'app-translate',
@@ -17,17 +19,23 @@ import { SettingsService } from '@core';
   `,
 })
 export class TranslateComponent {
-  langs = {
-    'en-US': 'English',
-    'zh-CN': '中文简体',
-    'zh-TW': '中文繁体',
-  };
+  langs: Map<string, string> = new Map<string, string>();
 
   constructor(
     private translate: TranslateService,
-    private settings: SettingsService
+    private settings: SettingsService,
+    private basic: BasicService
   ) {
-    translate.addLangs(['en-US', 'zh-CN', 'zh-TW']);
+    this.basic.findLocales().subscribe(r => {
+      r.forEach(e => {
+        this.langs.set(e.value, e.label);
+        this.translate.langs.push(e.value);
+      });
+
+      this.basic.getPersonal().subscribe((r: SysSetPersonal) => {
+        this.useLanguage(r.locale);
+      });
+    });
   }
 
   useLanguage(language: string) {
