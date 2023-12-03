@@ -80,7 +80,7 @@
     "org.staff": "人员管理",
     "org.perm": "权限管理",
     "sys": "系统管理",
-    "sys.basic":"基础设置",
+    "sys.basic": "基础设置",
     "sys.open": "开放设置",
     "meet": "会议管理",
     "meet.history": "记录管理",
@@ -173,11 +173,11 @@
         "descr": "描述",
         "createAt": "创建时间"
       },
-      "post":{
-        "list":"岗位列表"
+      "post": {
+        "list": "岗位列表"
       },
       "add": {
-        "title": "编辑入职人员信息",
+        "title": "编辑人员信息",
         "name": "名称",
         "firstName": "姓",
         "lastName": "名",
@@ -233,7 +233,7 @@
       "title": "联系人列表",
       "name": "姓名",
       "customer": "关联客户",
-      "phone": "手机号码",
+      "phone": "电话",
       "birthday": "生日",
       "role": "角色",
       "position": "部门职务",
@@ -279,10 +279,10 @@
     }
   },
   "sys": {
-    "basic":{
-      "account":"帐号设置",
-      "global":"全局设置",
-      "locale":"本地设置"
+    "basic": {
+      "global": "全局设置",
+      "personal": "个人设置",
+      "new_account_verify": "新注册帐号验证有效性"
     },
     "conn": {
       "tab": {
@@ -340,6 +340,8 @@
     "resume": "继续",
     "start": "启动",
     "stop": "停止",
+    "enable": "开启",
+    "disable": "关闭",
     "complete": "完成",
     "close": "关闭",
     "submit": "提交",
@@ -350,6 +352,7 @@
     "name": "名称",
     "username": "用户名",
     "email": "邮箱",
+    "language_set": "语言设置",
     "con": {
       "WX": "企微",
       "DT": "钉钉",

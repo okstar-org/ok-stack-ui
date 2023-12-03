@@ -31,6 +31,7 @@ export class TranslateComponent {
   }
 
   useLanguage(language: string) {
+    console.log('use', language);
     this.translate.use(language);
     this.settings.setLanguage(language);
   }

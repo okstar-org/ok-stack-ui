@@ -22,4 +22,12 @@ export class BasicService extends OkItemService {
       .get<OkResult<any[]>>(api.findLocales) //
       .pipe(map((r: OkResult<any[]>) => r.data));
   }
+
+  getPersonal(params = {}): Observable<any> {
+    return this.http.get<any>(api.personal, params).pipe(map((r: any) => r.data));
+  }
+
+  updatePersonal(params = {}): Observable<any> {
+    return this.http.put<any>(api.personal, params).pipe(map((r: any) => r.data));
+  }
 }

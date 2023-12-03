@@ -220,5 +220,56 @@
         "join": "Join"
       }
     }
+  },
+  "sys": {
+    "basic": {
+      "global": "Globale Settings",
+      "personal": "Persoanl Settings",
+      "new_account_verify": "Net registration account verify that valid"
+    },
+    "conn": {
+      "tab": {
+        "dt": "钉钉",
+        "wx": "企微",
+        "fs": "飞书"
+      }
+    }
+  },
+  "common": {
+    "all": "All",
+    "search": "Search",
+    "reset": "Reset",
+    "add": "Add",
+    "import": "Import",
+    "export": "Export",
+    "detail": "Details",
+    "edit": "Edit",
+    "comment": "Comment",
+    "operation": "Operation",
+    "sync": "Sync",
+    "resume": "Resume",
+    "start": "Start",
+    "stop": "Stop",
+    "enable": "Enable",
+    "disable": "Disable",
+    "complete": "Complete",
+    "close": "Close",
+    "submit": "Submit",
+    "check": "Check",
+    "phone": "Phone number",
+    "descr": "Description",
+    "country": "Country",
+    "name": "Name",
+    "username": "Username",
+    "email": "E-Mail",
+    "language_set": "Language Settings",
+    "con": {
+      "WX": "WeChat",
+      "DT": "Dingtalk",
+      "FS": "Feishu"
+    }
+  },
+  "support": {
+    "can_not": "Your browser does not support this feature. Please upgrade to the latest version of Google or Firefox browser!"
   }
 }

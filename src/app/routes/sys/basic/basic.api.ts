@@ -1,17 +1,23 @@
 import { OkApi } from '@shared/api/ok';
 
-export interface SysBasic {
+export interface SysSetGlobal {
   globalEnable: boolean;
   verifyAccount: boolean;
-  //语言-地区/国家
+}
+
+export interface SysSetPersonal {
+  accountId: number;
+  //zh-CN
   locale: string;
 }
 
 class Api implements OkApi {
   save = '';
-  update = '/api/sys/settings/basic/update';
-  findById = '/api/sys/settings/basic/find';
+  update = '/api/sys/settings/basic/global';
+  findById = '/api/sys/settings/basic/global';
   findLocales = '/api/sys/settings/basic/findLocales';
+
+  personal = '/api/sys/settings/basic/personal';
 }
 
 const api = new Api();

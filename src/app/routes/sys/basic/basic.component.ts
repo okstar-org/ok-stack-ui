@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SysBasic, api } from './basic.api';
+import { SysSetGlobal, SysSetPersonal, api } from './basic.api';
 import { BasicService } from './basic.service';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslateLangService } from '@core';
 
 @Component({
   selector: 'app-basic',
@@ -8,29 +10,38 @@ import { BasicService } from './basic.service';
   styleUrls: ['./basic.component.scss'],
 })
 export class BasicComponent implements OnInit {
-  basic!: SysBasic;
+  global!: SysSetGlobal;
+  personal!: SysSetPersonal;
+
   locales: any[] = [];
   // timezones: any[] = [];
 
-  constructor(private srv: BasicService) {
-    // this.locales.push({ value: 'zh-Hans', label: '中国-简体' });
-    // this.locales.push({ value: 'zh-Hant', label: '中国-繁体' });
-    /** UTC (协调世界时) 	时区 	国家 	时区主要城市 */
-    // this.timezones.push({ value: 'UTC+8', label: 'Asia/Shanghai' });
-  }
+  constructor(
+    private basicSrv: BasicService,
+    private langSrv: TranslateService
+  ) {}
 
   ngOnInit() {
-    this.srv.findLocales().subscribe(r => {
+    this.basicSrv.findLocales().subscribe(r => {
       this.locales = r;
     });
-
-    this.srv.getDetail(api.findById).subscribe(r => {
-      this.basic = r;
+    this.basicSrv.getDetail(api.findById).subscribe(r => {
+      this.global = r;
+    });
+    this.basicSrv.getPersonal().subscribe(r => {
+      this.personal = r;
     });
   }
 
-  modelChange() {
-    this.srv.updateItem(api.update, this.basic).subscribe(r => {
+  personalChange() {
+    this.langSrv.use(this.personal.locale);
+    this.basicSrv.updatePersonal(this.personal).subscribe(r => {
+      console.log('=>', r);
+    });
+  }
+
+  globalChange() {
+    this.basicSrv.updateItem(api.update, this.global).subscribe(r => {
       console.log('=>', r);
     });
   }

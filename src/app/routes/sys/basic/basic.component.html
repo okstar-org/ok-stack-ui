@@ -1,23 +1,13 @@
 <breadcrumb></breadcrumb>
-<!--
 <section>
-  <h2>{{"sys.basic.global"|translate}}</h2>
-  <mat-card class="demo-card" role="group" *ngIf="basic">
-     <mat-card-content>
-      <p>
-        启用/停止：
-        <mat-slide-toggle color="primary"
-                          [(ngModel)]="basic.globalEnable"
-                          (ngModelChange)="modelChange()"></mat-slide-toggle>
-      </p>
-    </mat-card-content>
-
+  <h2>{{"sys.basic.personal"|translate}}</h2>
+  <mat-card class="demo-card" role="group" *ngIf="personal">
     <mat-card-content>
       <p>
-        语言设置：
+        {{"common.language_set"|translate}}：
         <mat-select class="mat-select"
-                    [(ngModel)]="basic.locale"
-                    (ngModelChange)="modelChange()">
+                    [(ngModel)]="personal.locale"
+                    (ngModelChange)="personalChange()">
           <mat-option *ngFor="let item of locales" [value]="item.value">
             {{ item.label }}
           </mat-option>
@@ -26,15 +16,26 @@
     </mat-card-content>
   </mat-card>
 </section>
--->
+
 <section>
-  <h2>{{"sys.basic.account"|translate}}</h2>
-  <mat-card class="demo-card" role="group" *ngIf="basic">
+  <h2>{{"sys.basic.global"|translate}}</h2>
+  <mat-card class="demo-card" role="group" *ngIf="global">
     <mat-card-content>
       <p>
-        新注册帐号验证有效性：
-        <mat-slide-toggle color="primary" [(ngModel)]="basic.verifyAccount"
-                          (ngModelChange)="modelChange()"></mat-slide-toggle>
+        {{"common.enable"|translate}}/{{"common.disable"|translate}}：
+        <mat-slide-toggle color="primary"
+                          [(ngModel)]="global.globalEnable"
+                          (ngModelChange)="globalChange()"></mat-slide-toggle>
+      </p>
+    </mat-card-content>
+
+
+
+    <mat-card-content>
+      <p>
+        {{"sys.basic.new_account_verify"|translate}}：
+        <mat-slide-toggle color="primary" [(ngModel)]="global.verifyAccount"
+                          (ngModelChange)="globalChange()"></mat-slide-toggle>
       </p>
     </mat-card-content>
   </mat-card>
