@@ -12,7 +12,11 @@ import { BasicService } from './../../routes/sys/basic/basic.service';
     </button>
 
     <mat-menu #menu="matMenu">
-      <button mat-menu-item *ngFor="let lang of langs | keyvalue" (click)="useLanguage(lang.key)">
+      <button
+        mat-menu-item
+        *ngFor="let lang of langs | keyvalue"
+        (click)="useLanguage(lang.key, true)"
+      >
         <span>{{ lang.value }}</span>
       </button>
     </mat-menu>
@@ -20,6 +24,7 @@ import { BasicService } from './../../routes/sys/basic/basic.service';
 })
 export class TranslateComponent {
   langs: Map<string, string> = new Map<string, string>();
+  personal!: SysSetPersonal;
 
   constructor(
     private translate: TranslateService,
@@ -33,14 +38,20 @@ export class TranslateComponent {
       });
 
       this.basic.getPersonal().subscribe((r: SysSetPersonal) => {
+        this.personal = r;
         this.useLanguage(r.locale);
       });
     });
   }
 
-  useLanguage(language: string) {
-    console.log('use', language);
+  useLanguage(language: string, save?: boolean) {
     this.translate.use(language);
     this.settings.setLanguage(language);
+    if (save) {
+      this.personal.locale = language;
+      this.basic.updatePersonal(this.personal).subscribe(r => {
+        console.log('=>', r);
+      });
+    }
   }
 }
