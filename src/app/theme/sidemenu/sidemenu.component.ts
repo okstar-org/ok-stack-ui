@@ -16,8 +16,6 @@ export class SidemenuComponent {
   buildRoute = this.menu.buildRoute;
 
   constructor(private menu: MenuService) {
-    this.menu$.subscribe(e => {
-      console.log('menu', e);
-    });
+    this.menu$.subscribe();
   }
 }
