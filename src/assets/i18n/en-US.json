@@ -223,9 +223,9 @@
   },
   "sys": {
     "basic": {
-      "global": "Globale Settings",
-      "personal": "Persoanl Settings",
-      "new_account_verify": "Net registration account verify that valid"
+      "global": "Global Settings",
+      "personal": "Personal Settings",
+      "new_account_verify": " New account registration verification validity"
     },
     "conn": {
       "tab": {
