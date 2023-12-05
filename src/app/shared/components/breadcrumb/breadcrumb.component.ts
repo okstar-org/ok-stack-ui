@@ -11,11 +11,13 @@ import { MenuService } from '@core/bootstrap/menu.service';
 export class BreadcrumbComponent implements OnInit {
   @Input() nav: string[] = [];
 
-  constructor(private router: Router, private menu: MenuService) {}
+  constructor(
+    private router: Router,
+    private menu: MenuService
+  ) {}
 
   ngOnInit() {
     this.nav = Array.isArray(this.nav) ? this.nav : [];
-
     if (this.nav.length === 0) {
       this.genBreadcrumb();
     }
@@ -26,7 +28,10 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   genBreadcrumb() {
-    const routes = this.router.url.slice(1).split('/');
+    let routes = this.router.url.slice(1).split('/');
+    if (routes.length >= 3) {
+      routes = routes.splice(0, 2);
+    }
     this.nav = this.menu.getLevel(routes);
     this.nav.unshift('home');
   }
