@@ -263,6 +263,7 @@
     "username": "Username",
     "email": "E-Mail",
     "language_set": "Language Settings",
+    "online": "Online",
     "con": {
       "WX": "WeChat",
       "DT": "Dingtalk",

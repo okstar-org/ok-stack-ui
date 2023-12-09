@@ -45,6 +45,11 @@ export class UserComponent extends OkPaginatorComponent implements OnInit {
       sortable: true,
     },
     {
+      header: this.translate.stream('common.online'),
+      field: 'online',
+      sortable: true,
+    },
+    {
       header: '操作',
       field: 'operation',
       minWidth: 180,

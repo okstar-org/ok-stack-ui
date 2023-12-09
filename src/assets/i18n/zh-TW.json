@@ -349,6 +349,7 @@
     "username": "用戶名",
     "email": "郵箱",
     "language_set": "语言设置",
+    "online": "在線狀態",
     "con": {
       "WX": "企微",
       "DT": "钉钉",
