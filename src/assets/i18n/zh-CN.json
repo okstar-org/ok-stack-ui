@@ -114,6 +114,7 @@
     "remember_me": "记住我",
     "login": "登入",
     "have_no_account": "没有账号",
+    "forgot": "忘记密码",
     "create_one": "点此创建一个",
     "please_enter": "请输入"
   },
@@ -353,7 +354,7 @@
     "username": "用户名",
     "email": "邮箱",
     "language_set": "语言设置",
-    "online":"在线状态",
+    "online": "在线状态",
     "con": {
       "WX": "企微",
       "DT": "钉钉",
