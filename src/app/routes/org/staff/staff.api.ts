@@ -32,8 +32,6 @@ export interface OrgStaffFragment {
    */
   no: string;
 
-  name: string;
-
   /**
    * 性
    */
@@ -43,6 +41,8 @@ export interface OrgStaffFragment {
    * 名
    */
   lastName: string;
+
+  name: string;
 
   /**
    * 身份证ID
@@ -79,17 +79,10 @@ export interface OrgStaffFragment {
 export interface Staff {
   id: number;
   fragment: OrgStaffFragment;
-  // no: string;
-  // firstName: string;
-  // lastName: string;
-  // identity: string;
-  // phone: string;
-  // email: string;
-  // descr: string;
-  // livingIn: string;
   postIds?: number[];
 }
 export interface OrgStaffReq {
+  id: number;
   fragment: OrgStaffFragment;
 }
 
@@ -105,4 +98,6 @@ export interface StaffJoinOpt {
   postIds?: number[];
 }
 
-export interface StaffAddOpt extends OrgStaffFragment {}
+export interface StaffAddOpt extends OrgStaffFragment {
+  id: number;
+}

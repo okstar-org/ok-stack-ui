@@ -32,7 +32,7 @@ export class UserDataSource extends DataSource<Staff> {
   styleUrls: ['./pending.component.scss'],
 })
 export class PendingComponent implements OnInit {
-  displayedColumns = ['no', 'name', 'gender', 'phone', 'descr', 'createAt', 'operation'];
+  displayedColumns = ['no', 'name', 'gender', 'phone', 'email', 'descr', 'createAt', 'operation'];
 
   dataSource: any;
 
@@ -66,7 +66,7 @@ export class PendingComponent implements OnInit {
   onEdit(staff: Staff) {
     this.dialog
       .open(DialogAddComponent, {
-        data: staff.fragment,
+        data: Object.assign(staff.fragment, { id: staff.id }),
       })
       .afterClosed()
       .subscribe(r => {

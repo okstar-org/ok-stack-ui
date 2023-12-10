@@ -12,12 +12,12 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DialogAddComponent implements OnInit, OnDestroy {
   form = this.fb.group({
     no: ['', [Validators.required]],
-    name: ['', [Validators.required]],
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
+    name: [''],
     identity: ['', [Validators.required]],
     phone: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.email]],
     gender: [Gender.NONE],
     descr: [''],
     iso: [''],
@@ -44,7 +44,7 @@ export class DialogAddComponent implements OnInit, OnDestroy {
     }
 
     const fragment = this.form.value as OrgStaffFragment;
-    const req: OrgStaffReq = { fragment };
+    const req: OrgStaffReq = { fragment, id: this.opt.id };
     this.svc.save(req).subscribe(r => {
       console.log('save=>', req);
     });

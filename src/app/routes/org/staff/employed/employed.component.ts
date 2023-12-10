@@ -248,15 +248,6 @@ export class EmployedComponent implements OnInit {
       .subscribe(r => {
         this.loadData();
       });
-    // this.mtxDialog.confirm(
-    // this.translate.stream('org.staff.employed.leave_dialog_msg'),
-    // staff.name,
-    // () => {
-    // this.employedService.leavel(staff.id).subscribe(r => {
-    // this.router.navigateByUrl('/org/staff/left');
-    // });
-    // }
-    // );
   }
 
   onSync() {

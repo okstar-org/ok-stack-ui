@@ -22,8 +22,8 @@
         </ng-container>
 
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.pending.name" |
-            translate}}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>
+            {{ "org.staff.pending.name" | translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.fragment.name}}</mat-cell>
         </ng-container>
 
@@ -38,7 +38,11 @@
             translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.fragment.phone}}</mat-cell>
         </ng-container>
-
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef>{{ "common.email" |
+            translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.fragment.email}}</mat-cell>
+        </ng-container>
         <ng-container matColumnDef="descr">
           <mat-header-cell *matHeaderCellDef>{{ "org.staff.pending.descr" |
             translate}}</mat-header-cell>
