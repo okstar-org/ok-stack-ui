@@ -8,12 +8,14 @@ import { map } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
 
 import { Org } from '../org.api';
-import { Dept } from './dept.api';
+import { OrgDept } from './dept.api';
+import { MatDialog } from '@angular/material/dialog';
+import { AddPostComponent } from './add-post/add-post.component';
 
 export class DynamicFlatNode {
   constructor(
     public id: number,
-    public item: string,
+    public item: OrgDept,
     public level: number,
     public resourceList: string[],
     public expandable = false,
@@ -37,7 +39,7 @@ export class DynamicDatabase {
     return this.deptService.children(node).pipe(
       map(depts => {
         return depts.map(
-          dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
+          dept => new DynamicFlatNode(dept.id, dept, dept.level, dept.sourceList, true)
         );
       })
     );
@@ -47,7 +49,7 @@ export class DynamicDatabase {
     return this.deptService.getChildren().pipe(
       map(depts => {
         return depts.map(
-          dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
+          dept => new DynamicFlatNode(dept.id, dept, dept.level, dept.sourceList, true)
         );
       })
     );
@@ -145,15 +147,16 @@ export class DynamicDataSource {
 })
 export class DeptComponent implements OnInit {
   displayedColumns = ['no', 'name', 'recruit', 'assignFor', 'createAt', 'updateAt'];
-
   dataSource: any;
-
   userDataSource!: DeptDataSource;
-
   org!: Org;
 
+  selectedDeptId!: number;
+  selectedNode!: DynamicFlatNode;
+
   constructor(
-    protected logger: NGXLogger,
+    private dialog: MatDialog,
+    private logger: NGXLogger,
     private database: DynamicDatabase,
     private svc: DeptService
   ) {
@@ -185,12 +188,21 @@ export class DeptComponent implements OnInit {
   }
 
   onClickDept(node: DynamicFlatNode) {
+    this.selectedDeptId = node.id;
+    this.selectedNode = node;
     this.svc.findPostByDept(node.id).subscribe(r => {
       this.userDataSource.setData(r);
     });
   }
 
   onAdd() {}
+
+  onAddPost() {
+    this.dialog
+      .open(AddPostComponent, { data: this.selectedNode.item })
+      .afterClosed()
+      .subscribe(r => {});
+  }
 
   onSync() {
     this.logger.info('sync');
@@ -213,20 +225,20 @@ export class DeptComponent implements OnInit {
   }
 }
 
-export class DeptDataSource extends DataSource<Dept> {
-  dataChange: BehaviorSubject<Dept[]> = new BehaviorSubject<Dept[]>([]);
+export class DeptDataSource extends DataSource<OrgDept> {
+  dataChange: BehaviorSubject<OrgDept[]> = new BehaviorSubject<OrgDept[]>([]);
 
   constructor() {
     super();
   }
 
-  connect(): Observable<Dept[]> {
+  connect(): Observable<OrgDept[]> {
     return this.dataChange;
   }
 
   disconnect() {}
 
-  setData(list: Dept[]) {
+  setData(list: OrgDept[]) {
     this.dataChange.next(list);
   }
 }

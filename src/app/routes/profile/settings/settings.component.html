@@ -8,10 +8,48 @@
       <div class="row">
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
-            <mat-label>Username</mat-label>
-            <input matInput placeholder="Simple placeholder" formControlName="username" required>
-            <mat-error *ngIf="reactiveForm.get('username')?.invalid">Please enter username
+            <mat-label>Frist Name</mat-label>
+            <input matInput placeholder="Simple placeholder" formControlName="firstName" required>
+            <mat-error *ngIf="reactiveForm.get('firstName')?.invalid">Please enter first name
             </mat-error>
+          </mat-form-field>
+        </div>
+<div class="col-sm-6 col-xl-4">
+  <mat-form-field>
+    <mat-label>Gender</mat-label>
+    <mat-select formControlName="gender" required>
+      <mat-option>-- None --</mat-option>
+      <mat-option value="1">male</mat-option>
+      <mat-option value="2">female</mat-option>
+    </mat-select>
+    <mat-error *ngIf="reactiveForm.get('gender')?.invalid">Please select gender</mat-error>
+  </mat-form-field>
+</div>
+
+
+        <div class="col-sm-6 col-xl-4">
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Simple placeholder" formControlName="lastName" required>
+            <mat-error *ngIf="reactiveForm.get('lastName')?.invalid">Please enter last name
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-sm-6 col-xl-4">
+          <mat-form-field>
+            <mat-label>ID</mat-label>
+            <input matInput placeholder="Please input your ID" formControlName="identify" required>
+            <mat-error *ngIf="reactiveForm.get('identify')?.invalid">Please input your
+              ID</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-6 col-xl-4">
+          <mat-form-field>
+            <mat-label>Country</mat-label>
+            <input matInput placeholder="Please select country" formControlName="country">
           </mat-form-field>
         </div>
 
@@ -26,75 +64,55 @@
 
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
-            <mat-label>Gender</mat-label>
-            <mat-select formControlName="gender" required>
-              <mat-option>-- None --</mat-option>
-              <mat-option value="1">male</mat-option>
-              <mat-option value="2">female</mat-option>
-            </mat-select>
-            <mat-error *ngIf="reactiveForm.get('gender')?.invalid">Please select gender</mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="col-sm-6 col-xl-4">
-          <mat-form-field>
             <mat-label>City</mat-label>
-            <input matInput placeholder="Simple placeholder" formControlName="city" required>
-            <mat-error *ngIf="reactiveForm.get('city')?.invalid">Please enter city</mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="col-sm-6 col-xl-4">
-          <mat-form-field>
-            <mat-label>Address</mat-label>
-            <input matInput placeholder="Simple placeholder" formControlName="address" required>
-            <mat-error *ngIf="reactiveForm.get('address')?.invalid">Please enter address</mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="col-sm-6 col-xl-4">
-          <mat-form-field>
-            <mat-label>Company</mat-label>
-            <input matInput placeholder="Simple placeholder" formControlName="company" required>
-            <mat-error *ngIf="reactiveForm.get('company')?.invalid">Please enter company</mat-error>
+            <input matInput placeholder="Simple placeholder">
           </mat-form-field>
         </div>
 
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>Mobile</mat-label>
-            <input matInput placeholder="Simple placeholder" type="number" formControlName="mobile"
+            <input matInput placeholder="Simple placeholder" type="string"
+            formControlName="phone"
                    required>
             <mat-icon matSuffix>smartphone</mat-icon>
-            <mat-error *ngIf="reactiveForm.get('mobile')?.invalid">Please enter mobile</mat-error>
+            <mat-error *ngIf="reactiveForm.get('phone')?.invalid">Please enter mobile</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-6 col-xl-4">
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="Simple placeholder" formControlName="address">
           </mat-form-field>
         </div>
 
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>Tele</mat-label>
-            <input matInput placeholder="Simple placeholder" type="number" formControlName="tele"
+            <input matInput placeholder="Simple placeholder" type="number"
+             formControlName="telephone"
                    required>
             <mat-icon matSuffix>phone</mat-icon>
-            <mat-error *ngIf="reactiveForm.get('tele')?.invalid">Please enter tele</mat-error>
+            <mat-error *ngIf="reactiveForm.get('telephone')?.invalid">Please enter tele</mat-error>
           </mat-form-field>
         </div>
 
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>Website</mat-label>
-            <input matInput placeholder="Simple placeholder" formControlName="website" required>
-            <mat-error *ngIf="reactiveForm.get('website')?.invalid">Please enter website</mat-error>
+            <input matInput placeholder="Simple placeholder" formControlName="website">
           </mat-form-field>
         </div>
 
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
+            <mat-label>Birthday</mat-label>
             <input matInput [matDatepicker]="picker2" placeholder="Choose a date"
-                   formControlName="date">
+                   formControlName="birthday">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
-            <mat-error *ngIf="reactiveForm.get('date')?.invalid">Please enter website</mat-error>
+            <!-- <mat-error *ngIf="reactiveForm.get('birthday')?.invalid">Please enter website</mat-error> -->
           </mat-form-field>
         </div>
       </div>

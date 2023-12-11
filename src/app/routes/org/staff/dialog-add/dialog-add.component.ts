@@ -21,6 +21,7 @@ export class DialogAddComponent implements OnInit, OnDestroy {
     gender: [Gender.NONE],
     descr: [''],
     iso: [''],
+    language: [''],
     livingIn: [''],
     birthday: [new Date()],
   });

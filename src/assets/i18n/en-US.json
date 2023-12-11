@@ -161,6 +161,11 @@
     "close": "Close"
   },
   "org": {
+    "post": {
+      "add": {
+        "title": "Edit position informations"
+      }
+    },
     "staff": {
       "dept": {
         "list": "Departments",
@@ -174,7 +179,7 @@
         "list": "Postions"
       },
       "add": {
-        "title": "Edit staff information",
+        "title": "Edit staff informations",
         "name": "Name",
         "firstName": "First Name",
         "lastName": "Last Name",
@@ -262,9 +267,15 @@
     "country": "Country",
     "name": "Name",
     "username": "Username",
+    "gender": "Gender",
     "email": "E-Mail",
+    "language": "Language",
     "language_set": "Language Settings",
     "online": "Online",
+    "no": "No.",
+    "createAt": "Create At",
+    "updateAt": "Update At",
+    "assignFor": "Assign For",
     "con": {
       "WX": "WeChat",
       "DT": "Dingtalk",

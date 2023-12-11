@@ -34,7 +34,7 @@ export class BasicComponent implements OnInit {
   }
 
   personalChange() {
-    this.langSrv.use(this.personal.locale);
+    this.langSrv.use(this.personal.language);
     this.basicSrv.updatePersonal(this.personal).subscribe(r => {
       console.log('=>', r);
     });

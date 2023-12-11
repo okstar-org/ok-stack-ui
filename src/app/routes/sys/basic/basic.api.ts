@@ -8,7 +8,7 @@ export interface SysSetGlobal {
 export interface SysSetPersonal {
   accountId: number;
   //zh-CN
-  locale: string;
+  language: string;
 }
 
 export interface SysSetLocale {

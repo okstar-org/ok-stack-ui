@@ -2,27 +2,27 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { JoinDialogService } from './join-dialog.service';
 import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
-import { Dept } from '../../dept/dept.api';
+import { OrgDept } from '../../dept/dept.api';
 import { PendingService } from '../pending/pending.service';
 import { OrgStaffJoinReq, StaffJoinOpt } from '../staff.api';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { TranslateService } from '@ngx-translate/core';
 
-export class DeptDataSource extends DataSource<Dept> {
-  dataChange: BehaviorSubject<Dept[]> = new BehaviorSubject<Dept[]>([]);
+export class DeptDataSource extends DataSource<OrgDept> {
+  dataChange: BehaviorSubject<OrgDept[]> = new BehaviorSubject<OrgDept[]>([]);
 
   constructor() {
     super();
   }
 
-  connect(): Observable<Dept[]> {
+  connect(): Observable<OrgDept[]> {
     return this.dataChange;
   }
 
   disconnect() {}
 
-  setData(list: Dept[]) {
+  setData(list: OrgDept[]) {
     this.dataChange.next(list);
   }
 }

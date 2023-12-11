@@ -165,6 +165,12 @@
     "top": "置顶"
   },
   "org": {
+    "post": {
+      "recruit": "招聘链接",
+      "add": {
+        "title": "编辑岗位信息"
+      }
+    },
     "staff": {
       "dept": {
         "list": "部门列表",
@@ -350,11 +356,17 @@
     "phone": "手机号码",
     "descr": "描述",
     "country": "国家",
+    "gender": "性别",
     "name": "名称",
     "username": "用户名",
     "email": "邮箱",
+    "language": "语言",
     "language_set": "语言设置",
+    "no": "编号",
     "online": "在线状态",
+    "createAt": "创建时间",
+    "updateAt": "更新时间",
+    "assignFor": "分配给",
     "con": {
       "WX": "企微",
       "DT": "钉钉",

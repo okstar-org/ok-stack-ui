@@ -14,14 +14,47 @@ class Api implements OkApi {
 
   syncUser = '/api/portal/sys/org/user/sync';
   findUserByDept = '/api/org/post/findByDept/';
+  savePost = '/api/org/post/save';
 }
 
 const api = new Api();
 export { api };
 
-export interface Dept {
+export interface OrgDept {
   id: number;
   name: string;
   level: number;
   sourceList: string[];
+}
+
+export interface OrgPost {
+  /**
+   * 编号
+   */
+  no: string;
+
+  /**
+   * 名称
+   */
+  name: string;
+
+  /**
+   * 描述
+   */
+  descr: string;
+
+  /**
+   * 所在部门
+   */
+  deptId: number | null;
+
+  /**
+   * 分配给（是否分配）
+   */
+  assignFor: string;
+
+  /**
+   * 招聘链接
+   */
+  recruit: string;
 }

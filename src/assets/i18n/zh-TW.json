@@ -160,6 +160,11 @@
     "close": "關閉"
   },
   "org": {
+    "post": {
+      "add": {
+        "title": "編輯崗位信息"
+      }
+    },
     "staff": {
       "dept": {
         "list": "部門列表",
@@ -348,8 +353,14 @@
     "name": "名称",
     "username": "用戶名",
     "email": "郵箱",
+    "gender": "性别",
+    "language": "语言",
     "language_set": "语言设置",
     "online": "在線狀態",
+    "no": "編號",
+    "createAt": "創建時間",
+    "updateAt": "更新時間",
+    "assignFor": "分配給",
     "con": {
       "WX": "企微",
       "DT": "钉钉",

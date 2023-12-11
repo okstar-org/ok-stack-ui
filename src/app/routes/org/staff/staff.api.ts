@@ -53,6 +53,8 @@ export interface OrgStaffFragment {
 
   iso: string;
 
+  language: string;
+
   /**
    * 电话
    */

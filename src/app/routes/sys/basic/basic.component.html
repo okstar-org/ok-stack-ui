@@ -6,7 +6,7 @@
       <p>
         {{"common.language_set"|translate}}：
         <mat-select class="mat-select"
-                    [(ngModel)]="personal.locale"
+                    [(ngModel)]="personal.language"
                     (ngModelChange)="personalChange()">
           <mat-option *ngFor="let item of locales" [value]="item.value">
             {{ item.label }}

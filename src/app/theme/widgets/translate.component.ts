@@ -39,16 +39,19 @@ export class TranslateComponent {
 
       this.basic.getPersonal().subscribe((r: SysSetPersonal) => {
         this.personal = r;
-        this.useLanguage(r.locale);
+        this.useLanguage(r.language);
       });
     });
   }
 
   useLanguage(language: string, save?: boolean) {
+    if (!language) {
+      return;
+    }
     this.translate.use(language);
     this.settings.setLanguage(language);
     if (save) {
-      this.personal.locale = language;
+      this.personal.language = language;
       this.basic.updatePersonal(this.personal).subscribe(r => {
         console.log('=>', r);
       });

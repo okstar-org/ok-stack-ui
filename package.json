@@ -20,7 +20,8 @@
     "deploy": "ng deploy",
     "release": "npm run build:release && npm run deploy",
     "publish": "npm run build:schematics && cd dist/schematics && npm publish",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "rsync":"sh ./.rsync.sh"
   },
   "private": true,
   "dependencies": {
