@@ -283,6 +283,7 @@
     }
   },
   "support": {
-    "can_not": "Your browser does not support this feature. Please upgrade to the latest version of Google or Firefox browser!"
+    "can_not": "Your browser does not support this feature. Please upgrade to the latest version of Google or Firefox browser!",
+    "input_warning": "This system is for testing purposes only. Please do not input sensitive information related to privacy!"
   }
 }
