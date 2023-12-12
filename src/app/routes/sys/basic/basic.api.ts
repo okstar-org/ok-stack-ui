@@ -22,8 +22,7 @@ class Api implements OkApi {
   save = '';
   update = '/api/sys/settings/basic/global';
   findById = '/api/sys/settings/basic/global';
-  findLocales = '/api/sys/settings/basic/findLocales';
-
+  languages = '/api/sys/settings/basic/languages';
   personal = '/api/sys/settings/basic/personal';
 }
 

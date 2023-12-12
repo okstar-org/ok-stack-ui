@@ -22,7 +22,7 @@ export class BasicComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.basicSrv.findLocales().subscribe(r => {
+    this.basicSrv.languages().subscribe(r => {
       this.locales = r;
     });
     this.basicSrv.getDetail(api.findById).subscribe(r => {

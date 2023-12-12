@@ -17,9 +17,9 @@ export class BasicService extends OkItemService {
     super(logger, http, api);
   }
 
-  findLocales(): Observable<SysSetLocale[]> {
+  languages(): Observable<SysSetLocale[]> {
     return this.http
-      .get<OkResult<SysSetLocale[]>>(api.findLocales) //
+      .get<OkResult<SysSetLocale[]>>(api.languages) //
       .pipe(map((r: OkResult<SysSetLocale[]>) => r.data));
   }
 

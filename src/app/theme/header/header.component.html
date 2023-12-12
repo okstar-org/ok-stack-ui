@@ -5,7 +5,13 @@
 
   <app-branding *ngIf="showBranding"></app-branding>
 
-  <span class="flex-fill ok-warning">{{"support.input_warning"|translate}}</span>
+  <span class="flex-fill" >
+    <span *ngIf="ver.id" class="ok-ver">
+      Ver:<a [href]="'https://gitee.com/okstar-org/ok-stack-backend/commit/'+ver.id" target="_blank" class="href">{{ver.abbrev}}@{{ver.branch}}</a>
+      &nbsp;
+      Build at:{{ver.time}}
+    </span>
+    </span>
 
   <app-github-button></app-github-button>
 

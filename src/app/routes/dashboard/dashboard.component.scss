@@ -1,0 +1,10 @@
+.ok-warning {
+  color: #e10000;
+  text-align: center;
+}
+
+@media screen and (width <=1024px) {
+  .ok-warning {
+    font-size: 12px;
+  }
+}

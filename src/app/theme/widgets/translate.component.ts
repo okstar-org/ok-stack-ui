@@ -31,7 +31,7 @@ export class TranslateComponent {
     private settings: SettingsService,
     private basic: BasicService
   ) {
-    this.basic.findLocales().subscribe(r => {
+    this.basic.languages().subscribe(r => {
       r.forEach(e => {
         this.langs.set(e.value, e.label);
         this.translate.langs.push(e.value);

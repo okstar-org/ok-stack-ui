@@ -11,6 +11,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DialogAddComponent implements OnInit, OnDestroy {
   form = this.fb.group({
+    id: [0, [Validators.required]],
     no: ['', [Validators.required]],
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],

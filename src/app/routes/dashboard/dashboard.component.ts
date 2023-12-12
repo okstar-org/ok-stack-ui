@@ -8,6 +8,7 @@ import { DashboardService } from './dashboard.srevice';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];

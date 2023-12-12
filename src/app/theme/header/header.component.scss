@@ -6,7 +6,21 @@
     padding: 0 8px;
   }
 
-  .ok-warning {
-    color: #e10000;
+  .ok-ver{
+    float: right;
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+
+    a {
+      color: #999!important;
+    }
   }
 }
+
+@media screen and (width <=1024px) {
+  .ok-ver{
+    display: none;
+  }
+}
+

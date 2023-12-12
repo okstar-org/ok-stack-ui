@@ -12,16 +12,16 @@
     "test": "ng test",
     "e2e": "ng e2e",
     "build": "ng build",
-    "build:release": "ng build --prod --baseHref=/ok-stack/",
+    "build:release": "ng build --configuration=production",
     "lint": "npm run lint:ts && npm run lint:scss",
     "lint:ts": "eslint \"src/**/*.ts\" --fix",
     "lint:scss": "stylelint \"src/**/*.scss\" --fix",
     "hmr": "ng serve --hmr --disable-host-check",
     "deploy": "ng deploy",
-    "release": "npm run build:release && npm run deploy",
+    "release": "npm run build:release && npm run rsync",
     "publish": "npm run build:schematics && cd dist/schematics && npm publish",
     "prepare": "husky install",
-    "rsync":"sh ./.rsync.sh"
+    "rsync":"sh .rsync.sh"
   },
   "private": true,
   "dependencies": {
