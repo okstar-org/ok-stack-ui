@@ -7,18 +7,19 @@
       <mat-card-header>
         <mat-card-subtitle *ngIf="org">{{org.name}}</mat-card-subtitle>
       </mat-card-header>
-        <mat-card-actions align="start" style="margin: 0;">
-          <button mat-button mat-raised-button class="m-8" class=" m-x-26" (click)="onAdd()">
-            {{"common.add"|translate}}
-          </button>
-        </mat-card-actions>
+      <mat-card-actions align="start" style="margin: 0;">
+        <button mat-button mat-raised-button class="m-8" class="m-x-26" (click)="onAddDept()"
+                [disabled]="!selectedDeptId">
+          {{"common.add"|translate}}
+        </button>
+      </mat-card-actions>
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let node;" matTreeNodePadding>
           <button mat-icon-button disabled></button>
           <a href="javascript:;" (click)="onClickDept(node)">{{node.item.name}}</a>
         </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
-        [ngClass]="node.item.id === selectedDeptId?'selected':''">
+                       [ngClass]="node.item.id === selectedDeptId?'selected':''">
           <button mat-icon-button [attr.aria-label]="'toggle ' + node.filename" matTreeNodeToggle>
             <mat-icon class="mat-icon-rtl-mirror">
               {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
@@ -48,8 +49,7 @@
       </mat-card-header>
       <mat-card-actions align="start" style="margin: 0;">
         <button mat-button mat-raised-button class="m-8 m-x-26" (click)="onAddPost()"
-        [disabled]="!selectedDeptId"
-        >
+                [disabled]="!selectedDeptId">
           {{"common.add"|translate}}
         </button>
       </mat-card-actions>

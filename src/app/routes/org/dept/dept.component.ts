@@ -195,7 +195,7 @@ export class DeptComponent implements OnInit {
     });
   }
 
-  onAdd() {}
+  onAddDept() {}
 
   onAddPost() {
     this.dialog
