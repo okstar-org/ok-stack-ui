@@ -4,24 +4,24 @@
       <div class="work-card-box">
         <div class="ok-work-card row" *ngIf="org">
           <div class="col company">
-
             <ul class="flex">
               <li class="org-logo"> <img [src]="org.org.avatar" /></li>
               <li class="org-name">{{org.org.name}}</li>
               <li>{{org.org.url}}</li>
+              <li>{{ org.org.location }}</li>
               <li *ngFor="let post of org.postInfo">
                 <span>{{post.dept}} - {{post.post}}</span>
               </li>
-              <!-- <li>中国·长沙</li> -->
             </ul>
-
           </div>
+
           <div class="col personal" *ngIf="user">
             <ul class="flex">
               <li class="org-logo box-shadow"><img [src]="user.avatar" alt=""></li>
               <li class="org-name">{{user.name}}</li>
-              <li>{{org.staff.no}}</li>
+              <li>No: {{org.staff.no}}</li>
               <li>{{org.staff.phone}}</li>
+              <li>{{org.staff.email}}</li>
             </ul>
           </div>
         </div>

@@ -14,11 +14,13 @@ export interface Org {
   name: string;
   url: string;
   avatar: string;
+  location: string;
 }
 
 export interface Staff {
   no: string;
   phone: string;
+  email: string;
 }
 
 export interface MyOrgInfo {
