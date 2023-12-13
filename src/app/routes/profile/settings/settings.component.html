@@ -4,33 +4,34 @@
   </mat-card-header>
 
   <mat-card-content>
-    <form [formGroup]="reactiveForm" class="form-field-full">
+    <form [formGroup]="reactiveForm" class="form-field-full" (submit)="onSubmit()">
       <div class="row">
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>Frist Name</mat-label>
-            <input matInput placeholder="Simple placeholder" formControlName="firstName" required>
+            <input matInput placeholder="Put your first name" formControlName="firstName" required>
             <mat-error *ngIf="reactiveForm.get('firstName')?.invalid">Please enter first name
             </mat-error>
           </mat-form-field>
         </div>
-<div class="col-sm-6 col-xl-4">
-  <mat-form-field>
-    <mat-label>Gender</mat-label>
-    <mat-select formControlName="gender" required>
-      <mat-option>-- None --</mat-option>
-      <mat-option value="1">male</mat-option>
-      <mat-option value="2">female</mat-option>
-    </mat-select>
-    <mat-error *ngIf="reactiveForm.get('gender')?.invalid">Please select gender</mat-error>
-  </mat-form-field>
-</div>
+
+        <div class="col-sm-6 col-xl-4">
+          <mat-form-field>
+            <mat-label>Gender</mat-label>
+            <mat-select placeholder="Select your gender" formControlName="gender" required>
+              <mat-option value="none">-- None --</mat-option>
+              <mat-option value="male">male</mat-option>
+              <mat-option value="female">female</mat-option>
+            </mat-select>
+            <mat-error *ngIf="reactiveForm.get('gender')?.invalid">Please select gender</mat-error>
+          </mat-form-field>
+        </div>
 
 
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>Last Name</mat-label>
-            <input matInput placeholder="Simple placeholder" formControlName="lastName" required>
+            <input matInput placeholder="Put your last name" formControlName="lastName" required>
             <mat-error *ngIf="reactiveForm.get('lastName')?.invalid">Please enter last name
             </mat-error>
           </mat-form-field>
@@ -40,7 +41,7 @@
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>ID</mat-label>
-            <input matInput placeholder="Please input your ID" formControlName="identify" required>
+            <input matInput placeholder="Put your ID" formControlName="identify" required>
             <mat-error *ngIf="reactiveForm.get('identify')?.invalid">Please input your
               ID</mat-error>
           </mat-form-field>
@@ -49,14 +50,14 @@
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>Country</mat-label>
-            <input matInput placeholder="Please select country" formControlName="country">
+            <input matInput placeholder="Select your country" formControlName="country">
           </mat-form-field>
         </div>
 
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Simple placeholder" formControlName="email" required>
+            <input matInput placeholder="Put your email" formControlName="email" required>
             <mat-error *ngIf="reactiveForm.get('email')?.invalid">
               {{getErrorMessage(reactiveForm)}}</mat-error>
           </mat-form-field>
@@ -65,15 +66,15 @@
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>City</mat-label>
-            <input matInput placeholder="Simple placeholder">
+            <input matInput placeholder="Select your city"  formControlName="city" >
           </mat-form-field>
         </div>
 
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>Mobile</mat-label>
-            <input matInput placeholder="Simple placeholder" type="string"
-            formControlName="phone"
+            <input matInput placeholder="Put your mobile phone number" type="string"
+                   formControlName="phone"
                    required>
             <mat-icon matSuffix>smartphone</mat-icon>
             <mat-error *ngIf="reactiveForm.get('phone')?.invalid">Please enter mobile</mat-error>
@@ -83,15 +84,15 @@
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>Address</mat-label>
-            <input matInput placeholder="Simple placeholder" formControlName="address">
+            <input matInput placeholder="Put your address" formControlName="address">
           </mat-form-field>
         </div>
 
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>Tele</mat-label>
-            <input matInput placeholder="Simple placeholder" type="number"
-             formControlName="telephone"
+            <input matInput placeholder="Put your telephone number" type="number"
+                   formControlName="telephone"
                    required>
             <mat-icon matSuffix>phone</mat-icon>
             <mat-error *ngIf="reactiveForm.get('telephone')?.invalid">Please enter tele</mat-error>
@@ -101,7 +102,7 @@
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>Website</mat-label>
-            <input matInput placeholder="Simple placeholder" formControlName="website">
+            <input matInput placeholder="Put your website url" formControlName="website">
           </mat-form-field>
         </div>
 

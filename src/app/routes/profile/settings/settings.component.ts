@@ -54,4 +54,12 @@ export class ProfileSettingsComponent extends OkDetailComponent implements OnIni
       ? 'Not a valid email'
       : '';
   }
+
+  onSubmit() {
+    const profile = this.reactiveForm.value as IProfile;
+    console.log('submit...', profile);
+    this.srv.updateDetail(profile).subscribe(r => {
+      console.log('r=>', r);
+    });
+  }
 }
