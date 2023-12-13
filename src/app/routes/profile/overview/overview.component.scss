@@ -1,0 +1,66 @@
+.work-card-box{
+  padding: 40px 0;
+}
+
+.ok-work-card{
+  width: 384px;
+  height: 240px;
+  margin: 0 auto;
+  font-size: 12px;
+  background: #ef00;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px #888;
+
+  .personal::after{
+      position: absolute;
+      top: 10%;
+    display: block;
+      width: .6px;
+      height: 80%;
+    content: '';
+      background: #eee;
+      border-radius: 10px;
+  }
+
+  .flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    // justify-items: center;
+  }
+
+  .org-logo{
+    width: 56px;
+      height: 56px;
+      overflow: clip;
+      border-radius: 50%;
+
+    &.box-shadow{
+      box-shadow: 0 0 6px 1px #616161;
+    }
+
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .org-name {
+    margin: 10px 0!important;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li{
+      margin:0;
+    }
+  }
+}

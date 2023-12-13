@@ -5,14 +5,26 @@ export interface Res {
   data: any;
 }
 
-export interface MyPostInfo {
+export interface PostInfo {
   dept: string;
   post: string;
 }
 
+export interface Org {
+  name: string;
+  url: string;
+  avatar: string;
+}
+
+export interface Staff {
+  no: string;
+  phone: string;
+}
+
 export interface MyOrgInfo {
-  org: string;
-  postInfo: MyPostInfo[];
+  staff: Staff;
+  org: Org;
+  postInfo: PostInfo[];
 }
 
 export interface User {

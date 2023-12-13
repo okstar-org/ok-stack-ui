@@ -9,19 +9,19 @@
         <div class="text-center" *ngIf="org">
           <img class="m-b-8 r-full" [src]="user.avatar" alt="" width="80">
           <h2 class="m-t-0 m-b-8 f-w-400">{{ user.name }}</h2>
-          <p class="m-t-0 m-b-8">{{org.org}}</p>
-
+          <p class="m-t-0 m-b-8">{{org.org.name}}</p>
           <p class="m-t-0 text-grey-500" *ngFor="let post of org.postInfo">
-            {{post.dept}}-{{post.post}}</p>
+            {{post.dept}}-{{post.post}}
+          </p>
         </div>
         <mat-nav-list class="m-x--16 m-b--16 m-t-16">
           <mat-divider></mat-divider>
           <a mat-list-item routerLink="/profile/overview">
-            <mat-icon matListItemIcon>account_circle</mat-icon> Overview
+            <mat-icon matListItemIcon>account_circle</mat-icon>{{"user.profile"|translate}}
           </a>
           <mat-divider></mat-divider>
           <a mat-list-item routerLink="/profile/settings">
-            <mat-icon matListItemIcon>settings</mat-icon> Settings
+            <mat-icon matListItemIcon>settings</mat-icon> {{"user.settings"|translate}}
           </a>
         </mat-nav-list>
       </mat-card-content>

@@ -103,7 +103,7 @@
   },
   "user": {
     "profile": "個人信息",
-    "settings": "偏好設置",
+    "settings": "個人設置",
     "logout": "退出"
   },
   "login": {
@@ -361,6 +361,7 @@
     "createAt": "創建時間",
     "updateAt": "更新時間",
     "assignFor": "分配給",
+    "workCard": "名片",
     "con": {
       "WX": "企微",
       "DT": "钉钉",

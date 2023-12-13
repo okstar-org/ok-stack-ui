@@ -102,9 +102,9 @@
     "invalid_email": "Invalid email"
   },
   "user": {
-    "profile": "profile",
-    "settings": "settings",
-    "logout": "logout"
+    "profile": "Profile",
+    "settings": "Edit",
+    "logout": "Logout"
   },
   "login": {
     "title": "Welcome Back",
@@ -276,6 +276,8 @@
     "createAt": "Create At",
     "updateAt": "Update At",
     "assignFor": "Assign For",
+    "workCard": "Card",
+    "overview": "Overview",
     "con": {
       "WX": "WeChat",
       "DT": "Dingtalk",

@@ -103,7 +103,7 @@
   },
   "user": {
     "profile": "个人信息",
-    "settings": "偏好设置",
+    "settings": "个人设置",
     "logout": "退出"
   },
   "login": {
@@ -367,6 +367,8 @@
     "createAt": "创建时间",
     "updateAt": "更新时间",
     "assignFor": "分配给",
+    "workCard": "名片",
+    "overview": "预览",
     "con": {
       "WX": "企微",
       "DT": "钉钉",
@@ -375,6 +377,6 @@
   },
   "support": {
     "can_not": "您的浏览器不支持该功能，请升级最新版谷歌或者火狐浏览器！",
-    "input_warning":"本系统仅供测试使用，请勿输入涉及隐私等敏感信息！"
+    "input_warning": "本系统仅供测试使用，请勿输入涉及隐私等敏感信息！"
   }
 }
