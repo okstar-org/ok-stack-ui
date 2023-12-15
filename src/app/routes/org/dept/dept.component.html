@@ -67,11 +67,6 @@
           <mat-cell *matCellDef="let row;">{{row.name}}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="createAt">
-          <mat-header-cell *matHeaderCellDef>{{"common.createAt"|translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.createAt}}</mat-cell>
-        </ng-container>
-
         <ng-container matColumnDef="updateAt">
           <mat-header-cell *matHeaderCellDef>{{"common.updateAt"|translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.updateAt}}</mat-cell>
@@ -85,6 +80,15 @@
         <ng-container matColumnDef="assignFor">
           <mat-header-cell *matHeaderCellDef>{{"common.assignFor"|translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.assignFor}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="operation">
+          <mat-header-cell *matHeaderCellDef>{{"common.operation"|translate}}</mat-header-cell>
+          <mat-cell  *matCellDef="let row;" >
+            <button mat-button color="primary" class="m-8" (click)="onEdit(row)">
+              {{ "common.edit" | translate}}
+            </button>
+          </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -162,6 +162,7 @@
   },
   "org": {
     "post": {
+      "recruit": "Recruit informations",
       "add": {
         "title": "Edit position informations"
       }

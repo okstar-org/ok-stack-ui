@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
 
 import { Org } from '../org.api';
-import { OrgDept } from './dept.api';
+import { OrgDept, OrgPost } from './dept.api';
 import { MatDialog } from '@angular/material/dialog';
 import { AddPostComponent } from './add-post/add-post.component';
 
@@ -146,7 +146,7 @@ export class DynamicDataSource {
   providers: [DynamicDatabase],
 })
 export class DeptComponent implements OnInit {
-  displayedColumns = ['no', 'name', 'recruit', 'assignFor', 'createAt', 'updateAt'];
+  displayedColumns = ['no', 'name', 'recruit', 'assignFor', 'updateAt', 'operation'];
   dataSource: any;
   userDataSource!: DeptDataSource;
   org!: Org;
@@ -222,6 +222,25 @@ export class DeptComponent implements OnInit {
     //   this.userDataSource.setData(r2);
     // });
     // });
+  }
+
+  onEdit(row: OrgPost) {
+    //TODO(nzb) 优化编辑部分，由于this.form.setValue字段，怎么避免delete字段
+    delete row.createBy;
+    delete row.createAt;
+    delete row.updateAt;
+    delete row.updateBy;
+
+    this.dialog
+      .open(AddPostComponent, {
+        data: row,
+      })
+      .afterClosed()
+      .subscribe(r => {
+        this.svc.findPostByDept(this.selectedDeptId).subscribe(r => {
+          this.userDataSource.setData(r);
+        });
+      });
   }
 }
 

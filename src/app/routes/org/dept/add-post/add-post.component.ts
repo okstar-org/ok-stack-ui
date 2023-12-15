@@ -11,23 +11,28 @@ import { DeptService } from '../dept.service';
 })
 export class AddPostComponent {
   form = this.fb.group({
+    id: [0],
     deptId: [0, [Validators.required]],
     no: ['', [Validators.required]],
     name: ['', [Validators.required]],
     descr: [''],
     recruit: [''],
     assignFor: [''],
+    disabled: [false],
   });
 
   constructor(
     private fb: FormBuilder,
     private deptService: DeptService,
-    @Inject(MAT_DIALOG_DATA) private dept: OrgDept
-  ) {}
+    @Inject(MAT_DIALOG_DATA) private post: OrgPost
+  ) {
+    console.log(post);
+    this.form.setValue(post);
+  }
 
   onSave() {
     const post = this.form.value as OrgPost;
-    post.deptId = this.dept.id;
+    post.deptId = this.post.id;
     this.deptService.savePost(post).subscribe(r => {
       console.log('=>', r);
     });

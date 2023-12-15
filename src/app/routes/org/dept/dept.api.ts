@@ -28,6 +28,8 @@ export interface OrgDept {
 }
 
 export interface OrgPost {
+  id: number;
+
   /**
    * 编号
    */
@@ -57,4 +59,14 @@ export interface OrgPost {
    * 招聘链接
    */
   recruit: string;
+
+  disabled: boolean;
+
+  createAt?: Date;
+
+  createBy?: number;
+
+  updateAt?: Date;
+
+  updateBy?: number;
 }

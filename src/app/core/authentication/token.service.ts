@@ -16,7 +16,6 @@ export class TokenService {
   constructor(private store: LocalStorageService) {}
 
   set(token: Token, refresh = false) {
-    console.log('set token', token, refresh);
     this.token = SimpleToken.create(token);
     this.store.set(this.key, this.token);
     this.change$.next(this.token.clone({ refresh }));
