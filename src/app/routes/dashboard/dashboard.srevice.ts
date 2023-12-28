@@ -85,7 +85,7 @@ export class DashboardService {
     },
     {
       title: '消息数量',
-      amount: '1,922',
+      amount: '0',
       progress: {
         value: 40,
       },

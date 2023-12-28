@@ -39,7 +39,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get('/api/sys/_well-known/git').subscribe(r => {
-      console.log(r);
       for (const k in r) {
         const v = (r as any)[k];
         if (k === 'git.branch') {

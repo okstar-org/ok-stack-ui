@@ -6,7 +6,6 @@
 npm install -g angular-cli
 ```
 
-
 ## 初始化项目
 
 ```bash
@@ -19,8 +18,16 @@ $ npm install
 $ npm run hmr
 ```
 
-## 编译项目
+## 构建项目
 
 ```
+# 开发构建
 $ npm run build
+
+# 生产构建
+$ npm run build:relase
+
+# 构建及发布
+$ npm run release
+
 ```

@@ -56,23 +56,19 @@ export interface SignUpForm {
 }
 
 export interface Token {
+  refresh: boolean;
+  tokenType: string;
+
   accessToken: string;
-  access_token?: string;
+
+  expiresIn: number;
   refreshToken: string;
-  refresh_token?: string;
-  token?: string;
-  tokenType?: string;
-  token_type?: string;
-  expires_in?: number;
+
+  refreshExpiresIn: number;
 }
 
-export interface RefreshToken {
-  refresh: boolean;
-  accessToken: string;
-  refreshToken: string;
-  tokenType: string;
-  exp: number;
-
+export interface RefreshToken extends Token {
+  refreshExpiresIn: number;
   refreshTime: () => number;
   valid: () => boolean;
 }

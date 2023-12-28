@@ -24,9 +24,15 @@ export class AuthService {
       .change()
       .pipe(
         switchMap(() =>
-          this.check() ? this.userReq$.pipe(map((r: Res) => this.payload(r))) : of(guest)
+          this.userReq$.pipe(
+            map((r: Res) => {
+              console.log('fetch user:', r);
+              return this.payload(r);
+            })
+          )
         )
       )
+
       .subscribe(user => this.user$.next(Object.assign({}, guest, user)));
 
     this.token

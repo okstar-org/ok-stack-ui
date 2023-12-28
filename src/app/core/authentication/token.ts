@@ -6,6 +6,8 @@ export class SimpleToken implements RefreshToken {
   accessToken = '';
   refreshToken = '';
   tokenType = '';
+  expiresIn = 0;
+  refreshExpiresIn = 0;
   exp = 0;
 
   constructor(attributes: any) {
@@ -13,10 +15,10 @@ export class SimpleToken implements RefreshToken {
   }
 
   public static create(token: Token) {
-    const accessToken = token.access_token || token.accessToken || token.token || '';
-    const tokenType = token.token_type || token.tokenType || 'bearer';
-    const refreshToken = token.refresh_token || token.refreshToken || '';
-    const expiresIn = token.expires_in || 0;
+    const accessToken = token.accessToken;
+    const tokenType = token.tokenType || token.tokenType || 'bearer';
+    const refreshToken = token.refreshToken || token.refreshToken || '';
+    const expiresIn = token.expiresIn || 0;
     const exp = expiresIn <= 0 ? 0 : now() + expiresIn * 1000;
     return new SimpleToken({ accessToken, refreshToken, tokenType, exp });
   }
