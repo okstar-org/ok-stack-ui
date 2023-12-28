@@ -16,8 +16,8 @@ export class SimpleToken implements RefreshToken {
 
   public static create(token: Token) {
     const accessToken = token.accessToken;
-    const tokenType = token.tokenType || token.tokenType || 'bearer';
-    const refreshToken = token.refreshToken || token.refreshToken || '';
+    const tokenType = token.tokenType;
+    const refreshToken = token.refreshToken;
     const expiresIn = token.expiresIn || 0;
     const exp = expiresIn <= 0 ? 0 : now() + expiresIn * 1000;
     return new SimpleToken({ accessToken, refreshToken, tokenType, exp });

@@ -26,7 +26,6 @@ export class AuthService {
         switchMap(() =>
           this.userReq$.pipe(
             map((r: Res) => {
-              console.log('fetch user:', r);
               return this.payload(r);
             })
           )
