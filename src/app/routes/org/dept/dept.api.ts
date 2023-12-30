@@ -7,13 +7,15 @@ class Api implements OkApi {
   children = '/api/org/dept/children/';
   getChildren = '/api/org/dept/children';
   getCurrentOrg = '/api/org/current';
+
   page = '/api/portal/sys/org/dept/page';
-  save = '/api/portal/sys/org/dept/save';
+  save = '/api/org/dept/add';
   update = '/api/portal/sys/org/dept/update';
   sync = '/api/portal/sys/org/dept/sync';
 
   syncUser = '/api/portal/sys/org/user/sync';
   findUserByDept = '/api/org/post/findByDept/';
+
   savePost = '/api/org/post/save';
 }
 
@@ -22,6 +24,7 @@ export { api };
 
 export interface OrgDept {
   id: number;
+  parentId: number;
   name: string;
   level: number;
   sourceList: string[];

@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>{{"org.post.add.title"|translate}}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <table class="demo-full-width" cellspacing="0">
+      <tr>
+        <td colspan="2">
+          <mat-form-field class="demo-full-width">
+            <mat-label>{{"common.name"|translate}}</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <mat-form-field class="demo-full-width">
+            <mat-label>{{"common.no"|translate}}</mat-label>
+            <input matInput formControlName="no">
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>{{"common.close"|translate}}</button>
+  <button mat-raised-button color="primary" mat-dialog-close="1"
+          cdkFocusInitial (click)="onSave()">{{"common.submit"|translate}}</button>
+</mat-dialog-actions>

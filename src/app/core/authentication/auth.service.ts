@@ -31,7 +31,6 @@ export class AuthService {
           )
         )
       )
-
       .subscribe(user => this.user$.next(Object.assign({}, guest, user)));
 
     this.token

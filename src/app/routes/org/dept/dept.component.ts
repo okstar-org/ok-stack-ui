@@ -11,6 +11,7 @@ import { Org } from '../org.api';
 import { OrgDept, OrgPost } from './dept.api';
 import { MatDialog } from '@angular/material/dialog';
 import { AddPostComponent } from './add-post/add-post.component';
+import { AddDeptComponent } from './add-dept/add-dept.component';
 
 export class DynamicFlatNode {
   constructor(
@@ -162,13 +163,6 @@ export class DeptComponent implements OnInit {
   ) {
     this.treeControl = new FlatTreeControl<DynamicFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new DynamicDataSource(this.treeControl, database);
-    this.database.initialData().subscribe(r => {
-      this.dataSource.data = r;
-    });
-
-    this.svc.getCurrentOrg().subscribe(r => {
-      this.org = r;
-    });
   }
 
   treeControl: FlatTreeControl<DynamicFlatNode>;
@@ -180,11 +174,19 @@ export class DeptComponent implements OnInit {
   hasChild = (_: number, nodeData: DynamicFlatNode) => nodeData.expandable;
 
   ngOnInit() {
+    this.userDataSource = new DeptDataSource();
+    //get current org
+    this.svc.getCurrentOrg().subscribe(r => {
+      this.org = r;
+    });
+
+    this.loadTree();
+  }
+
+  loadTree() {
     this.database.initialData().subscribe(r => {
       this.dataSource.data = r;
     });
-
-    this.userDataSource = new DeptDataSource();
   }
 
   onClickDept(node: DynamicFlatNode) {
@@ -195,11 +197,21 @@ export class DeptComponent implements OnInit {
     });
   }
 
-  onAddDept() {}
+  onAddDept() {
+    const dept = this.selectedNode.item;
+    this.dialog
+      .open(AddDeptComponent, { data: dept })
+      .afterClosed()
+      .subscribe(r => {
+        //TODO(nzb) 添加子部门成功后刷新且打开下级
+        this.loadTree();
+      });
+  }
 
   onAddPost() {
+    const dept = this.selectedNode.item;
     this.dialog
-      .open(AddPostComponent, { data: this.selectedNode.item })
+      .open(AddPostComponent, { data: dept })
       .afterClosed()
       .subscribe(r => {});
   }
