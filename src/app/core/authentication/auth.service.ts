@@ -57,8 +57,13 @@ export class AuthService {
       })
       .pipe(
         map((r: Res) => this.payload(r)),
-        tap((token: Token) => this.token.set(token)),
-        map(() => this.check())
+        map((token: Token) => this.token.set(token)),
+        map(() => this.check()),
+        map(() => {
+          this.userReq$.pipe(map(r => r.data)).subscribe(user => {
+            this.user$.next(Object.assign({}, guest, user));
+          });
+        })
       );
   }
 
