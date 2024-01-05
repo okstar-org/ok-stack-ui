@@ -192,6 +192,7 @@ export class DeptComponent implements OnInit {
   onClickDept(node: DynamicFlatNode) {
     this.selectedDeptId = node.id;
     this.selectedNode = node;
+    this.dataSource.toggleNode(node, true);
     this.svc.findPostByDept(node.id).subscribe(r => {
       this.userDataSource.setData(r);
     });

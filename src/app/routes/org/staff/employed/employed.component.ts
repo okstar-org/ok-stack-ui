@@ -172,12 +172,11 @@ export class EmployedComponent implements OnInit {
   ];
 
   dataSource: any;
-
   userDataSource!: UserDataSource;
-
   org!: Org;
-
   treeControl: FlatTreeControl<DynamicFlatNode>;
+
+  selectedNode!: DynamicFlatNode;
 
   getLevel = (node: DynamicFlatNode) => node.level;
 
@@ -215,6 +214,8 @@ export class EmployedComponent implements OnInit {
   }
 
   onClickDept(node: DynamicFlatNode) {
+    this.selectedNode = node;
+    this.dataSource.toggleNode(node, true);
     this.svc.findUserByDept(node.id).subscribe(r => {
       this.userDataSource.setData(r);
     });
