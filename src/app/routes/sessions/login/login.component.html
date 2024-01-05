@@ -32,8 +32,11 @@
         </div>
 -->
         <button class="w-full" mat-raised-button color="primary"
-                [disabled]="loginForm.invalid"
-                (click)="login()">{{'login.login' | translate}}</button>
+                [disabled]="loginForm.invalid && !isLoading"
+                (click)="login()">{{'login.login' | translate}}
+        </button>
+
+        <mat-spinner *ngIf="isLoading" class="loading" color="indeterminate" [strokeWidth]="2" aria-label="Loading"></mat-spinner>
 
         <div class="m-t-16">{{'login.have_no_account' | translate}}?
           <a routerLink="/auth/register">{{'login.create_one' | translate}}</a>
