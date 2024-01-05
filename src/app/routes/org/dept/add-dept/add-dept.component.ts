@@ -20,7 +20,7 @@ export class AddDeptComponent {
   constructor(
     private fb: FormBuilder,
     private deptService: DeptService,
-    @Inject(MAT_DIALOG_DATA) private parent: OrgDept, //
+    @Inject(MAT_DIALOG_DATA) private parent: OrgDept,
     public dialogRef: MatDialogRef<AddDeptComponent>
   ) {}
 

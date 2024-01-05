@@ -2,7 +2,7 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Gender, OrgStaffFragment, OrgStaffReq, StaffAddOpt, StaffJoinOpt } from '../staff.api';
 import { StaffService } from '../staff.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-add',
@@ -30,7 +30,8 @@ export class DialogAddComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private svc: StaffService,
-    @Inject(MAT_DIALOG_DATA) private opt: StaffAddOpt
+    @Inject(MAT_DIALOG_DATA) private opt: StaffAddOpt,
+    public dialogRef: MatDialogRef<DialogAddComponent>
   ) {}
 
   ngOnInit() {
@@ -48,7 +49,7 @@ export class DialogAddComponent implements OnInit, OnDestroy {
     const fragment = this.form.value as OrgStaffFragment;
     const req: OrgStaffReq = { fragment, id: this.opt.id };
     this.svc.save(req).subscribe(r => {
-      console.log('save=>', req);
+      this.dialogRef.close(r);
     });
   }
 }

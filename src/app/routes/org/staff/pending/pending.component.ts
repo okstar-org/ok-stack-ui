@@ -70,6 +70,7 @@ export class PendingComponent implements OnInit {
       })
       .afterClosed()
       .subscribe(r => {
+        console.log('edit=>', r);
         this.load();
       });
   }
