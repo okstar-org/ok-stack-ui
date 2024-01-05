@@ -30,6 +30,17 @@ export interface OrgDept {
   sourceList: string[];
 }
 
+export class DynamicFlatNode {
+  constructor(
+    public id: number,
+    public item: OrgDept,
+    public level: number,
+    public resourceList: string[],
+    public expandable = false,
+    public isLoading = false
+  ) {}
+}
+
 export interface OrgPost {
   id: number;
 

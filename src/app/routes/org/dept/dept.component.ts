@@ -8,26 +8,11 @@ import { map } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
 
 import { Org } from '../org.api';
-import { OrgDept, OrgPost } from './dept.api';
+import { DynamicFlatNode, OrgDept, OrgPost } from './dept.api';
 import { MatDialog } from '@angular/material/dialog';
 import { AddPostComponent } from './add-post/add-post.component';
 import { AddDeptComponent } from './add-dept/add-dept.component';
 
-export class DynamicFlatNode {
-  constructor(
-    public id: number,
-    public item: OrgDept,
-    public level: number,
-    public resourceList: string[],
-    public expandable = false,
-    public isLoading = false
-  ) {}
-}
-
-/**
- * Database for dynamic data. When expanding a node in the tree, the data source will need to fetch
- * the descendants data from the database.
- */
 @Injectable()
 export class DynamicDatabase {
   constructor(private deptService: DeptService) {}
@@ -56,13 +41,7 @@ export class DynamicDatabase {
     );
   }
 }
-/**
- * File database, it can build a tree structured Json object from string.
- * Each node in Json object represents a file or a directory. For a file, it has filename and type.
- * For a directory, it has filename and children (a list of files or directories).
- * The input will be a json object string, and the output is a list of `FileNode` with nested
- * structure.
- */
+
 @Injectable()
 export class DynamicDataSource {
   dataChange = new BehaviorSubject<DynamicFlatNode[]>([]);
@@ -109,7 +88,6 @@ export class DynamicDataSource {
    */
   toggleNode(node: DynamicFlatNode, expand: boolean) {
     const index = this.data.indexOf(node);
-    console.log('toggleNode', node, index, expand);
 
     if (expand) {
       node.isLoading = true;
@@ -192,7 +170,6 @@ export class DeptComponent implements OnInit {
   onClickDept(node: DynamicFlatNode) {
     this.selectedDeptId = node.id;
     this.selectedNode = node;
-    this.dataSource.toggleNode(node, true);
     this.svc.findPostByDept(node.id).subscribe(r => {
       this.userDataSource.setData(r);
     });
@@ -204,8 +181,9 @@ export class DeptComponent implements OnInit {
       .open(AddDeptComponent, { data: dept })
       .afterClosed()
       .subscribe(r => {
-        //TODO(nzb) 添加子部门成功后刷新且打开下级
-        this.loadTree();
+        console.log('r=>', r);
+        //TODO: 存在不影响使用的bug
+        this.dataSource.toggleNode(this.selectedNode, true);
       });
   }
 

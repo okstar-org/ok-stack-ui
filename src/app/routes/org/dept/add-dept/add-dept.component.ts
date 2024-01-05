@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { OrgDept, OrgPost, api } from '../dept.api';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DeptService } from '../dept.service';
 
 @Component({
@@ -20,14 +20,15 @@ export class AddDeptComponent {
   constructor(
     private fb: FormBuilder,
     private deptService: DeptService,
-    @Inject(MAT_DIALOG_DATA) private prt: OrgDept //
+    @Inject(MAT_DIALOG_DATA) private parent: OrgDept, //
+    public dialogRef: MatDialogRef<AddDeptComponent>
   ) {}
 
   onSave() {
     const dept = this.form.value as OrgDept;
-    dept.parentId = this.prt.id;
+    dept.parentId = this.parent.id;
     this.deptService.saveItem(api.save + '/' + dept.parentId, dept).subscribe(r => {
-      console.log('=>', r);
+      this.dialogRef.close(r);
     });
   }
 }

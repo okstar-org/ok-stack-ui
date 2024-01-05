@@ -15,17 +15,7 @@ import { EmployedService } from './employed.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { JoinDialogComponent } from '../dialog-join/join-dialog.component';
-
-export class DynamicFlatNode {
-  constructor(
-    public id: number,
-    public item: string,
-    public level: number,
-    public resourceList: string[],
-    public expandable = false,
-    public isLoading = false
-  ) {}
-}
+import { DynamicFlatNode } from '../../dept/dept.api';
 
 @Injectable()
 export class DynamicDatabase {
@@ -40,7 +30,7 @@ export class DynamicDatabase {
     return this.deptService.children(node).pipe(
       map(depts => {
         return depts.map(
-          dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
+          dept => new DynamicFlatNode(dept.id, dept, dept.level, dept.sourceList, true)
         );
       })
     );
@@ -50,7 +40,7 @@ export class DynamicDatabase {
     return this.deptService.getChildren().pipe(
       map(depts => {
         return depts.map(
-          dept => new DynamicFlatNode(dept.id, dept.name, dept.level, dept.sourceList, true)
+          dept => new DynamicFlatNode(dept.id, dept, dept.level, dept.sourceList, true)
         );
       })
     );
@@ -103,8 +93,6 @@ export class DynamicDataSource {
    */
   toggleNode(node: DynamicFlatNode, expand: boolean) {
     const index = this.data.indexOf(node);
-    console.log('toggleNode', node, index, expand);
-
     if (expand) {
       node.isLoading = true;
       this.database.children(node.id).subscribe(r => {
@@ -120,17 +108,18 @@ export class DynamicDataSource {
         this.dataChange.next(this.data);
       });
     } else {
-      let count = 0;
-      for (
-        let i = index + 1;
-        i < this.data.length && this.data[i].level > node.level;
-        i++, count++
-      ) {
-        //
-      }
-      this.data.splice(index + 1, count);
-      this.dataChange.next(this.data);
+      this.clearChildren(node);
     }
+  }
+
+  clearChildren(node: DynamicFlatNode) {
+    const index = this.data.indexOf(node);
+    let count = 0;
+    for (let i = index + 1; i < this.data.length && this.data[i].level > node.level; i++, count++) {
+      //
+    }
+    this.data.splice(index + 1, count);
+    this.dataChange.next(this.data);
   }
 }
 
@@ -215,7 +204,6 @@ export class EmployedComponent implements OnInit {
 
   onClickDept(node: DynamicFlatNode) {
     this.selectedNode = node;
-    this.dataSource.toggleNode(node, true);
     this.svc.findUserByDept(node.id).subscribe(r => {
       this.userDataSource.setData(r);
     });

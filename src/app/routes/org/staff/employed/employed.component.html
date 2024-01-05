@@ -17,7 +17,7 @@
               {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
             </mat-icon>
           </button>
-          <a href="javascript:;" (click)="onClickDept(node)">{{node.item}}
+          <a href="javascript:;" (click)="onClickDept(node)" matTreeNodeToggle>{{node.item.name}}
             <!--   [<span *ngFor="let item of node.resourceList">{{"common.con."+ item | translate}}
           </span>]-->
           </a>
