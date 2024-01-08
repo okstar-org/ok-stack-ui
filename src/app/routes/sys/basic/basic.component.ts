@@ -25,7 +25,7 @@ export class BasicComponent implements OnInit {
     this.basicSrv.languages().subscribe(r => {
       this.locales = r;
     });
-    this.basicSrv.getDetail(api.findById).subscribe(r => {
+    this.basicSrv.getDetail('').subscribe(r => {
       this.global = r;
     });
     this.basicSrv.getPersonal().subscribe(r => {

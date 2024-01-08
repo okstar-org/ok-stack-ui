@@ -1,0 +1,68 @@
+<breadcrumb></breadcrumb>
+<mat-card>
+  <mat-card-content>
+    <section class="row app-box">
+      <section class="col app-berif" >
+        <!-- 基本信息 -->
+        <div class="app-info">
+          <img class="app-avatar" [src]="app.avatar" alt="">
+          <h1 class="app-title">{{app.name}}</h1>
+          <span class="app-author">由 <a href="">{{app.author}}</a> 提供和更新</span>
+        </div>
+        <div class="app-ctl">
+          <button mat-button mat-raised-button class="m-8 app-install">安装/购买</button>
+        </div>
+        <div class="app-score">
+          <ul class="row">
+            <li class="col">
+              <mat-icon class="mat-18">star_rate</mat-icon>
+              <div>9.9</div>
+              <div>平均</div>
+            </li>
+            <li class="col">
+              <mat-icon class="mat-18">thumb_up</mat-icon>
+              <div>10k</div>
+              <div>评论数</div>
+            </li>
+          </ul>
+        </div>
+        <div class="app-descr">
+          {{app.descr}}
+        </div>
+        <div class="app-contact" *ngIf="app.provider">
+          <div style="font-weight: bold; text-align: center;margin-top: 2em;">开发者信息</div>
+          <p style="text-align: center;">
+            <img style="text-align: center;" [src]="app.provider.avatar"
+                 class="app-avatar">
+          </p>
+          <p>{{app.provider.name}}</p>
+          <div><mat-icon class="mat-8">email</mat-icon><span>{{app.provider.email}}</span></div>
+          <div><mat-icon class="mat-8">phone</mat-icon><span>{{app.provider.phone}}</span></div>
+          <div><mat-icon class="mat-8">report</mat-icon><span><a target="_blank"
+                 [href]="app.provider.privacy_policy_url">隐私协议</a></span> </div>
+          <div><mat-icon class="mat-8">domain</mat-icon><span><a target="_blank"
+                 [href]="app.provider.official_url">官方文档</a></span></div>
+        </div>
+      </section>
+      <section class="col app-detail" *ngIf="app.remark">
+        <div>
+
+        </div>
+
+        <div class="remark">
+          <pre [innerHTML]="app.remark.content"></pre>
+        </div>
+
+        <!-- 详情信息 -->
+        <div class="images-box">
+          <div *ngFor="let item of app.remark.images">
+            <img [src]="item.src" alt="">
+          </div>
+        </div>
+
+      </section>
+
+
+    </section>
+  </mat-card-content>
+</mat-card>

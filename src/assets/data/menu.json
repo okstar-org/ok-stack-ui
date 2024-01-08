@@ -66,8 +66,8 @@
       ]
     },
     {
-      "route": "platform",
-      "name": "platform",
+      "route": "work",
+      "name": "work",
       "type": "sub",
       "icon": "apps",
       "children": [

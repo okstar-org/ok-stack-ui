@@ -1,5 +1,3 @@
-import { OkApi } from '@shared/api/ok';
-
 class Api {
   findById = '';
   page = '';
