@@ -2,7 +2,7 @@
 <mat-card>
   <mat-card-content>
     <section class="row app-box">
-      <section class="col app-berif" >
+      <section class="col app-berif">
         <!-- 基本信息 -->
         <div class="app-info">
           <img class="app-avatar" [src]="app.avatar" alt="">
@@ -44,21 +44,28 @@
                  [href]="app.provider.official_url">官方文档</a></span></div>
         </div>
       </section>
-      <section class="col app-detail" *ngIf="app.remark">
-        <div>
+      <section class="col app-detail" *ngIf="app.introduce">
 
-        </div>
+        <mat-tab-group dynamicHeight>
+          <!-- 详情信息 -->
+          <mat-tab class="remark">
+            <ng-template mat-tab-label>应用介绍</ng-template>
+            <pre [innerHTML]="app.introduce.content"></pre>
+          </mat-tab>
 
-        <div class="remark">
-          <pre [innerHTML]="app.remark.content"></pre>
-        </div>
+          <mat-tab class="remark">
+            <ng-template mat-tab-label>价格方案</ng-template>
+            <pre [innerHTML]="app.introduce.pricing"></pre>
+          </mat-tab>
 
-        <!-- 详情信息 -->
-        <div class="images-box">
-          <div *ngFor="let item of app.remark.images">
-            <img [src]="item.src" alt="">
-          </div>
-        </div>
+          <!-- 权限 -->
+          <mat-tab class="permission" *ngIf="app.introduce.permissions">
+            <ng-template mat-tab-label>访问权限</ng-template>
+            <ul>
+              <li *ngFor="let item of app.introduce.permissions">{{item}}</li>
+            </ul>
+          </mat-tab>
+        </mat-tab-group>
 
       </section>
 

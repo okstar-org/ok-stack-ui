@@ -70,13 +70,11 @@ export interface SysWorkAppTag {
   group_name: string;
   id: number;
 }
-export interface SysWorkAppMedia {
-  type: string; //image,video,audio
-  src: string;
-}
-export interface SysWorkAppRemark {
+
+export interface SysWorkAppIntroduce {
   content: string;
-  images: SysWorkAppMedia[];
+  pricing: string;
+  permissions: string[];
 }
 
 export interface SysWorkAppDetail {
@@ -87,7 +85,7 @@ export interface SysWorkAppDetail {
 
   provider: SysWorkAppProvider;
 
-  remark: SysWorkAppRemark;
+  introduce: SysWorkAppIntroduce;
 
   tags: SysWorkAppTag[];
 }
