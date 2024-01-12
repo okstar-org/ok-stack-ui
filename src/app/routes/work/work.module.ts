@@ -4,9 +4,10 @@ import { SharedModule } from '@shared/shared.module';
 import { platformRoutes } from './work.routing';
 import { AppmgtComponent } from './appmgt/appmgt.component';
 import { DetailComponent } from './detail/detail.component';
+import { PayComponent } from './pay/pay.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, platformRoutes],
-  declarations: [AppmgtComponent, DetailComponent],
+  declarations: [AppmgtComponent, DetailComponent, PayComponent],
 })
 export class WorkModule {}

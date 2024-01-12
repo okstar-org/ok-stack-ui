@@ -1,0 +1,7 @@
+<div class="pay-box">
+  <iframe *ngIf="url" [src]="url" frameborder="0"></iframe>
+  <div class="ctl-block">
+    <button mat-button mat-raised-button (click)="onClose()">关闭</button>
+    <button mat-button mat-raised-button (click)="onComplete()">完成支付</button>
+  </div>
+</div>

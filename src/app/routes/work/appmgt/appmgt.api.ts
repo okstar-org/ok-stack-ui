@@ -5,6 +5,8 @@ class Api implements OkApi {
   page = '/api/sys/work/app/page';
   update = '';
   save = '';
+  createOrder = '/api/billing/order/create';
+  closeOrder = '/api/billing/order/close';
 }
 
 const api = new Api();
@@ -57,18 +59,16 @@ export interface SysWorkAppDTO {
 export interface SysWorkAppProvider {
   avatar: string;
   name: string;
+  alias: string;
   email: string;
   phone: string;
-  clause_url: string;
-  official_url: string;
-  privacy_policy_url: string;
+  clauseUrl: string;
+  officialUrl: string;
+  privacyPolicyUrl: string;
 }
 
-export interface SysWorkAppTag {
-  desc: string;
-  group_id: string;
-  group_name: string;
-  id: number;
+export interface SysWorkAppPermission {
+  name: string;
 }
 
 export interface SysWorkAppIntroduce {
@@ -77,6 +77,20 @@ export interface SysWorkAppIntroduce {
   permissions: string[];
 }
 
+export interface SysWorkAppPlan {
+  id: number;
+  // 套餐名称
+  name: string;
+  //备注
+  descr: string;
+  // 价格
+  amount: number;
+}
+
+export interface SysWorkAppMedia {
+  src: string;
+  type: string;
+}
 export interface SysWorkAppDetail {
   name: string;
   author: string;
@@ -87,5 +101,14 @@ export interface SysWorkAppDetail {
 
   introduce: SysWorkAppIntroduce;
 
-  tags: SysWorkAppTag[];
+  permissions: SysWorkAppPermission[];
+
+  plans: SysWorkAppPlan[];
+
+  medias: SysWorkAppMedia[];
+}
+
+export interface OrderResultEntity {
+  no: string;
+  url: string;
 }

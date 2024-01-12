@@ -1,16 +1,18 @@
 <breadcrumb></breadcrumb>
 <mat-card>
   <mat-card-content>
-    <section class="row app-box">
+    <section class="row app-box" *ngIf="app">
       <section class="col app-berif">
         <!-- 基本信息 -->
-        <div class="app-info">
-          <img class="app-avatar" [src]="app.avatar" alt="">
-          <h1 class="app-title">{{app.name}}</h1>
-          <span class="app-author">由 <a href="">{{app.author}}</a> 提供和更新</span>
-        </div>
-        <div class="app-ctl">
-          <button mat-button mat-raised-button class="m-8 app-install">安装/购买</button>
+        <div class="app-info" >
+          <div>
+            <img class="app-avatar" [src]="app.avatar" alt="">
+          </div>
+          <div class="app-title">
+            <h3> {{app.name}}</h3>
+            <div class="app-author">由 <a [href]="app.provider.officialUrl"
+                 target="_blank">{{app.provider.alias}}</a> 提供和更新</div>
+          </div>
         </div>
         <div class="app-score">
           <ul class="row">
@@ -30,7 +32,7 @@
           {{app.descr}}
         </div>
         <div class="app-contact" *ngIf="app.provider">
-          <div style="font-weight: bold; text-align: center;margin-top: 2em;">开发者信息</div>
+          <div class="split">开发者信息</div>
           <p style="text-align: center;">
             <img style="text-align: center;" [src]="app.provider.avatar"
                  class="app-avatar">
@@ -39,36 +41,59 @@
           <div><mat-icon class="mat-8">email</mat-icon><span>{{app.provider.email}}</span></div>
           <div><mat-icon class="mat-8">phone</mat-icon><span>{{app.provider.phone}}</span></div>
           <div><mat-icon class="mat-8">report</mat-icon><span><a target="_blank"
-                 [href]="app.provider.privacy_policy_url">隐私协议</a></span> </div>
+                 [href]="app.provider.privacyPolicyUrl">隐私协议</a></span> </div>
           <div><mat-icon class="mat-8">domain</mat-icon><span><a target="_blank"
-                 [href]="app.provider.official_url">官方文档</a></span></div>
+                 [href]="app.provider.officialUrl">官方地址</a></span></div>
         </div>
       </section>
-      <section class="col app-detail" *ngIf="app.introduce">
 
-        <mat-tab-group dynamicHeight>
-          <!-- 详情信息 -->
-          <mat-tab class="remark">
-            <ng-template mat-tab-label>应用介绍</ng-template>
-            <pre [innerHTML]="app.introduce.content"></pre>
-          </mat-tab>
 
-          <mat-tab class="remark">
-            <ng-template mat-tab-label>价格方案</ng-template>
-            <pre [innerHTML]="app.introduce.pricing"></pre>
-          </mat-tab>
+      <section class="col app-detail">
 
-          <!-- 权限 -->
-          <mat-tab class="permission" *ngIf="app.introduce.permissions">
-            <ng-template mat-tab-label>访问权限</ng-template>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-subtitle>选择套餐</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
             <ul>
-              <li *ngFor="let item of app.introduce.permissions">{{item}}</li>
+              <li *ngFor="let item of app.plans" class="app-plan">
+                <span style="width: 10%">{{item.name}}</span>
+                <span style="width: 50%">{{item.descr}}</span>
+                <span style="width: 15%" class="amount">￥{{item.amount}} CNY</span>
+                <span style="width: 10%"> <button mat-button (click)="onBuy(item)">购买</button>
+                </span>
+              </li>
             </ul>
-          </mat-tab>
-        </mat-tab-group>
+          </mat-card-content>
+
+        </mat-card>
+
+        <mat-card>
+          <mat-card-content style="min-height: 500px;">
+            <mat-tab-group *ngIf="app.introduce" dynamicHeight>
+              <!-- 详情信息 -->
+              <mat-tab class="remark">
+                <ng-template mat-tab-label>应用介绍</ng-template>
+                <pre [innerHTML]="app.introduce.content"></pre>
+                <div *ngFor="let item of app.medias">
+                  <ng-template ngIf="item.type==='image">
+                    <img [src]="item.src" loading="lazy" />
+                  </ng-template>
+                </div>
+              </mat-tab>
+
+              <mat-tab class="remark">
+                <ng-template mat-tab-label>使用权限</ng-template>
+                <ul>
+                  <li *ngFor="let item of app.permissions">{{item.name}}</li>
+                </ul>
+              </mat-tab>
+            </mat-tab-group>
+          </mat-card-content>
+        </mat-card>
 
       </section>
-
 
     </section>
   </mat-card-content>
