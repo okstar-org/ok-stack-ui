@@ -86,6 +86,8 @@
     "meet.history": "記錄管理",
     "work": "工作平臺",
     "work.app": "應用管理",
+    "billing": "費用中心",
+    "billing.order": "訂單清單",
     "chat": "聊天管理",
     "chat.user": "用戶列表",
     "chat.room": "房間列表",
@@ -363,6 +365,9 @@
     "updateAt": "更新時間",
     "assignFor": "分配給",
     "workCard": "名片",
+    "provider": "供應商",
+    "status":"狀態",
+    "amount":"金額 (CNY)",
     "con": {
       "WX": "企微",
       "DT": "钉钉",

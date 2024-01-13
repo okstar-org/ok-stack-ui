@@ -13,10 +13,7 @@ import { Router } from '@angular/router';
 export class AppmgtComponent implements OnInit {
   columns: MtxGridColumn[] = [
     { header: '', field: 'avatar', type: 'image', width: '50px' },
-    {
-      header: '名称',
-      field: 'name',
-    },
+    { header: '名称', field: 'name' },
     { header: '简介', field: 'descr', width: '300px' },
     { header: '作者', field: 'author' },
     { header: '邮箱', field: 'mail' },

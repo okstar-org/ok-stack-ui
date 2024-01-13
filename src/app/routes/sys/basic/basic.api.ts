@@ -20,6 +20,7 @@ export interface SysSetLocale {
 
 class Api implements OkApi {
   save = '';
+  page = '';
   update = '/api/sys/settings/basic/global';
   findById = '/api/sys/settings/basic/global';
   languages = '/api/sys/settings/basic/languages';

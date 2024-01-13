@@ -12,4 +12,4 @@ const routes: Routes = [
   { path: 'app/:id', component: DetailComponent },
 ];
 
-export const platformRoutes = RouterModule.forChild(routes);
+export const workRoutes = RouterModule.forChild(routes);

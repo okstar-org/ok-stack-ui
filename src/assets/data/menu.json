@@ -79,6 +79,19 @@
       ]
     },
     {
+      "route": "billing",
+      "name": "billing",
+      "type": "sub",
+      "icon": "attach_money",
+      "children": [
+        {
+          "route": "order",
+          "name": "order",
+          "type": "link"
+        }
+      ]
+    },
+    {
       "route": "sys",
       "name": "sys",
       "type": "sub",

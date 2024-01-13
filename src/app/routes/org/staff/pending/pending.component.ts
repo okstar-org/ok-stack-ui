@@ -50,8 +50,8 @@ export class PendingComponent implements OnInit {
     this.load();
   }
   load() {
-    this.pendingService.page().subscribe(r => {
-      this.userDataSource.setData(r);
+    this.pendingService.page({}).subscribe(r => {
+      this.userDataSource.setData(r.list);
     });
   }
   doAdd() {

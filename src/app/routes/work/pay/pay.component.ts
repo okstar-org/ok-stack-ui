@@ -30,6 +30,4 @@ export class PayComponent implements OnInit {
       }
     });
   }
-
-  onComplete() {}
 }

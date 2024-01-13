@@ -12,14 +12,6 @@ class Api implements OkApi {
 const api = new Api();
 export { api };
 
-export interface ResList<R> {
-  totalCount: number;
-
-  pageCount: number;
-
-  list: R[];
-}
-
 export interface SysWorkAppDTO {
   /**
    * Key

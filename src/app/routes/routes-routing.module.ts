@@ -30,6 +30,10 @@ const routes: Routes = [
         path: 'work',
         loadChildren: () => import('./work/work.module').then(m => m.WorkModule),
       },
+      {
+        path: 'billing',
+        loadChildren: () => import('./billing/billing.module').then(m => m.BillingModule),
+      },
     ],
   },
   {

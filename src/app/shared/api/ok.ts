@@ -20,10 +20,11 @@ class OkPageGroup implements OkGroup, OkPageParams {
 }
 
 export interface OkApi {
+  page: string;
   save: string;
   update: string;
-  deleteById?: string;
   findById: string;
+  deleteById?: string;
 }
 
 export interface OkPageApi extends OkApi {
@@ -41,6 +42,14 @@ export interface OkResult<D> {
   msg: string;
   data: any;
   success: boolean;
+}
+
+export interface ResList<R> {
+  totalCount: number;
+
+  pageCount: number;
+
+  list: R[];
 }
 
 export interface OkFormField {

@@ -19,9 +19,9 @@ export class PendingService extends OkItemService {
     super(logger, http, api);
   }
 
-  page(): Observable<Staff[]> {
-    return this.http.get<OkResult<Staff[]>>(api.page).pipe(map((r: OkResult<Staff[]>) => r.data));
-  }
+  // page(): Observable<Staff[]> {
+  //   return this.http.get<OkResult<Staff[]>>(api.page).pipe(map((r: OkResult<Staff[]>) => r.data));
+  // }
 
   join(req: OrgStaffJoinReq): Observable<boolean> {
     return this.http

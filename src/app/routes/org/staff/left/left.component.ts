@@ -47,8 +47,8 @@ export class LeftComponent implements OnInit {
 
   ngOnInit() {
     this.userDataSource = new UserDataSource();
-    this.leftService.page().subscribe(r => {
-      this.userDataSource.setData(r);
+    this.leftService.page({}).subscribe(r => {
+      this.userDataSource.setData(r.list);
     });
   }
 
