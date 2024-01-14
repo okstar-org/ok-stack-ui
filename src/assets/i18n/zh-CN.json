@@ -290,7 +290,7 @@
   "billing": {
     "order": {
       "providerName": "供应商",
-      "date":"订单日期"
+      "date": "订单日期"
     }
   },
   "sys": {
@@ -360,6 +360,9 @@
     "disable": "关闭",
     "complete": "完成",
     "close": "关闭",
+    "cancelled": "取消",
+    "confirmed": "已确认",
+    "completed": "已完成",
     "submit": "提交",
     "check": "选择",
     "phone": "手机号码",
@@ -374,6 +377,8 @@
     "no": "编号",
     "online": "在线状态",
     "status": "状态",
+    "orderStatus": "订单状态",
+    "paymentStatus": "支付状态",
     "createAt": "创建时间",
     "updateAt": "更新时间",
     "assignFor": "分配给",
@@ -382,7 +387,9 @@
     "unpaid": "未支付",
     "paid": "已支付",
     "amount": "金额(CNY)",
-    "provider":"供应商",
+    "provider": "供应商",
+    "period": "周期",
+    "null":"-",
     "con": {
       "WX": "企微",
       "DT": "钉钉",

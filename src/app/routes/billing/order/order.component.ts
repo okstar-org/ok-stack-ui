@@ -1,3 +1,4 @@
+import { iif } from 'rxjs';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
@@ -13,9 +14,10 @@ import { TranslateService } from '@ngx-translate/core';
   providers: [DatePipe],
 })
 export class OrderComponent implements OnInit {
+  fmt = 'yy-MM-dd HH:mm:ss';
   columns: MtxGridColumn[] = [
     { header: this.translate.stream('common.no'), field: 'no', width: '150px' },
-    { header: this.translate.stream('common.descr'), field: 'name' },
+    { header: this.translate.stream('common.name'), field: 'name', minWidth: 200 },
     {
       header: this.translate.stream('common.provider'),
       field: 'providerName',
@@ -26,20 +28,63 @@ export class OrderComponent implements OnInit {
       width: '150px',
     },
     {
+      header: this.translate.stream('common.period'),
+      field: 'periodBegin',
+      width: '290px',
+      formatter: row => {
+        return (
+          this.datePipe.transform(row.periodBegin, this.fmt) +
+          '~' +
+          this.datePipe.transform(row.periodEnd, this.fmt)
+        );
+      },
+    },
+    {
       header: this.translate.stream('common.date'),
       field: 'createAt',
       width: '160px',
       formatter: row => {
-        return this.datePipe.transform(row.createAt, 'yyyy-MM-dd HH:mm:ss');
+        return this.datePipe.transform(row.createAt, this.fmt);
       },
     },
     {
-      header: this.translate.stream('common.status'),
-      field: 'paymentStatus',
-      formatter: (rowData: any) => {
-        return this.translate.instant('common.' + rowData.paymentStatus);
-      },
+      header: this.translate.stream('common.orderStatus'),
+      field: 'orderStatus',
       width: '120px',
+      formatter: (row: any) => {
+        return this.translate.instant('common.' + row.orderStatus);
+      },
+    },
+    {
+      header: this.translate.stream('common.paymentStatus'),
+      field: 'paymentStatus',
+      width: '120px',
+      formatter: (row: any) => {
+        return this.translate.instant('common.' + row.paymentStatus);
+      },
+    },
+    {
+      header: '',
+      field: 'operation',
+      width: '60px',
+      type: 'button',
+      show: false,
+      pinned: 'right',
+
+      buttons: [
+        {
+          type: 'icon',
+          icon: 'payment',
+          text: '支付',
+          tooltip: '支付',
+          click: row => {
+            this.onBuy(row);
+          },
+          iif: (row: any) => {
+            return row.orderStatus === 'confirmed' && row.paymentStatus === 'unpaid';
+          },
+        },
+      ],
     },
   ];
   list: any[] = [];
@@ -73,4 +118,5 @@ export class OrderComponent implements OnInit {
       this.isLoading = false;
     });
   }
+  onBuy(row: any) {}
 }

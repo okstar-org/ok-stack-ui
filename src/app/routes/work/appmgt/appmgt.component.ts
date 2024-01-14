@@ -21,7 +21,7 @@ export class AppmgtComponent implements OnInit {
     {
       header: '',
       field: 'operation',
-      width: '180px',
+      width: '80px',
       pinned: 'right',
       right: '0px',
       type: 'button',
