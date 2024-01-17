@@ -44,10 +44,12 @@ export class RegisterComponent implements OnInit {
         account: this.registerForm.get('account')?.value,
         password: this.registerForm.get('password')?.value,
       })
-      .subscribe({
-        complete: () => {
+      .subscribe(data => {
+        console.log(data);
+        if (data.userId && data.username) {
+          alert('注册成功！');
           this.router.navigateByUrl('/auth/login');
-        },
+        }
       });
   }
 

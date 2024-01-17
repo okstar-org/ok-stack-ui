@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './sessions/login/login.component';
 import { RegisterComponent } from './sessions/register/register.component';
 import { AuthGuard } from '@core/authentication/auth.guard';
+import { ForgotComponent } from './sessions/forgot/forgot.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,7 @@ const routes: Routes = [
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'forgot', component: ForgotComponent },
     ],
   },
   { path: '**', redirectTo: 'dashboard' },

@@ -54,7 +54,9 @@ export class ErrorInterceptor implements HttpInterceptor {
     // else
     if (error instanceof HttpErrorResponse) {
       console.error('handleError', error);
-      this.toastr.error(error.error.msg || `${error.status} ${error.statusText}`);
+      if (error.error) {
+        this.toastr.error(error.error.msg || `${error.status} ${error.statusText}`);
+      }
       return throwError(() => error);
     }
 

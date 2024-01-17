@@ -119,7 +119,7 @@
     "account": "帐号",
     "password": "密码",
     "remember_me": "记住我",
-    "login": "登入",
+    "login": "登录",
     "have_no_account": "没有账号",
     "forgot": "忘记密码",
     "create_one": "点此创建一个",
@@ -137,6 +137,10 @@
     "agree": "我已阅读并同意服务条款",
     "have_an_account": "已经有帐号了",
     "register": "创建账号"
+  },
+  "forgot":{
+    "title":"找回密码",
+    "commit":"提交"
   },
   "paginator": {
     "items_per_page_label": "每页共：",

@@ -6,8 +6,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './sessions/login/login.component';
 import { RegisterComponent } from './sessions/register/register.component';
 import { CdkTableModule } from '@angular/cdk/table';
+import { ForgotComponent } from './sessions/forgot/forgot.component';
 
-const COMPONENTS = [DashboardComponent, LoginComponent, RegisterComponent];
+const COMPONENTS = [DashboardComponent, LoginComponent, RegisterComponent, ForgotComponent];
 const COMPONENTS_DYNAMIC: any[] = [];
 
 @NgModule({

@@ -67,6 +67,12 @@ export class AuthService {
       );
   }
 
+  forgot(form = {}) {
+    return this.http
+      .post<Res>('/api/auth/passport/forgot', form)
+      .pipe(map((r: Res) => this.payload(r)));
+  }
+
   register(signUpForm: SignUpForm) {
     return this.http
       .post<Res>('/api/auth/passport/signUp', signUpForm)
