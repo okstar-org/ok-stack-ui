@@ -106,7 +106,12 @@
   "user": {
     "profile": "個人信息",
     "settings": "個人設置",
-    "logout": "退出"
+    "logout": "退出",
+    "passwordChange": "修改密碼",
+    "newPassword": "新密碼",
+    "confirmPassword": "確認密碼",
+    "invalid_newPassword": "請輸入新密碼",
+    "invalid_confirmPassword": "請再次輸入新密碼"
   },
   "login": {
     "title": "歡迎回來",

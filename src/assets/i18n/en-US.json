@@ -106,7 +106,12 @@
   "user": {
     "profile": "Profile",
     "settings": "Edit",
-    "logout": "Logout"
+    "logout": "Logout",
+    "passwordChange": "Modify password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "invalid_newPassword": "Please input your new password",
+    "invalid_confirmPassword": "Please input confirm password again"
   },
   "login": {
     "title": "Welcome Back",

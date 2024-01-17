@@ -5,11 +5,13 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileLayoutComponent } from './layout/layout.component';
 import { ProfileOverviewComponent } from './overview/overview.component';
 import { ProfileSettingsComponent } from './settings/settings.component';
+import { ProfilePasswordComponent } from './password/password.component';
 
 const COMPONENTS: any[] = [
   ProfileLayoutComponent,
   ProfileOverviewComponent,
   ProfileSettingsComponent,
+  ProfilePasswordComponent,
 ];
 const COMPONENTS_DYNAMIC: any[] = [];
 

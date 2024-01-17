@@ -9,7 +9,14 @@ class Api implements OkApi {
   update = '/api/sys/profile';
   top = '';
   export = '';
+  updatePassword = '/api/auth/password/update';
 }
 
 const api = new Api();
 export { api };
+
+export interface PasswordUpdateForm {
+  username: string;
+  newPassword: string;
+  confirmPassword: string;
+}

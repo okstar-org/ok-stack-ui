@@ -106,7 +106,12 @@
   "user": {
     "profile": "个人信息",
     "settings": "个人设置",
-    "logout": "退出"
+    "logout": "退出",
+    "passwordChange":"修改密码",
+    "newPassword":"新密码",
+    "confirmPassword":"确认密码",
+    "invalid_newPassword":"请输入新密码",
+    "invalid_confirmPassword":"请再次输入新密码"
   },
   "login": {
     "title": "欢迎回来",
