@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -35,7 +36,8 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    console.debug('doRegister...', this.registerForm.get('account')?.value);
+    if (this.isLoading) return;
+    this.isLoading = true;
 
     this.authService
       .register({
@@ -44,12 +46,17 @@ export class RegisterComponent implements OnInit {
         account: this.registerForm.get('account')?.value,
         password: this.registerForm.get('password')?.value,
       })
-      .subscribe(data => {
-        console.log(data);
-        if (data.userId && data.username) {
-          alert('注册成功！');
-          this.router.navigateByUrl('/auth/login');
-        }
+      .subscribe({
+        next: data => {
+          this.isLoading = false;
+          if (data.userId && data.username) {
+            alert('注册成功！');
+            this.router.navigateByUrl('/auth/login');
+          }
+        },
+        error: err => {
+          this.isLoading = false;
+        },
       });
   }
 

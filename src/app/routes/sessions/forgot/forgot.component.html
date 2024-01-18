@@ -40,6 +40,11 @@
         <div class="m-t-16">
           <a routerLink="/auth/login">{{'login.login' | translate}}</a>
         </div>
+
+        <div class="loadding-box" *ngIf="isLoading">
+          <mat-spinner class="spinner-loading" color="indeterminate" [strokeWidth]="2"
+                       aria-label="Loading"></mat-spinner>
+        </div>
       </form>
     </mat-card-content>
 

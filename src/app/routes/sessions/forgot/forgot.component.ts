@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ForgotComponent implements OnInit {
   registerForm: FormGroup;
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -30,12 +31,18 @@ export class ForgotComponent implements OnInit {
     if (!this.registerForm.valid) {
       return;
     }
-
-    this.auth.forgot(this.registerForm.value).subscribe(r => {
-      console.log('forgot=>', r);
-      if (r) {
-        alert('已发送重置链接，请登录邮箱完成后续操作！');
-      }
+    if (this.isLoading) return;
+    this.isLoading = true;
+    this.auth.forgot(this.registerForm.value).subscribe({
+      next: r => {
+        console.log(r);
+        if (r) {
+          alert('已发送密码重置链接，请登录邮箱完成后续操作！');
+        }
+      },
+      error: err => {
+        this.isLoading = false;
+      },
     });
   }
 }
