@@ -11,7 +11,18 @@
         </button>
       </mat-card-actions>
 
-      <mat-table aria-readonly="true"
+      <mtx-grid [data]="list"
+                [columns]="columns"
+                [length]="total"
+                [loading]="isLoading"
+                [pageOnFront]="false"
+                [pageIndex]="query.pageIndex"
+                [pageSize]="query.pageSize"
+                [pageSizeOptions]="[5,10,20]"
+                (page)="getNextPage($event)">
+      </mtx-grid>
+
+      <!-- <mat-table aria-readonly="true"
                  [dataSource]="userDataSource"
                  aria-label="User List">
 
@@ -74,7 +85,7 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-      </mat-table>
+      </mat-table> -->
     </mat-card>
   </div>
 
