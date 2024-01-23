@@ -5,10 +5,9 @@ import { SharedModule } from '@shared/shared.module';
 import { orgRoutes } from './org.routing';
 import { AddPostComponent } from './dept/add-post/add-post.component';
 import { AddDeptComponent } from './dept/add-dept/add-dept.component';
-import { PermComponent } from './perm/perm.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, orgRoutes],
-  declarations: [DeptComponent, AddPostComponent, AddDeptComponent, PermComponent],
+  declarations: [DeptComponent, AddPostComponent, AddDeptComponent],
 })
 export class OrgModule {}
