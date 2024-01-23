@@ -16,6 +16,8 @@ class Api implements OkPageApi {
   export = '';
   findUserByDept = '/api/org/staff/findByDept/';
   listPost = '/api/org/staff/post/list';
+  count = '/api/org/staff/count';
+  countPost = '/api/org/post/count';
 }
 
 const api = new Api();

@@ -61,7 +61,7 @@ export class DashboardService {
   stats = [
     {
       title: '组织人数',
-      amount: '200',
+      amount: '0',
       progress: {
         value: 50,
       },
@@ -69,7 +69,7 @@ export class DashboardService {
     },
     {
       title: '部门数量',
-      amount: '5',
+      amount: '0',
       progress: {
         value: 70,
       },
@@ -77,7 +77,7 @@ export class DashboardService {
     },
     {
       title: '岗位数量',
-      amount: '210',
+      amount: '0',
       progress: {
         value: 80,
       },
@@ -85,7 +85,7 @@ export class DashboardService {
     },
     {
       title: '消息数量',
-      amount: '2,000',
+      amount: '0',
       progress: {
         value: 40,
       },

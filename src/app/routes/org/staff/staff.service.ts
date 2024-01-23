@@ -54,9 +54,15 @@ export class StaffService extends OkItemService {
       .pipe(map((r: OkResult<Staff[]>) => r.data));
   }
 
-  syncUser(params = {}): Observable<Staff[]> {
+  count(params = {}): Observable<number> {
     return this.http
-      .put<OkResult<Staff[]>>(api.syncUser, { params })
-      .pipe(map((r: OkResult<Staff[]>) => r.data));
+      .get<OkResult<number>>(api.count, { params })
+      .pipe(map((r: OkResult<number>) => r.data));
+  }
+
+  countPost(params = {}): Observable<number> {
+    return this.http
+      .get<OkResult<number>>(api.countPost, { params })
+      .pipe(map((r: OkResult<number>) => r.data));
   }
 }

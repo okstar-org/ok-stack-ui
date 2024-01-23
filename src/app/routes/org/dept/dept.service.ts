@@ -47,21 +47,15 @@ export class DeptService extends OkItemService {
       .pipe(map((r: OkResult<boolean>) => r.data));
   }
 
-  // sync(params = {}): Observable<User[]> {
-  //   return this.http
-  //     .put<OkResult<User[]>>(api.sync, { params })
-  //     .pipe(map((r: OkResult<User[]>) => r.data));
-  // }
-
-  // syncUser(params = {}): Observable<User[]> {
-  //   return this.http
-  //     .put<OkResult<User[]>>(api.syncUser, { params })
-  //     .pipe(map((r: OkResult<User[]>) => r.data));
-  // }
-
   savePost(post: OrgPost) {
     return this.http
       .post<OkResult<boolean>>(api.savePost, post)
       .pipe(map((r: OkResult<boolean>) => r.data));
+  }
+
+  count(params = {}): Observable<number> {
+    return this.http
+      .get<OkResult<number>>(api.count, { params })
+      .pipe(map((r: OkResult<number>) => r.data));
   }
 }

@@ -12,6 +12,7 @@ class Api implements OkApi {
   save = '/api/org/dept/add';
   update = '/api/portal/sys/org/dept/update';
   sync = '/api/portal/sys/org/dept/sync';
+  count = '/api/org/dept/count';
 
   syncUser = '/api/portal/sys/org/user/sync';
   findUserByDept = '/api/org/post/findByDept/';

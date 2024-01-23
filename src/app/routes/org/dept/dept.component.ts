@@ -1,4 +1,3 @@
-import { OkItemComponent } from '@shared/components/ok/ok-item.component';
 import { DeptService } from './dept.service';
 import { CollectionViewer, DataSource, SelectionChange } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -6,8 +5,6 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
-
-import { Org } from '../org.api';
 import { DynamicFlatNode, OrgDept, OrgPost } from './dept.api';
 import { MatDialog } from '@angular/material/dialog';
 import { AddPostComponent } from './add-post/add-post.component';
@@ -128,8 +125,6 @@ export class DeptComponent implements OnInit {
   displayedColumns = ['no', 'name', 'recruit', 'assignFor', 'updateAt', 'operation'];
   dataSource: any;
   userDataSource!: DeptDataSource;
-  org!: Org;
-
   selectedDeptId!: number;
   selectedNode!: DynamicFlatNode;
 
@@ -153,11 +148,6 @@ export class DeptComponent implements OnInit {
 
   ngOnInit() {
     this.userDataSource = new DeptDataSource();
-    //get current org
-    this.svc.getCurrentOrg().subscribe(r => {
-      this.org = r;
-    });
-
     this.loadTree();
   }
 
