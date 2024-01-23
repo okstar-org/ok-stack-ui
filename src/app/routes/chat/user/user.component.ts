@@ -68,40 +68,4 @@ export class UserComponent extends OkPaginatorComponent implements OnInit {
   ngOnInit() {
     this.getPage();
   }
-
-  changeSelect(e: any) {
-    console.log(e);
-  }
-
-  changeSort(e: any) {
-    console.log(e);
-  }
-  getBackParams(param: any) {
-    return this.backParams[param];
-  }
-  add() {}
-
-  import() {}
-
-  edit(data: any) {}
-
-  export() {
-    // if (!supports.canDownload()) {
-    //   this.translate.get('support.can_not').subscribe(r => {
-    //     alert(r);
-    //   });
-    //   return;
-    // }
-    // this.service.getExport(this.params, '客户管理-销售线索-导出.xls');
-  }
-
-  change() {}
-
-  newTask() {}
-
-  sendMessage() {}
-
-  reset() {}
-
-  search() {}
 }
