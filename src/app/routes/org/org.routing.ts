@@ -9,6 +9,7 @@ const routes: Routes = [
   },
   { path: 'dept', component: DeptComponent },
   { path: 'staff', loadChildren: () => import('./staff/staff.module').then(m => m.StaffModule) },
+  { path: 'perm', loadChildren: () => import('./perm/perm.module').then(m => m.PermModule) },
 ];
 
 export const orgRoutes = RouterModule.forChild(routes);
