@@ -14,14 +14,14 @@
                 [columnHideable]="columnHideable"
                 [columnSortable]="columnMovable"
                 [multiSelectable]="multiSelectable"
-                [pageOnFront]="false"
-                [pageIndex]="pageIndex"
+                [pageOnFront]="true"
                 [pageSize]="pageSize"
-                [pageSizeOptions]="[5,10,20]"
+                [pageIndex]="pageIndex"
                 (sortChange)="changeSort($event)"
-                (page)="getNextPage($event)"
                 [cellTemplate]="{username: nameTpl}">
-      </mtx-grid>
+              </mtx-grid>
+              <!-- [pageSizeOptions]="[5,10,20]" -->
+              <!-- (page)="getNextPage($event)" -->
 
       <ng-template #leadStatusTpl let-row let-index="index" let-col="colDef">
         {{"crm.customer.leadStatusSelect." +row.leadStatus | translate}}

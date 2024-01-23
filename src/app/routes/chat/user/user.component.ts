@@ -33,64 +33,25 @@ export class UserComponent extends OkPaginatorComponent implements OnInit {
       header: this.translate.stream('common.username'),
       field: 'username',
       sortable: true,
+      width: '160px',
     },
     {
       header: this.translate.stream('common.name'),
       field: 'name',
       sortable: true,
+      width: '160px',
     },
     {
       header: this.translate.stream('common.email'),
       field: 'email',
       sortable: true,
+      width: '160px',
     },
     {
       header: this.translate.stream('common.online'),
       field: 'online',
       sortable: true,
-    },
-    {
-      header: '操作',
-      field: 'operation',
-      minWidth: 180,
-      width: '200px',
-      pinned: 'right',
-      type: 'button',
-      // buttons: [
-      //   {
-      //     type: 'icon',
-      //     icon: 'chat',
-      //     text: '跟进',
-      //     tooltip: '跟进',
-      //   },
-      //   {
-      //     color: 'primary',
-      //     icon: 'edit',
-      //     text: this.translate.stream('table_kitchen_sink.edit'),
-      //     tooltip: this.translate.stream('table_kitchen_sink.edit'),
-
-      //     click: record => this.edit(record),
-      //   },
-      //   {
-      //     color: 'warn',
-      //     icon: 'delete',
-      //     text: this.translate.stream('table_kitchen_sink.delete'),
-      //     tooltip: this.translate.stream('table_kitchen_sink.delete'),
-      //     pop: {
-      //       title: this.translate.stream('table_kitchen_sink.confirm_delete'),
-      //       closeText: this.translate.stream('table_kitchen_sink.close'),
-      //       okText: this.translate.stream('table_kitchen_sink.ok'),
-      //     },
-
-      //   },
-      //   {
-      //     color: 'accent',
-      //     icon: 'arrow_upward',
-      //     text: '置顶',
-      //     tooltip: '置顶',
-
-      //   },
-      // ],
+      width: '160px',
     },
   ];
 
