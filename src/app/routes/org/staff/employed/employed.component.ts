@@ -216,7 +216,7 @@ export class EmployedComponent implements OnInit {
   doLeave(staff: Staff) {
     this.mtxDialog.confirm(
       this.translate.stream('org.staff.employed.leave_dialog_msg'),
-      staff.fragment.firstName + ' ' + staff.fragment.lastName,
+      staff.fragment.name,
       () => {
         this.employedService.leavel(staff.id).subscribe(r => {
           this.router.navigateByUrl('/org/staff/left');
