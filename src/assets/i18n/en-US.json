@@ -167,7 +167,8 @@
     "basic": {
       "global": "Global Settings",
       "personal": "Personal Settings",
-      "new_account_verify": " New account registration verification validity"
+      "new_account_verify": " New account registration verification validity",
+      "xmppHost": "IM Server Address"
     },
     "conn": {
       "tab": {

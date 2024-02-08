@@ -8,7 +8,7 @@ const PROXY_CONFIG = {
       '^/api/auth': '',
     },
   },
-  '/api/sys/**': {
+  '/api/sys/': {
     target: 'http://localhost:9100',
     changeOrigin: true,
     secure: false,

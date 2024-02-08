@@ -3,6 +3,7 @@ import { OkApi } from '@shared/api/ok';
 export interface SysSetGlobal {
   globalEnable: boolean;
   verifyAccount: boolean;
+  xmppHost: string;
 }
 
 export interface SysSetPersonal {

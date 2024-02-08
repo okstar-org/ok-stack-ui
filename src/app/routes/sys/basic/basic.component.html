@@ -38,5 +38,12 @@
                           (ngModelChange)="globalChange()"></mat-slide-toggle>
       </p>
     </mat-card-content>
+
+    <mat-card-content>
+      <p>
+        {{"sys.basic.xmppHost"|translate}}：
+        <input matInput [(ngModel)]="global.xmppHost" (blur)="globalChange()" required>
+      </p>
+    </mat-card-content>
   </mat-card>
 </section>

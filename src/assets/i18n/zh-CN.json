@@ -234,7 +234,8 @@
     "basic": {
       "global": "全局设置",
       "personal": "个人设置",
-      "new_account_verify": "新注册帐号验证有效性"
+      "new_account_verify": "新注册帐号验证有效性",
+      "xmppHost":"IM 服务器地址"
     },
     "conn": {
       "tab": {
