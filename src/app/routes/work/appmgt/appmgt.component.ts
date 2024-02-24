@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Res } from './../../../core/authentication/interface';
+import { Component, OnInit } from '@angular/core';
 import { AppmgtService } from './appmgt.service';
 import { PageEvent } from '@angular/material/paginator';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
@@ -41,7 +41,7 @@ export class AppmgtComponent implements OnInit {
   list: any[] = [];
   total = 0;
   isLoading = false;
-
+  noResultText = '';
   query = {
     pageIndex: 0,
     pageSize: 10,
@@ -62,10 +62,18 @@ export class AppmgtComponent implements OnInit {
   }
   getList() {
     this.isLoading = true;
-    this.appService.page(this.query).subscribe(res => {
-      this.list = res.list;
-      this.total = res.totalCount;
-      this.isLoading = false;
+    this.appService.page(this.query).subscribe({
+      next: res => {
+        this.list = res.list;
+        this.total = res.totalCount;
+        this.isLoading = false;
+      },
+      error: res => {
+        const { error } = res;
+        const d = error as Res;
+        this.noResultText = d.msg;
+        this.isLoading = false;
+      },
     });
   }
 }

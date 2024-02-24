@@ -1,9 +1,9 @@
 import { OkApi } from '@shared/api/ok';
 
 class Api implements OkApi {
-  findById = '/api/portal/sys/org/dept/findById/';
+  findById = '/api/org/dept/findById/';
   findByType = '/api/portal/sys/org/dept/findByType/';
-  deleteById = '/api/portal/sys/org/dept/deleteById/';
+  deleteById = '/api/org/dept/deleteById/';
   children = '/api/org/dept/children/';
   getChildren = '/api/org/dept/children';
   getCurrentOrg = '/api/org/current';

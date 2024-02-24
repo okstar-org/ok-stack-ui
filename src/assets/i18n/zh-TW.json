@@ -264,6 +264,7 @@
     }
   },
   "common": {
+    "confirm_delete": "確認刪除？",
     "all": "全部",
     "search": "搜索",
     "reset": "重置",

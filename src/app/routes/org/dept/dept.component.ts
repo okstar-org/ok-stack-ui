@@ -9,6 +9,8 @@ import { DynamicFlatNode, OrgDept, OrgPost } from './dept.api';
 import { MatDialog } from '@angular/material/dialog';
 import { AddPostComponent } from './add-post/add-post.component';
 import { AddDeptComponent } from './add-dept/add-dept.component';
+import { MtxDialog } from '@ng-matero/extensions/dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class DynamicDatabase {
@@ -46,6 +48,7 @@ export class DynamicDataSource {
   get data(): DynamicFlatNode[] {
     return this.dataChange.value;
   }
+
   set data(value: DynamicFlatNode[]) {
     this.treeControl.dataNodes = value;
     this.dataChange.next(value);
@@ -113,6 +116,12 @@ export class DynamicDataSource {
       this.dataChange.next(this.data);
     }
   }
+
+  deleteNode(node: DynamicFlatNode) {
+    const index = this.data.indexOf(node);
+    this.data.splice(index, 1);
+    this.dataChange.next(this.data);
+  }
 }
 
 @Component({
@@ -129,8 +138,10 @@ export class DeptComponent implements OnInit {
   selectedNode!: DynamicFlatNode;
 
   constructor(
+    private translate: TranslateService,
     private dialog: MatDialog,
     private logger: NGXLogger,
+    private mtxDialog: MtxDialog,
     private database: DynamicDatabase,
     private svc: DeptService
   ) {
@@ -154,6 +165,16 @@ export class DeptComponent implements OnInit {
   loadTree() {
     this.database.initialData().subscribe(r => {
       this.dataSource.data = r;
+    });
+  }
+
+  onDeleteDept(node: DynamicFlatNode) {
+    this.mtxDialog.confirm(this.translate.stream('common.confirm_delete'), node.item.name, () => {
+      this.svc.deleteById(node.item.id).subscribe(r => {
+        if (r) {
+          this.dataSource.deleteNode(node);
+        }
+      });
     });
   }
 

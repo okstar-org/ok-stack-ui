@@ -19,7 +19,7 @@ export class PayComponent implements OnInit {
     private svc: DetailService
   ) {
     this.url = this.sanitizer.bypassSecurityTrustResourceUrl(
-      'http://cloud.okstar.org.cn/' + result.url
+      'https://cloud.okstar.org.cn/api' + result.url
     );
   }
 

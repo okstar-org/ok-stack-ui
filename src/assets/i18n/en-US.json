@@ -179,6 +179,7 @@
     }
   },
   "common": {
+    "confirm_delete": "Confirm delete?",
     "all": "All",
     "search": "Search",
     "reset": "Reset",
