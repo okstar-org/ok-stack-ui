@@ -13,7 +13,6 @@
       </mat-card-actions>
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let node;" matTreeNodePadding>
-          <button mat-icon-button disabled></button>
           <a href="javascript:;" (click)="onClickDept(node)">{{node.item.name}}</a>
         </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
@@ -26,6 +25,12 @@
           <a href="javascript:;" (click)="onClickDept(node)" matTreeNodeToggle>{{node.item.name}}
             <!-- [<span *ngFor="let item of node.resourceList">{{"common.con."+ item | translate}} </span>] -->
           </a>
+          <button mat-icon-button aria-label="Edit">
+            <mat-icon color="primary">edit</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Delete" (click)="onDeleteDept(node)">
+            <mat-icon color="warn">delete</mat-icon>
+          </button>
           <mat-progress-bar *ngIf="node.isLoading" mode="indeterminate"
                             class="example-tree-progress-bar"></mat-progress-bar>
         </mat-tree-node>
@@ -61,7 +66,7 @@
         </ng-container>
 
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef>{{"common.no"|translate}}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>{{"common.name"|translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.name}}</mat-cell>
         </ng-container>
 
@@ -82,7 +87,7 @@
 
         <ng-container matColumnDef="operation">
           <mat-header-cell *matHeaderCellDef>{{"common.operation"|translate}}</mat-header-cell>
-          <mat-cell  *matCellDef="let row;" >
+          <mat-cell *matCellDef="let row;">
             <button mat-button color="primary" class="m-8" (click)="onEdit(row)">
               {{ "common.edit" | translate}}
             </button>
