@@ -18,96 +18,27 @@
             </mat-icon>
           </button>
           <a href="javascript:;" (click)="onClickDept(node)" matTreeNodeToggle>{{node.item.name}}
-            <!--   [<span *ngFor="let item of node.resourceList">{{"common.con."+ item | translate}}
-          </span>]-->
           </a>
           <mat-progress-bar *ngIf="node.isLoading" mode="indeterminate"
-                            class="example-tree-progress-bar"></mat-progress-bar>
+                            class="tree-progress-bar"></mat-progress-bar>
         </mat-tree-node>
       </mat-tree>
-
-      <!-- <button mat-stroked-button color="primary" (click)="onSync()" class="m-8">
-        <mat-icon class="icon-8">sync</mat-icon>{{"common.sync"|translate}}
-      </button>
-      <button mat-stroked-button color="primary" (click)="onAdd()" class="m-8">
-        <mat-icon class="icon-8">add</mat-icon>{{"common.add"|translate}}
-      </button> -->
-
     </mat-card>
   </div>
 
-  <div class="col"  style="flex-grow: .7">
+  <div class="col" style="flex-grow: .7">
     <mat-card class="ok-sys-card">
 
-      <mat-table aria-readonly="true"
-                 [dataSource]="userDataSource"
-                 aria-label="User List">
+      <mtx-grid [data]="list"
+              [columns]="columns"
+              [length]="total"
+              [loading]="isLoading"
+              [pageOnFront]="false"
+              [pageIndex]="query.pageIndex"
+              [pageSize]="query.pageSize"
+              (page)="getNextPage($event)">
 
-        <ng-container matColumnDef="no">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.no" |
-            translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.fragment.no}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.name" |
-            translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.fragment.name}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="gender">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.gender" |
-            translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.fragment.gender}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="birthday">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.birthday" |
-            translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.fragment.birthday}}</mat-cell>
-        </ng-container>
-
-
-        <ng-container matColumnDef="phone">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.phone" |
-            translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.fragment.phone}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="descr">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.descr" |
-            translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.fragment.descr}}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="postNames">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.postNames" |
-            translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.postNames}}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="joinedDate">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.joinedDate" |
-            translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.joinedDate}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="operation">
-          <mat-header-cell *matHeaderCellDef>{{ "org.staff.employed.operation" |
-            translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">
-
-            <button mat-button color="primary" class="m-8" (click)="doLeave(row)">
-              {{ "org.staff.employed.leave" | translate}}
-            </button>
-            <button mat-button color="primary" class="m-8" (click)="doReassignment(row)">
-              {{ "org.staff.employed.reassignment" | translate}}
-            </button>
-          </mat-cell>
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-      </mat-table>
+      </mtx-grid>
     </mat-card>
   </div>
 

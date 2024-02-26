@@ -59,6 +59,7 @@ export class JoinDialogComponent implements OnInit {
   // selectedRowIds: number[] = [];
 
   constructor(
+    public dialogRef: MatDialogRef<JoinDialogComponent>,
     private joinDialogService: JoinDialogService,
     private pendingSrv: PendingService,
     private translate: TranslateService,
@@ -80,7 +81,7 @@ export class JoinDialogComponent implements OnInit {
     const ids = this.selectedRows.map(r => r.id);
     const req: OrgStaffJoinReq = { staffId: this.opt.id, postIds: ids };
     this.pendingSrv.join(req).subscribe(r => {
-      console.log('=>', r);
+      if (r) this.dialogRef.close(r);
     });
   }
 }

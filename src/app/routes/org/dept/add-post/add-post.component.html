@@ -2,43 +2,32 @@
 
 <mat-dialog-content>
   <form [formGroup]="form">
-    <table class="demo-full-width" cellspacing="0">
-      <tr>
-        <td colspan="2">
-          <mat-form-field class="demo-full-width">
-            <mat-label>{{"common.name"|translate}}</mat-label>
-            <input matInput formControlName="name">
-          </mat-form-field>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          <mat-form-field class="demo-full-width">
-            <mat-label>{{"common.no"|translate}}</mat-label>
-            <input matInput formControlName="no">
-          </mat-form-field>
-        </td>
-      </tr>
 
-      <tr>
-        <td>
-          <mat-form-field class="demo-full-width">
-            <mat-label>{{"common.descr"|translate}}</mat-label>
-            <input matInput formControlName="descr">
-          </mat-form-field>
-        </td>
-      </tr>
+    <mat-form-field class="field-full-width">
+      <mat-label>{{"common.name"|translate}}</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
 
-      <tr>
-        <td colspan="2">
-          <mat-form-field class="demo-full-width">
-            <mat-label>{{"org.post.recruit"|translate}}</mat-label>
-            <textarea matInput formControlName="recruit"></textarea>
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
+
+
+    <mat-form-field class="field-full-width">
+      <mat-label>{{"common.no"|translate}}</mat-label>
+      <input matInput formControlName="no">
+    </mat-form-field>
+
+
+    <mat-form-field class="field-full-width">
+      <mat-label>{{"common.descr"|translate}}</mat-label>
+      <input matInput formControlName="descr">
+    </mat-form-field>
+
+
+
+    <mat-form-field class="field-full-width">
+      <mat-label>{{"org.post.recruit"|translate}}</mat-label>
+      <textarea matInput formControlName="recruit"></textarea>
+    </mat-form-field>
+
   </form>
 </mat-dialog-content>
 

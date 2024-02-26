@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { HttpClient } from '@angular/common/http';
 import { api, OrgStaffReq, Staff } from './staff.api';
-import { OkResult } from '@shared/api/ok';
+import { OkResult, ResList } from '@shared/api/ok';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -33,12 +33,6 @@ export class StaffService extends OkItemService {
   getChildren(): Observable<Staff[]> {
     return this.http
       .get<OkResult<Staff[]>>(api.getChildren)
-      .pipe(map((r: OkResult<Staff[]>) => r.data));
-  }
-
-  findUserByDept(id: number, params = {}): Observable<Staff[]> {
-    return this.http
-      .get<OkResult<Staff[]>>(api.findUserByDept + id, { params })
       .pipe(map((r: OkResult<Staff[]>) => r.data));
   }
 

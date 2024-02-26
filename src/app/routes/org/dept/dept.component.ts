@@ -11,6 +11,7 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { AddDeptComponent } from './add-dept/add-dept.component';
 import { MtxDialog } from '@ng-matero/extensions/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { deleteEntityTimes } from '@shared/utils/obj';
 
 @Injectable()
 export class DynamicDatabase {
@@ -117,10 +118,67 @@ export class DynamicDataSource {
     }
   }
 
+  loadNode(node: DynamicFlatNode) {
+    const index = this.data.indexOf(node);
+    this.database.children(node.id).subscribe(r => {
+      node.isLoading = false;
+
+      if (!r || r.length <= 0) {
+        return;
+      }
+
+      this.data.splice(index + 1, 1, ...r);
+      // notify the change
+      this.dataChange.next(this.data);
+    });
+  }
+
   deleteNode(node: DynamicFlatNode) {
     const index = this.data.indexOf(node);
     this.data.splice(index, 1);
     this.dataChange.next(this.data);
+  }
+
+  updateNode(node: DynamicFlatNode, item: OrgDept) {
+    const old = this.data.find(e => e.id == node.id);
+    if (old) {
+      old.item = item;
+      this.dataChange.next(this.data);
+    }
+  }
+
+  addNode(node: DynamicFlatNode, item: OrgDept) {
+    const addNode = new DynamicFlatNode(item.id, item, item.level, item.sourceList, true);
+    const children = this.data.filter(e => e.item.parentId === node.id);
+    let pos = 0;
+    if (children.length <= 0) {
+      //没有子级，就在自己下面添加
+      pos = this.data.indexOf(node);
+    } else {
+      //有子级，找到最后面的子级添加
+      const anchor = children[children.length - 1];
+      pos = this.data.indexOf(anchor);
+    }
+    this.data.splice(pos + 1, 0, addNode);
+    this.dataChange.next(this.data);
+  }
+}
+
+export class DeptDataSource extends DataSource<OrgDept> {
+  dataChange: BehaviorSubject<OrgDept[]> = new BehaviorSubject<OrgDept[]>([]);
+
+  constructor() {
+    super();
+  }
+
+  connect(): Observable<OrgDept[]> {
+    return this.dataChange;
+  }
+
+  disconnect() {}
+
+  setData(list: OrgDept[]) {
+    this.dataChange.next(list);
   }
 }
 
@@ -131,7 +189,7 @@ export class DynamicDataSource {
   providers: [DynamicDatabase],
 })
 export class DeptComponent implements OnInit {
-  displayedColumns = ['no', 'name', 'recruit', 'assignFor', 'updateAt', 'operation'];
+  displayedColumns = ['no', 'name', 'recruit', 'updateAt', 'assignFor', 'operation'];
   dataSource: any;
   userDataSource!: DeptDataSource;
   selectedDeptId!: number;
@@ -167,6 +225,13 @@ export class DeptComponent implements OnInit {
       this.dataSource.data = r;
     });
   }
+  onClickDept(node: DynamicFlatNode) {
+    this.selectedDeptId = node.id;
+    this.selectedNode = node;
+    this.svc.findPostByDept(node.id).subscribe(r => {
+      this.userDataSource.setData(r);
+    });
+  }
 
   onDeleteDept(node: DynamicFlatNode) {
     this.mtxDialog.confirm(this.translate.stream('common.confirm_delete'), node.item.name, () => {
@@ -178,23 +243,37 @@ export class DeptComponent implements OnInit {
     });
   }
 
-  onClickDept(node: DynamicFlatNode) {
-    this.selectedDeptId = node.id;
-    this.selectedNode = node;
-    this.svc.findPostByDept(node.id).subscribe(r => {
-      this.userDataSource.setData(r);
-    });
-  }
+  onEditDept(node: DynamicFlatNode) {
+    const dept = node.item;
+    const data = JSON.parse(JSON.stringify(dept)) as typeof dept;
 
-  onAddDept() {
-    const dept = this.selectedNode.item;
+    deleteEntityTimes(data);
+
     this.dialog
-      .open(AddDeptComponent, { data: dept })
+      .open(AddDeptComponent, { width: '400px', data })
       .afterClosed()
       .subscribe(r => {
-        console.log('r=>', r);
-        //TODO: 存在不影响使用的bug
-        this.dataSource.toggleNode(this.selectedNode, true);
+        if (r) {
+          this.svc.getDetail(data.id).subscribe(n => {
+            this.dataSource.updateNode(node, n);
+          });
+        }
+      });
+  }
+
+  onAddDept(node: DynamicFlatNode) {
+    const parent = node.item;
+    this.dialog
+      .open(AddDeptComponent, { width: '400px', data: { parentId: parent.id } })
+      .afterClosed()
+      .subscribe(r => {
+        console.log('add', r);
+        if (r) {
+          // r as id
+          this.svc.getDetail(r).subscribe(n => {
+            this.dataSource.addNode(node, n);
+          });
+        }
       });
   }
 
@@ -226,40 +305,40 @@ export class DeptComponent implements OnInit {
     // });
   }
 
-  onEdit(row: OrgPost) {
-    //TODO(nzb) 优化编辑部分，由于this.form.setValue字段，怎么避免delete字段
-    delete row.createBy;
-    delete row.createAt;
-    delete row.updateAt;
-    delete row.updateBy;
+  onEditPost(row: OrgPost) {
+    const data = JSON.parse(JSON.stringify(row)) as typeof row;
+
+    delete data.createBy;
+    delete data.createAt;
+    delete data.updateAt;
+    delete data.updateBy;
 
     this.dialog
       .open(AddPostComponent, {
-        data: row,
+        width: '400px',
+        data,
       })
       .afterClosed()
-      .subscribe(r => {
-        this.svc.findPostByDept(this.selectedDeptId).subscribe(r => {
-          this.userDataSource.setData(r);
-        });
+      .subscribe(btn => {
+        if (btn) {
+          this.svc.findPostByDept(this.selectedDeptId).subscribe(r => {
+            this.userDataSource.setData(r);
+          });
+        }
       });
   }
-}
-
-export class DeptDataSource extends DataSource<OrgDept> {
-  dataChange: BehaviorSubject<OrgDept[]> = new BehaviorSubject<OrgDept[]>([]);
-
-  constructor() {
-    super();
-  }
-
-  connect(): Observable<OrgDept[]> {
-    return this.dataChange;
-  }
-
-  disconnect() {}
-
-  setData(list: OrgDept[]) {
-    this.dataChange.next(list);
+  onDeletePost(row: OrgPost) {
+    if (!this.selectedDeptId) {
+      return;
+    }
+    this.mtxDialog.confirm(this.translate.stream('common.confirm_delete'), row.name, () => {
+      this.svc.deletePost(row.id).subscribe(res => {
+        if (res) {
+          this.svc.findPostByDept(this.selectedDeptId).subscribe(r => {
+            this.userDataSource.setData(r);
+          });
+        }
+      });
+    });
   }
 }

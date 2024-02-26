@@ -35,11 +35,11 @@
     "profile": "个人信息",
     "settings": "个人设置",
     "logout": "退出",
-    "passwordChange":"修改密码",
-    "newPassword":"新密码",
-    "confirmPassword":"确认密码",
-    "invalid_newPassword":"请输入新密码",
-    "invalid_confirmPassword":"请再次输入新密码"
+    "passwordChange": "修改密码",
+    "newPassword": "新密码",
+    "confirmPassword": "确认密码",
+    "invalid_newPassword": "请输入新密码",
+    "invalid_confirmPassword": "请再次输入新密码"
   },
   "login": {
     "title": "欢迎回来",
@@ -66,9 +66,9 @@
     "have_an_account": "已经有帐号了",
     "register": "创建账号"
   },
-  "forgot":{
-    "title":"找回密码",
-    "commit":"提交"
+  "forgot": {
+    "title": "找回密码",
+    "commit": "提交"
   },
   "paginator": {
     "items_per_page_label": "每页共：",
@@ -110,7 +110,17 @@
         "title": "编辑岗位信息"
       }
     },
+    "dept": {
+      "add": {
+        "title": "编辑部门信息"
+      }
+    },
     "staff": {
+      "tab": {
+        "pending": "待入职",
+        "employed": "已入职",
+        "left": "已离职"
+      },
       "dept": {
         "list": "部门列表",
         "no": "编号",
@@ -235,7 +245,7 @@
       "global": "全局设置",
       "personal": "个人设置",
       "new_account_verify": "新注册帐号验证有效性",
-      "xmppHost":"IM 服务器地址"
+      "xmppHost": "IM 服务器地址"
     },
     "conn": {
       "tab": {
@@ -288,7 +298,9 @@
     "export": "导出",
     "detail": "详情",
     "edit": "编辑",
+    "delete": "删除",
     "date": "日期",
+    "birthday": "生日",
     "comment": "评论",
     "operation": "操作",
     "sync": "同步",
@@ -308,6 +320,8 @@
     "descr": "描述",
     "country": "国家",
     "gender": "性别",
+    "male": "男",
+    "femle": "女",
     "name": "名称",
     "username": "用户名",
     "email": "邮箱",
@@ -328,7 +342,7 @@
     "amount": "金额(CNY)",
     "provider": "供应商",
     "period": "周期",
-    "null":"-",
+    "null": "-",
     "con": {
       "WX": "企微",
       "DT": "钉钉",

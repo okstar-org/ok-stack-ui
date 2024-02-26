@@ -69,7 +69,8 @@ export class LeftComponent implements OnInit {
         {
           text: this.translate.stream('org.staff.left.join'),
           click: row => {
-            this.doJoin(row.fragment.id);
+            console.log(row);
+            this.doJoin(row.id);
           },
         },
       ],
@@ -111,7 +112,8 @@ export class LeftComponent implements OnInit {
   }
 
   doJoin(id: number) {
-    console.log('doJoin', id);
+    if (!id) return;
+
     this.dialog
       .open(JoinDialogComponent, {
         width: '800px',
@@ -119,7 +121,7 @@ export class LeftComponent implements OnInit {
       })
       .afterClosed()
       .subscribe(r => {
-        this.router.navigateByUrl('/org/staff/employed');
+        if (r) this.router.navigateByUrl('/org/staff/employed');
       });
   }
 }

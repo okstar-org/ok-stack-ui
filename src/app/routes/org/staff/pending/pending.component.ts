@@ -60,20 +60,17 @@ export class PendingComponent implements OnInit {
       show: false,
       pinned: 'right',
 
-      // buttons: [
-      //   {
-      //     type: 'icon',
-      //     icon: 'payment',
-      //     text: '支付',
-      //     tooltip: '支付',
-      //     click: row => {
-      //       this.onBuy(row);
-      //     },
-      //     iif: (row: any) => {
-      //       return row.orderStatus === 'confirmed' && row.paymentStatus === 'unpaid';
-      //     },
-      //   },
-      // ],
+      buttons: [
+        {
+          type: 'icon',
+          icon: 'assignment_ind',
+          text: this.translate.instant('org.staff.pending.join'),
+          tooltip: this.translate.instant('org.staff.pending.join'),
+          click: row => {
+            this.doJoin(row);
+          },
+        },
+      ],
     },
   ];
   list: any[] = [];
@@ -127,7 +124,6 @@ export class PendingComponent implements OnInit {
       })
       .afterClosed()
       .subscribe(r => {
-        console.log('edit=>', r);
         this.load();
       });
   }
@@ -140,7 +136,9 @@ export class PendingComponent implements OnInit {
       })
       .afterClosed()
       .subscribe(r => {
-        this.router.navigateByUrl('/org/staff/employed');
+        if (r) {
+          this.router.navigateByUrl('/org/staff/employed');
+        }
       });
   }
 }

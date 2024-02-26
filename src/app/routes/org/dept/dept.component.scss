@@ -25,3 +25,39 @@
     width: 100%;
   }
 }
+
+.mat-column-no {
+  max-width: 6em;
+}
+
+.mat-column-recruit {
+  width: 8em;
+}
+
+.mat-column-assignFor {
+  max-width: 6em;
+}
+
+.mat-tree-node {
+  position: relative;
+
+  .tree-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .btn-tree-add,
+  .btn-tree-edit,
+  .btn-tree-delete {
+    display: none;
+  }
+
+  &:hover {
+    .btn-tree-add,
+    .btn-tree-edit,
+    .btn-tree-delete {
+      display: inline-block;
+    }
+  }
+}

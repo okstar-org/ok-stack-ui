@@ -16,6 +16,9 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { JoinDialogComponent } from '../dialog-join/join-dialog.component';
 import { DynamicFlatNode } from '../../dept/dept.api';
+import { PageEvent } from '@angular/material/paginator';
+import { MtxGridColumn } from '@ng-matero/extensions/grid';
+import { DatePipe } from '@angular/common';
 
 @Injectable()
 export class DynamicDatabase {
@@ -123,45 +126,79 @@ export class DynamicDataSource {
   }
 }
 
-export class UserDataSource extends DataSource<Staff> {
-  dataChange: BehaviorSubject<Staff[]> = new BehaviorSubject<Staff[]>([]);
-
-  constructor() {
-    super();
-  }
-
-  connect(): Observable<Staff[]> {
-    return this.dataChange;
-  }
-
-  disconnect() {}
-
-  setData(list: Staff[]) {
-    this.dataChange.next(list);
-  }
-}
-
 @Component({
   selector: 'app-employed',
   templateUrl: './employed.component.html',
   styleUrls: ['./employed.component.scss'],
-  providers: [DynamicDatabase],
+  providers: [DynamicDatabase, DatePipe],
 })
 export class EmployedComponent implements OnInit {
-  displayedColumns = [
-    'no',
-    'name',
-    'gender',
-    'birthday',
-    'phone',
-    'descr',
-    'postNames',
-    'joinedDate',
-    'operation',
+  list: any[] = [];
+  total = 0;
+  isLoading = false;
+  query = {
+    pageIndex: 0,
+    pageSize: 50,
+    deptId: 0,
+  };
+
+  fmt = 'yy-MM-dd HH:mm:ss';
+  columns: MtxGridColumn[] = [
+    { header: this.translate.stream('common.no'), field: 'fragment.no', maxWidth: 60 },
+    { header: this.translate.stream('common.name'), field: 'fragment.name', minWidth: 200 },
+    {
+      header: this.translate.stream('common.gender'),
+      field: 'fragment.gender',
+      maxWidth: 60,
+      formatter: row => {
+        return this.translate.instant('common.' + row.fragment.gender);
+      },
+    },
+
+    { header: this.translate.stream('common.email'), field: 'fragment.email' },
+    { header: this.translate.stream('common.phone'), field: 'fragment.phone' },
+    {
+      header: this.translate.stream('common.birthday'),
+      field: 'fragment.birthday',
+      maxWidth: 60,
+      formatter: row => {
+        return this.datePipe.transform(row.fragment.birthday, this.fmt);
+      },
+    },
+    {
+      header: this.translate.stream('org.staff.employed.joinedDate'),
+      field: 'joinedDate',
+      maxWidth: 60,
+      formatter: row => {
+        return this.datePipe.transform(row.joinedDate, this.fmt);
+      },
+    },
+    {
+      header: this.translate.stream('org.staff.employed.postNames'),
+      field: 'postNames',
+      minWidth: 600,
+    },
+    {
+      header: this.translate.stream('common.operation'),
+      field: 'operation',
+      width: '60px',
+      type: 'button',
+      pinned: 'right',
+      buttons: [
+        {
+          type: 'icon',
+          icon: 'assignment_late',
+          tooltip: this.translate.instant('org.staff.employed.leave'),
+          click: row => {
+            this.doLeave(row);
+          },
+        },
+      ],
+    },
   ];
 
   dataSource: any;
-  userDataSource!: UserDataSource;
+
   org!: Org;
   treeControl: FlatTreeControl<DynamicFlatNode>;
 
@@ -174,6 +211,7 @@ export class EmployedComponent implements OnInit {
   hasChild = (_: number, nodeData: DynamicFlatNode) => nodeData.expandable;
 
   constructor(
+    private datePipe: DatePipe,
     private translate: TranslateService,
     private mtxDialog: MtxDialog,
     private database: DynamicDatabase,
@@ -192,7 +230,6 @@ export class EmployedComponent implements OnInit {
       this.org = r;
     });
 
-    this.userDataSource = new UserDataSource();
     this.loadData();
   }
 
@@ -201,12 +238,23 @@ export class EmployedComponent implements OnInit {
       this.dataSource.data = r;
     });
   }
-
+  getNextPage(e: PageEvent) {
+    this.query.pageIndex = e.pageIndex;
+    this.query.pageSize = e.pageSize;
+    this.getList();
+  }
+  getList() {
+    this.isLoading = true;
+    this.employedService.page(this.query).subscribe(res => {
+      this.list = res.list;
+      this.total = res.totalCount;
+      this.isLoading = false;
+    });
+  }
   onClickDept(node: DynamicFlatNode) {
     this.selectedNode = node;
-    this.svc.findUserByDept(node.id).subscribe(r => {
-      this.userDataSource.setData(r);
-    });
+    this.query.deptId = node.id;
+    this.getList();
   }
 
   onAdd() {

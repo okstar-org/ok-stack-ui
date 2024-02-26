@@ -102,7 +102,17 @@
         "title": "Edit position informations"
       }
     },
+    "dept": {
+      "add": {
+        "title": "Edit departments informations"
+      }
+    },
     "staff": {
+      "tab": {
+        "pending": "Waiting for employed",
+        "employed": "Employed",
+        "left": "Depart"
+      },
       "dept": {
         "list": "Departments",
         "no": "No.",
@@ -191,6 +201,7 @@
     "date": "Date",
     "comment": "Comment",
     "operation": "Operation",
+    "birthday": "Birthday",
     "sync": "Sync",
     "resume": "Resume",
     "start": "Start",

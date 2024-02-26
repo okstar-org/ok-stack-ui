@@ -53,6 +53,12 @@ export class DeptService extends OkItemService {
       .pipe(map((r: OkResult<boolean>) => r.data));
   }
 
+  deletePost(id: number) {
+    return this.http
+      .delete<OkResult<boolean>>(api.deletePost + id)
+      .pipe(map((r: OkResult<boolean>) => r.data));
+  }
+
   count(params = {}): Observable<number> {
     return this.http
       .get<OkResult<number>>(api.count, { params })

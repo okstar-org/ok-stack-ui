@@ -102,7 +102,17 @@
         "title": "編輯崗位信息"
       }
     },
+    "dept": {
+      "add": {
+        "title": "編輯部門信息"
+      }
+    },
     "staff": {
+      "tab": {
+        "pending": "待入職",
+        "employed": "已入職",
+        "left": "已離職"
+      },
       "dept": {
         "list": "部門列表",
         "no": "編號",
@@ -275,6 +285,7 @@
     "edit": "編輯",
     "comment": "評論",
     "operation": "操作",
+    "birthday": "生日",
     "sync": "同步",
     "resume": "繼續",
     "start": "啓動",

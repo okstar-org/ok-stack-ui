@@ -24,12 +24,14 @@ export class AddPostComponent {
   constructor(
     private fb: FormBuilder,
     private deptService: DeptService,
-    @Inject(MAT_DIALOG_DATA) private dept: OrgDept //
-  ) {}
+    @Inject(MAT_DIALOG_DATA) private origin: OrgPost //
+  ) {
+    this.form.setValue(origin);
+  }
 
   onSave() {
     const post = this.form.value as OrgPost;
-    post.deptId = this.dept.id;
+    post.deptId = this.origin.id;
     this.deptService.savePost(post).subscribe(r => {
       console.log('=>', r);
     });

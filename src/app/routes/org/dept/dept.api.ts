@@ -9,7 +9,7 @@ class Api implements OkApi {
   getCurrentOrg = '/api/org/current';
 
   page = '/api/portal/sys/org/dept/page';
-  save = '/api/org/dept/add';
+  save = '/api/org/dept';
   update = '/api/portal/sys/org/dept/update';
   sync = '/api/portal/sys/org/dept/sync';
   count = '/api/org/dept/count';
@@ -18,6 +18,7 @@ class Api implements OkApi {
   findUserByDept = '/api/org/post/findByDept/';
 
   savePost = '/api/org/post/save';
+  deletePost = '/api/org/post/deleteById/';
 }
 
 const api = new Api();
@@ -26,9 +27,12 @@ export { api };
 export interface OrgDept {
   id: number;
   parentId: number;
+  orgId: number;
+  no: string;
   name: string;
   level: number;
   sourceList: string[];
+  disabled: boolean;
 }
 
 export class DynamicFlatNode {

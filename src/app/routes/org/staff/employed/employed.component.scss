@@ -8,3 +8,40 @@
     color: blueviolet !important;
   }
 }
+
+.mat-tree-node {
+  position: relative;
+
+  .tree-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .btn-tree-add,
+  .btn-tree-edit,
+  .btn-tree-delete {
+    display: none;
+  }
+
+  &:hover {
+    .btn-tree-add,
+    .btn-tree-edit,
+    .btn-tree-delete {
+      display: inline-block;
+    }
+  }
+}
+
+.mat-column-no,
+.mat-column-gender {
+  max-width: 6em;
+}
+
+.mat-column-name {
+  max-width: 8em;
+}
+
+.mat-column-email {
+  min-width: 12em;
+}
