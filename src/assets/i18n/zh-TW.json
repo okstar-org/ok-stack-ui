@@ -230,7 +230,9 @@
     "basic": {
       "global": "全局設置",
       "personal": "个人設置",
-      "new_account_verify": "新注册帳號驗證有效性"
+      "new_account_verify": "新注册帳號驗證有效性",
+      "xmppHost": "IM 服务器地址",
+      "stackUrl": "Stack Url 地址"
     },
     "conn": {
       "tab": {
@@ -299,10 +301,16 @@
     "completed": "已完成",
     "submit": "提交",
     "check": "選擇",
-    "phone": "電話",
+    "phone": "手機號碼",
+    "telephone": "電話號碼",
     "descr": "描述",
     "country": "國家",
-    "name": "名称",
+    "city": "城市",
+    "name": "名稱",
+    "firstName": "姓",
+    "lastName": "名",
+    "address": "地址",
+    "website": "網站",
     "username": "用戶名",
     "email": "郵箱",
     "gender": "性别",

@@ -2,3 +2,19 @@
   display: inline-block;
   width: 20em;
 }
+
+.row {
+  padding: 6px 0;
+}
+
+.col-left {
+  text-align: right;
+}
+
+.col-right {
+  text-align: left;
+}
+
+.mat-mdc-input-element {
+  width: 300px;
+}

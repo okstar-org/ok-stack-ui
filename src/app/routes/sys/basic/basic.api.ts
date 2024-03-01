@@ -4,6 +4,7 @@ export interface SysSetGlobal {
   globalEnable: boolean;
   verifyAccount: boolean;
   xmppHost: string;
+  stackUrl: string;
 }
 
 export interface SysSetPersonal {
