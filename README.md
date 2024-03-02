@@ -60,14 +60,6 @@
 > 欢迎加入参与社区建设
 - [更多](https://gitee.com/okstar-org/ok-stack-backend/contributors?ref=master)
 
-# 💰 赞助商
-
-- Joy1024（个人）
-
-# 📦 欢迎体验
-- 下载地址：https://www.chuanshaninfo.com/download/OkEDU/
-- 测试帐号：ok_1001到ok_1005，密码:okedu
-- 更多请加微信：chuanshantech
 
 # ☎️ 联系我们
 
@@ -82,8 +74,8 @@
 </div>
 
 # 🙏 感谢支持
-- 感谢配合测试的同学，有赵慧、戴斌、沈雪琪等
-- [感谢 JetBrains 对本项目的支持（Drive by JetBrains）](https://jb.gg/OpenSourceSupport) <img width="64" src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg?_ga=2.83044246.1221182059.1672752920-1856866598.1665301971&_gl=1*3fzoi7*_ga*MTg1Njg2NjU5OC4xNjY1MzAxOTcx*_ga_9J976DJZ68*MTY3Mjc1MjkyMC40LjEuMTY3Mjc1NDM0Ni4wLjAuMA">
+- 感谢配合测试的同学
+- [感谢 JetBrains 对本项目的支持](https://jb.gg/OpenSourceSupport) 
 
 # ❤️ 捐赠方式
 
@@ -107,5 +99,4 @@
 
 2.付费得到商业授权（试行）
   - [OKEDU软件合作伙伴合同-个人版](https://www.kdocs.cn/l/cgdtyImooeol)
-  - OKEDU软件合作伙伴合同-团队版(计划中)
-  - OKEDU软件合作伙伴合同-企业版(计划中)
+  - [企业版软件授权，请移步👉 chuanshaninfo.com](https://www.chuanshaninfo.com/)
