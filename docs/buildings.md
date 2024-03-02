@@ -16,8 +16,7 @@ ok-stack
 ## 部署项目
 ### 具备条件
 - 一台Linux服务器（x86）
-- 一个IP
-- 一个域名 
+- 一个子域名（如：stack.xxx.com）
 - 一个证书
 - Nginx 代理
 - 配置代理以及IP、域名、证书（请参考相关文档）
@@ -26,27 +25,27 @@ ok-stack
 拷贝输出 `dist/ok-stack`到服务器nginx页面目录：`/usr/share/nginx/html/`
 
 ### 配置 Nginx 反向代理
-准备如下配置文件：`{your_domain}.conf` 放于：`/etc/nginx/sites-available/`目录，内容如下：
+准备如下配置文件：`stack.{your_domain}.conf` 放于：`/etc/nginx/sites-available/`目录，内容如下：
 
 ```shell
 
 # {your_domain} 是占位符，实际需要替换成域名
 # proxy_pass 指向okstack后端服务器
 # 证书文件server.crt、server.key位于如下位置：
-# /etc/nginx/cert/{your_domain}/server.crt;
-# /etc/nginx/cert/{your_domain}/server.key;
+# /etc/nginx/cert/stack.{your_domain}/server.crt;
+# /etc/nginx/cert/stack.{your_domain}/server.key;
 
 server {
         listen 80 ;
         listen [::]:80 ;
-        server_name {your_domain};
+        server_name stack.{your_domain};
         return 301 https://$host$request_uri;
 }
 
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name {your_domain};
+    server_name stack.{your_domain};
 
     root /usr/share/nginx/html/ok-stack;
 
@@ -111,8 +110,8 @@ server {
     gzip_proxied no-cache no-store private expired auth;
     gzip_min_length 512;
 
-    ssl_certificate cert/{your_domain}/server.crt;
-    ssl_certificate_key cert/{your_domain}/server.key;
+    ssl_certificate cert/stack.{your_domain}/server.crt;
+    ssl_certificate_key cert/stack.{your_domain}/server.key;
     ssl_session_timeout 5m;
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
@@ -130,4 +129,4 @@ systemctl restart nginx.service
 nginx -s reload
 ```
 
-最后，则前端配置完成访问：https://{your_domain} 即可进入界面，注册和登录即可。
+最后，则前端配置完成访问：https://stack.{your_domain} 即可进入界面，注册和登录即可。
