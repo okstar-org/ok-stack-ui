@@ -1,20 +1,12 @@
-# 构建文档
-
-## 安装Angular CLI
-
-```npm
-npm install -g angular-cli
-```
-
-## 初始化项目
-
-```shell
-$ npm install
-```
+# 构建与部署文档
 
 ## 构建项目
 执行如下命令
 ```shell
+# 安装 angular-cli
+$ npm install -g angular-cli
+# 初始化 npm 环境
+$ npm install
 # 生产构建
 $ npm run build:relase
 $ ls dist/
