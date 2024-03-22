@@ -4,6 +4,8 @@ export interface SysSetGlobal {
   globalEnable: boolean;
   verifyAccount: boolean;
   xmppHost: string;
+  xmppAdminPort: number;
+  xmppApiSecretKey: string;
   stackUrl: string;
 }
 

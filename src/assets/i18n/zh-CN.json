@@ -246,6 +246,8 @@
       "personal": "个人设置",
       "new_account_verify": "新注册帐号验证有效性",
       "xmppHost": "IM 服务器地址",
+      "xmppAdminPort": "IM 服务器管理端口",
+      "xmppApiSecretKey":"IM 服务器 Access Key",
       "stackUrl": "Stack Url 地址"
     },
     "conn": {
