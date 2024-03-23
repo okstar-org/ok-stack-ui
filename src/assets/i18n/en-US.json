@@ -178,7 +178,10 @@
       "global": "Global Settings",
       "personal": "Personal Settings",
       "new_account_verify": " New account registration verification validity",
-      "xmppHost": "IM Server Address"
+      "xmppHost": "IM server address",
+      "xmppAdminPort": "IM administrant port",
+      "xmppApiSecretKey":"IM access Key",
+      "stackUrl": "Stack url"
     },
     "conn": {
       "tab": {
