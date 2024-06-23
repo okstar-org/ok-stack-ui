@@ -4,13 +4,14 @@
 执行如下命令
 ```shell
 # 安装 angular-cli
-$ npm install -g angular-cli
+$ sudo npm install -g angular-cli
 # 初始化 npm 环境
 $ npm install
+# 启动
+$ npm run hmr
+
 # 生产构建
 $ npm run build:relase
-$ ls dist/
-ok-stack
 ```
 
 ## 部署项目

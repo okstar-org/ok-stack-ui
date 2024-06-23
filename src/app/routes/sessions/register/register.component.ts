@@ -49,8 +49,7 @@ export class RegisterComponent implements OnInit {
       .subscribe({
         next: data => {
           this.isLoading = false;
-          if (data.userId && data.username) {
-            alert('注册成功！');
+          if (data.username) {
             this.router.navigateByUrl('/auth/login');
           }
         },
