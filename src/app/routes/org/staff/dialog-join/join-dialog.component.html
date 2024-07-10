@@ -1,8 +1,10 @@
-<h2 mat-dialog-title>{{"org.staff.dept.list"|translate}}</h2>
+<h2 mat-dialog-title>{{"org.staff.post.list"|translate}}</h2>
 
 <mat-dialog-content>
 
-  <mtx-grid [data]="list" [columns]="columns" [rowSelectable]="true"
+  <mtx-grid [data]="list" 
+            [columns]="columns" 
+            [rowSelectable]="true"
             [rowSelected]="selectedRows"
             (rowSelectionChange)="selectedRows=$event" />
 

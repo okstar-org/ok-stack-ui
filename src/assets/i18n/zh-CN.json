@@ -122,7 +122,7 @@
         "left": "已离职"
       },
       "dept": {
-        "list": "部门列表",
+        "list": "部门列表1",
         "no": "编号",
         "name": "名称",
         "deptName": "部门",
@@ -352,6 +352,8 @@
     "provider": "供应商",
     "period": "周期",
     "null": "-",
+    "deptName": "部门",
+    "postName": "岗位",
     "con": {
       "WX": "企微",
       "DT": "钉钉",

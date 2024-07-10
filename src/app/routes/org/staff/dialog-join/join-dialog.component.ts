@@ -39,20 +39,20 @@ export class JoinDialogComponent implements OnInit {
   list: any[] = [];
   columns: MtxGridColumn[] = [
     {
-      header: this.translate.stream('org.staff.dept.no'),
+      header: this.translate.stream('common.no'),
       field: 'no',
     },
     {
-      header: this.translate.stream('org.staff.dept.name'),
+      header: this.translate.stream('common.deptName'),
+      field: 'deptName',
+    },
+    {
+      header: this.translate.stream('common.postName'),
       field: 'name',
     },
     {
       header: this.translate.stream('org.staff.dept.descr'),
       field: 'descr',
-    },
-    {
-      header: this.translate.stream('org.staff.dept.createAt'),
-      field: 'createAt',
     },
   ];
   selectedRows: any[] = [];
@@ -79,6 +79,10 @@ export class JoinDialogComponent implements OnInit {
 
   doSubmit() {
     const ids = this.selectedRows.map(r => r.id);
+    if (ids.length < 1) {
+      return;
+    }
+
     const req: OrgStaffJoinReq = { staffId: this.opt.id, postIds: ids };
     this.pendingSrv.join(req).subscribe(r => {
       if (r) this.dialogRef.close(r);
