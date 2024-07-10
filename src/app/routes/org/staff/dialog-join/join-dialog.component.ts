@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { JoinDialogService } from './join-dialog.service';
 import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
-import { OrgDept } from '../../dept/dept.api';
+import { OrgDept, OrgPost } from '../../dept/dept.api';
 import { PendingService } from '../pending/pending.service';
 import { OrgStaffJoinReq, StaffJoinOpt } from '../staff.api';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -55,7 +55,7 @@ export class JoinDialogComponent implements OnInit {
       field: 'descr',
     },
   ];
-  selectedRows: any[] = [];
+  selectedRows: OrgPost[] = [];
   // selectedRowIds: number[] = [];
 
   constructor(

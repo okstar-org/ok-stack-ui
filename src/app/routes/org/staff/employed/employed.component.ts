@@ -10,7 +10,7 @@ import { Org } from '../../org.api';
 import { StaffService } from '../staff.service';
 import { DeptService } from '../../dept/dept.service';
 
-import { Staff } from '../staff.api';
+import { OrgStaff0, Staff } from '../staff.api';
 import { EmployedService } from './employed.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -144,25 +144,25 @@ export class EmployedComponent implements OnInit {
 
   fmt = 'yy-MM-dd HH:mm:ss';
   columns: MtxGridColumn[] = [
-    { header: this.translate.stream('common.no'), field: 'fragment.no', maxWidth: 60 },
-    { header: this.translate.stream('common.name'), field: 'fragment.name', minWidth: 200 },
+    { header: this.translate.stream('common.no'), field: 'no', maxWidth: 60 },
+    { header: this.translate.stream('common.name'), field: 'name', minWidth: 200 },
     {
       header: this.translate.stream('common.gender'),
-      field: 'fragment.gender',
+      field: 'gender',
       maxWidth: 60,
       formatter: row => {
-        return this.translate.instant('common.' + row.fragment.gender);
+        return this.translate.instant('common.' + row.gender);
       },
     },
 
-    { header: this.translate.stream('common.email'), field: 'fragment.email' },
-    { header: this.translate.stream('common.phone'), field: 'fragment.phone' },
+    { header: this.translate.stream('common.email'), field: 'email' },
+    { header: this.translate.stream('common.phone'), field: 'phone' },
     {
       header: this.translate.stream('common.birthday'),
-      field: 'fragment.birthday',
+      field: 'birthday',
       maxWidth: 60,
       formatter: row => {
-        return this.datePipe.transform(row.fragment.birthday, this.fmt);
+        return this.datePipe.transform(row.birthday, this.fmt);
       },
     },
     {
@@ -261,10 +261,10 @@ export class EmployedComponent implements OnInit {
     console.log('onAdd...');
   }
 
-  doLeave(staff: Staff) {
+  doLeave(staff: OrgStaff0) {
     this.mtxDialog.confirm(
       this.translate.stream('org.staff.employed.leave_dialog_msg'),
-      staff.fragment.name,
+      staff.name,
       () => {
         this.employedService.leavel(staff.id).subscribe(r => {
           this.router.navigateByUrl('/org/staff/left');

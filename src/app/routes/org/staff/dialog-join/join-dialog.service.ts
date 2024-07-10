@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { OrgDept } from '../../dept/dept.api';
-import { StaffJoinOpt, api } from '../staff.api';
+import { OrgPost } from '../../dept/dept.api';
+import { api } from '../staff.api';
 import { OkResult } from '@shared/api/ok';
 
 @Injectable({
@@ -13,9 +13,9 @@ import { OkResult } from '@shared/api/ok';
 export class JoinDialogService {
   constructor(protected http: HttpClient) {}
 
-  listPost(params = {}): Observable<OrgDept[]> {
+  listPost(params = {}): Observable<OrgPost[]> {
     return this.http
-      .get<OkResult<OrgDept[]>>(api.listPost, { params })
-      .pipe(map((r: OkResult<OrgDept[]>) => r.data));
+      .get<OkResult<OrgPost[]>>(api.listPost, { params })
+      .pipe(map((r: OkResult<OrgPost[]>) => r.data));
   }
 }

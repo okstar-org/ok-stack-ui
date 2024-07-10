@@ -85,6 +85,20 @@ export interface Staff {
   fragment: OrgStaffFragment;
   postIds?: number[];
 }
+
+export interface OrgStaff0 {
+  id: number;
+  no: string;
+  name: string;
+  phone: string;
+  email: string;
+  username: string;
+  accountId: number;
+  gender: string;
+  birthday: Date;
+  joinedDate: Date;
+}
+
 export interface OrgStaffReq {
   id: number;
   fragment: OrgStaffFragment;

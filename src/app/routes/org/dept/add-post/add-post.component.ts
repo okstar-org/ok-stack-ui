@@ -31,7 +31,6 @@ export class AddPostComponent {
 
   onSave() {
     const post = this.form.value as OrgPost;
-    post.deptId = this.origin.id;
     this.deptService.savePost(post).subscribe(r => {
       console.log('=>', r);
     });

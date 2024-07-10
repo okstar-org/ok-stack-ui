@@ -279,8 +279,22 @@ export class DeptComponent implements OnInit {
 
   onAddPost() {
     const dept = this.selectedNode.item;
+    if (!dept) {
+      return;
+    }
+
+    const post: OrgPost = {
+      deptId: dept.id,
+      id: 0,
+      no: '',
+      name: '',
+      descr: '',
+      recruit: '',
+      assignFor: '',
+      disabled: false,
+    };
     this.dialog
-      .open(AddPostComponent, { data: dept })
+      .open(AddPostComponent, { data: post })
       .afterClosed()
       .subscribe(r => {});
   }
