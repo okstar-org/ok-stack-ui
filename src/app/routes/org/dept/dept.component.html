@@ -1,9 +1,61 @@
 <breadcrumb></breadcrumb>
 
-<div class="row" fxLayout="wrap">
+  <div class="row" fxLayout="wrap">
+    <div class="col">
+      <form [formGroup]="orgForm">
+      <mat-card>
+        <mat-card-header>
+            <mat-card-subtitle   >
+              {{"common.org"|translate}}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field class="org-item">
+            <mat-label>{{"common.name"|translate}}</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+
+          <mat-form-field class="org-item">
+            <mat-label>{{"common.location"|translate}}</mat-label>
+            <input matInput formControlName="location">
+          </mat-form-field>
+
+          <mat-form-field class="org-item">
+            <mat-label>{{"common.url"|translate}}</mat-label>
+            <input matInput formControlName="url">
+          </mat-form-field>
+
+          <mat-form-field class="org-item">
+            <mat-label>{{"common.no"|translate}}</mat-label>
+            <input matInput formControlName="no" readonly>
+          </mat-form-field>
+
+          <mat-form-field class="org-item">
+            <mat-label>{{"common.cert"|translate}}</mat-label>
+            <input matInput formControlName="cert" readonly>
+          </mat-form-field>
+
+          <button mat-button mat-raised-button class="m-8">
+            {{"common.save"|translate}}
+          </button>
+
+        </mat-card-content>
+      </mat-card>
+    </form>
+    </div>
+  </div> 
+
+
+<div class="row dept-post" fxLayout="wrap">
 
   <div class="col">
     <mat-card class="ok-sys-card">
+      <mat-card-header>
+        <mat-card-subtitle   >
+          {{"common.deptName"|translate}}
+        </mat-card-subtitle>
+    </mat-card-header>
+
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let node;" matTreeNodePadding>
           <a href="javascript:;" (click)="onClickDept(node)">{{node.item.name}}</a>
@@ -99,6 +151,4 @@
       </mat-table>
     </mat-card>
   </div>
-
-
 </div>

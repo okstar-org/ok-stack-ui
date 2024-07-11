@@ -9,13 +9,19 @@
   }
 }
 
-.col {
-  flex-basis: 0;
-  width: 300px;
-
-  &:first-child {
-    flex-grow: .3;
+.row.dept-post{
+  .col {
+    flex-basis: 0;
+    width: 300px;
+    
+    &:first-child {
+      flex-grow: .3;
+    }
   }
+}
+
+.org-item{
+  margin: 0 .5em 0 0;
 }
 
 @media screen and (width <= 1024px) {

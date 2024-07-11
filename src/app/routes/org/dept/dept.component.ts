@@ -12,6 +12,8 @@ import { AddDeptComponent } from './add-dept/add-dept.component';
 import { MtxDialog } from '@ng-matero/extensions/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { deleteEntityTimes } from '@shared/utils/obj';
+import { Org } from '../org.api';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Injectable()
 export class DynamicDatabase {
@@ -194,8 +196,19 @@ export class DeptComponent implements OnInit {
   userDataSource!: DeptDataSource;
   selectedDeptId!: number;
   selectedNode!: DynamicFlatNode;
+  org!: Org;
+  orgForm = this.fb.group({
+    id: [0],
+    no: ['', [Validators.required]],
+    name: ['', [Validators.required]],
+    url: [''],
+    location: [''],
+    avatar: [''],
+    cert: [''],
+  });
 
   constructor(
+    private fb: FormBuilder,
     private translate: TranslateService,
     private dialog: MatDialog,
     private logger: NGXLogger,
@@ -205,6 +218,10 @@ export class DeptComponent implements OnInit {
   ) {
     this.treeControl = new FlatTreeControl<DynamicFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new DynamicDataSource(this.treeControl, database);
+    svc.getCurrentOrg().subscribe(org => {
+      console.log('org:', org);
+      this.orgForm.setValue(org);
+    });
   }
 
   treeControl: FlatTreeControl<DynamicFlatNode>;
