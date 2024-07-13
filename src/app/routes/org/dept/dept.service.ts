@@ -23,6 +23,12 @@ export class DeptService extends OkItemService {
     return this.http.get<OkResult<Org>>(api.getCurrentOrg).pipe(map((r: OkResult<Org>) => r.data));
   }
 
+  saveOrg(org: Org): Observable<boolean> {
+    return this.http
+      .put<OkResult<boolean>>(api.saveOrg, org)
+      .pipe(map((r: OkResult<boolean>) => r.data));
+  }
+
   getChildren(): Observable<OrgDept[]> {
     return this.http
       .get<OkResult<OrgDept[]>>(api.getChildren)

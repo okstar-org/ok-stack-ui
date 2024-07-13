@@ -242,6 +242,11 @@ export class DeptComponent implements OnInit {
       this.dataSource.data = r;
     });
   }
+
+  hasRootDept() {
+    return this.dataSource.data.length > 0;
+  }
+
   onClickDept(node: DynamicFlatNode) {
     this.selectedDeptId = node.id;
     this.selectedNode = node;
@@ -370,6 +375,12 @@ export class DeptComponent implements OnInit {
           });
         }
       });
+    });
+  }
+
+  onSaveOrg() {
+    this.svc.saveOrg(this.orgForm.value as Org).subscribe(r => {
+      console.log('=>', r);
     });
   }
 }

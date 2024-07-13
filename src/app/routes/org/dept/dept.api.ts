@@ -7,6 +7,7 @@ class Api implements OkApi {
   children = '/api/org/dept/children/';
   getChildren = '/api/org/dept/children';
   getCurrentOrg = '/api/org/current';
+  saveOrg = '/api/org/save';
 
   page = '/api/portal/sys/org/dept/page';
   save = '/api/org/dept';

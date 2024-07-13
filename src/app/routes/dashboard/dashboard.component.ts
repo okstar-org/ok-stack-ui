@@ -26,6 +26,8 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   notifySubscription = Subscription.EMPTY;
 
+  atOkStar = false;
+
   constructor(
     private dashboardSrv: DashboardService,
     private settings: SettingsService,
@@ -48,6 +50,14 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.staffSrv.countPost().subscribe(r => {
       this.stats[2].amount = r + '';
     });
+
+    const url = document.baseURI;
+    if (
+      url.startsWith('http://stack.okstar.org.cn') ||
+      url.startsWith('https://stack.okstar.org.cn')
+    ) {
+      this.atOkStar = true;
+    }
   }
 
   ngAfterViewInit() {}
