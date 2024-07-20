@@ -3,6 +3,10 @@
 
 name: Build ok-stack-ui
 
+permissions:
+  contents: write
+  discussions: write
+
 on:
   push:
     branches: [main]
