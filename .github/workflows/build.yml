@@ -6,6 +6,9 @@ name: Build ok-stack-ui
 on:
   push:
     branches: [main]
+    tags:
+      - "v*.*.*"
+      - "latest"
   pull_request:
     branches: [main]
 
@@ -41,8 +44,9 @@ jobs:
           ls dist
 
       - name: Zip the dist
+        working-directory: dist
         run: |
-          zip -r ok-stack-ui.zip  dist/ok-stack
+          zip -r ok-stack-ui.zip  ok-stack
 
       - name: Upload to release
         uses: softprops/action-gh-release@v1
