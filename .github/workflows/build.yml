@@ -36,11 +36,13 @@ jobs:
         run: npm install
 
       - name: Building the project
-        run: npm run build
+        run: |
+          npm run build
+          ls dist
 
       - uses: montudor/action-zip@v1
         with:
-          args: zip -r ${{ github.workspace }}/ok-stack-ui.zip ${{ github.workspace }}/dist/ok-stack
+          args: zip -qq -r ${{ github.workspace }}/ok-stack-ui.zip ${{ github.workspace }}/dist/ok-stack
 
       - name: Upload to release
         uses: softprops/action-gh-release@v1
