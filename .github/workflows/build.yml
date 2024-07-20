@@ -54,4 +54,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           files: |
-            ok-stack-ui.zip
+            dist/ok-stack-ui.zip
