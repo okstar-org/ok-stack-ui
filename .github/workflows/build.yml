@@ -40,7 +40,7 @@ jobs:
           npm run build
           ls dist
 
-      - uses: montudor/action-zip@v1
+      - name: Zip the dist
         run: |
           zip -r ok-stack-ui.zip  dist/ok-stack
 
