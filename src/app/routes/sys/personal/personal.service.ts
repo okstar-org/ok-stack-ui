@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OkItemService } from '@shared/services/ok-item.service';
 import { NGXLogger } from 'ngx-logger';
-import { SysSetLocale, api } from './basic.api';
+import { SysSetLocale, api } from './personal.api';
 import { OkResult } from '@shared/api/ok';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BasicService extends OkItemService {
+export class PersonalService extends OkItemService {
   constructor(
     protected logger: NGXLogger,
     protected http: HttpClient

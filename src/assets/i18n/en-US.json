@@ -9,7 +9,8 @@
     "org.staff": "Staff Management",
     "org.perm": "Permissions",
     "sys": "System Management",
-    "sys.basic": "Basic Settings",
+    "sys.personal": "Personal Settings",
+    "sys.integration": "integration Settings",
     "sys.open": "Open API",
     "meet": "Meet Management",
     "meet.history": "Records",
@@ -174,14 +175,28 @@
     }
   },
   "sys": {
-    "basic": {
-      "global": "Global Settings",
+    "personal":{
+      "language_set": "Language Settings"
+    },
+    "integration": {
+      "keycloak":{
+        "title":"Keycloak Settings",
+        "serverUrl": "Server Url",
+        "realm":"Admin. realm",
+        "username":"Admin. username",
+        "password":"Admin. Password",
+        "clientId":"Admin. Client id",
+        "clientSecret":"Client secret"
+      },
+
+      "IMSettings": "IM Settings",
+      "stackSettings": "Stack Settings",
       "personal": "Personal Settings",
       "new_account_verify": " New account registration verification validity",
-      "xmppHost": "IM server address",
-      "xmppAdminPort": "IM administrant port",
-      "xmppApiSecretKey":"IM access Key",
-      "stackUrl": "Stack url"
+      "host": "IM server address",
+      "adminPort": "IM administrant port",
+      "apiSecret":"IM access Key",
+      "fqdn": "FQDN"
     },
     "conn": {
       "tab": {
@@ -197,6 +212,7 @@
     "search": "Search",
     "reset": "Reset",
     "add": "Add",
+    "save":"Save",
     "import": "Import",
     "export": "Export",
     "detail": "Details",
@@ -247,6 +263,12 @@
     "period": "Period",
     "amount": "Amount (CNY)",
     "null": "-",
+    "deptName": "Department",
+    "postName": "Position",
+    "org":"Organization",
+    "url":"URL",
+    "location":"Location",
+    "cert":"Cert. No.",
     "con": {
       "WX": "WeChat",
       "DT": "Dingtalk",

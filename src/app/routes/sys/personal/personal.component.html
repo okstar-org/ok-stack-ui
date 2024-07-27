@@ -1,0 +1,17 @@
+<breadcrumb></breadcrumb>
+<section>
+  <mat-card class="demo-card" role="group" *ngIf="personal">
+    <mat-card-content>
+      <p>
+        {{"common.language_set"|translate}}：
+        <mat-select class="mat-select"
+                    [(ngModel)]="personal.language"
+                    (ngModelChange)="personalChange()">
+          <mat-option *ngFor="let item of locales" [value]="item.value">
+            {{ item.label }}
+          </mat-option>
+        </mat-select>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</section>

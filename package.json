@@ -16,7 +16,7 @@
     "lint": "npm run lint:ts && npm run lint:scss",
     "lint:ts": "eslint \"src/**/*.ts\" --fix",
     "lint:scss": "stylelint \"src/**/*.scss\" --fix",
-    "hmr": "ng serve --hmr --disable-host-check",
+    "hmr": "ng serve --hmr",
     "deploy": "ng deploy",
     "release": "npm run build:release && npm run rsync",
     "publish": "npm run build:schematics && cd dist/schematics && npm publish",

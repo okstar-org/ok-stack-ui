@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BasicComponent } from './basic.component';
+import { IntegrationComponent } from './integration.component';
 import { SharedModule } from '@shared';
-import { BasicRoutes } from './basic.routing';
+import { BasicRoutes } from './integration.routing';
 
 @NgModule({
   imports: [CommonModule, SharedModule, BasicRoutes],
-  declarations: [BasicComponent],
+  declarations: [IntegrationComponent],
 })
-export class BasicModule {}
+export class IntegrationModule {}

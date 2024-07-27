@@ -1,8 +1,8 @@
-import { SysSetPersonal } from './../../routes/sys/basic/basic.api';
+import { SysSetPersonal } from '../../routes/sys/integration/integration.api';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService } from '@core';
-import { BasicService } from './../../routes/sys/basic/basic.service';
+import { PersonalService } from 'app/routes/sys/personal/personal.service';
 
 @Component({
   selector: 'app-translate',
@@ -29,15 +29,15 @@ export class TranslateComponent {
   constructor(
     private translate: TranslateService,
     private settings: SettingsService,
-    private basic: BasicService
+    private personalSrv: PersonalService
   ) {
-    this.basic.languages().subscribe(r => {
+    this.personalSrv.languages().subscribe(r => {
       r.forEach(e => {
         this.langs.set(e.value, e.label);
         this.translate.langs.push(e.value);
       });
 
-      this.basic.getPersonal().subscribe((r: SysSetPersonal) => {
+      this.personalSrv.getPersonal().subscribe((r: SysSetPersonal) => {
         this.personal = r;
         this.useLanguage(r.language);
       });
@@ -52,7 +52,7 @@ export class TranslateComponent {
     this.settings.setLanguage(language);
     if (save) {
       this.personal.language = language;
-      this.basic.updatePersonal(this.personal).subscribe(r => {
+      this.personalSrv.updatePersonal(this.personal).subscribe(r => {
         console.log('=>', r);
       });
     }

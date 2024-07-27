@@ -93,8 +93,13 @@
       "icon": "settings",
       "children": [
         {
-          "route": "basic",
-          "name": "basic",
+          "route": "personal",
+          "name": "personal",
+          "type": "link"
+        },
+        {
+          "route": "integration",
+          "name": "integration",
           "type": "link"
         },
         {

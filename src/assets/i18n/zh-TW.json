@@ -227,14 +227,31 @@
     }
   },
   "sys": {
-    "basic": {
-      "global": "全局設置",
+    "personal":{
+      "language_set": "Language Settings"
+    },
+
+
+
+    "integration": {
+      "keycloak":{
+        "title":"Keycloak 設置",
+        "serverUrl": "Server Url",
+        "realm":"管理員域",
+        "username":"管理員用戶名",
+        "password":"管理員密碼",
+        "clientId":"管理員客戶端Id",
+        "clientSecret":"客戶端訪問密鑰"
+      },
+
+      "IMSettings": "IM 設置",
+      "stackSettings": "Stack 設置",
       "personal": "个人設置",
       "new_account_verify": "新注册帳號驗證有效性",
-      "xmppHost": "IM 服务器地址",
-      "xmppAdminPort": "IM 服務器管理埠",
-      "xmppApiSecretKey":"IM Access Key",
-      "stackUrl": "Stack url"
+      "host": "IM 服务器地址",
+      "adminPort": "IM 服務器管理埠",
+      "apiSecret":"IM 訪問密鑰",
+      "fqdn": "全限定域名(FQDN)"
     },
     "conn": {
       "tab": {

@@ -9,7 +9,8 @@
     "org.staff": "人员管理",
     "org.perm": "权限管理",
     "sys": "系统管理",
-    "sys.basic": "基础设置",
+    "sys.personal": "个人设置",
+    "sys.integration": "集成设置",
     "sys.open": "开放设置",
     "meet": "会议管理",
     "meet.history": "记录管理",
@@ -241,14 +242,29 @@
     }
   },
   "sys": {
-    "basic": {
-      "global": "全局设置",
+    "personal":{
+      "language_set": "语言设置"
+    },
+
+    "integration": {
+      "keycloak":{
+        "title":"Keycloak 设置",
+        "serverUrl": "Keycloak Url",
+        "realm":"管理员域",
+        "username":"管理员用户名",
+        "password":"管理员密码",
+        "clientId":"管理员客户端Id",
+        "clientSecret":"客户端访问密钥"
+      },
+
+      "IMSettings": "IM 设置",
+      "stackSettings": "Stack 设置",
       "personal": "个人设置",
       "new_account_verify": "新注册帐号验证有效性",
-      "xmppHost": "IM 服务器地址",
-      "xmppAdminPort": "IM 服务器管理端口",
-      "xmppApiSecretKey":"IM access Key",
-      "stackUrl": "Stack url"
+      "host": "IM 服务器地址",
+      "adminPort": "IM 服务器管理端口",
+      "apiSecret":"IM 访问密钥",
+      "fqdn": "全限定域名(FQDN)"
     },
     "conn": {
       "tab": {

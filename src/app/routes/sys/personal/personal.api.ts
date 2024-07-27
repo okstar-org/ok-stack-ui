@@ -1,14 +1,5 @@
 import { OkApi } from '@shared/api/ok';
 
-export interface SysSetGlobal {
-  globalEnable: boolean;
-  verifyAccount: boolean;
-  xmppHost: string;
-  xmppAdminPort: number;
-  xmppApiSecretKey: string;
-  stackUrl: string;
-}
-
 export interface SysSetPersonal {
   accountId: number;
   //zh-CN
@@ -27,8 +18,8 @@ class Api implements OkApi {
   page = '';
   update = '/api/sys/settings/basic/global';
   findById = '/api/sys/settings/basic/global';
-  languages = '/api/sys/settings/basic/languages';
-  personal = '/api/sys/settings/basic/personal';
+  languages = '/api/sys/conf/personal/languages';
+  personal = '/api/sys/conf/personal';
 }
 
 const api = new Api();
