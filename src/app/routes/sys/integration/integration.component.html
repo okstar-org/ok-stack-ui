@@ -3,14 +3,19 @@
 <section *ngIf="integration">
   <mat-card class="demo-card" role="group" *ngIf="integration.stack">
     <mat-card-header>
-      <h2>{{"sys.integration.stackSettings"|translate}}</h2>
+      <h2>{{ 'sys.integration.stackSettings' | translate }}</h2>
     </mat-card-header>
     <mat-card-content>
       <div class="row">
-        <div class="col col-left col-2">{{"sys.integration.fqdn"|translate}}：</div>
+        <div class="col col-left col-2">{{ 'sys.integration.fqdn' | translate }}：</div>
         <div class="col col-right">
-          <input matInput [(ngModel)]="integration.stack.fqdn" (blur)="onChange()" required
-                placeholder="stack.okstar.org">
+          <input
+            matInput
+            [(ngModel)]="integration.stack.fqdn"
+            (blur)="onChange()"
+            required
+            placeholder="stack.okstar.org"
+          />
         </div>
       </div>
     </mat-card-content>
@@ -18,69 +23,120 @@
 
   <mat-card class="demo-card" role="group" *ngIf="integration.keycloak">
     <mat-card-header>
-      <h2>{{"sys.integration.keycloak.title"|translate}}</h2>
+      <h2>{{ 'sys.integration.keycloak.title' | translate }}</h2>
     </mat-card-header>
     <mat-card-content>
-
       <div class="row">
-        <div class="col col-left col-2">{{"sys.integration.keycloak.serverUrl"|translate}}：</div>
+        <div class="col col-left col-2">
+          {{ 'sys.integration.keycloak.serverUrl' | translate }}：
+        </div>
         <div class="col col-right">
-          <input matInput [(ngModel)]="integration.keycloak.serverUrl" (blur)="onChange()" required
-                 placeholder="http://keycloak:8080">
+          <input
+            matInput
+            [(ngModel)]="integration.keycloak.serverUrl"
+            (blur)="onChange()"
+            required
+            placeholder="http://keycloak:8080"
+          />
         </div>
       </div>
 
       <div class="row">
-        <div class="col col-left col-2">{{"sys.integration.keycloak.realm"|translate}}：</div>
+        <div class="col col-left col-2">{{ 'sys.integration.keycloak.realm' | translate }}：</div>
         <div class="col col-right">
-          <input matInput [(ngModel)]="integration.keycloak.realm" (blur)="onChange()" required
-                 placeholder="Realm">
+          <input
+            matInput
+            [(ngModel)]="integration.keycloak.realm"
+            (blur)="onChange()"
+            required
+            placeholder="Realm"
+          />
         </div>
       </div>
 
       <div class="row">
-        <div class="col col-left col-2">{{"sys.integration.keycloak.clientId"|translate}}：</div>
+        <div class="col col-left col-2">
+          {{ 'sys.integration.keycloak.clientId' | translate }}：
+        </div>
         <div class="col col-right">
-          <input matInput [(ngModel)]="integration.keycloak.clientId" (blur)="onChange()" required
-                 placeholder="Client Id">
+          <input
+            matInput
+            [(ngModel)]="integration.keycloak.clientId"
+            (blur)="onChange()"
+            required
+            placeholder="Client Id"
+          />
         </div>
       </div>
 
       <div class="row">
-        <div class="col col-left col-2">{{"sys.integration.keycloak.username"|translate}}：</div>
+        <div class="col col-left col-2">
+          {{ 'sys.integration.keycloak.username' | translate }}：
+        </div>
         <div class="col col-right">
-          <input matInput [(ngModel)]="integration.keycloak.username" (blur)="onChange()" required
-                 >
+          <input
+            matInput
+            [(ngModel)]="integration.keycloak.username"
+            (blur)="onChange()"
+            required
+          />
         </div>
       </div>
 
       <div class="row">
-        <div class="col col-left col-2">{{"sys.integration.keycloak.password"|translate}}：</div>
+        <div class="col col-left col-2">
+          {{ 'sys.integration.keycloak.password' | translate }}：
+        </div>
         <div class="col col-right">
-          <input matInput [(ngModel)]="integration.keycloak.password" (blur)="onChange()" required
-                >
+          <input
+            matInput
+            type="{{ eyeIcon.password ? 'text' : 'password' }}"
+            [(ngModel)]="integration.keycloak.password"
+            (blur)="onChange()"
+            required
+          />
+          <div class="operate">
+            <button mat-button (click)="eyeIconChange('password')">
+              <mat-icon>{{ eyeIcon.password ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <button mat-button (click)="copy(integration.keycloak.password)">
+              <mat-icon>content_copy</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
-
 
       <div class="row">
-        <div class="col col-left col-2">{{"sys.integration.keycloak.clientSecret"|translate}}：</div>
+        <div class="col col-left col-2">
+          {{ 'sys.integration.keycloak.clientSecret' | translate }}：
+        </div>
         <div class="col col-right">
-          <input matInput [(ngModel)]="integration.keycloak.clientSecret" (blur)="onChange()" required
-                 placeholder="Client Secret">
+          <input
+            matInput
+            type="{{ eyeIcon.clientSecret ? 'text' : 'password' }}"
+            [(ngModel)]="integration.keycloak.clientSecret"
+            (blur)="onChange()"
+            required
+            placeholder="Client Secret"
+          />
+          <div class="operate">
+            <button mat-button (click)="eyeIconChange('clientSecret')">
+              <mat-icon>{{ eyeIcon.clientSecret ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <button mat-button (click)="copy(integration.keycloak.clientSecret)">
+              <mat-icon>content_copy</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
-
-
     </mat-card-content>
   </mat-card>
 
   <mat-card class="demo-card" role="group" *ngIf="integration.im">
     <mat-card-header>
-      <h2>{{"sys.integration.IMSettings"|translate}}</h2>
+      <h2>{{ 'sys.integration.IMSettings' | translate }}</h2>
     </mat-card-header>
     <mat-card-content>
-
       <!-- <div class="row">
         <div class="col col-left col-2">
           {{"common.enable"|translate}}/{{"common.disable"|translate}}：</div>
@@ -98,30 +154,52 @@
       </div> -->
 
       <div class="row">
-        <div class="col col-left col-2">{{"sys.integration.host"|translate}}：</div>
+        <div class="col col-left col-2">{{ 'sys.integration.host' | translate }}：</div>
         <div class="col col-right">
-          <input matInput [(ngModel)]="integration.im.host" (blur)="onChange()" required
-                 placeholder="meet.okstar.org">
+          <input
+            matInput
+            [(ngModel)]="integration.im.host"
+            (blur)="onChange()"
+            required
+            placeholder="meet.okstar.org"
+          />
         </div>
       </div>
 
       <div class="row">
-        <div class="col col-left col-2">{{"sys.integration.adminPort"|translate}}：</div>
+        <div class="col col-left col-2">{{ 'sys.integration.adminPort' | translate }}：</div>
         <div class="col col-right">
-          <input matInput [(ngModel)]="integration.im.adminPort" (blur)="onChange()" required
-                 placeholder="9090">
+          <input
+            matInput
+            [(ngModel)]="integration.im.adminPort"
+            (blur)="onChange()"
+            required
+            placeholder="9090"
+          />
         </div>
       </div>
 
       <div class="row">
-        <div class="col col-left col-2">{{"sys.integration.apiSecret"|translate}}：</div>
+        <div class="col col-left col-2">{{ 'sys.integration.apiSecret' | translate }}：</div>
         <div class="col col-right">
-          <input matInput [(ngModel)]="integration.im.apiSecret" (blur)="onChange()" required
-                 placeholder="Secret key">
+          <input
+            matInput
+            type="{{ eyeIcon.apiSecret ? 'text' : 'password' }}"
+            [(ngModel)]="integration.im.apiSecret"
+            (blur)="onChange()"
+            required
+            placeholder="Secret key"
+          />
+          <div class="operate">
+            <button mat-button (click)="eyeIconChange('apiSecret')">
+              <mat-icon>{{ eyeIcon.apiSecret ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <button mat-button (click)="copy(integration.im.apiSecret)">
+              <mat-icon>content_copy</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
     </mat-card-content>
   </mat-card>
-
-
 </section>

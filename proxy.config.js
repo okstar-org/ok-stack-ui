@@ -1,6 +1,6 @@
 const PROXY_CONFIG = {
   '/api/auth/**': {
-    target: 'http://localhost:9000',
+    target: 'http://okstar.org.cn:9000',
     changeOrigin: true,
     secure: false,
     logLevel: 'debug',
@@ -9,7 +9,7 @@ const PROXY_CONFIG = {
     },
   },
   '/api/sys/': {
-    target: 'http://localhost:9100',
+    target: 'http://okstar.org.cn:9100',
     changeOrigin: true,
     secure: false,
     logLevel: 'debug',
@@ -18,7 +18,7 @@ const PROXY_CONFIG = {
     },
   },
   '/api/org/**': {
-    target: 'http://localhost:9200',
+    target: 'http://okstar.org.cn:9200',
     changeOrigin: true,
     secure: false,
     logLevel: 'debug',
@@ -27,7 +27,7 @@ const PROXY_CONFIG = {
     },
   },
   '/api/chat/**': {
-    target: 'http://localhost:9300',
+    target: 'http://okstar.org.cn:9300',
     changeOrigin: true,
     secure: false,
     logLevel: 'debug',
@@ -36,7 +36,7 @@ const PROXY_CONFIG = {
     },
   },
   '/api/billing/**': {
-    target: 'http://localhost:9400',
+    target: 'http://okstar.org.cn:9400',
     changeOrigin: true,
     secure: false,
     logLevel: 'debug',
