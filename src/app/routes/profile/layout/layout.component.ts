@@ -14,11 +14,9 @@ export class ProfileLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.user().subscribe(user => {
-      console.log('MyInfo:', user);
       this.user = user;
     });
     this.auth.orgReq().subscribe(org => {
-      console.log('MyOrgInfo:', org);
       this.org = org;
     });
   }

@@ -35,6 +35,7 @@ export interface User {
   name?: string;
   email?: string;
   avatar?: string;
+  displayName?: string;
 }
 
 export interface SignUpForm {
