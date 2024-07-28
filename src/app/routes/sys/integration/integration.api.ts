@@ -38,6 +38,11 @@ export interface SysSetLocale {
   value: string;
 }
 
+export interface EyeIconState {
+  password: boolean;
+  clientSecret: boolean;
+  apiSecret: boolean;
+}
 class Api implements OkApi {
   save = '';
   page = '';
