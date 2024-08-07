@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { NGXLogger } from 'ngx-logger';
 import { AuthService } from '@core/authentication/auth.service';
 import { Router } from '@angular/router';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-forgot',
   templateUrl: './forgot.component.html',
@@ -16,11 +16,12 @@ export class ForgotComponent implements OnInit {
     private fb: FormBuilder,
     protected logger: NGXLogger,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.registerForm = this.fb.group({
       iso: ['CN', [Validators.required]],
-      accountType: ['phone', [Validators.required]],
+      accountType: ['email', [Validators.required]],
       account: [null, [Validators.required]],
     });
   }
@@ -35,13 +36,17 @@ export class ForgotComponent implements OnInit {
     this.isLoading = true;
     this.auth.forgot(this.registerForm.value).subscribe({
       next: r => {
-        console.log(r);
         if (r) {
-          alert('已发送密码重置链接，请登录邮箱完成后续操作！');
+          this.toastr.success('已发送密码重置链接，请登录邮箱完成后续操作！');
+          this.router.navigateByUrl('login');
+        } else {
+          this.toastr.error('系统异常！');
         }
+        this.isLoading = false;
       },
       error: err => {
         this.isLoading = false;
+        this.toastr.error('系统异常！');
       },
     });
   }
