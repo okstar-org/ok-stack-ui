@@ -44,6 +44,15 @@ const PROXY_CONFIG = {
       '^/api/billing': '',
     },
   },
+  '/api/work/**': {
+    target: 'http://localhost:9500',
+    changeOrigin: true,
+    secure: false,
+    logLevel: 'debug',
+    pathRewrite: {
+      '^/api/work': '',
+    },
+  },
   // '/bpm/model/designer/business-central/**': {
   //   target: 'http://192.168.8.40:8080/',
   //   changeOrigin: true,

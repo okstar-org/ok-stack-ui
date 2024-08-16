@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DetailService } from './detail.service';
-import { OrderResultEntity, SysWorkAppDetail, SysWorkAppPlan } from '../appmgt/appmgt.api';
+import { OrderResultEntity, SysWorkAppDetail, SysWorkAppPlan } from '../work.api';
 import { MatDialog } from '@angular/material/dialog';
 import { PayComponent } from '../pay/pay.component';
 

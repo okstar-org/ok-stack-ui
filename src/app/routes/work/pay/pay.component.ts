@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DetailService } from '../detail/detail.service';
-import { OrderResultEntity } from '../appmgt/appmgt.api';
+import { OrderResultEntity } from '../work.api';
 
 @Component({
   selector: 'app-pay',
