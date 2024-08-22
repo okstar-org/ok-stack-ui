@@ -18,9 +18,7 @@ export class PayComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private svc: DetailService
   ) {
-    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(
-      'https://cloud.okstar.org.cn/api' + result.url
-    );
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(result.url);
   }
 
   ngOnInit(): void {}

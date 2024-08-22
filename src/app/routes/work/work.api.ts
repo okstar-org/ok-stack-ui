@@ -70,7 +70,7 @@ export interface SysWorkAppIntroduce {
 }
 
 export interface SysWorkAppPlan {
-  id: number;
+  uuid: string;
   // 套餐名称
   name: string;
   //备注

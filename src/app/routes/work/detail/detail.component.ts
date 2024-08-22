@@ -40,7 +40,7 @@ export class DetailComponent implements OnInit {
      * 1、请求购买
      * 2、返回地址
      */
-    this.svc.create(plan.id).subscribe(r => {
+    this.svc.create(plan.uuid).subscribe(r => {
       this.dialog
         .open(PayComponent, { data: r, disableClose: true, width: '920px', height: '460px' })
         .afterClosed()

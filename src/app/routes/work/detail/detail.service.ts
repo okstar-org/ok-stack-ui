@@ -18,7 +18,7 @@ export class DetailService extends OkItemService {
     super(logger, http, api);
   }
 
-  create(planId: number): Observable<string> {
+  create(planId: any): Observable<string> {
     return this.http
       .post<OkResult<string>>(api.createOrder, planId)
       .pipe(map((r: OkResult<string>) => r.data));
