@@ -43,14 +43,20 @@ export class ErrorInterceptor implements HttpInterceptor {
   }
 
   private handleError(error: any) {
+    console.error(error);
+
     if (error.status === STATUS.UNAUTHORIZED) {
       this.router.navigateByUrl('/auth/login');
     }
+
+    if (error.error) {
+      if (error.error.msg) this.toastr.error(error.error.msg);
+      return throwError(() => error);
+    }
+
     if (error instanceof HttpErrorResponse) {
-      console.error('handleError', error);
-      const msg = `${error.status} ${error.statusText}`;
-      if (msg) {
-        this.toastr.error(msg);
+      if (error.status != 403 && error.statusText) {
+        this.toastr.error(`${error.status} - ${error.statusText}`);
       }
       return throwError(() => error);
     }
