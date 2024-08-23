@@ -44,9 +44,8 @@ export class ForgotComponent implements OnInit {
         }
         this.isLoading = false;
       },
-      error: err => {
+      error: e => {
         this.isLoading = false;
-        this.toastr.error('系统异常！');
       },
     });
   }

@@ -1,4 +1,4 @@
-import { OrderResultEntity } from './../../../work/appmgt/appmgt.api';
+import { OrderResultEntity } from '../../../work/work.api';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { OrgDept, OrgPost, api } from '../dept.api';

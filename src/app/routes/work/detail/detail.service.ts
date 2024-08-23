@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { OkItemService } from '@shared/services/ok-item.service';
 import { NGXLogger } from 'ngx-logger';
 
-import { api } from '../appmgt/appmgt.api';
+import { api } from '../work.api';
 import { OkResult } from '@shared/api/ok';
 
 @Injectable({
@@ -18,7 +18,7 @@ export class DetailService extends OkItemService {
     super(logger, http, api);
   }
 
-  create(planId: number): Observable<string> {
+  create(planId: any): Observable<string> {
     return this.http
       .post<OkResult<string>>(api.createOrder, planId)
       .pipe(map((r: OkResult<string>) => r.data));

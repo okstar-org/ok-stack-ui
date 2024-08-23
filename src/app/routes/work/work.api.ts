@@ -1,8 +1,8 @@
 import { OkApi } from '@shared/api/ok';
 
 class Api implements OkApi {
-  findById = '/api/sys/work/app/detail';
-  page = '/api/sys/work/app/page';
+  findById = '/api/work/app/detail';
+  page = '/api/work/app/page';
   update = '';
   save = '';
   createOrder = '/api/billing/order/create';
@@ -70,7 +70,7 @@ export interface SysWorkAppIntroduce {
 }
 
 export interface SysWorkAppPlan {
-  id: number;
+  uuid: string;
   // 套餐名称
   name: string;
   //备注

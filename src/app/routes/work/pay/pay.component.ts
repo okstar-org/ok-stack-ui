@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DetailService } from '../detail/detail.service';
-import { OrderResultEntity } from '../appmgt/appmgt.api';
+import { OrderResultEntity } from '../work.api';
 
 @Component({
   selector: 'app-pay',
@@ -18,9 +18,7 @@ export class PayComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private svc: DetailService
   ) {
-    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(
-      'https://cloud.okstar.org.cn/api' + result.url
-    );
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(result.url);
   }
 
   ngOnInit(): void {}

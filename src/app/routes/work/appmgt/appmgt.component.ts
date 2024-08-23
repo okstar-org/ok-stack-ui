@@ -32,7 +32,7 @@ export class AppmgtComponent implements OnInit {
           text: '使用',
           tooltip: '付款购买及使用',
           click: data => {
-            this.router.navigateByUrl(`/work/app/${data.id}`);
+            this.router.navigateByUrl(`/work/app/${data.uuid}`);
           },
         },
       ],
