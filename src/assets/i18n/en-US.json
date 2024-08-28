@@ -196,7 +196,7 @@
       "host": "IM server address",
       "adminPort": "IM administrant port",
       "apiSecret":"IM access Key",
-      "fqdn": "FQDN"
+      "fqdn": "Stack URL"
     },
     "conn": {
       "tab": {

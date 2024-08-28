@@ -251,7 +251,7 @@
       "host": "IM 服务器地址",
       "adminPort": "IM 服務器管理埠",
       "apiSecret":"IM 訪問密鑰",
-      "fqdn": "全限定域名(FQDN)"
+      "fqdn": "Stack URL"
     },
     "conn": {
       "tab": {
