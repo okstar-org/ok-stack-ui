@@ -1,6 +1,6 @@
 {
-  "name": "ok-stack",
-  "version": "0.0.0",
+  "name": "ok-stack-ui",
+  "version": "24.09.00-1",
   "engines": {
     "node": ">=16.0.0 <20.0.0",
     "yarn": ">=1.22.0 <2",
