@@ -25,7 +25,11 @@ class Api implements OkApi {
 const api = new Api();
 export { api };
 
-export interface OrgDept {
+export interface DTO {
+  uuid: string;
+}
+
+export interface OrgDept extends DTO {
   id: number;
   parentId: number;
   orgId: number;

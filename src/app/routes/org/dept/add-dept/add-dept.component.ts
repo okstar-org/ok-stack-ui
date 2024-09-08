@@ -20,6 +20,7 @@ export class AddDeptComponent {
     no: [''],
     disabled: [false],
     level: [0],
+    uuid: [''],
   });
 
   constructor(

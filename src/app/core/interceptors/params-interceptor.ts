@@ -34,7 +34,7 @@ export class ParamsInterceptor implements HttpInterceptor {
       .pipe(
         map((response: any) => {
           const r: OkResult<any> = response.body;
-          if (typeof r !== 'undefined' && typeof r.success !== 'undefined' && !r.success) {
+          if (typeof r !== 'undefined' && r && typeof r.success !== 'undefined' && !r.success) {
             this.toastr.error(`${r.msg}`);
             return throwError(`${r.msg}`);
           }
