@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { OrgDept, OrgPost } from '../dept.api';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { OrgPost } from '../dept.api';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DeptService } from '../dept.service';
 
 @Component({
@@ -16,12 +16,13 @@ export class AddPostComponent {
     no: ['', [Validators.required]],
     name: ['', [Validators.required]],
     descr: [''],
+    uuid: [''],
     recruit: [''],
-    assignFor: [''],
     disabled: [false],
   });
 
   constructor(
+    public dialogRef: MatDialogRef<AddPostComponent>,
     private fb: FormBuilder,
     private deptService: DeptService,
     @Inject(MAT_DIALOG_DATA) private origin: OrgPost //
@@ -32,7 +33,9 @@ export class AddPostComponent {
   onSave() {
     const post = this.form.value as OrgPost;
     this.deptService.savePost(post).subscribe(r => {
-      console.log('=>', r);
+      if (r) {
+        this.dialogRef.close();
+      }
     });
   }
 }

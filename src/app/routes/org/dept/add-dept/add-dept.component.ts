@@ -18,7 +18,7 @@ export class AddDeptComponent {
     parentId: [0, [Validators.required]],
     name: ['', [Validators.required]],
     no: [''],
-    disabled: [false],
+    disabled: [false, [Validators.required]],
     level: [0],
     uuid: [''],
   });

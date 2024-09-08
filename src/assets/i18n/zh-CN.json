@@ -360,7 +360,6 @@
     "paymentStatus": "支付状态",
     "createAt": "创建时间",
     "updateAt": "更新时间",
-    "assignFor": "分配给",
     "workCard": "名片",
     "overview": "预览",
     "unpaid": "未支付",

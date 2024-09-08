@@ -43,7 +43,7 @@
       </mat-card>
     </form>
     </div>
-  </div> 
+  </div>
 
 
 <div class="row dept-post" fxLayout="wrap">
@@ -67,7 +67,7 @@
               {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
             </mat-icon>
           </button>
-          <a href="javascript:;" style="width: 5em;" (click)="onClickDept(node)" matTreeNodeToggle>
+          <a href="javascript:;" class="depart-tree-node" [class.disabled]="node.item.disabled" (click)="onClickDept(node)" matTreeNodeToggle>
             {{node.item.name}}
           </a>
           <button mat-icon-button aria-label="Add" (click)="onAddDept(node)" class="btn-tree-add">
@@ -106,16 +106,21 @@
       </mat-card-actions>
       <mat-table aria-readonly="true"
                  [dataSource]="userDataSource"
-                 aria-label="User List">
+                 aria-label="Post List">
 
         <ng-container matColumnDef="no">
-          <mat-header-cell *matHeaderCellDef>{{"common.no"|translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.no}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef style="max-width: 10em">{{"common.no"|translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let row;" style="max-width: 10em">{{row.no}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef>{{"common.name"|translate}}</mat-header-cell>
           <mat-cell *matCellDef="let row;">{{row.name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="descr">
+          <mat-header-cell *matHeaderCellDef>{{"common.descr"|translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let row;">{{row.descr}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="recruit">
@@ -125,12 +130,7 @@
 
         <ng-container matColumnDef="updateAt">
           <mat-header-cell *matHeaderCellDef>{{"common.updateAt"|translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.updateAt}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="assignFor">
-          <mat-header-cell *matHeaderCellDef>{{"common.assignFor"|translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.assignFor}}</mat-cell>
+          <mat-cell *matCellDef="let row;">{{row.updateAt | date:'y-M-d HH:mm:ss'}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="operation">

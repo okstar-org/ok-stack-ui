@@ -10,6 +10,13 @@
       <mat-label>{{"common.no"|translate}}</mat-label>
       <input matInput formControlName="no">
     </mat-form-field>
+    <mat-form-field class="field-full-width">
+      <mat-label>{{"common.enable"|translate}}</mat-label>
+      <mat-select formControlName="disabled" required>
+        <mat-option [value]="false">{{"common.enable"|translate}}</mat-option>
+        <mat-option [value]="true">{{"common.disable"|translate}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </form>
 </mat-dialog-content>
 

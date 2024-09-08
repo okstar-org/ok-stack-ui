@@ -51,7 +51,7 @@ export class DynamicFlatNode {
   ) {}
 }
 
-export interface OrgPost {
+export interface OrgPost extends DTO {
   id: number;
 
   /**
@@ -73,11 +73,6 @@ export interface OrgPost {
    * 所在部门
    */
   deptId: number | null;
-
-  /**
-   * 分配给（是否分配）
-   */
-  assignFor: string;
 
   /**
    * 招聘链接

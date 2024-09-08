@@ -6,7 +6,7 @@ export type ControlsOf<T extends Record<string, any>> = {
 
 export interface IProfile {
   id: number;
-  // accountId: number;
+  uuid: string;
   identify: string;
   firstName: string;
   lastName: string;
@@ -19,4 +19,5 @@ export interface IProfile {
   telephone: string;
   website: string;
   birthday: string;
+  language: string;
 }

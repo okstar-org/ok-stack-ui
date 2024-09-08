@@ -13,19 +13,20 @@ import { NGXLogger } from 'ngx-logger';
 export class ProfileSettingsComponent extends OkDetailComponent implements OnInit {
   reactiveForm = this.fb.nonNullable.group({
     id: [0, [Validators.required]],
-    // accountId: [0, [Validators.required]],
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
     identify: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     gender: ['', [Validators.required]],
+    phone: [''],
     country: [''],
     city: [''],
     address: [''],
-    phone: ['', [Validators.required]],
     telephone: [''],
     website: [''],
     birthday: [''],
+    uuid: [''],
+    language: [''],
   });
 
   constructor(

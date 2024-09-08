@@ -59,7 +59,8 @@
             <mat-label>{{'common.email'|translate}}</mat-label>
             <input matInput placeholder="Put your email" formControlName="email" required>
             <mat-error *ngIf="reactiveForm.get('email')?.invalid">
-              {{getErrorMessage(reactiveForm)}}</mat-error>
+              {{getErrorMessage(reactiveForm)}}
+            </mat-error>
           </mat-form-field>
         </div>
 
@@ -74,8 +75,7 @@
           <mat-form-field>
             <mat-label>{{'common.phone'|translate}}</mat-label>
             <input matInput placeholder="Put your mobile phone number" type="string"
-                   formControlName="phone"
-                   required>
+                   formControlName="phone">
             <mat-icon matSuffix>smartphone</mat-icon>
             <mat-error *ngIf="reactiveForm.get('phone')?.invalid">Please enter mobile</mat-error>
           </mat-form-field>
@@ -91,9 +91,7 @@
         <div class="col-sm-6 col-xl-4">
           <mat-form-field>
             <mat-label>{{'common.telephone'|translate}}</mat-label>
-            <input matInput placeholder="Put your telephone number" type="number"
-                   formControlName="telephone"
-                   required>
+            <input matInput placeholder="Put your telephone number" type="string" formControlName="telephone">
             <mat-icon matSuffix>phone</mat-icon>
             <mat-error *ngIf="reactiveForm.get('telephone')?.invalid">Please enter tele</mat-error>
           </mat-form-field>

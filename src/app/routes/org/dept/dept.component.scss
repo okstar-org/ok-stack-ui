@@ -5,7 +5,6 @@
 .selected {
   a {
     font-weight: bold;
-    color: blueviolet !important;
   }
 }
 
@@ -13,7 +12,7 @@
   .col {
     flex-basis: 0;
     width: 300px;
-    
+
     &:first-child {
       flex-grow: .3;
     }
@@ -40,10 +39,6 @@
   width: 8em;
 }
 
-.mat-column-assignFor {
-  max-width: 6em;
-}
-
 .mat-tree-node {
   position: relative;
 
@@ -66,4 +61,14 @@
       display: inline-block;
     }
   }
+
+
+.depart-tree-node{
+  width: 5em;
+
+  &.disabled {
+    color: #ccc;
+  }
+}
+
 }

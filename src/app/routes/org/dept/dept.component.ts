@@ -191,7 +191,7 @@ export class DeptDataSource extends DataSource<OrgDept> {
   providers: [DynamicDatabase],
 })
 export class DeptComponent implements OnInit {
-  displayedColumns = ['no', 'name', 'recruit', 'updateAt', 'assignFor', 'operation'];
+  displayedColumns = ['no', 'name', 'descr', 'recruit', 'updateAt', 'operation'];
   dataSource: any;
   userDataSource!: DeptDataSource;
   selectedDeptId!: number;
@@ -202,6 +202,7 @@ export class DeptComponent implements OnInit {
     no: ['', [Validators.required]],
     name: ['', [Validators.required]],
     url: [''],
+    uuid: [''],
     location: [''],
     avatar: [''],
     cert: [''],
@@ -250,7 +251,11 @@ export class DeptComponent implements OnInit {
   onClickDept(node: DynamicFlatNode) {
     this.selectedDeptId = node.id;
     this.selectedNode = node;
-    this.svc.findPostByDept(node.id).subscribe(r => {
+    this.loadDeptPost(node.id);
+  }
+
+  loadDeptPost(deptId: number) {
+    this.svc.findPostByDept(deptId).subscribe(r => {
       this.userDataSource.setData(r);
     });
   }
@@ -309,10 +314,10 @@ export class DeptComponent implements OnInit {
       deptId: dept.id,
       id: 0,
       no: '',
+      uuid: '',
       name: '',
       descr: '',
       recruit: '',
-      assignFor: '',
       disabled: false,
     };
     this.dialog
@@ -357,9 +362,7 @@ export class DeptComponent implements OnInit {
       .afterClosed()
       .subscribe(btn => {
         if (btn) {
-          this.svc.findPostByDept(this.selectedDeptId).subscribe(r => {
-            this.userDataSource.setData(r);
-          });
+          setTimeout(() => this.loadDeptPost(this.selectedDeptId), 1000);
         }
       });
   }

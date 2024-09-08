@@ -9,6 +9,7 @@ export { api };
 
 export interface Org {
   id: number;
+  uuid: string;
   /**
    * 名称
    */
