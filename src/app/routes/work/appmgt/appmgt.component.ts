@@ -4,6 +4,8 @@ import { AppmgtService } from './appmgt.service';
 import { PageEvent } from '@angular/material/paginator';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { Router } from '@angular/router';
+import { TranslateLangService } from '@core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-appmgt',
@@ -13,11 +15,11 @@ import { Router } from '@angular/router';
 export class AppmgtComponent implements OnInit {
   columns: MtxGridColumn[] = [
     { header: '', field: 'avatar', type: 'image', width: '50px' },
-    { header: '名称', field: 'name' },
-    { header: '简介', field: 'descr', width: '300px' },
-    { header: '作者', field: 'author' },
-    { header: '邮箱', field: 'mail' },
-    { header: '主页', field: 'homePage', type: 'link' },
+    { header: this.translate.stream('common.name'), field: 'name' },
+    { header: this.translate.stream('common.descr'), field: 'descr', width: '300px' },
+    { header: this.translate.stream('common.provider'), field: 'author' },
+    { header: this.translate.stream('common.email'), field: 'mail' },
+    { header: this.translate.stream('common.website'), field: 'homePage', type: 'link' },
     {
       header: '',
       field: 'operation',
@@ -48,6 +50,7 @@ export class AppmgtComponent implements OnInit {
   };
 
   constructor(
+    private translate: TranslateService,
     private router: Router,
     private appService: AppmgtService
   ) {}
