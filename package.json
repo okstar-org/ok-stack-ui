@@ -1,6 +1,6 @@
 {
   "name": "ok-stack-ui",
-  "version": "24.09.00-1",
+  "version": "24.09.01",
   "engines": {
     "node": ">=16.0.0 <20.0.0",
     "yarn": ">=1.22.0 <2",
@@ -8,20 +8,20 @@
   },
   "scripts": {
     "ng": "ng",
+    "postinstall": "node git-version.js",
     "start": "ng serve",
     "test": "ng test",
     "e2e": "ng e2e",
-    "build": "ng build",
-    "build:release": "ng build --configuration=production",
+    "build": "npm run postinstall && ng build",
+    "build:release": "npm run postinstall && ng build --configuration=production",
     "lint": "npm run lint:ts && npm run lint:scss",
     "lint:ts": "eslint \"src/**/*.ts\" --fix",
     "lint:scss": "stylelint \"src/**/*.scss\" --fix",
     "hmr": "ng serve --hmr",
     "deploy": "ng deploy",
-    "release": "npm run build:release && npm run rsync",
+    "release": "npm run build:release",
     "publish": "npm run build:schematics && cd dist/schematics && npm publish",
-    "prepare": "husky install",
-    "rsync":"sh .rsync.sh"
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -43,6 +43,7 @@
     "@ngx-formly/material": "^6.2.2",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
+    "@w11k/git-info": "^1.1.2",
     "apexcharts": "^3.26.3",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
@@ -73,6 +74,9 @@
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
     "eslint": "^8.50.0",
+    "fs-extra": "6.0.1",
+    "git-describe": "4.1.1",
+    "git-revision-webpack-plugin": "^5.0.0",
     "husky": "^8.0.3",
     "jasmine-core": "~4.6.0",
     "jasmine-spec-reporter": "~7.0.0",
