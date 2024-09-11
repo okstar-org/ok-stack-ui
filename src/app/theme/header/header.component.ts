@@ -1,4 +1,4 @@
-import { logging } from 'protractor';
+import { VERSION } from 'environments/version';
 import { HttpClient } from '@angular/common/http';
 import {
   Component,
@@ -35,8 +35,15 @@ export class HeaderComponent implements OnInit {
   @Output() toggleSidenavNotice = new EventEmitter<void>();
 
   ver: Ver = new Ver();
+  uiVer: Ver = new Ver();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log(
+      `UI version is: ${VERSION.version}, git-tag=${VERSION.tag}, git-hash=${VERSION.hash}`
+    );
+    this.uiVer.id = VERSION.raw;
+    this.uiVer.abbrev = VERSION.tag;
+  }
 
   ngOnInit(): void {
     this.http.get('/api/sys/.well-known/git.json').subscribe(r => {

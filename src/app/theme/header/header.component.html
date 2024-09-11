@@ -7,7 +7,8 @@
 
   <span class="flex-fill" >
     <span *ngIf="ver.id" class="ok-ver">
-      Ver:<a [href]="'https://gitee.com/okstar-org/ok-stack-backend/commit/'+ver.id" target="_blank" class="href">{{ver.abbrev}}@{{ver.branch}}</a>
+      UI Ver: <a [href]="'https://github.com/okstar-org/ok-stack-ui/commit/'+uiVer.id" target="_blank" class="href">{{uiVer.id}}</a>
+      Backend Ver:<a [href]="'https://github.com/okstar-org/ok-stack-backend/commit/'+ver.id" target="_blank" class="href">{{ver.abbrev}}@{{ver.branch}}</a>
       &nbsp;
       Build at:{{ver.time}}
     </span>

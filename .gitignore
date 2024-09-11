@@ -47,3 +47,5 @@ testem.log
 Thumbs.db
 
 .rsync.sh
+
+src/environments/version.ts
