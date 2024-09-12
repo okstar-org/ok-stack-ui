@@ -38,11 +38,9 @@ export class HeaderComponent implements OnInit {
   uiVer: Ver = new Ver();
 
   constructor(private http: HttpClient) {
-    console.log(
-      `UI version is: ${VERSION.version}, git-tag=${VERSION.tag}, git-hash=${VERSION.hash}`
-    );
     this.uiVer.id = VERSION.raw;
     this.uiVer.abbrev = VERSION.tag;
+    console.log(`UI version is: `, this.uiVer);
   }
 
   ngOnInit(): void {
@@ -50,6 +48,7 @@ export class HeaderComponent implements OnInit {
       if (!r) {
         return;
       }
+
       for (const k in r) {
         const v = (r as any)[k];
         if (k === 'git.branch') {
@@ -62,6 +61,8 @@ export class HeaderComponent implements OnInit {
           this.ver.abbrev = v;
         }
       }
+
+      console.log(`Backend version is:`, this.ver);
     });
   }
 

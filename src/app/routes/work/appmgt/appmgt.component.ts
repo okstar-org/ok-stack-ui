@@ -1,3 +1,4 @@
+import { workRoutes } from './../work.routing';
 import { Res } from './../../../core/authentication/interface';
 import { Component, OnInit } from '@angular/core';
 import { AppmgtService } from './appmgt.service';
@@ -14,11 +15,16 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppmgtComponent implements OnInit {
   columns: MtxGridColumn[] = [
     { header: '', field: 'avatar', type: 'image', width: '50px' },
-    { header: this.translate.stream('common.name'), field: 'name' },
-    { header: this.translate.stream('common.descr'), field: 'descr', width: '300px' },
-    { header: this.translate.stream('common.provider'), field: 'author' },
-    { header: this.translate.stream('common.email'), field: 'mail' },
-    { header: this.translate.stream('common.website'), field: 'homePage', type: 'link' },
+    { header: this.translate.stream('common.name'), field: 'name', width: '10em' },
+    { header: this.translate.stream('common.descr'), field: 'descr' },
+    { header: this.translate.stream('common.provider'), field: 'author', width: '10em' },
+    { header: this.translate.stream('common.email'), field: 'mail', width: '10em' },
+    {
+      header: this.translate.stream('common.website'),
+      field: 'homePage',
+      type: 'link',
+      width: '20em',
+    },
     {
       header: '',
       field: 'operation',
