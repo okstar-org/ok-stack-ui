@@ -4,7 +4,6 @@ import { AppmgtService } from './appmgt.service';
 import { PageEvent } from '@angular/material/paginator';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { Router } from '@angular/router';
-import { TranslateLangService } from '@core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
