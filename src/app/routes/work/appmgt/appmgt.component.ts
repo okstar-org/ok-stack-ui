@@ -18,7 +18,7 @@ export class AppmgtComponent implements OnInit {
     { header: this.translate.stream('common.name'), field: 'name', width: '10em' },
     { header: this.translate.stream('common.descr'), field: 'descr' },
     { header: this.translate.stream('common.provider'), field: 'author', width: '10em' },
-    { header: this.translate.stream('common.email'), field: 'mail', width: '10em' },
+    { header: this.translate.stream('common.email'), field: 'email', width: '10em' },
     {
       header: this.translate.stream('common.website'),
       field: 'homePage',
