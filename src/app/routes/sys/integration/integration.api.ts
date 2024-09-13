@@ -44,7 +44,13 @@ export interface EyeIconState {
   apiSecret: boolean;
 }
 class Api implements OkApi {
-  save = '';
+  save = '/api/sys/conf/integration';
+  putStack = '/api/sys/conf/integration/stack';
+  testStack = '/api/sys/conf/integration/stack/test';
+  putKeycloak = '/api/sys/conf/integration/keycloak';
+  testKeycloak = '/api/sys/conf/integration/keycloak/test';
+  putIm = '/api/sys/conf/integration/im';
+  testIm = '/api/sys/conf/integration/im/test';
   page = '';
   update = '/api/sys/conf/integration';
   findById = '/api/sys/conf/integration';

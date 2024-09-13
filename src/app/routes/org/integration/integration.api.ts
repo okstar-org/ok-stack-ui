@@ -1,25 +1,6 @@
 import { OkApi } from '@shared/api/ok';
 
-export interface SysConfIntegrationIm {
-  host: string;
-  adminPort: number;
-  apiSecret: string;
-}
-
-export interface SysConfIntegrationStack {
-  fqdn: string;
-}
-
-export interface SysConfIntegrationKeycloak {
-  serverUrl: string;
-  realm: string;
-  clientId: string;
-  username: string;
-  password: string;
-  clientSecret: string;
-}
-
-export interface SysConfIntegration {
+export interface OrgIntegrationConf {
   type: string;
   appId: string;
   name: string;
@@ -29,23 +10,11 @@ export interface SysConfIntegration {
   rootDeptId: string;
 }
 
-export interface SysSetPersonal {
-  accountId: number;
-  //zh-CN
-  language: string;
-}
-
-export interface SysSetLocale {
-  //中文(中国)
-  label: string;
-  //zh-CN
-  value: string;
-}
-
 export interface EyeIconState {
   certKey: boolean;
   certSecret: boolean;
 }
+
 class Api implements OkApi {
   save = '';
   page = '';

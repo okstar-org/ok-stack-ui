@@ -18,6 +18,17 @@
           />
         </div>
       </div>
+      <div class="row">
+        <div class="col col-left col-2"></div>
+        <div class="col col-right">
+          <button mat-stroked-button color="primary" (click)="onStackSave(integration.stack)" class="m-8">
+            <mat-icon class="icon-8">save</mat-icon>{{"common.save"|translate}}
+          </button>
+          <button mat-stroked-button color="primary" (click)="onStackTest(integration.stack)" class="m-8">
+            <mat-icon class="icon-8">check</mat-icon>{{"common.test"|translate}}
+          </button>
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
 
@@ -129,6 +140,17 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col col-left col-2"></div>
+        <div class="col col-right">
+          <button mat-stroked-button color="primary" (click)="onKeycloakSave(integration.keycloak)" class="m-8">
+            <mat-icon class="icon-8">save</mat-icon>{{"common.save"|translate}}
+          </button>
+          <button mat-stroked-button color="primary" (click)="onKeycloakTest(integration.keycloak)" class="m-8">
+            <mat-icon class="icon-8">check</mat-icon>{{"common.test"|translate}}
+          </button>
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
 
@@ -137,22 +159,6 @@
       <h2>{{ 'sys.integration.IMSettings' | translate }}</h2>
     </mat-card-header>
     <mat-card-content>
-      <!-- <div class="row">
-        <div class="col col-left col-2">
-          {{"common.enable"|translate}}/{{"common.disable"|translate}}：</div>
-        <div class="col col-right"><mat-slide-toggle color="primary"
-                            [(ngModel)]="integration.integrationEnable"
-                            (ngModelChange)="onChange()"></mat-slide-toggle></div>
-      </div>
-
-      <div class="row">
-        <div class="col col-left col-2">{{"sys.integration.new_account_verify"|translate}}：</div>
-        <div class="col col-right"> <mat-slide-toggle color="primary"
-                            [(ngModel)]="integration.verifyAccount"
-                            (ngModelChange)="onChange()"></mat-slide-toggle></div>
-
-      </div> -->
-
       <div class="row">
         <div class="col col-left col-2">{{ 'sys.integration.host' | translate }}：</div>
         <div class="col col-right">
@@ -198,6 +204,18 @@
               <mat-icon>content_copy</mat-icon>
             </button>
           </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-left col-2"></div>
+        <div class="col col-right">
+          <button mat-stroked-button color="primary" (click)="onImSave(integration.im)" class="m-8">
+            <mat-icon class="icon-8">save</mat-icon>{{"common.save"|translate}}
+          </button>
+          <button mat-stroked-button color="primary" (click)="onImTest(integration.im)" class="m-8">
+            <mat-icon class="icon-8">check</mat-icon>{{"common.test"|translate}}
+          </button>
         </div>
       </div>
     </mat-card-content>
