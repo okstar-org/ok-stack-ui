@@ -12,7 +12,6 @@
           <input
             matInput
             [(ngModel)]="integration.stack.fqdn"
-            (blur)="onChange()"
             required
             placeholder="https://stack.okstar.org"
           />
@@ -45,7 +44,6 @@
           <input
             matInput
             [(ngModel)]="integration.keycloak.serverUrl"
-            (blur)="onChange()"
             required
             placeholder="http://keycloak:8080"
           />
@@ -58,7 +56,6 @@
           <input
             matInput
             [(ngModel)]="integration.keycloak.realm"
-            (blur)="onChange()"
             required
             placeholder="Realm"
           />
@@ -73,7 +70,6 @@
           <input
             matInput
             [(ngModel)]="integration.keycloak.clientId"
-            (blur)="onChange()"
             required
             placeholder="Client Id"
           />
@@ -88,7 +84,6 @@
           <input
             matInput
             [(ngModel)]="integration.keycloak.username"
-            (blur)="onChange()"
             required
           />
         </div>
@@ -103,7 +98,6 @@
             matInput
             type="{{ eyeIcon.password ? 'text' : 'password' }}"
             [(ngModel)]="integration.keycloak.password"
-            (blur)="onChange()"
             required
           />
           <div class="operate">
@@ -126,7 +120,6 @@
             matInput
             type="{{ eyeIcon.clientSecret ? 'text' : 'password' }}"
             [(ngModel)]="integration.keycloak.clientSecret"
-            (blur)="onChange()"
             required
             placeholder="Client Secret"
           />
@@ -165,7 +158,6 @@
           <input
             matInput
             [(ngModel)]="integration.im.host"
-            (blur)="onChange()"
             required
             placeholder="meet.okstar.org"
           />
@@ -178,7 +170,6 @@
           <input
             matInput
             [(ngModel)]="integration.im.adminPort"
-            (blur)="onChange()"
             required
             placeholder="9090"
           />
@@ -192,7 +183,6 @@
             matInput
             type="{{ eyeIcon.apiSecret ? 'text' : 'password' }}"
             [(ngModel)]="integration.im.apiSecret"
-            (blur)="onChange()"
             required
             placeholder="Secret key"
           />
