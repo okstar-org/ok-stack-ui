@@ -1,4 +1,4 @@
-import { ID, OkApi, OkResult, ResList } from '../api/ok';
+import { OkApi, OkResult, ResList } from '../api/ok';
 import { NGXLogger } from 'ngx-logger';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -19,7 +19,7 @@ export class OkItemService {
 
   getDetail(id: string | number, params = {}): Observable<any> {
     return this.http
-      .get<OkResult<any>>(this.api.findById + '/' + id, { params })
+      .get<OkResult<any>>(this.api.findById + (id ? '/' + id : ''), { params })
       .pipe(map((r: OkResult<any>) => r.data));
   }
 

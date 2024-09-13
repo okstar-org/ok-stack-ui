@@ -326,26 +326,6 @@ export class DeptComponent implements OnInit {
       .subscribe(r => {});
   }
 
-  onSync() {
-    this.logger.info('sync');
-    // this.svc.sync().subscribe(r => {
-    //   this.logger.info('sync=>', r);
-    //   this.database.initialData().subscribe(r2 => {
-    //     this.dataSource.data = r2;
-    //   });
-    // });
-  }
-
-  onSyncUser() {
-    this.logger.info('syncUser');
-    // this.svc.syncUser().subscribe(r => {
-    // this.logger.info('syncUser=>', r);
-    // this.database.initialData().subscribe(r2 => {
-    //   this.userDataSource.setData(r2);
-    // });
-    // });
-  }
-
   onEditPost(row: OrgPost) {
     const data = JSON.parse(JSON.stringify(row)) as typeof row;
 

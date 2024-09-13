@@ -8,6 +8,7 @@
     "org.dept": "部门管理",
     "org.staff": "人员管理",
     "org.perm": "权限管理",
+    "org.integration": "集成设置",
     "sys": "系统管理",
     "sys.personal": "个人设置",
     "sys.integration": "集成设置",
@@ -115,6 +116,18 @@
       "add": {
         "title": "编辑部门信息"
       }
+    },
+    "integration":{
+      "connector": {
+        "WX": "企微",
+        "DD": "钉钉",
+        "FS": "飞书"
+      },
+      "appId": "应用 ID",
+      "key": "应用 Key",
+      "secret": "应用 Secret",
+      "baseUrl": "基础 Url",
+      "rootDeptId": "根部门 ID"
     },
     "staff": {
       "tab": {
@@ -265,13 +278,6 @@
       "adminPort": "IM 服务器管理端口",
       "apiSecret":"IM 访问密钥",
       "fqdn": "Stack URL"
-    },
-    "conn": {
-      "tab": {
-        "dt": "钉钉",
-        "wx": "企微",
-        "fs": "飞书"
-      }
     }
   },
   "bpm": {
@@ -374,11 +380,10 @@
     "url":"URL",
     "location":"位置",
     "cert":"认证编号",
-    "con": {
-      "WX": "企微",
-      "DT": "钉钉",
-      "FS": "飞书"
-    }
+    "test":"测试",
+    "success":"成功",
+    "failure":"失败",
+    "copied":"已复制"
   },
   "support": {
     "can_not": "您的浏览器不支持该功能，请升级最新版谷歌或者火狐浏览器！",

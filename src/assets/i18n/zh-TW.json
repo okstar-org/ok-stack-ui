@@ -8,9 +8,11 @@
     "org.dept": "部門管理",
     "org.staff": "人員管理",
     "org.perm": "權限管理",
+    "org.integration": "集成设置",
     "sys": "系統管理",
     "sys.basic": "基礎設置",
     "sys.open": "開放設置",
+    "sys.integration": "集成设置",
     "meet": "會議管理",
     "meet.history": "記錄管理",
     "work": "工作平臺",
@@ -107,6 +109,18 @@
         "title": "編輯部門信息"
       }
     },
+    "integration":{
+        "connector": {
+          "WX": "企業微信",
+          "DD": "釘釘",
+          "FS": "飛書"
+        },
+        "appId": "應用 ID",
+        "key": "應用 Key",
+        "secret": "應用 Secret",
+        "baseUrl": "基礎 Url",
+        "rootDeptId": "根部門 ID"
+      },
     "staff": {
       "tab": {
         "pending": "待入職",
@@ -121,6 +135,7 @@
         "descr": "描述",
         "createAt": "創建時間"
       },
+
       "post": {
         "list": "崗位列表"
       },
@@ -347,11 +362,16 @@
     "provider": "供應商",
     "period": "周期",
     "null": "-",
-    "con": {
-      "WX": "企微",
-      "DT": "钉钉",
-      "FS": "飞书"
-    }
+    "deptName": "部門",
+    "postName": "崗位",
+    "org":"組織",
+    "url":"URL",
+    "location":"位置",
+    "cert":"認證編號",
+    "test":"測試",
+    "success":"成功",
+    "failure":"失敗",
+    "copied":"已復制"
   },
   "support": {
     "can_not": "您的瀏覽器不支持該功能，請陞級最新版穀歌或者火狐瀏覽器！",

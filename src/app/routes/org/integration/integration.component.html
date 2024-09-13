@@ -1,0 +1,103 @@
+<breadcrumb></breadcrumb>
+
+<section *ngIf="integrations">
+  <mat-card class="demo-card" role="group" *ngFor="let integration of integrations">
+    <mat-card-header>
+      <h2>{{ 'org.integration.connector.'+integration.type | translate }}</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col col-left col-2">{{ 'org.integration.appId' | translate }}：</div>
+        <div class="col col-right">
+          <input
+            matInput
+            [(ngModel)]="integration.appId"
+            (blur)="onChange()"
+            required
+            placeholder="App Id"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-left col-2">{{ 'org.integration.key' | translate }}：</div>
+        <div class="col col-right">
+          <input
+            matInput
+            type="{{ eyeIcon.certKey ? 'text' : 'password' }}"
+            [(ngModel)]="integration.certKey"
+            (blur)="onChange()"
+            required
+            placeholder="App Key"
+          />
+          <div class="operate">
+            <button mat-button (click)="eyeIconChange('certKey')">
+              <mat-icon>{{ eyeIcon.certKey ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <button mat-button (click)="copy(integration.certKey)">
+              <mat-icon>content_copy</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-left col-2">{{ 'org.integration.secret' | translate }}：</div>
+        <div class="col col-right">
+          <input
+            matInput
+            type="{{ eyeIcon.certSecret ? 'text' : 'password' }}"
+            [(ngModel)]="integration.certSecret"
+            (blur)="onChange()"
+            required
+            placeholder="App Secret"
+          />
+          <div class="operate">
+            <button mat-button (click)="eyeIconChange('certSecret')">
+              <mat-icon>{{ eyeIcon.certSecret ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <button mat-button (click)="copy(integration.certSecret)">
+              <mat-icon>content_copy</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-left col-2">{{ 'org.integration.baseUrl' | translate }}：</div>
+        <div class="col col-right">
+          <input
+            matInput
+            [(ngModel)]="integration.baseUrl"
+            (blur)="onChange()"
+            required
+            placeholder="Base Url"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-left col-2">{{ 'org.integration.rootDeptId' | translate }}：</div>
+        <div class="col col-right">
+          <input
+            matInput
+            [(ngModel)]="integration.rootDeptId"
+            (blur)="onChange()"
+            required
+            placeholder="Root deptartment Id"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-left col-2"></div>
+        <div class="col col-right">
+          <button mat-stroked-button color="primary" (click)="onSave(integration)" class="m-8">
+            <mat-icon class="icon-8">save</mat-icon>{{"common.save"|translate}}
+          </button>
+          <button mat-stroked-button color="primary" (click)="onTest(integration)" class="m-8">
+            <mat-icon class="icon-8">check</mat-icon>{{"common.test"|translate}}
+          </button>
+          <button mat-stroked-button color="primary" (click)="onSync()" class="m-8">
+            <mat-icon class="icon-8">sync</mat-icon>{{"common.sync"|translate}}
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

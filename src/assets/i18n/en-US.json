@@ -8,9 +8,10 @@
     "org.dept": "Depart. Management",
     "org.staff": "Staff Management",
     "org.perm": "Permissions",
+    "org.integration": "Integration",
     "sys": "System Management",
-    "sys.personal": "Personal Settings",
-    "sys.integration": "integration Settings",
+    "sys.personal": "Personal",
+    "sys.integration": "Integrations",
     "sys.open": "Open API",
     "meet": "Meet Management",
     "meet.history": "Records",
@@ -107,6 +108,18 @@
       "add": {
         "title": "Edit departments informations"
       }
+    },
+    "integration":{
+      "connector": {
+        "WX": "WeChat",
+        "DD": "Dingtalk",
+        "FS": "Feishu"
+      },
+      "appId": "App ID",
+      "key": "App Key",
+      "secret": "App Secret",
+      "baseUrl": "Base Url",
+      "rootDeptId": "Root id of department"
     },
     "staff": {
       "tab": {
@@ -266,8 +279,12 @@
     "postName": "Position",
     "org":"Organization",
     "url":"URL",
-    "location":"Location",
-    "cert":"Cert. No.",
+    "location": "Location",
+    "cert": "Cert. No.",
+    "test": "Test",
+    "success":"Success",
+    "failure": "Failure",
+    "copied": "Copied",
     "con": {
       "WX": "WeChat",
       "DT": "Dingtalk",

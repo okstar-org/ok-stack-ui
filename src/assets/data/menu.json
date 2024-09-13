@@ -26,6 +26,11 @@
           "route": "perm",
           "name": "perm",
           "type": "link"
+        },
+        {
+          "route": "integration",
+          "name": "integration",
+          "type": "link"
         }
       ]
     },

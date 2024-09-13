@@ -1,0 +1,43 @@
+.mat-select {
+  display: inline-block;
+  width: 20em;
+}
+
+.row {
+  padding: 6px 0;
+}
+
+.col-left {
+  text-align: right;
+}
+
+.col-right {
+  position: relative;
+  text-align: left;
+
+  .operate{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 285px;
+    display: flex;
+    align-items: center;
+    margin: auto 0;
+
+    .mdc-button{
+      width: 35px;
+      min-width: 35px;
+      height: 35px;
+      padding: 0;
+
+      .mat-icon{
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.mat-mdc-input-element {
+  width: 350px;
+  height: 35px;
+}
