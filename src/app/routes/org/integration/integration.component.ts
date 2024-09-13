@@ -55,14 +55,21 @@ export class IntegrationComponent implements OnInit {
     // });
   }
 
-  onSave(item: SysConfIntegration) {}
+  onSave(item: SysConfIntegration) {
+    this.integrationSrv.updateItem(api.update, item).subscribe(r => {
+      console.log(r);
+      if (r) {
+        this.toastr.success(this.translateService.instant('common.success'));
+      }
+    });
+  }
 
   onTest(item: SysConfIntegration) {
     this.integrationSrv.test(item.type, item).subscribe(r => {
       if (r) {
-        alert(this.translateService.instant('common.success'));
+        this.toastr.success(this.translateService.instant('common.success'));
       } else {
-        alert(this.translateService.instant('common.failure'));
+        this.toastr.error(this.translateService.instant('common.failure'));
       }
     });
   }

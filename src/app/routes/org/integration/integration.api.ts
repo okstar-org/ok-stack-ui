@@ -49,7 +49,7 @@ export interface EyeIconState {
 class Api implements OkApi {
   save = '';
   page = '';
-  update = '/api/sys/conf/integration';
+  update = '/api/org/integration/conf/update';
   findById = '/api/org/integration/conf/list';
   test = '/api/org/integration/conf/test';
 }
