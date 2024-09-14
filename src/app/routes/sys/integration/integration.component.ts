@@ -53,7 +53,11 @@ export class IntegrationComponent implements OnInit {
 
   onStackTest(stack: SysConfIntegrationStack) {
     this.integrationSrv.testStack(stack).subscribe(r => {
-      console.log(r);
+      if (r) {
+        this.toastr.success(this.transalteService.instant('common.success'));
+      } else {
+        this.toastr.warning(this.transalteService.instant('common.failure'));
+      }
     });
   }
 
@@ -67,7 +71,11 @@ export class IntegrationComponent implements OnInit {
 
   onKeycloakTest(kc: SysConfIntegrationKeycloak) {
     this.integrationSrv.testKeycloak(kc).subscribe(r => {
-      console.log(r);
+      if (r) {
+        this.toastr.success(this.transalteService.instant('common.success'));
+      } else {
+        this.toastr.warning(this.transalteService.instant('common.failure'));
+      }
     });
   }
 
@@ -81,7 +89,11 @@ export class IntegrationComponent implements OnInit {
 
   onImTest(im: SysConfIntegrationIm) {
     this.integrationSrv.testIm(im).subscribe(r => {
-      console.log(r);
+      if (r) {
+        this.toastr.success(this.transalteService.instant('common.success'));
+      } else {
+        this.toastr.warning(this.transalteService.instant('common.failure'));
+      }
     });
   }
 
