@@ -45,21 +45,22 @@ export class IntegrationComponent implements OnInit {
     }
   }
 
-  onSync() {
-    // this.logger.info('sync');
-    // this.svc.sync().subscribe(r => {
-    //   this.logger.info('sync=>', r);
-    //   this.database.initialData().subscribe(r2 => {
-    //     this.dataSource.data = r2;
-    //   });
-    // });
+  onSync(item: OrgIntegrationConf) {
+    this.integrationSrv.sync(item.type, item).subscribe(r => {
+      if (r) {
+        this.toastr.success(this.translateService.instant('common.success'));
+      } else {
+        this.toastr.error(this.translateService.instant('common.failure'));
+      }
+    });
   }
 
   onSave(item: OrgIntegrationConf) {
     this.integrationSrv.updateItem(api.update, item).subscribe(r => {
-      console.log(r);
       if (r) {
         this.toastr.success(this.translateService.instant('common.success'));
+      } else {
+        this.toastr.error(this.translateService.instant('common.failure'));
       }
     });
   }

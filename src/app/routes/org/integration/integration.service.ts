@@ -20,4 +20,8 @@ export class IntegrationService extends OkItemService {
   test(type: string, params = {}): Observable<any> {
     return this.http.post<any>(api.test + '/' + type, params).pipe(map((r: any) => r.data));
   }
+
+  sync(type: string, params = {}): Observable<any> {
+    return this.http.put<any>(api.sync + '/' + type, params).pipe(map((r: any) => r.data));
+  }
 }

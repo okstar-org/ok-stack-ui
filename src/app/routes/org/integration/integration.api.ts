@@ -21,6 +21,7 @@ class Api implements OkApi {
   update = '/api/org/integration/conf/update';
   findById = '/api/org/integration/conf/list';
   test = '/api/org/integration/conf/test';
+  sync = '/api/org/integration/conf/sync';
 }
 
 const api = new Api();
