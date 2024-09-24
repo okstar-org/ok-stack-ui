@@ -1,0 +1,24 @@
+<breadcrumb></breadcrumb>
+<div    >
+  <mat-card class="ok-sys-card">
+    <mat-card-actions align="start" style="margin: 0;">
+      <a href="https://kc.okstar.org.cn/admin/master/console/#/ok-star/clients/081d799e-e0c8-449a-8a13-22619d8c1c26/authorization/resources" target="_blank">
+        <button mat-button mat-raised-button class="m-8 m-x-26">
+          {{"common.management"|translate}}
+        </button>
+      </a>
+    </mat-card-actions>
+    <mtx-grid
+      [data]="list"
+      [columns]="columns"
+      [length]="total"
+      [loading]="isLoading"
+      [pageOnFront]="false"
+      [pageIndex]="query.pageIndex"
+      [pageSize]="query.pageSize"
+      [pageSizeOptions]="[5, 10, 20]"
+      (page)="getNextPage($event)"
+    >
+    </mtx-grid>
+  </mat-card>
+</div>

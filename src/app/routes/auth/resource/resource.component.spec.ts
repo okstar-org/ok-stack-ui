@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PermComponent } from './perm.component';
+import { ResourceComponent } from './resource.component';
 
-describe('PermComponent', () => {
-  let component: PermComponent;
-  let fixture: ComponentFixture<PermComponent>;
+describe('ResourceComponent', () => {
+  let component: ResourceComponent;
+  let fixture: ComponentFixture<ResourceComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PermComponent],
+      declarations: [ResourceComponent],
     });
-    fixture = TestBed.createComponent(PermComponent);
+    fixture = TestBed.createComponent(ResourceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

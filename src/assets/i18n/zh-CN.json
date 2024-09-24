@@ -1,13 +1,13 @@
 {
   "menu": {
     "dashboard": "数据大盘",
-    "design": "设计",
-    "permissions": "权限管理",
-    "permissions.test": "权限测试",
+    "auth": "权限管理",
+    "auth.resource": "资源管理",
+    "auth.role": "角色管理",
+    "auth.conf": "权限配置",
     "org": "组织架构",
     "org.dept": "部门管理",
     "org.staff": "人员管理",
-    "org.perm": "权限管理",
     "org.integration": "集成设置",
     "sys": "系统管理",
     "sys.personal": "个人设置",
@@ -350,9 +350,14 @@
     "gender": "性别",
     "male": "男",
     "femle": "女",
+    "id": "ID",
     "name": "名称",
+    "displayName":"显示名",
     "firstName":"姓",
     "lastName":"名",
+    "type":"类型",
+    "uris":"URI",
+    "scopes":"范围",
     "address": "地址",
     "website": "网站",
     "username": "用户名",
@@ -383,7 +388,8 @@
     "test":"测试",
     "success":"成功",
     "failure":"失败",
-    "copied":"已复制"
+    "copied":"已复制",
+    "management":"管理"
   },
   "support": {
     "can_not": "您的浏览器不支持该功能，请升级最新版谷歌或者火狐浏览器！",

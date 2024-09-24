@@ -23,13 +23,31 @@
           "type": "link"
         },
         {
-          "route": "perm",
-          "name": "perm",
+          "route": "integration",
+          "name": "integration",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "route": "auth",
+      "name": "auth",
+      "type": "sub",
+      "icon":"lock",
+      "children": [
+        {
+          "route": "resource",
+          "name": "resource",
           "type": "link"
         },
         {
-          "route": "integration",
-          "name": "integration",
+          "route": "role",
+          "name": "role",
+          "type": "link"
+        },
+        {
+          "route": "configration",
+          "name": "conf",
           "type": "link"
         }
       ]
