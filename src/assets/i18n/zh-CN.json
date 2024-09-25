@@ -352,7 +352,7 @@
     "femle": "女",
     "id": "ID",
     "name": "名称",
-    "displayName":"显示名",
+    "displayName":"別名",
     "firstName":"姓",
     "lastName":"名",
     "type":"类型",
@@ -389,10 +389,12 @@
     "success":"成功",
     "failure":"失败",
     "copied":"已复制",
+    "description":"描述",
     "management":"管理"
   },
   "support": {
     "can_not": "您的浏览器不支持该功能，请升级最新版谷歌或者火狐浏览器！",
-    "input_warning": "本系统仅供测试使用，请勿输入涉及隐私等敏感信息！"
+    "input_warning": "本系统仅供测试使用，请勿输入涉及隐私等敏感信息！",
+    "coming_soon":"敬请期待!"
   }
 }

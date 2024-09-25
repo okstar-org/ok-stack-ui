@@ -1,8 +1,8 @@
 import { OkApi } from '@shared/api/ok';
 
 class Api implements OkApi {
-  page = '/api/auth/resource/page';
-  list = '/api/auth/resource/list';
+  page = '/api/auth/role/page';
+  list = '/api/auth/role/list';
   save = '';
   update = '';
   findById = '';

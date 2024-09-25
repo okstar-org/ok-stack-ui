@@ -14,11 +14,11 @@ import { ResourceService } from './resource.service';
 export class ResourceComponent {
   fmt = 'yy-MM-dd HH:mm:ss';
   columns: MtxGridColumn[] = [
-    {
-      header: this.translate.stream('common.id'),
-      field: 'id',
-      width: '120px',
-    },
+    // {
+    //   header: this.translate.stream('common.id'),
+    //   field: 'id',
+    //   width: '120px',
+    // },
     {
       header: this.translate.stream('common.name'),
       field: 'name',
@@ -28,9 +28,8 @@ export class ResourceComponent {
       field: 'displayName',
     },
     {
-      header: this.translate.stream('common.type'),
+      header: this.translate.stream('URN'),
       field: 'type',
-      width: '120px',
     },
 
     {
@@ -54,15 +53,15 @@ export class ResourceComponent {
       show: false,
       pinned: 'right',
 
-      buttons: [
-        {
-          type: 'icon',
-          icon: 'assignment_ind',
-          text: this.translate.instant('org.staff.pending.join'),
-          tooltip: this.translate.instant('org.staff.pending.join'),
-          click: row => {},
-        },
-      ],
+      // buttons: [
+      //   {
+      //     type: 'icon',
+      //     icon: 'edit',
+      //     text: this.translate.instant('common.edit'),
+      //     tooltip: this.translate.instant('common.edit'),
+      //     click: row => {},
+      //   },
+      // ],
     },
   ];
   list: any[] = [];
@@ -89,9 +88,8 @@ export class ResourceComponent {
 
   load() {
     this.isLoading = true;
-    this.srv.page(this.query).subscribe(res => {
-      this.list = res.list;
-      this.total = res.totalCount;
+    this.srv.list(this.query).subscribe(res => {
+      this.list = res;
       this.isLoading = false;
     });
   }

@@ -1,9 +1,10 @@
 {
   "menu": {
     "dashboard": "數據大盤",
-    "design": "設計",
-    "permissions": "權限管理",
-    "permissions.test": "權限測試",
+    "auth": "權限管理",
+    "auth.resource": "資源管理",
+    "auth.role": "角色管理",
+    "auth.conf": "權限配置",
     "org": "組織架構",
     "org.dept": "部門管理",
     "org.staff": "人員管理",
@@ -351,6 +352,7 @@
     "language": "语言",
     "language_set": "语言设置",
     "online": "在線狀態",
+    "displayName":"別名",
     "no": "編號",
     "createAt": "創建時間",
     "updateAt": "更新時間",
@@ -371,10 +373,13 @@
     "test":"測試",
     "success":"成功",
     "failure":"失敗",
-    "copied":"已復制"
+    "copied":"已復制",
+    "description":"描述",
+    "management":"管理"
   },
   "support": {
     "can_not": "您的瀏覽器不支持該功能，請陞級最新版穀歌或者火狐瀏覽器！",
-    "input_warning": "本系統僅供測試使用，請勿輸入涉及隱私等敏感資訊！"
+    "input_warning": "本系統僅供測試使用，請勿輸入涉及隱私等敏感資訊！",
+    "coming_soon":"敬請期待!"
   }
 }

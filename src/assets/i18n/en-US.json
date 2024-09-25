@@ -1,9 +1,10 @@
 {
   "menu": {
     "dashboard": "Dashboard",
-    "design": "Design",
-    "permissions": "Permissions",
-    "permissions.test": "Permission Test",
+    "auth": "Authorization",
+    "auth.resource": "Resources",
+    "auth.role": "Roles",
+    "auth.conf": "Configuration",
     "org": "Organization",
     "org.dept": "Depart. Management",
     "org.staff": "Staff Management",
@@ -253,8 +254,12 @@
     "country": "Country",
     "city": "City",
     "name": "Name",
+    "displayName":"Display Name",
     "firstName": "First Name",
     "lastName": "Last Name",
+    "type":"Type",
+    "uris":"URI",
+    "scopes":"Scopes",
     "username": "Username",
     "gender": "Gender",
     "email": "E-Mail",
@@ -285,14 +290,12 @@
     "success":"Success",
     "failure": "Failure",
     "copied": "Copied",
-    "con": {
-      "WX": "WeChat",
-      "DT": "Dingtalk",
-      "FS": "Feishu"
-    }
+    "description":"Description",
+    "management":"Management"
   },
   "support": {
     "can_not": "Your browser does not support this feature. Please upgrade to the latest version of Google or Firefox browser!",
-    "input_warning": "This system is for testing purposes only. Please do not input sensitive information related to privacy!"
+    "input_warning": "This system is for testing purposes only. Please do not input sensitive information related to privacy!",
+    "coming_soon":"Coming soon!"
   }
 }
