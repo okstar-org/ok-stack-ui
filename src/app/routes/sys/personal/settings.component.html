@@ -1,0 +1,42 @@
+<breadcrumb></breadcrumb>
+<section>
+  <mat-card>
+    <mat-card-header>
+      <h2>{{ 'common.website' | translate }}</h2>
+    </mat-card-header>
+    <form [formGroup]="reactiveForm" (submit)="onSubmit()">
+      <mat-card-content>
+        <div class="row">
+          <div class="col col-left col-2">{{'common.websiteInfo.title'|translate}}：</div>
+          <div class="col col-right">
+            <input matInput formControlName="title"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-left col-2">{{'common.websiteInfo.license'|translate}}：</div>
+          <div class="col col-right">
+            <input matInput formControlName="license"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-left col-2">{{'common.websiteInfo.copyright'|translate}}：</div>
+          <div class="col col-right">
+            <input matInput formControlName="copyright"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-left col-2"></div>
+          <div class="col col-right">
+            <button mat-stroked-button color="primary" class="m-8">
+              <mat-icon class="icon-8">save</mat-icon>{{"common.save"|translate}}
+            </button>
+
+          </div>
+        </div>
+      </mat-card-content>
+    </form>
+  </mat-card>
+</section>

@@ -6,12 +6,15 @@ import { ProfileLayoutComponent } from './layout/layout.component';
 import { ProfileOverviewComponent } from './overview/overview.component';
 import { ProfileSettingsComponent } from './settings/settings.component';
 import { ProfilePasswordComponent } from './password/password.component';
+import { ProfileLanguageComponent } from './language/language.component';
+import { ProfileLanguageService } from './language/language.service';
 
 const COMPONENTS: any[] = [
   ProfileLayoutComponent,
   ProfileOverviewComponent,
   ProfileSettingsComponent,
   ProfilePasswordComponent,
+  ProfileLanguageComponent,
 ];
 const COMPONENTS_DYNAMIC: any[] = [];
 

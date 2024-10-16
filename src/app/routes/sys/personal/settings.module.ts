@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonalComponent } from './personal.component';
+import { SettingsComponent } from './settings.component';
 import { SharedModule } from '@shared';
-import { BasicRoutes } from './personal.routing';
+import { BasicRoutes } from './settings.routing';
 
 @NgModule({
   imports: [CommonModule, SharedModule, BasicRoutes],
-  declarations: [PersonalComponent],
+  declarations: [SettingsComponent],
 })
 export class BasicModule {}
