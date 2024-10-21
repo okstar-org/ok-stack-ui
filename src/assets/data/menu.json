@@ -46,7 +46,7 @@
           "type": "link"
         },
         {
-          "route": "configration",
+          "route": "configuration",
           "name": "conf",
           "type": "link"
         }

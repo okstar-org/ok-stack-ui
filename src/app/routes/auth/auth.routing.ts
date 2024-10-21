@@ -18,7 +18,7 @@ const routes: Routes = [
     component: RoleComponent,
   },
   {
-    path: 'configration',
+    path: 'conf',
     component: ConfComponent,
   },
 ];
