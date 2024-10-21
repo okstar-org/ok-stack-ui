@@ -1,3 +1,18 @@
-.profile-header{
-  background-color: rgb(0, 70, 140)!important;
+.profile-header {
+  background-color: rgb(0, 70, 140) !important;
+}
+
+.text-center {
+  img {
+    width: 120px;
+    margin: 20px 0;
+    border: 1px solid #666;
+    box-shadow: 0 0 6px 4px #6666;
+  }
+
+  p {
+    margin: 0;
+    color: #999;
+    text-align: left;
+  }
 }

@@ -29,13 +29,21 @@ export interface MyOrgInfo {
   postInfo: PostInfo[];
 }
 
+export interface Account {
+  avatar: string;
+  email: string;
+  iso: string;
+  lang: string;
+  nickname: string;
+  uid: string;
+  username: string;
+  uuid: string;
+}
+
 export interface User {
-  [propName: string]: any;
-  id: number | string | null;
-  name?: string;
-  email?: string;
-  avatar?: string;
-  displayName?: string;
+  account: Account;
+  avatar: string;
+  displayName: string;
 }
 
 export interface SignUpForm {

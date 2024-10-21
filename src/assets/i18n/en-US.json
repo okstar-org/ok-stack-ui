@@ -260,6 +260,7 @@
     "type":"Type",
     "uris":"URI",
     "scopes":"Scopes",
+    "users": "Users",
     "username": "Username",
     "gender": "Gender",
     "email": "E-Mail",

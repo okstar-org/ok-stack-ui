@@ -23,6 +23,11 @@ export class RoleComponent {
     },
 
     {
+      header: this.translate.stream('common.users'),
+      field: 'users',
+    },
+
+    {
       header: '',
       field: 'operation',
       width: '60px',

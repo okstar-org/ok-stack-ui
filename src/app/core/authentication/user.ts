@@ -1,8 +1,16 @@
-import { User } from './interface';
+import { User, Account } from './interface';
 
 export const guest: User = {
-  id: null,
-  name: 'unknown',
-  email: 'unknown',
+  account: {
+    username: '',
+    avatar: '',
+    email: '',
+    iso: '',
+    lang: '',
+    nickname: ' ',
+    uid: '',
+    uuid: '',
+  },
   avatar: './assets/images/avatar-default.jpg',
+  displayName: '',
 };

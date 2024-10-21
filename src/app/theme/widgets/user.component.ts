@@ -8,7 +8,7 @@ import { debounceTime, tap } from 'rxjs/operators';
 @Component({
   selector: 'app-user',
   template: `
-    <button class="r-full" mat-button [matMenuTriggerFor]="menu">
+    <button class="r-full" mat-button [matMenuTriggerFor]="menu" *ngIf="user">
       <img matButtonIcon class="avatar r-full" [src]="user.avatar" width="24" alt="avatar" />
       <!-- <span class="m-x-8">{{ user.name }}</span> -->
     </button>

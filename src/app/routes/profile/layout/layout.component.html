@@ -8,8 +8,9 @@
       <mat-card-content>
         <div class="text-center" *ngIf="user && org">
           <img class="m-b-8 r-full" [src]="user.avatar" alt="" width="80">
-          <h2 class="m-t-0 m-b-8 f-w-400">{{ user.displayName }}</h2>
-          <p class="m-t-0 m-b-8">{{org.org.name}}</p>
+          <!-- <h2 class="m-t-0 m-b-8 ">{{ user.displayName}}</h2> -->
+          <p class="">{{"common.username"|translate}}：{{ user.account.username }}</p>
+          <p class="">{{"common.org"|translate}}：{{org.org.name}}</p>
           <section class="m-t-0 text-grey-500" *ngFor="let post of org.postInfo">
             {{post.dept}}-{{post.post}}
           </section>
@@ -29,7 +30,7 @@
           </a>
           <mat-divider></mat-divider>
           <a mat-list-item routerLink="/profile/password">
-            <mat-icon matListItemIcon>settings</mat-icon> {{"user.passwordChange"|translate}}
+            <mat-icon matListItemIcon>lock</mat-icon> {{"user.passwordChange"|translate}}
           </a>
         </mat-nav-list>
       </mat-card-content>
