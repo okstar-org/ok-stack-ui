@@ -259,6 +259,12 @@
         "clientId":"管理員客戶端Id",
         "clientSecret":"客戶端訪問密鑰"
       },
+      "minio":{
+        "title": "Minio 設置",
+        "endpoint": "Endpoint",
+        "accessKey": "Access Key",
+        "secretKey": "Secret Key"
+      },
 
       "IMSettings": "IM 設置",
       "stackSettings": "Stack 設置",

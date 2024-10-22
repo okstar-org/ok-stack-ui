@@ -271,7 +271,7 @@
       },
       "minio":{
         "title": "Minio 设置",
-        "endpoint": "端口地址",
+        "endpoint": "Endpoint",
         "accessKey": "Access Key",
         "secretKey": "Secret Key"
       },

@@ -203,6 +203,13 @@
         "clientSecret":"Client secret"
       },
 
+      "minio":{
+        "title": "Minio Settings",
+        "endpoint": "endpoint",
+        "accessKey": "Access Key",
+        "secretKey": "Secret Key"
+      },
+
       "IMSettings": "IM Settings",
       "stackSettings": "Stack Settings",
       "personal": "Personal Settings",
