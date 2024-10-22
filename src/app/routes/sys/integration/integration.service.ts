@@ -22,27 +22,11 @@ export class IntegrationService extends OkItemService {
     super(logger, http, api);
   }
 
-  saveStack(item: SysConfIntegrationStack): Observable<any> {
-    return this.http.put<any>(api.putStack, item).pipe(map((r: any) => r.data));
+  saveConf(item: any, type: string): Observable<any> {
+    return this.http.put<any>(api.putConf + '/' + type, item).pipe(map((r: any) => r.data));
   }
 
-  testStack(item: SysConfIntegrationStack): Observable<any> {
-    return this.http.post<any>(api.testStack, item).pipe(map((r: any) => r.data));
-  }
-
-  saveIm(item: SysConfIntegrationIm): Observable<any> {
-    return this.http.put<any>(api.putIm, item).pipe(map((r: any) => r.data));
-  }
-
-  testIm(item: SysConfIntegrationIm): Observable<any> {
-    return this.http.post<any>(api.testIm, item).pipe(map((r: any) => r.data));
-  }
-
-  saveKeycloak(item: SysConfIntegrationKeycloak): Observable<any> {
-    return this.http.put<any>(api.putKeycloak, item).pipe(map((r: any) => r.data));
-  }
-
-  testKeycloak(item: SysConfIntegrationKeycloak): Observable<any> {
-    return this.http.post<any>(api.testKeycloak, item).pipe(map((r: any) => r.data));
+  testConf(item: any, type: string): Observable<any> {
+    return this.http.post<any>(api.testConf + '/' + type, item).pipe(map((r: any) => r.data));
   }
 }

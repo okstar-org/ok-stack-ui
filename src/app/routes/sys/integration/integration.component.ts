@@ -4,6 +4,7 @@ import {
   SysConfIntegration,
   SysConfIntegrationIm,
   SysConfIntegrationKeycloak,
+  SysConfIntegrationMinio,
   SysConfIntegrationStack,
   api,
 } from './integration.api';
@@ -23,6 +24,7 @@ export class IntegrationComponent implements OnInit {
     password: false,
     clientSecret: false,
     apiSecret: false,
+    minioCredentials: false,
   };
   constructor(
     private integrationSrv: IntegrationService,
@@ -43,52 +45,16 @@ export class IntegrationComponent implements OnInit {
     });
   }
 
-  onStackSave(stack: SysConfIntegrationStack) {
-    this.integrationSrv.saveStack(stack).subscribe(r => {
+  onSave(type: string, stack: any) {
+    this.integrationSrv.saveConf(stack, type).subscribe(r => {
       if (r) {
         this.toastr.success(this.transalteService.instant('common.success'));
       }
     });
   }
 
-  onStackTest(stack: SysConfIntegrationStack) {
-    this.integrationSrv.testStack(stack).subscribe(r => {
-      if (r) {
-        this.toastr.success(this.transalteService.instant('common.success'));
-      } else {
-        this.toastr.warning(this.transalteService.instant('common.failure'));
-      }
-    });
-  }
-
-  onKeycloakSave(kc: SysConfIntegrationKeycloak) {
-    this.integrationSrv.saveKeycloak(kc).subscribe(r => {
-      if (r) {
-        this.toastr.success(this.transalteService.instant('common.success'));
-      }
-    });
-  }
-
-  onKeycloakTest(kc: SysConfIntegrationKeycloak) {
-    this.integrationSrv.testKeycloak(kc).subscribe(r => {
-      if (r) {
-        this.toastr.success(this.transalteService.instant('common.success'));
-      } else {
-        this.toastr.warning(this.transalteService.instant('common.failure'));
-      }
-    });
-  }
-
-  onImSave(im: SysConfIntegrationIm) {
-    this.integrationSrv.saveIm(im).subscribe(r => {
-      if (r) {
-        this.toastr.success(this.transalteService.instant('common.success'));
-      }
-    });
-  }
-
-  onImTest(im: SysConfIntegrationIm) {
-    this.integrationSrv.testIm(im).subscribe(r => {
+  onTest(type: string, stack: any) {
+    this.integrationSrv.testConf(stack, type).subscribe(r => {
       if (r) {
         this.toastr.success(this.transalteService.instant('common.success'));
       } else {

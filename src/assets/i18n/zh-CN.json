@@ -269,6 +269,12 @@
         "clientId":"管理员客户端Id",
         "clientSecret":"客户端访问密钥"
       },
+      "minio":{
+        "title": "Minio 设置",
+        "endpoint": "端口地址",
+        "accessKey": "Access Key",
+        "secretKey": "Secret Key"
+      },
 
       "IMSettings": "IM 设置",
       "stackSettings": "Stack 设置",
