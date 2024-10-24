@@ -292,6 +292,7 @@
     "postName": "Position",
     "org":"Organization",
     "url":"URL",
+    "externalUrl":"Access Url",
     "location": "Location",
     "cert": "Cert. No.",
     "test": "Test",
@@ -299,7 +300,15 @@
     "failure": "Failure",
     "copied": "Copied",
     "description":"Description",
-    "management":"Management"
+    "management":"Management",
+    "websiteInfo":{
+      "title": "Title",
+      "license": "License",
+      "copyright": "Copyright",
+      "icon": "Favicon",
+      "select_icon_file":"Please select a file of type icon!",
+      "select_image_file":"Please select a file of type image!"
+    }
   },
   "support": {
     "can_not": "Your browser does not support this feature. Please upgrade to the latest version of Google or Firefox browser!",

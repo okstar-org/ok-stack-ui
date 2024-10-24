@@ -234,13 +234,23 @@
     </mat-card-header>
     <mat-card-content>
       <div class="row">
+        <div class="col col-left col-2">{{ 'common.externalUrl' | translate }}：</div>
+        <div class="col col-right">
+          <input
+            matInput
+            [(ngModel)]="integration.minio.externalUrl"
+            placeholder="https://get.minio.okstar.org"
+          />
+        </div>
+      </div>
+      <div class="row">
         <div class="col col-left col-2">{{ 'sys.integration.minio.endpoint' | translate }}：</div>
         <div class="col col-right">
           <input
             matInput
             [(ngModel)]="integration.minio.endpoint"
+            placeholder="https://put.minio.okstar.org"
             required
-            placeholder="https://minio.okstar.org"
           />
         </div>
       </div>

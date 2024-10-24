@@ -23,6 +23,7 @@ export interface SysConfIntegrationMinio {
   endpoint: string;
   accessKey: string;
   secretKey: string;
+  externalUrl: string;
 }
 
 export interface SysConfIntegration {

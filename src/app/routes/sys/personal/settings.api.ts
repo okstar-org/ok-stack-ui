@@ -4,6 +4,14 @@ export interface WebsiteInfo {
   title: string;
   license: string;
   copyright: string;
+  name: string;
+  icon: string;
+  logo: string;
+}
+
+export interface UploadItem {
+  file: File;
+  url: string;
 }
 
 class Api implements OkApi {

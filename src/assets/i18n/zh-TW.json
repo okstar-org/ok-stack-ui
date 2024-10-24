@@ -375,6 +375,7 @@
     "postName": "崗位",
     "org":"組織",
     "url":"URL",
+    "externalUrl":"訪問Url",
     "location":"位置",
     "cert":"認證編號",
     "test":"測試",
@@ -382,7 +383,16 @@
     "failure":"失敗",
     "copied":"已復制",
     "description":"描述",
-    "management":"管理"
+    "management":"管理",
+    "websiteInfo":{
+      "title":"网站标题",
+      "license":"备案信息",
+      "copyright":"版权信息",
+      "icon":"网站图标",
+      "logo":"网站Logo",
+      "select_icon_file":"请选择一个Ico文件！",
+      "select_image_file":"请选择一个Image文件！"
+    }
   },
   "support": {
     "can_not": "您的瀏覽器不支持該功能，請陞級最新版穀歌或者火狐瀏覽器！",

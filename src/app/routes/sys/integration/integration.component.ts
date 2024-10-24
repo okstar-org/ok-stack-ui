@@ -66,11 +66,11 @@ export class IntegrationComponent implements OnInit {
   eyeIconChange(key: keyof EyeIconState) {
     this.eyeIcon[key] = !this.eyeIcon[key];
   }
+
   copy(text: string) {
     const copied = this.clipboard.copy(text);
-
     if (copied) {
-      this.toastr.success('复制成功');
+      this.toastr.success(this.transalteService.instant('common.success'));
     }
   }
 }
