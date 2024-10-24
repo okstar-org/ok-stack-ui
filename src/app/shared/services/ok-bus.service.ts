@@ -14,8 +14,8 @@ export interface BusData {
 @Injectable({
   providedIn: 'root',
 })
-export class BusServiceService {
-  private data = new BehaviorSubject<any>(null);
+export class BusService {
+  private data = new BehaviorSubject<any>({});
 
   constructor() {}
 

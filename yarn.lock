@@ -2454,14 +2454,14 @@
   dependencies:
     tslib "^2.4.0"
 
-"@ng-matero/extensions@^16.1.2", "@ng-matero/extensions@>=16.0.0":
-  version "16.1.2"
-  resolved "https://registry.npmjs.org/@ng-matero/extensions/-/extensions-16.1.2.tgz"
-  integrity sha512-GKpKwSZTzSPkFrMB99cSXlwxfnZIbjT+SsqOhQqLBKIJddtzj4Pxx7wIqzfb/q3SROWlQpg72kGeUfiR5Z5FCA==
+"@ng-matero/extensions@^16.3.10", "@ng-matero/extensions@>=16.0.0":
+  version "16.3.10"
+  resolved "https://registry.npmjs.org/@ng-matero/extensions/-/extensions-16.3.10.tgz"
+  integrity sha512-XmX88XxoKvH0Wa1mIbU/qgxYBS6LKgvM0yHf7etH7JpuCrHqUmOGjyeZcc3DIg4pE6TJgKjOzVXohv6HwjMkGg==
   dependencies:
     "@ng-select/ng-select" "^11.0.0"
     ngx-color "^9.0.0"
-    photoviewer "^3.8.0"
+    photoviewer "^3.9.0"
     tslib "^2.4.0"
 
 "@ng-select/ng-select@^11.0.0":
@@ -4639,10 +4639,10 @@ domhandler@^5.0.2, domhandler@^5.0.3:
   dependencies:
     domelementtype "^2.3.0"
 
-domq.js@^0.6.8:
-  version "0.6.8"
-  resolved "https://registry.npmjs.org/domq.js/-/domq.js-0.6.8.tgz"
-  integrity sha512-G9kHE7/dUr9VhtczUEPVQpQQvH9N599a9usD+Q+eHwVbAptVKGSodKdEnVBgW3PPeOAnL0rFaZlasGjFlbaBwA==
+domq.js@^0.7.0:
+  version "0.7.1"
+  resolved "https://registry.npmjs.org/domq.js/-/domq.js-0.7.1.tgz"
+  integrity sha512-SQjubdV+FsTa8pRPrhygohvraS6NS5XdH2wK0V8nzg3vQW5+h3+LDn5XCE5RYejbtZE4aAUz2UTxE1B9oSl55w==
 
 domutils@^3.0.1:
   version "3.1.0"
@@ -7985,12 +7985,12 @@ performance-now@^2.1.0:
   resolved "https://registry.npmjs.org/performance-now/-/performance-now-2.1.0.tgz"
   integrity sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==
 
-photoviewer@^3.8.0, photoviewer@^3.8.1:
-  version "3.8.1"
-  resolved "https://registry.npmjs.org/photoviewer/-/photoviewer-3.8.1.tgz"
-  integrity sha512-JkG1j0n/24y3HZ4v+1JEcHOqPwPV/ltRMw3Z0TAUQzgeorMghbqE0IGQneljkc0qkNCjgiNhwG1ApWvnxoQMWg==
+photoviewer@^3.10.3, photoviewer@^3.9.0:
+  version "3.10.3"
+  resolved "https://registry.npmjs.org/photoviewer/-/photoviewer-3.10.3.tgz"
+  integrity sha512-6RqhMOiPVMsgfMTP/j/lQLGGj2glzBWIDnrTpx2rcACOcO8ig+bnBAfofEPXBmLOgKxsu+HIiLQudVtloS9GEA==
   dependencies:
-    domq.js "^0.6.8"
+    domq.js "^0.7.0"
 
 picocolors@^1.0.0:
   version "1.0.0"

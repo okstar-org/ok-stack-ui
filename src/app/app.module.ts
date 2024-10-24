@@ -21,7 +21,6 @@ import { FormlyConfigModule } from './formly-config.module';
 import { BASE_URL } from '@core/interceptors/base-url-interceptor';
 import { environment } from '@env/environment';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
-import { FileUploadModule } from '@iplab/ngx-file-upload';
 
 // Required for AOT compilation
 export function TranslateHttpLoaderFactory(http: HttpClient) {

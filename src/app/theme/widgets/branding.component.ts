@@ -1,4 +1,4 @@
-import { BusData, BusDataType, BusServiceService } from '@shared/services/BusService.service';
+import { BusData, BusDataType, BusService } from '@shared/services/ok-bus.service';
 import { Component } from '@angular/core';
 import { WebsiteInfo } from 'app/routes/sys/personal/settings.api';
 
@@ -23,7 +23,7 @@ export class BrandingComponent {
   name = 'OkStack';
   logo = './assets/images/matero.png';
 
-  constructor(busService: BusServiceService) {
+  constructor(busService: BusService) {
     busService.getData().subscribe((r: BusData) => {
       console.log('received:', r);
       switch (r.type) {

@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { PreloaderService } from '@core';
 import { WebsiteInfo } from './routes/sys/personal/settings.api';
-import { BusDataType, BusServiceService } from '@shared/services/BusService.service';
+import { BusDataType, BusService as BusService } from '@shared/services/ok-bus.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { BusDataType, BusServiceService } from '@shared/services/BusService.serv
 export class AppComponent implements OnInit, AfterViewInit {
   constructor(
     private preloader: PreloaderService,
-    private busService: BusServiceService
+    private busService: BusService
   ) {}
 
   ngOnInit() {}

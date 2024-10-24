@@ -1,12 +1,14 @@
 import { OkResult } from './../../../shared/api/ok';
-import { BehaviorSubject, Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { WebsiteInfo, api, UploadItem } from './settings.api';
+import { WebsiteInfo, UploadItem } from './settings.api';
 import { SettingsService } from './settings.service';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { BusDataType, BusService } from '@shared/services/ok-bus.service';
 
 @Component({
   selector: 'app-settings',
@@ -31,16 +33,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
     private http: HttpClient,
     private toastr: ToastrService,
     private transalteService: TranslateService,
+    private busService: BusService,
     private settingsSrv: SettingsService
   ) {
     this.urlMap.set('icon', '/api/sys/upload/favicon');
     this.urlMap.set('logo', '/api/sys/upload/logo');
-    // this.subscription = this.icon.valueChanges.subscribe((values: File[]) =>
-    // this.getImage(values[0])
-    // );
-    // this.uploadedFile.subscribe(f => {
-    //   console.log('file=>', f);
-    // });
   }
 
   ngOnInit() {
@@ -49,9 +46,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     });
   }
 
-  public ngOnDestroy(): void {
-    // this.subscription.unsubscribe();
-  }
+  public ngOnDestroy(): void {}
 
   getFile(field: string) {
     return this.uploadMap.get(field);
@@ -78,20 +73,26 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    const obs: Observable<OkResult<string>>[] = [];
     this.uploadMap.forEach((upload, field) => {
       const formData = new FormData();
       formData.append('file', upload.file);
-      this.http.post<OkResult<string>>(upload.url, formData).subscribe((r: OkResult<string>) => {
-        console.log('upload:', field, '=>', r);
-        if (r.success) this.reactiveForm.get(field)?.setValue(r.data);
-      });
+      const ob = this.http.post<OkResult<string>>(upload.url, formData).pipe(
+        tap((r: OkResult<string>) => {
+          if (r.success) this.reactiveForm.get(field)?.setValue(r.data);
+        })
+      );
+      obs.push(ob);
     });
 
-    const data = this.reactiveForm.value as WebsiteInfo;
-    this.settingsSrv.update(data).subscribe(r => {
-      if (r) {
-        this.toastr.success(this.transalteService.instant('common.success'));
-      }
+    combineLatest(obs).subscribe(() => {
+      const data = this.reactiveForm.value as WebsiteInfo;
+      this.settingsSrv.update(data).subscribe(r => {
+        if (r) {
+          this.busService.setData(BusDataType.WebsiteInfo, this.reactiveForm.value);
+          this.toastr.success(this.transalteService.instant('common.success'));
+        }
+      });
     });
   }
 }
