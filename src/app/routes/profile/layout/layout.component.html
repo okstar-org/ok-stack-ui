@@ -21,8 +21,13 @@
             <div class="cover" (click)="avatarUpload.click()">+</div>
           </div>
 
-
-          <!-- <h2 class="m-t-0 m-b-8 ">{{ user.displayName}}</h2> -->
+          <p class="nickname">
+            <mat-form-field class="m-r-8" appearance="outline">
+              <mat-label>{{"common.nickname"|translate}}</mat-label>
+              <input title="nickname" matInput [(ngModel)]="user.account.nickname"
+               name="nickname" (change)="onNicknameChanged()">
+            </mat-form-field>
+          </p>
           <p class="">{{"common.username"|translate}}：{{ user.account.username }}</p>
           <p class="">{{"common.org"|translate}}：{{org.org.name}}</p>
           <section class="m-t-0 text-grey-500" *ngFor="let post of org.postInfo">

@@ -262,6 +262,8 @@
     "city": "City",
     "name": "Name",
     "displayName":"Display Name",
+    "alias":"Alias",
+    "nickname":"Nick Name",
     "firstName": "First Name",
     "lastName": "Last Name",
     "type":"Type",

@@ -4,6 +4,7 @@ import { AuthService, MyOrgInfo, User } from '@core/authentication';
 import { TranslateService } from '@ngx-translate/core';
 import { OkResult } from '@shared/api/ok';
 import { ToastrService } from 'ngx-toastr';
+import { AccountService } from './account.service';
 
 @Component({
   selector: 'app-profile-layout',
@@ -18,7 +19,8 @@ export class ProfileLayoutComponent implements OnInit {
     private http: HttpClient,
     private toastr: ToastrService,
     private transalteService: TranslateService,
-    private auth: AuthService
+    private auth: AuthService,
+    private account: AccountService
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +29,13 @@ export class ProfileLayoutComponent implements OnInit {
     });
     this.auth.orgReq().subscribe(org => {
       this.org = org;
+    });
+  }
+
+  onNicknameChanged() {
+    this.account.updateNickname(this.user.account.nickname).subscribe(r => {
+      console.log('=>', r);
+      this.toastr.success(this.transalteService.instant('common.success'));
     });
   }
 
@@ -46,8 +55,8 @@ export class ProfileLayoutComponent implements OnInit {
       formData.append('file', file);
       this.http.post<OkResult<string>>('/api/sys/upload/avatar', formData).subscribe(r => {
         if (r.success) {
-          this.toastr.success(this.transalteService.instant('common.success'));
           this.user.account.avatar = r.data;
+          this.toastr.success(this.transalteService.instant('common.success'));
         }
       });
     }

@@ -3,18 +3,19 @@
 }
 
 .text-center {
-  // img {
-  //   width: 120px;
-  //   margin: 20px 0;
-  //   border: 1px solid #666;
-
-  // }
-
   p {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
     margin: 0;
+    line-height: 2em;
     color: #999;
-    text-align: left;
+    // padding-left: 90px;
+    &.nickname{
+      justify-content: center;
+    }
   }
+
 }
 
 .avatar-box {
