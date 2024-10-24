@@ -1,7 +1,6 @@
 import { OkResult } from './../../../shared/api/ok';
-import { BehaviorSubject, Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { WebsiteInfo, api, UploadItem } from './settings.api';
+import { WebsiteInfo, UploadItem } from './settings.api';
 import { SettingsService } from './settings.service';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder } from '@angular/forms';
@@ -35,12 +34,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   ) {
     this.urlMap.set('icon', '/api/sys/upload/favicon');
     this.urlMap.set('logo', '/api/sys/upload/logo');
-    // this.subscription = this.icon.valueChanges.subscribe((values: File[]) =>
-    // this.getImage(values[0])
-    // );
-    // this.uploadedFile.subscribe(f => {
-    //   console.log('file=>', f);
-    // });
   }
 
   ngOnInit() {
@@ -49,9 +42,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     });
   }
 
-  public ngOnDestroy(): void {
-    // this.subscription.unsubscribe();
-  }
+  public ngOnDestroy(): void {}
 
   getFile(field: string) {
     return this.uploadMap.get(field);
