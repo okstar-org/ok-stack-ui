@@ -32,7 +32,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     protected fb: FormBuilder,
     private http: HttpClient,
     private toastr: ToastrService,
-    private transalteService: TranslateService,
+    private translate: TranslateService,
     private busService: BusService,
     private settingsSrv: SettingsService
   ) {
@@ -75,22 +75,25 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.uploadMap.forEach((upload, field) => {
       const formData = new FormData();
       formData.append('file', upload.file);
-      const ob = this.http.post<OkResult<string>>(upload.url, formData).pipe(
+      const ob = this.http.put<OkResult<string>>(upload.url, formData).pipe(
         tap((r: OkResult<string>) => {
           if (r.success) this.reactiveForm.get(field)?.setValue(r.data);
         })
       );
       obs.push(ob);
     });
+    if (obs.length > 0) {
+      combineLatest(obs).subscribe(r => this.saveInfo());
+    } else this.saveInfo();
+  }
 
-    combineLatest(obs).subscribe(() => {
-      const data = this.reactiveForm.value as WebsiteInfo;
-      this.settingsSrv.update(data).subscribe(r => {
-        if (r) {
-          this.busService.setData(BusDataType.WebsiteInfo, this.reactiveForm.value);
-          this.toastr.success(this.transalteService.instant('common.success'));
-        }
-      });
+  saveInfo() {
+    const data = this.reactiveForm.value as WebsiteInfo;
+    this.settingsSrv.update(data).subscribe(r => {
+      if (r) {
+        this.busService.setData(BusDataType.WebsiteInfo, this.reactiveForm.value);
+        this.toastr.success(this.translate.instant('common.success'));
+      }
     });
   }
 }

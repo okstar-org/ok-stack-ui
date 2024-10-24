@@ -357,6 +357,7 @@
     "male": "男",
     "femle": "女",
     "id": "ID",
+    "avatar":"头像",
     "name": "名称",
     "displayName":"显示名称",
     "alias":"別名",

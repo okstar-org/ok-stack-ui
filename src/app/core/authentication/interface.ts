@@ -4,7 +4,9 @@ export interface Res {
   msg: string;
   data: any;
 }
-
+export interface Profile {
+  personalName: string;
+}
 export interface PostInfo {
   dept: string;
   post: string;
@@ -27,6 +29,7 @@ export interface MyOrgInfo {
   staff: Staff;
   org: Org;
   postInfo: PostInfo[];
+  profile: Profile;
 }
 
 export interface Account {
@@ -43,6 +46,7 @@ export interface Account {
 export interface User {
   account: Account;
   displayName: string;
+  profile: Profile;
 }
 
 export interface SignUpForm {

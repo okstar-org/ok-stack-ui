@@ -53,7 +53,7 @@ export class ProfileLayoutComponent implements OnInit {
     if (file) {
       const formData = new FormData();
       formData.append('file', file);
-      this.http.post<OkResult<string>>('/api/sys/upload/avatar', formData).subscribe(r => {
+      this.http.put<OkResult<string>>('/api/sys/upload/avatar', formData).subscribe(r => {
         if (r.success) {
           this.user.account.avatar = r.data;
           this.toastr.success(this.transalteService.instant('common.success'));

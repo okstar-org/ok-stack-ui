@@ -12,4 +12,7 @@ export const guest: User = {
     uuid: '',
   },
   displayName: '',
+  profile: {
+    personalName: '',
+  },
 };

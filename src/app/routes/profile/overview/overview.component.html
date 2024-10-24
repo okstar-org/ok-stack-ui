@@ -18,8 +18,8 @@
           <div class="col personal" *ngIf="user">
             <ul class="flex">
               <li class="org-logo box-shadow"><img [src]="user.account.avatar" alt=""></li>
-              <li class="org-name">{{user.displayName}}</li>
-              <li>No: {{org.staff.no}}</li>
+              <li class="org-name">{{org.profile.personalName}}</li>
+              <li *ngIf="org.staff.no">No: {{org.staff.no}}</li>
               <li>{{org.staff.phone}}</li>
               <li>{{org.staff.email}}</li>
             </ul>

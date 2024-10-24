@@ -2,8 +2,8 @@ import { DeptService } from './dept.service';
 import { CollectionViewer, DataSource, SelectionChange } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, merge, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, merge, Observable, combineLatest } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { NGXLogger } from 'ngx-logger';
 import { DynamicFlatNode, OrgDept, OrgPost } from './dept.api';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,6 +14,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { deleteEntityTimes } from '@shared/utils/obj';
 import { Org } from '../org.api';
 import { FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { OkResult } from '@shared/api/ok';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class DynamicDatabase {
@@ -210,9 +213,10 @@ export class DeptComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private http: HttpClient,
     private translate: TranslateService,
     private dialog: MatDialog,
-    private logger: NGXLogger,
+    private toastr: ToastrService,
     private mtxDialog: MtxDialog,
     private database: DynamicDatabase,
     private svc: DeptService
@@ -226,6 +230,8 @@ export class DeptComponent implements OnInit {
   }
 
   treeControl: FlatTreeControl<DynamicFlatNode>;
+
+  file!: File;
 
   getLevel = (node: DynamicFlatNode) => node.level;
 
@@ -362,8 +368,46 @@ export class DeptComponent implements OnInit {
   }
 
   onSaveOrg() {
+    const obs: Observable<OkResult<string>>[] = [];
+    if (this.file) {
+      const formData = new FormData();
+      formData.append('file', this.file);
+      const ob = this.http.put<OkResult<string>>('/api/org/avatar', formData).pipe(
+        tap((r: OkResult<string>) => {
+          if (r.success) this.orgForm.get('avatar')?.setValue(r.data);
+        })
+      );
+      obs.push(ob);
+    }
+
+    if (obs.length > 0) {
+      combineLatest(obs).subscribe(r => this.saveOrg());
+    } else {
+      this.saveOrg();
+    }
+  }
+
+  saveOrg() {
     this.svc.saveOrg(this.orgForm.value as Org).subscribe(r => {
-      console.log('=>', r);
+      console.log('saveOrg=>', r);
+      if (r) this.toastr.success(this.translate.instant('common.success'));
     });
+  }
+
+  onFileSelected(event: Event) {
+    if (!event.target) {
+      return;
+    }
+
+    const input = event.target as HTMLInputElement;
+    if (!input.files) {
+      return;
+    }
+
+    this.file = input.files[0];
+  }
+
+  getFile(x: string) {
+    return this.file;
   }
 }
