@@ -42,7 +42,7 @@
               <div class="col col-left col-2">{{ 'common.websiteInfo.icon' | translate }}：</div>
               <div class="col col-right">
                 <div class="upload-box">
-                  <img
+                  <img class="r-full"
                     *ngIf="reactiveForm.get('icon')?.value"
                     title="icon"
                     [src]="reactiveForm.get('icon')?.value"
@@ -78,7 +78,7 @@
               <div class="col col-left col-2">{{ 'common.websiteInfo.logo' | translate }}：</div>
               <div class="col col-right">
                 <div class="upload-box">
-                  <img
+                  <img class="r-full"
                     mtxPhotoviewer
                     title="logo"
                     *ngIf="reactiveForm.get('logo')?.value"

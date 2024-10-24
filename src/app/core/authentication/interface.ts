@@ -42,7 +42,6 @@ export interface Account {
 
 export interface User {
   account: Account;
-  avatar: string;
   displayName: string;
 }
 

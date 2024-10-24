@@ -6,7 +6,7 @@ import { AuthService, User } from '@core/authentication';
   selector: 'app-user-panel',
   template: `
     <div class="matero-user-panel">
-      <img class="matero-user-panel-avatar" [src]="user.avatar" alt="avatar" width="64" />
+      <img class="matero-user-panel-avatar" [src]="user.account.avatar" alt="avatar" width="64" />
       <h4 class="matero-user-panel-name">{{ user.displayName }}</h4>
       <!-- <div class="matero-user-panel-icons">
         <button

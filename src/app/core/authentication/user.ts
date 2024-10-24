@@ -1,9 +1,9 @@
-import { User, Account } from './interface';
+import { User } from './interface';
 
 export const guest: User = {
   account: {
     username: '',
-    avatar: '',
+    avatar: './assets/images/avatar-default.jpg',
     email: '',
     iso: '',
     lang: '',
@@ -11,6 +11,5 @@ export const guest: User = {
     uid: '',
     uuid: '',
   },
-  avatar: './assets/images/avatar-default.jpg',
   displayName: '',
 };

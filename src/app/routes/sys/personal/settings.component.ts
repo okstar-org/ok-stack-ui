@@ -53,8 +53,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   onFileSelected(event: Event, field: string) {
-    console.log(event);
-
     if (!event.target) {
       return;
     }
