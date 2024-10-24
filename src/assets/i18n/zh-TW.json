@@ -317,6 +317,7 @@
     }
   },
   "common": {
+    "none":"--",
     "confirm_delete": "確認刪除？",
     "all": "全部",
     "search": "搜索",
@@ -347,6 +348,7 @@
     "descr": "描述",
     "country": "國家",
     "city": "城市",
+    "avatar":"头像",
     "name": "名稱",
     "displayName":"显示名稱",
     "alias":"別名",
@@ -358,7 +360,9 @@
     "users": "用戶",
     "username": "賬號",
     "email": "郵箱",
-    "gender": "性别",
+    "gender": "性別",
+    "male": "男",
+    "female": "女",
     "language": "语言",
     "language_set": "语言设置",
     "online": "在線狀態",

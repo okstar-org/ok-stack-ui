@@ -228,6 +228,7 @@
     }
   },
   "common": {
+    "none":"--",
     "confirm_delete": "Confirm delete?",
     "all": "All",
     "search": "Search",
@@ -272,6 +273,8 @@
     "users": "Users",
     "username": "Username",
     "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
     "email": "E-Mail",
     "address": "Address",
     "website": "Website",
