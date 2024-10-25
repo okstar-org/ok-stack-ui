@@ -35,7 +35,7 @@ export class ProfileLayoutComponent implements OnInit {
   onNicknameChanged() {
     this.account.updateNickname(this.user.account.nickname).subscribe(r => {
       console.log('=>', r);
-      this.toastr.success(this.transalteService.instant('common.success'));
+      if (r) this.toastr.success(this.transalteService.instant('common.success'));
     });
   }
 

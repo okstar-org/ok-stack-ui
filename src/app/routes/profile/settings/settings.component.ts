@@ -4,6 +4,8 @@ import { ControlsOf, IProfile } from '@shared';
 import { OkDetailComponent } from '@shared/components/ok/ok-detail.component';
 import { ProfileService } from '../profile.service';
 import { NGXLogger } from 'ngx-logger';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile-settings',
@@ -32,6 +34,8 @@ export class ProfileSettingsComponent extends OkDetailComponent implements OnIni
   constructor(
     protected logger: NGXLogger,
     protected fb: FormBuilder,
+    private toastr: ToastrService,
+    private transalteService: TranslateService,
     protected srv: ProfileService
   ) {
     super(logger, fb, srv, {});
@@ -60,6 +64,7 @@ export class ProfileSettingsComponent extends OkDetailComponent implements OnIni
     const profile = this.reactiveForm.value as IProfile;
     this.srv.updateDetail(profile).subscribe(r => {
       console.log('r=>', r);
+      if (r) this.toastr.success(this.transalteService.instant('common.success'));
     });
   }
 }
