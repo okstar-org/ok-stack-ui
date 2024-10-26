@@ -17,11 +17,12 @@ export class ProfileSettingsComponent extends OkDetailComponent implements OnIni
     id: [0, [Validators.required]],
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
-    identify: ['', [Validators.required]],
+    identify: [''],
     email: ['', [Validators.required, Validators.email]],
     gender: ['', [Validators.required]],
     phone: [''],
     country: [''],
+    province: [''],
     city: [''],
     address: [''],
     telephone: [''],
@@ -29,6 +30,7 @@ export class ProfileSettingsComponent extends OkDetailComponent implements OnIni
     birthday: [''],
     uuid: [''],
     language: [''],
+    description: [''],
   });
 
   constructor(

@@ -347,6 +347,7 @@
     "telephone": "電話號碼",
     "descr": "描述",
     "country": "國家",
+    "province": "省/州",
     "city": "城市",
     "avatar":"头像",
     "name": "名稱",
@@ -390,6 +391,7 @@
     "copied":"已復制",
     "description":"描述",
     "management":"管理",
+    "PersonalProfile":"個人中心",
     "websiteInfo":{
       "title":"网站标题",
       "license":"备案信息",

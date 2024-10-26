@@ -13,6 +13,7 @@ export interface IProfile {
   email: string;
   gender: string;
   country: string;
+  province: string;
   city: string;
   address: string;
   phone: string;
@@ -20,4 +21,5 @@ export interface IProfile {
   website: string;
   birthday: string;
   language: string;
+  description: string;
 }

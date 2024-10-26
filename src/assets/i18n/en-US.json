@@ -260,6 +260,7 @@
     "telephone": "Landphone number",
     "descr": "Description",
     "country": "Country",
+    "province": "Province/State",
     "city": "City",
     "name": "Name",
     "displayName":"Display Name",
@@ -306,6 +307,7 @@
     "copied": "Copied",
     "description":"Description",
     "management":"Management",
+    "PersonalProfile":"Personal Profile",
     "websiteInfo":{
       "title": "Title",
       "license": "License",
