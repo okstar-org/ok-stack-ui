@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
+import { DialogEditComponent } from '../dialog-edit/dialog-edit.component';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-pending',
@@ -19,33 +21,42 @@ export class PendingComponent implements OnInit {
   columns: MtxGridColumn[] = [
     {
       header: this.translate.stream('common.no'),
-      field: 'fragment.no',
-      width: '120px',
+      field: 'no',
+      width: '60px',
     },
     {
       header: this.translate.stream('common.name'),
-      field: 'fragment.name',
+      field: 'fragment.firstName',
       width: '120px',
+      formatter: row => {
+        return this.getName(row);
+      },
     },
     {
       header: this.translate.stream('common.gender'),
       field: 'fragment.gender',
       width: '120px',
+      formatter: row => {
+        return this.translate.instant('common.' + row.fragment.gender);
+      },
+    },
+    {
+      header: this.translate.stream('common.email'),
+      field: 'fragment.email',
+      width: '160px',
     },
     {
       header: this.translate.stream('common.phone'),
       field: 'fragment.phone',
       width: '120px',
     },
-
     {
-      header: this.translate.stream('common.email'),
-      field: 'fragment.email',
-      width: '300px',
-    },
-    {
-      header: this.translate.stream('common.descr'),
-      field: 'fragment.descr',
+      header: this.translate.stream('common.city'),
+      field: 'fragment.city',
+      width: '120px',
+      formatter: row => {
+        return row.fragment.city;
+      },
     },
     {
       header: this.translate.stream('common.createAt'),
@@ -55,19 +66,25 @@ export class PendingComponent implements OnInit {
     {
       header: '',
       field: 'operation',
-      width: '60px',
       type: 'button',
-      show: false,
+      show: true,
       pinned: 'right',
-
+      width: '140px',
       buttons: [
         {
           type: 'icon',
           icon: 'assignment_ind',
-          text: this.translate.instant('org.staff.pending.join'),
           tooltip: this.translate.instant('org.staff.pending.join'),
           click: row => {
             this.doJoin(row);
+          },
+        },
+        {
+          type: 'icon',
+          icon: 'edit',
+          tooltip: this.translate.instant('common.edit'),
+          click: row => {
+            this.doEdit(row);
           },
         },
       ],
@@ -108,6 +125,16 @@ export class PendingComponent implements OnInit {
     });
   }
 
+  getName(row: Staff) {
+    if (row.fragment.firstName && row.fragment.lastName) {
+      return row.fragment.firstName + row.fragment.lastName;
+    }
+    if (row.fragment.firstName) {
+      return row.fragment.firstName;
+    }
+    return row.fragment.lastName;
+  }
+
   doAdd() {
     this.dialog
       .open(DialogAddComponent)
@@ -117,14 +144,13 @@ export class PendingComponent implements OnInit {
       });
   }
 
-  onEdit(staff: Staff) {
+  doEdit(staff: Staff) {
     this.dialog
-      .open(DialogAddComponent, {
-        data: Object.assign(staff.fragment, { id: staff.id }),
-      })
+      .open(DialogEditComponent, { data: staff.fragment })
       .afterClosed()
       .subscribe(r => {
-        this.load();
+        console.log('=>', r);
+        if (r) this.load();
       });
   }
 

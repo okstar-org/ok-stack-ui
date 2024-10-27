@@ -6,8 +6,8 @@
             [columns]="columns"
             [rowSelectable]="true"
             [rowSelected]="selectedRows"
+            (rowSelectedChange)="onSelectedRows($event)"
             />
-            <!-- (rowSelectionChange)="selectedRows($event)" -->
 
 </mat-dialog-content>
 

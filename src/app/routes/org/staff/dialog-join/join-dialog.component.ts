@@ -77,6 +77,10 @@ export class JoinDialogComponent implements OnInit {
     });
   }
 
+  onSelectedRows(rows: any[]) {
+    this.selectedRows = rows;
+  }
+
   doSubmit() {
     const ids = this.selectedRows.map(r => r.id);
     if (ids.length < 1) {
