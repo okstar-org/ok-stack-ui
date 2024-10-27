@@ -1,13 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import {
-  Gender,
-  OrgStaffProfile,
-  OrgStaffReq,
-  StaffAddOpt,
-  staffForm,
-  StaffJoinOpt,
-} from '../staff.api';
+import { OrgStaffProfile, StaffAddOpt, staffForm } from '../staff.api';
 import { StaffService } from '../staff.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -39,7 +32,7 @@ export class DialogAddComponent implements OnInit, OnDestroy {
     }
 
     const profile = this.form.value as OrgStaffProfile;
-    const req: OrgStaffReq = { profile, id: this.opt.id };
+    const req = { profile, id: this.opt.id };
     this.svc.save(req).subscribe(r => {
       this.dialogRef.close(r);
     });

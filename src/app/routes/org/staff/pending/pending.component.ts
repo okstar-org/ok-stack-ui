@@ -37,6 +37,9 @@ export class PendingComponent implements OnInit {
       header: this.translate.stream('common.UserID'),
       field: 'profile.identify',
       width: '120px',
+      formatter: row => {
+        return this.getName(row);
+      },
     },
     {
       header: this.translate.stream('common.gender'),
