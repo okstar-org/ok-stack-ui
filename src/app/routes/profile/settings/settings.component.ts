@@ -44,7 +44,6 @@ export class ProfileSettingsComponent extends OkDetailComponent implements OnIni
   }
   ngOnInit(): void {
     this.getDetail('').subscribe(r => {
-      console.log('profile', r);
       delete r.createAt;
       delete r.updateAt;
       delete r.createBy;
@@ -63,6 +62,7 @@ export class ProfileSettingsComponent extends OkDetailComponent implements OnIni
   }
 
   onSubmit() {
+    console.log('onSubmit...');
     const profile = this.reactiveForm.value as IProfile;
     this.srv.updateDetail(profile).subscribe(r => {
       console.log('r=>', r);

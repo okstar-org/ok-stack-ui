@@ -1,5 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { CollectionViewer, DataSource, SelectionChange } from '@angular/cdk/collections';
+import { CollectionViewer, SelectionChange } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -145,26 +145,25 @@ export class EmployedComponent implements OnInit {
   fmt = 'yy-MM-dd HH:mm:ss';
   columns: MtxGridColumn[] = [
     { header: this.translate.stream('common.no'), field: 'no', maxWidth: 60 },
-    { header: this.translate.stream('common.name'), field: 'name', minWidth: 200 },
+    {
+      header: this.translate.stream('common.name'),
+      minWidth: 200,
+      field: 'profile.firstName',
+      formatter: row => {
+        return row.profile.firstName + row.profile.lastName;
+      },
+    },
     {
       header: this.translate.stream('common.gender'),
-      field: 'gender',
+      field: 'profile.gender',
       maxWidth: 60,
       formatter: row => {
-        return this.translate.instant('common.' + row.gender);
+        return this.translate.instant('common.' + row.profile.gender);
       },
     },
 
-    { header: this.translate.stream('common.email'), field: 'email' },
-    { header: this.translate.stream('common.phone'), field: 'phone' },
-    {
-      header: this.translate.stream('common.birthday'),
-      field: 'birthday',
-      maxWidth: 60,
-      formatter: row => {
-        return this.datePipe.transform(row.birthday, this.fmt);
-      },
-    },
+    { header: this.translate.stream('common.email'), field: 'profile.email' },
+    { header: this.translate.stream('common.phone'), field: 'profile.phone' },
     {
       header: this.translate.stream('org.staff.employed.joinedDate'),
       field: 'joinedDate',

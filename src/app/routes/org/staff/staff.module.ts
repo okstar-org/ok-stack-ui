@@ -9,6 +9,7 @@ import { LeftComponent } from './left/left.component';
 import { PendingComponent } from './pending/pending.component';
 import { JoinDialogComponent } from './dialog-join/join-dialog.component';
 import { DialogAddComponent } from './dialog-add/dialog-add.component';
+import { DialogEditComponent } from './dialog-edit/dialog-edit.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, staffRoutes],
@@ -19,6 +20,7 @@ import { DialogAddComponent } from './dialog-add/dialog-add.component';
     LeftComponent,
     JoinDialogComponent,
     DialogAddComponent,
+    DialogEditComponent,
   ],
 })
 export class StaffModule {}

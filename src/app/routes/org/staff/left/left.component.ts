@@ -12,11 +12,13 @@ import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import { TranslateService } from '@ngx-translate/core';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-left',
   templateUrl: './left.component.html',
   styleUrls: ['./left.component.scss'],
+  providers: [DatePipe],
 })
 export class LeftComponent implements OnInit {
   displayedColumns = ['no', 'name', 'gender', 'phone', 'descr', 'leftDate', 'operation'];
@@ -25,46 +27,61 @@ export class LeftComponent implements OnInit {
   columns: MtxGridColumn[] = [
     {
       header: this.translate.stream('common.no'),
-      field: 'fragment.no',
-      width: '120px',
+      field: 'profile.no',
+      width: '60px',
     },
     {
       header: this.translate.stream('common.name'),
-      field: 'fragment.name',
+      field: 'profile.firstName',
       width: '120px',
+      formatter: row => {
+        return row.profile.firstName + row.profile.lastName;
+      },
     },
     {
       header: this.translate.stream('common.gender'),
-      field: 'fragment.gender',
-      width: '120px',
+      field: 'profile.gender',
+      width: '60px',
+      formatter: row => {
+        return this.translate.instant('common.' + row.profile.gender);
+      },
     },
     {
       header: this.translate.stream('common.phone'),
-      field: 'fragment.phone',
+      field: 'profile.phone',
       width: '120px',
     },
     {
       header: this.translate.stream('common.email'),
-      field: 'fragment.email',
-      width: '300px',
+      field: 'profile.email',
+      width: '120px',
     },
     {
-      header: this.translate.stream('common.descr'),
-      field: 'fragment.descr',
+      header: this.translate.stream('common.description'),
+      field: 'profile.description',
     },
     {
-      header: this.translate.stream('common.createAt'),
-      field: 'createAt',
+      header: this.translate.stream('org.staff.employed.joinedDate'),
+      field: 'joinedDate',
       width: '210px',
+      formatter: row => {
+        return this.datePipe.transform(row.leftDate, this.fmt);
+      },
+    },
+    {
+      header: this.translate.stream('org.staff.left.leftDate'),
+      field: 'leftDate',
+      width: '210px',
+      formatter: row => {
+        return this.datePipe.transform(row.leftDate, this.fmt);
+      },
     },
     {
       header: '',
       field: 'operation',
       width: '60px',
       type: 'button',
-      show: false,
       pinned: 'right',
-
       buttons: [
         {
           text: this.translate.stream('org.staff.left.join'),
@@ -86,6 +103,7 @@ export class LeftComponent implements OnInit {
   };
 
   constructor(
+    private datePipe: DatePipe,
     private translate: TranslateService,
     private dialog: MatDialog,
     private svc: LeftService,
