@@ -62,9 +62,7 @@ export interface SignUpForm {
   //密码
   password: string;
 
-  firstName?: string;
-
-  lastName?: string;
+  nickname?: string;
 }
 
 export interface Token {

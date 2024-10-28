@@ -63,6 +63,8 @@ export class ProfileSettingsComponent extends OkDetailComponent implements OnIni
 
   onSubmit() {
     console.log('onSubmit...');
+    if (!this.reactiveForm.valid) return;
+
     const profile = this.reactiveForm.value as IProfile;
     this.srv.updateDetail(profile).subscribe(r => {
       console.log('r=>', r);
