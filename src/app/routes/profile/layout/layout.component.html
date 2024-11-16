@@ -30,9 +30,9 @@
           </p>
           <p class="">{{"common.username"|translate}}：{{ user.account.username }}</p>
           <p class="">{{"common.org"|translate}}：{{org.org.name}}</p>
-          <section class="m-t-0 text-grey-500" *ngFor="let post of org.postInfo">
-            {{post.dept}}-{{post.post}}
-          </section>
+          <p class="m-t-0 text-grey-500" *ngFor="let post of org.postInfo">
+            {{"common.postName"|translate}}：{{post.dept}}-{{post.post}}
+          </p>
         </div>
         <mat-nav-list class="m-x--16 m-b--16 m-t-16">
           <mat-divider></mat-divider>
