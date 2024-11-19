@@ -12,10 +12,30 @@
           <input
             matInput
             [(ngModel)]="integration.stack.fqdn"
-            (blur)="onChange()"
             required
             placeholder="https://stack.okstar.org"
           />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-left col-2"></div>
+        <div class="col col-right">
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onSave('stack', integration.stack)"
+            class="m-8"
+          >
+            <mat-icon class="icon-8">save</mat-icon>{{ 'common.save' | translate }}
+          </button>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onTest('stack', integration.stack)"
+            class="m-8"
+          >
+            <mat-icon class="icon-8">check</mat-icon>{{ 'common.test' | translate }}
+          </button>
         </div>
       </div>
     </mat-card-content>
@@ -34,7 +54,6 @@
           <input
             matInput
             [(ngModel)]="integration.keycloak.serverUrl"
-            (blur)="onChange()"
             required
             placeholder="http://keycloak:8080"
           />
@@ -44,13 +63,7 @@
       <div class="row">
         <div class="col col-left col-2">{{ 'sys.integration.keycloak.realm' | translate }}：</div>
         <div class="col col-right">
-          <input
-            matInput
-            [(ngModel)]="integration.keycloak.realm"
-            (blur)="onChange()"
-            required
-            placeholder="Realm"
-          />
+          <input matInput [(ngModel)]="integration.keycloak.realm" required placeholder="Realm" />
         </div>
       </div>
 
@@ -62,7 +75,6 @@
           <input
             matInput
             [(ngModel)]="integration.keycloak.clientId"
-            (blur)="onChange()"
             required
             placeholder="Client Id"
           />
@@ -74,12 +86,7 @@
           {{ 'sys.integration.keycloak.username' | translate }}：
         </div>
         <div class="col col-right">
-          <input
-            matInput
-            [(ngModel)]="integration.keycloak.username"
-            (blur)="onChange()"
-            required
-          />
+          <input title="username" matInput [(ngModel)]="integration.keycloak.username" required />
         </div>
       </div>
 
@@ -89,10 +96,10 @@
         </div>
         <div class="col col-right">
           <input
+            title="password"
             matInput
             type="{{ eyeIcon.password ? 'text' : 'password' }}"
             [(ngModel)]="integration.keycloak.password"
-            (blur)="onChange()"
             required
           />
           <div class="operate">
@@ -115,7 +122,6 @@
             matInput
             type="{{ eyeIcon.clientSecret ? 'text' : 'password' }}"
             [(ngModel)]="integration.keycloak.clientSecret"
-            (blur)="onChange()"
             required
             placeholder="Client Secret"
           />
@@ -129,6 +135,27 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col col-left col-2"></div>
+        <div class="col col-right">
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onSave('keycloak', integration.keycloak)"
+            class="m-8"
+          >
+            <mat-icon class="icon-8">save</mat-icon>{{ 'common.save' | translate }}
+          </button>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onTest('keycloak', integration.keycloak)"
+            class="m-8"
+          >
+            <mat-icon class="icon-8">check</mat-icon>{{ 'common.test' | translate }}
+          </button>
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
 
@@ -137,29 +164,12 @@
       <h2>{{ 'sys.integration.IMSettings' | translate }}</h2>
     </mat-card-header>
     <mat-card-content>
-      <!-- <div class="row">
-        <div class="col col-left col-2">
-          {{"common.enable"|translate}}/{{"common.disable"|translate}}：</div>
-        <div class="col col-right"><mat-slide-toggle color="primary"
-                            [(ngModel)]="integration.integrationEnable"
-                            (ngModelChange)="onChange()"></mat-slide-toggle></div>
-      </div>
-
-      <div class="row">
-        <div class="col col-left col-2">{{"sys.integration.new_account_verify"|translate}}：</div>
-        <div class="col col-right"> <mat-slide-toggle color="primary"
-                            [(ngModel)]="integration.verifyAccount"
-                            (ngModelChange)="onChange()"></mat-slide-toggle></div>
-
-      </div> -->
-
       <div class="row">
         <div class="col col-left col-2">{{ 'sys.integration.host' | translate }}：</div>
         <div class="col col-right">
           <input
             matInput
             [(ngModel)]="integration.im.host"
-            (blur)="onChange()"
             required
             placeholder="meet.okstar.org"
           />
@@ -169,13 +179,7 @@
       <div class="row">
         <div class="col col-left col-2">{{ 'sys.integration.adminPort' | translate }}：</div>
         <div class="col col-right">
-          <input
-            matInput
-            [(ngModel)]="integration.im.adminPort"
-            (blur)="onChange()"
-            required
-            placeholder="9090"
-          />
+          <input matInput [(ngModel)]="integration.im.adminPort" required placeholder="9090" />
         </div>
       </div>
 
@@ -186,7 +190,6 @@
             matInput
             type="{{ eyeIcon.apiSecret ? 'text' : 'password' }}"
             [(ngModel)]="integration.im.apiSecret"
-            (blur)="onChange()"
             required
             placeholder="Secret key"
           />
@@ -198,6 +201,110 @@
               <mat-icon>content_copy</mat-icon>
             </button>
           </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-left col-2"></div>
+        <div class="col col-right">
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onSave('im', integration.im)"
+            class="m-8"
+          >
+            <mat-icon class="icon-8">save</mat-icon>{{ 'common.save' | translate }}
+          </button>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onTest('im', integration.im)"
+            class="m-8"
+          >
+            <mat-icon class="icon-8">check</mat-icon>{{ 'common.test' | translate }}
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="demo-card" role="group" *ngIf="integration.minio">
+    <mat-card-header>
+      <h2>{{ 'sys.integration.minio.title' | translate }}</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col col-left col-2">{{ 'common.externalUrl' | translate }}：</div>
+        <div class="col col-right">
+          <input
+            matInput
+            [(ngModel)]="integration.minio.externalUrl"
+            placeholder="https://get.minio.okstar.org"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-left col-2">{{ 'sys.integration.minio.endpoint' | translate }}：</div>
+        <div class="col col-right">
+          <input
+            matInput
+            [(ngModel)]="integration.minio.endpoint"
+            placeholder="https://put.minio.okstar.org"
+            required
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-left col-2">{{ 'sys.integration.minio.accessKey' | translate }}：</div>
+        <div class="col col-right">
+           <input
+            matInput
+            [(ngModel)]="integration.minio.accessKey"
+            required
+            placeholder="Access Key"
+          />
+          </div>
+      </div>
+      <div class="row">
+        <div class="col col-left col-2">{{ 'sys.integration.minio.secretKey' | translate }}：</div>
+        <div class="col col-right">
+          <input
+            matInput
+            type="{{ eyeIcon.minioCredentials ? 'text' : 'password' }}"
+            [(ngModel)]="integration.minio.secretKey"
+            required
+            placeholder="Secret Key"
+          />
+          <div class="operate">
+            <button mat-button (click)="eyeIconChange('minioCredentials')">
+              <mat-icon>{{ eyeIcon.minioCredentials ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <button mat-button (click)="copy(integration.minio.secretKey)">
+              <mat-icon>content_copy</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-left col-2"></div>
+        <div class="col col-right">
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onSave('minio', integration.minio)"
+            class="m-8"
+          >
+            <mat-icon class="icon-8">save</mat-icon>{{ 'common.save' | translate }}
+          </button>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onTest('minio', integration.minio)"
+            class="m-8"
+          >
+            <mat-icon class="icon-8">check</mat-icon>{{ 'common.test' | translate }}
+          </button>
         </div>
       </div>
     </mat-card-content>

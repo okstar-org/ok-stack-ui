@@ -19,10 +19,18 @@ export interface SysConfIntegrationKeycloak {
   clientSecret: string;
 }
 
+export interface SysConfIntegrationMinio {
+  endpoint: string;
+  accessKey: string;
+  secretKey: string;
+  externalUrl: string;
+}
+
 export interface SysConfIntegration {
   im: SysConfIntegrationIm;
   stack: SysConfIntegrationStack;
   keycloak: SysConfIntegrationKeycloak;
+  minio: SysConfIntegrationMinio;
 }
 
 export interface SysSetPersonal {
@@ -42,9 +50,14 @@ export interface EyeIconState {
   password: boolean;
   clientSecret: boolean;
   apiSecret: boolean;
+  minioCredentials: boolean;
 }
 class Api implements OkApi {
-  save = '';
+  save = '/api/sys/conf/integration';
+
+  putConf = '/api/sys/conf/integration';
+  testConf = '/api/sys/conf/integration/test';
+
   page = '';
   update = '/api/sys/conf/integration';
   findById = '/api/sys/conf/integration';

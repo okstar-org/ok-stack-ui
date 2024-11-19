@@ -9,7 +9,7 @@ import { TokenService } from '../authentication/token.service';
   providedIn: 'root',
 })
 export class StartupService {
-  private menuReq$ = this.http.get('/assets/data/menu.json');
+  private menuReq$ = this.http.get('/api/auth/menu');
 
   constructor(
     private token: TokenService,

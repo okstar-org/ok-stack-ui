@@ -1,9 +1,10 @@
 {
   "menu": {
     "dashboard": "Dashboard",
-    "design": "Design",
-    "permissions": "Permissions",
-    "permissions.test": "Permission Test",
+    "auth": "Authorization",
+    "auth.resource": "Resources",
+    "auth.role": "Roles",
+    "auth.conf": "Configuration",
     "org": "Organization",
     "org.dept": "Depart. Management",
     "org.staff": "Staff Management",
@@ -202,6 +203,13 @@
         "clientSecret":"Client secret"
       },
 
+      "minio":{
+        "title": "Minio Settings",
+        "endpoint": "endpoint",
+        "accessKey": "Access Key",
+        "secretKey": "Secret Key"
+      },
+
       "IMSettings": "IM Settings",
       "stackSettings": "Stack Settings",
       "personal": "Personal Settings",
@@ -220,6 +228,7 @@
     }
   },
   "common": {
+    "none":"--",
     "confirm_delete": "Confirm delete?",
     "all": "All",
     "search": "Search",
@@ -251,12 +260,22 @@
     "telephone": "Landphone number",
     "descr": "Description",
     "country": "Country",
+    "province": "Province/State",
     "city": "City",
     "name": "Name",
+    "displayName":"Display Name",
+    "alias":"Alias",
+    "nickname":"Nick Name",
     "firstName": "First Name",
     "lastName": "Last Name",
+    "type":"Type",
+    "uris":"URI",
+    "scopes":"Scopes",
+    "users": "Users",
     "username": "Username",
     "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
     "email": "E-Mail",
     "address": "Address",
     "website": "Website",
@@ -279,20 +298,28 @@
     "postName": "Position",
     "org":"Organization",
     "url":"URL",
+    "externalUrl":"Access Url",
     "location": "Location",
     "cert": "Cert. No.",
     "test": "Test",
     "success":"Success",
     "failure": "Failure",
     "copied": "Copied",
-    "con": {
-      "WX": "WeChat",
-      "DT": "Dingtalk",
-      "FS": "Feishu"
+    "description":"Description",
+    "management":"Management",
+    "PersonalProfile":"Personal Profile",
+    "websiteInfo":{
+      "title": "Title",
+      "license": "License",
+      "copyright": "Copyright",
+      "icon": "Favicon",
+      "select_icon_file":"Please select a file of type icon!",
+      "select_image_file":"Please select a file of type image!"
     }
   },
   "support": {
     "can_not": "Your browser does not support this feature. Please upgrade to the latest version of Google or Firefox browser!",
-    "input_warning": "This system is for testing purposes only. Please do not input sensitive information related to privacy!"
+    "input_warning": "This system is for testing purposes only. Please do not input sensitive information related to privacy!",
+    "coming_soon":"Coming soon!"
   }
 }

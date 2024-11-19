@@ -1,10 +1,10 @@
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'personal', pathMatch: 'full' },
+  { path: '', redirectTo: 'settings', pathMatch: 'full' },
   {
-    path: 'personal',
-    loadChildren: () => import('./personal/personal.module').then(m => m.BasicModule),
+    path: 'settings',
+    loadChildren: () => import('./personal/settings.module').then(m => m.BasicModule),
   },
   {
     path: 'integration',

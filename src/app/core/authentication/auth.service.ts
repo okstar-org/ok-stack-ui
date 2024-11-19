@@ -13,7 +13,7 @@ import { SimpleToken } from './token';
 export class AuthService {
   private user$ = new BehaviorSubject<User>(guest);
 
-  private userReq$ = this.http.get<Res>('/api/auth/me');
+  private meReq$ = this.http.get<Res>('/api/auth/me');
   private orgReq$ = this.http.get<Res>('/api/org/me');
 
   constructor(
@@ -24,7 +24,7 @@ export class AuthService {
       .change()
       .pipe(
         switchMap(() =>
-          this.userReq$.pipe(
+          this.meReq$.pipe(
             map((r: Res) => {
               return this.payload(r);
             })
@@ -60,7 +60,7 @@ export class AuthService {
         map((token: Token) => this.token.set(token)),
         map(() => this.check()),
         map(() => {
-          this.userReq$.pipe(map(r => r.data)).subscribe(user => {
+          this.meReq$.pipe(map(r => r.data)).subscribe(user => {
             this.user$.next(Object.assign({}, guest, user));
           });
         })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EyeIconState, SysConfIntegration, api } from './integration.api';
+import { EyeIconState, OrgIntegrationConf, api } from './integration.api';
 import { IntegrationService } from './integration.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Clipboard } from '@angular/cdk/clipboard';
@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./integration.component.scss'],
 })
 export class IntegrationComponent implements OnInit {
-  integrations: SysConfIntegration[] = [];
+  integrations: OrgIntegrationConf[] = [];
   eyeIcon: EyeIconState = {
     certKey: false,
     certSecret: false,
@@ -45,24 +45,32 @@ export class IntegrationComponent implements OnInit {
     }
   }
 
-  onSync() {
-    // this.logger.info('sync');
-    // this.svc.sync().subscribe(r => {
-    //   this.logger.info('sync=>', r);
-    //   this.database.initialData().subscribe(r2 => {
-    //     this.dataSource.data = r2;
-    //   });
-    // });
+  onSync(item: OrgIntegrationConf) {
+    this.integrationSrv.sync(item.type, item).subscribe(r => {
+      if (r) {
+        this.toastr.success(this.translateService.instant('common.success'));
+      } else {
+        this.toastr.error(this.translateService.instant('common.failure'));
+      }
+    });
   }
 
-  onSave(item: SysConfIntegration) {}
+  onSave(item: OrgIntegrationConf) {
+    this.integrationSrv.updateItem(api.update, item).subscribe(r => {
+      if (r) {
+        this.toastr.success(this.translateService.instant('common.success'));
+      } else {
+        this.toastr.error(this.translateService.instant('common.failure'));
+      }
+    });
+  }
 
-  onTest(item: SysConfIntegration) {
+  onTest(item: OrgIntegrationConf) {
     this.integrationSrv.test(item.type, item).subscribe(r => {
       if (r) {
-        alert(this.translateService.instant('common.success'));
+        this.toastr.success(this.translateService.instant('common.success'));
       } else {
-        alert(this.translateService.instant('common.failure'));
+        this.toastr.error(this.translateService.instant('common.failure'));
       }
     });
   }

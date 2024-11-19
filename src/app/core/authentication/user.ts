@@ -1,8 +1,18 @@
 import { User } from './interface';
 
 export const guest: User = {
-  id: null,
-  name: 'unknown',
-  email: 'unknown',
-  avatar: './assets/images/avatar-default.jpg',
+  account: {
+    username: '',
+    avatar: './assets/images/avatar-default.jpg',
+    email: '',
+    iso: '',
+    lang: '',
+    nickname: ' ',
+    uid: '',
+    uuid: '',
+  },
+  displayName: '',
+  profile: {
+    personalName: '',
+  },
 };

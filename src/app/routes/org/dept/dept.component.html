@@ -1,148 +1,201 @@
 <breadcrumb></breadcrumb>
 
-  <div class="row" fxLayout="wrap">
-    <div class="col">
-      <form [formGroup]="orgForm">
+<div class="row" fxLayout="wrap">
+  <div class="col">
+    <form [formGroup]="orgForm">
       <mat-card>
         <mat-card-header>
-            <mat-card-subtitle   >
-              {{"common.org"|translate}}
-            </mat-card-subtitle>
+          <mat-card-subtitle>
+            {{ 'common.org' | translate }}
+          </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
           <mat-form-field class="org-item">
-            <mat-label>{{"common.name"|translate}}</mat-label>
-            <input matInput formControlName="name">
+            <mat-label>{{ 'common.name' | translate }}</mat-label>
+            <input matInput formControlName="name" />
           </mat-form-field>
 
           <mat-form-field class="org-item">
-            <mat-label>{{"common.location"|translate}}</mat-label>
-            <input matInput formControlName="location">
+            <mat-label>{{ 'common.location' | translate }}</mat-label>
+            <input matInput formControlName="location" />
           </mat-form-field>
 
           <mat-form-field class="org-item">
-            <mat-label>{{"common.url"|translate}}</mat-label>
-            <input matInput formControlName="url">
+            <mat-label>{{ 'common.url' | translate }}</mat-label>
+            <input matInput formControlName="url" />
           </mat-form-field>
 
           <mat-form-field class="org-item">
-            <mat-label>{{"common.no"|translate}}</mat-label>
-            <input matInput formControlName="no" readonly>
+            <mat-label>{{ 'common.no' | translate }}</mat-label>
+            <input matInput formControlName="no" readonly />
           </mat-form-field>
 
           <mat-form-field class="org-item">
-            <mat-label>{{"common.cert"|translate}}</mat-label>
-            <input matInput formControlName="cert" readonly>
+            <mat-label>{{ 'common.cert' | translate }}</mat-label>
+            <input matInput formControlName="cert" readonly />
           </mat-form-field>
 
-          <button mat-button mat-raised-button class="m-8" (click)="onSaveOrg()">
-            {{"common.save"|translate}}
+          <div class="org-avatar-box">
+            <!-- <span>{{"common.avatar"|translate}}</span> -->
+            <img
+              class="r-full"
+              title="avatar"
+              *ngIf="orgForm.get('avatar')"
+              [src]="orgForm.get('avatar')?.value"
+            />
+            <input
+              title="avatar"
+              type="file"
+              accept="image/*"
+              class="file-input"
+              (change)="onFileSelected($event)"
+              #fileUploadIcon
+            />
+            <div class="file-upload">
+              <button
+                type="button"
+                mat-mini-fab
+                color="primary"
+                class="upload-btn"
+                (click)="fileUploadIcon.click()"
+              >
+                <mat-icon>attach_file</mat-icon>
+              </button>
+              <span *ngIf="file" class="tips">{{ file.name }}</span>
+              <span *ngIf="!file" class="tips">{{
+                'common.websiteInfo.select_image_file' | translate
+              }}</span>
+            </div>
+          </div>
+
+          <button type="submit" mat-button mat-raised-button class="m-8" (click)="onSaveOrg()">
+            {{ 'common.save' | translate }}
           </button>
-
         </mat-card-content>
       </mat-card>
     </form>
-    </div>
   </div>
-
+</div>
 
 <div class="row dept-post" fxLayout="wrap">
-
   <div class="col">
     <mat-card class="ok-sys-card">
       <mat-card-header>
         <mat-card-subtitle>
-          {{"common.deptName"|translate}}
+          {{ 'common.deptName' | translate }}
         </mat-card-subtitle>
       </mat-card-header>
 
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-        <mat-tree-node *matTreeNodeDef="let node;" matTreeNodePadding>
-          <a href="javascript:;" (click)="onClickDept(node)">{{node.item.name}}</a>
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+          <a href="javascript:;" (click)="onClickDept(node)">{{ node.item.name }}</a>
         </mat-tree-node>
-        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
-                       [ngClass]="node.item.id === selectedDeptId?'selected':''">
+        <mat-tree-node
+          *matTreeNodeDef="let node; when: hasChild"
+          matTreeNodePadding
+          [ngClass]="node.item.id === selectedDeptId ? 'selected' : ''"
+        >
           <button mat-icon-button [attr.aria-label]="'toggle ' + node.filename" matTreeNodeToggle>
             <mat-icon class="mat-icon-rtl-mirror">
-              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
             </mat-icon>
           </button>
-          <a href="javascript:;" class="depart-tree-node" [class.disabled]="node.item.disabled" (click)="onClickDept(node)" matTreeNodeToggle>
-            {{node.item.name}}
+          <a
+            href="javascript:;"
+            class="depart-tree-node"
+            [class.disabled]="node.item.disabled"
+            (click)="onClickDept(node)"
+            matTreeNodeToggle
+          >
+            {{ node.item.name }}
           </a>
           <button mat-icon-button aria-label="Add" (click)="onAddDept(node)" class="btn-tree-add">
             <mat-icon color="primary">add</mat-icon>
           </button>
-          <button mat-icon-button aria-label="Edit" (click)="onEditDept(node)" class="btn-tree-edit">
+          <button
+            mat-icon-button
+            aria-label="Edit"
+            (click)="onEditDept(node)"
+            class="btn-tree-edit"
+          >
             <mat-icon color="primary">edit</mat-icon>
           </button>
-          <button mat-icon-button aria-label="Delete" (click)="onDeleteDept(node)" class="btn-tree-delete">
+          <button
+            mat-icon-button
+            aria-label="Delete"
+            (click)="onDeleteDept(node)"
+            class="btn-tree-delete"
+          >
             <mat-icon color="warn">delete</mat-icon>
           </button>
-          <mat-progress-bar *ngIf="node.isLoading" mode="indeterminate"
-                            class="tree-progress-bar"></mat-progress-bar>
+          <mat-progress-bar
+            *ngIf="node.isLoading"
+            mode="indeterminate"
+            class="tree-progress-bar"
+          ></mat-progress-bar>
         </mat-tree-node>
       </mat-tree>
-
-     
     </mat-card>
   </div>
 
   <div class="col">
     <mat-card class="ok-sys-card">
       <mat-card-header>
-        <mat-card-subtitle>{{'org.staff.post.list'|translate}}</mat-card-subtitle>
+        <mat-card-subtitle>{{ 'org.staff.post.list' | translate }}</mat-card-subtitle>
       </mat-card-header>
-      <mat-card-actions align="start" style="margin: 0;">
-        <button mat-button mat-raised-button class="m-8 m-x-26" (click)="onAddPost()"
-                [disabled]="!selectedDeptId">
-          {{"common.add"|translate}}
+      <mat-card-actions align="start" style="margin: 0">
+        <button
+          mat-button
+          mat-raised-button
+          class="m-8 m-x-26"
+          (click)="onAddPost()"
+          [disabled]="!selectedDeptId"
+        >
+          {{ 'common.add' | translate }}
         </button>
       </mat-card-actions>
-      <mat-table aria-readonly="true"
-                 [dataSource]="userDataSource"
-                 aria-label="Post List">
-
+      <mat-table aria-readonly="true" [dataSource]="userDataSource" aria-label="Post List">
         <ng-container matColumnDef="no">
-          <mat-header-cell *matHeaderCellDef style="max-width: 10em">{{"common.no"|translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;" style="max-width: 10em">{{row.no}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef style="max-width: 10em">{{
+            'common.no' | translate
+          }}</mat-header-cell>
+          <mat-cell *matCellDef="let row" style="max-width: 10em">{{ row.no }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef>{{"common.name"|translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.name}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef>{{ 'common.name' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="descr">
-          <mat-header-cell *matHeaderCellDef>{{"common.descr"|translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.descr}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef>{{ 'common.descr' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.descr }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="recruit">
-          <mat-header-cell *matHeaderCellDef>{{"org.post.recruit"|translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.recruit}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef>{{ 'org.post.recruit' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.recruit }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="updateAt">
-          <mat-header-cell *matHeaderCellDef>{{"common.updateAt"|translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">{{row.updateAt | date:'y-M-d HH:mm:ss'}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef>{{ 'common.updateAt' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.updateAt | date: 'y-M-d HH:mm:ss' }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="operation">
-          <mat-header-cell *matHeaderCellDef>{{"common.operation"|translate}}</mat-header-cell>
-          <mat-cell *matCellDef="let row;">
+          <mat-header-cell *matHeaderCellDef>{{ 'common.operation' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let row">
             <button mat-button color="primary" class="m-8" (click)="onEditPost(row)">
-              {{ "common.edit" | translate}}
+              {{ 'common.edit' | translate }}
             </button>
             <button mat-button color="warn" class="m-8" (click)="onDeletePost(row)">
-              {{ "common.delete" | translate}}
+              {{ 'common.delete' | translate }}
             </button>
           </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
     </mat-card>
   </div>

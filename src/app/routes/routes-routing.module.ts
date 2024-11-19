@@ -20,6 +20,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'org', loadChildren: () => import('./org/org.module').then(m => m.OrgModule) },
+      { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
       { path: 'chat', loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule) },
       { path: 'meet', loadChildren: () => import('./meet/meet.module').then(m => m.MeetModule) },
       { path: 'sys', loadChildren: () => import('./sys/sys.module').then(m => m.SysModule) },

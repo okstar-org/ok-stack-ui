@@ -4,6 +4,8 @@ import { ControlsOf, IProfile } from '@shared';
 import { OkDetailComponent } from '@shared/components/ok/ok-detail.component';
 import { ProfileService } from '../profile.service';
 import { NGXLogger } from 'ngx-logger';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile-settings',
@@ -15,11 +17,12 @@ export class ProfileSettingsComponent extends OkDetailComponent implements OnIni
     id: [0, [Validators.required]],
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
-    identify: ['', [Validators.required]],
+    identify: [''],
     email: ['', [Validators.required, Validators.email]],
     gender: ['', [Validators.required]],
     phone: [''],
     country: [''],
+    province: [''],
     city: [''],
     address: [''],
     telephone: [''],
@@ -27,18 +30,20 @@ export class ProfileSettingsComponent extends OkDetailComponent implements OnIni
     birthday: [''],
     uuid: [''],
     language: [''],
+    description: [''],
   });
 
   constructor(
     protected logger: NGXLogger,
     protected fb: FormBuilder,
+    private toastr: ToastrService,
+    private transalteService: TranslateService,
     protected srv: ProfileService
   ) {
     super(logger, fb, srv, {});
   }
   ngOnInit(): void {
     this.getDetail('').subscribe(r => {
-      console.log('profile', r);
       delete r.createAt;
       delete r.updateAt;
       delete r.createBy;
@@ -57,10 +62,13 @@ export class ProfileSettingsComponent extends OkDetailComponent implements OnIni
   }
 
   onSubmit() {
+    console.log('onSubmit...');
+    if (!this.reactiveForm.valid) return;
+
     const profile = this.reactiveForm.value as IProfile;
-    console.log('submit...', profile);
     this.srv.updateDetail(profile).subscribe(r => {
       console.log('r=>', r);
+      if (r) this.toastr.success(this.transalteService.instant('common.success'));
     });
   }
 }

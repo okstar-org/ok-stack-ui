@@ -2,11 +2,12 @@
 
 <mat-dialog-content>
 
-  <mtx-grid [data]="list" 
-            [columns]="columns" 
+  <mtx-grid [data]="list"
+            [columns]="columns"
             [rowSelectable]="true"
             [rowSelected]="selectedRows"
-            (rowSelectionChange)="selectedRows=$event" />
+            (rowSelectedChange)="onSelectedRows($event)"
+            />
 
 </mat-dialog-content>
 

@@ -4,7 +4,9 @@ export interface Res {
   msg: string;
   data: any;
 }
-
+export interface Profile {
+  personalName: string;
+}
 export interface PostInfo {
   dept: string;
   post: string;
@@ -27,15 +29,24 @@ export interface MyOrgInfo {
   staff: Staff;
   org: Org;
   postInfo: PostInfo[];
+  profile: Profile;
+}
+
+export interface Account {
+  avatar: string;
+  email: string;
+  iso: string;
+  lang: string;
+  nickname: string;
+  uid: string;
+  username: string;
+  uuid: string;
 }
 
 export interface User {
-  [propName: string]: any;
-  id: number | string | null;
-  name?: string;
-  email?: string;
-  avatar?: string;
-  displayName?: string;
+  account: Account;
+  displayName: string;
+  profile: Profile;
 }
 
 export interface SignUpForm {
@@ -51,9 +62,7 @@ export interface SignUpForm {
   //密码
   password: string;
 
-  firstName?: string;
-
-  lastName?: string;
+  nickname?: string;
 }
 
 export interface Token {

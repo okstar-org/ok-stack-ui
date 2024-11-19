@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { OkResult } from '@shared/api/ok';
 
 @Injectable({
   providedIn: 'root',
@@ -6,7 +9,7 @@ import { Injectable } from '@angular/core';
 export class PreloaderService {
   private selector = 'globalLoader';
 
-  constructor() {}
+  constructor(protected http: HttpClient) {}
 
   private getElement() {
     return document.getElementById(this.selector);
@@ -23,5 +26,11 @@ export class PreloaderService {
         el.className += ' global-loader-fade-in';
       }
     }
+  }
+
+  loadWebsite() {
+    return this.http
+      .get<OkResult<any>>('/api/sys/open/website')
+      .pipe(map((r: OkResult<any>) => r.data));
   }
 }

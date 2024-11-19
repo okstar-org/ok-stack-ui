@@ -6,7 +6,7 @@
   <mat-card-content>
     <form [formGroup]="reactiveForm" class="form-field-full" (submit)="onSubmit()">
       <div class="row">
-        <div class="col-sm-6 col-xl-4">
+        <div class="col">
           <mat-form-field>
             <mat-label>{{'common.firstName'|translate}}</mat-label>
             <input matInput placeholder="Put your first name" formControlName="firstName" required>
@@ -14,21 +14,7 @@
             </mat-error>
           </mat-form-field>
         </div>
-
-        <div class="col-sm-6 col-xl-4">
-          <mat-form-field>
-            <mat-label>{{'common.gender'|translate}}</mat-label>
-            <mat-select placeholder="Select your gender" formControlName="gender" required>
-              <mat-option value="none">-- None --</mat-option>
-              <mat-option value="male">male</mat-option>
-              <mat-option value="female">female</mat-option>
-            </mat-select>
-            <mat-error *ngIf="reactiveForm.get('gender')?.invalid">Please select gender</mat-error>
-          </mat-form-field>
-        </div>
-
-
-        <div class="col-sm-6 col-xl-4">
+        <div class="col">
           <mat-form-field>
             <mat-label>{{'common.lastName'|translate}}</mat-label>
             <input matInput placeholder="Put your last name" formControlName="lastName" required>
@@ -36,42 +22,38 @@
             </mat-error>
           </mat-form-field>
         </div>
-
-
-        <div class="col-sm-6 col-xl-4">
+        <div class="col">
           <mat-form-field>
-            <mat-label>ID</mat-label>
-            <input matInput placeholder="Put your ID" formControlName="identify" required>
-            <mat-error *ngIf="reactiveForm.get('identify')?.invalid">Please input your
-              ID</mat-error>
+            <mat-label>{{'common.gender'|translate}}</mat-label>
+            <mat-select placeholder="Select your gender" formControlName="gender" required>
+              <mat-option value="none">{{'common.none'|translate}}</mat-option>
+              <mat-option value="male">{{'common.male'|translate}}</mat-option>
+              <mat-option value="female">{{'common.female'|translate}}</mat-option>
+            </mat-select>
+            <mat-icon matSuffix>supervised_user_circle</mat-icon>
+            <mat-error *ngIf="reactiveForm.get('gender')?.invalid">Please select gender</mat-error>
           </mat-form-field>
         </div>
 
-        <div class="col-sm-6 col-xl-4">
-          <mat-form-field>
-            <mat-label>{{'common.country'|translate}}</mat-label>
-            <input matInput placeholder="Select your country" formControlName="country">
-          </mat-form-field>
-        </div>
-
-        <div class="col-sm-6 col-xl-4">
+        <div class="col">
           <mat-form-field>
             <mat-label>{{'common.email'|translate}}</mat-label>
-            <input matInput placeholder="Put your email" formControlName="email" required>
+            <input matInput placeholder="Input your email" formControlName="email" required>
+            <mat-icon matSuffix>email</mat-icon>
             <mat-error *ngIf="reactiveForm.get('email')?.invalid">
               {{getErrorMessage(reactiveForm)}}
             </mat-error>
           </mat-form-field>
         </div>
 
-        <div class="col-sm-6 col-xl-4">
+        <div class="col">
           <mat-form-field>
-            <mat-label>{{'common.city'|translate}}</mat-label>
-            <input matInput placeholder="Select your city" formControlName="city">
+            <mat-label>{{'common.UserID'|translate}}</mat-label>
+            <input matInput placeholder="Put your ID" formControlName="identify">
+            <mat-icon matSuffix>perm_identity</mat-icon>
           </mat-form-field>
         </div>
-
-        <div class="col-sm-6 col-xl-4">
+        <div class="col">
           <mat-form-field>
             <mat-label>{{'common.phone'|translate}}</mat-label>
             <input matInput placeholder="Put your mobile phone number" type="string"
@@ -80,15 +62,7 @@
             <mat-error *ngIf="reactiveForm.get('phone')?.invalid">Please enter mobile</mat-error>
           </mat-form-field>
         </div>
-
-        <div class="col-sm-6 col-xl-4">
-          <mat-form-field>
-            <mat-label>{{'common.address'|translate}}</mat-label>
-            <input matInput placeholder="Put your address" formControlName="address">
-          </mat-form-field>
-        </div>
-
-        <div class="col-sm-6 col-xl-4">
+        <div class="col">
           <mat-form-field>
             <mat-label>{{'common.telephone'|translate}}</mat-label>
             <input matInput placeholder="Put your telephone number" type="string" formControlName="telephone">
@@ -97,27 +71,67 @@
           </mat-form-field>
         </div>
 
-        <div class="col-sm-6 col-xl-4">
+        <div class="col">
           <mat-form-field>
-            <mat-label>{{'common.website'|translate}}</mat-label>
-            <input matInput placeholder="Put your website url" formControlName="website">
+            <mat-label>{{'common.country'|translate}}</mat-label>
+            <input matInput placeholder="Input your country" formControlName="country">
+            <mat-icon matSuffix>public</mat-icon>
           </mat-form-field>
         </div>
 
-        <div class="col-sm-6 col-xl-4">
+        <div class="col">
+          <mat-form-field>
+            <mat-label>{{'common.province'|translate}}</mat-label>
+            <input matInput placeholder="Input your province" formControlName="province">
+            <mat-icon matSuffix>map</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field>
+            <mat-label>{{'common.city'|translate}}</mat-label>
+            <input matInput placeholder="Input your city" formControlName="city">
+            <mat-icon matSuffix>location_city</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field>
+            <mat-label>{{'common.address'|translate}}</mat-label>
+            <input matInput placeholder="Put your address" formControlName="address">
+            <mat-icon matSuffix>room</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field>
+            <mat-label>{{'common.website'|translate}}</mat-label>
+            <input matInput placeholder="Put your website url" formControlName="website">
+            <mat-icon matSuffix>web</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
           <mat-form-field>
             <mat-label>{{'common.birthday'|translate}}</mat-label>
             <input matInput [matDatepicker]="picker2" placeholder="Choose a date"
                    formControlName="birthday">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
-            <!-- <mat-error *ngIf="reactiveForm.get('birthday')?.invalid">Please enter website</mat-error> -->
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field>
+            <mat-label>{{'common.description'|translate}}</mat-label>
+            <input matInput placeholder="Put your description" formControlName="description">
+            <mat-icon matSuffix>description</mat-icon>
           </mat-form-field>
         </div>
       </div>
 
       <div class="d-flex justify-content-end">
-        <button mat-raised-button color="primary">{{"common.submit"|translate}}</button>
+        <button type="submit" mat-raised-button color="primary">{{"common.submit"|translate}}</button>
       </div>
     </form>
   </mat-card-content>

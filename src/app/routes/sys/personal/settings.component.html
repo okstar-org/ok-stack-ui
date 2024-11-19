@@ -1,0 +1,127 @@
+<breadcrumb></breadcrumb>
+<section>
+  <div class="row">
+    <div class="col">
+      <mat-card>
+        <mat-card-header>
+          <h2>{{ 'common.website' | translate }}{{ 'common.settings' | translate }}</h2>
+        </mat-card-header>
+        <form [formGroup]="reactiveForm" (submit)="onSubmit()">
+          <mat-card-content>
+            <div class="row">
+              <div class="col col-left col-2">{{ 'common.name' | translate }}：</div>
+              <div class="col col-right">
+                <input title="name" matInput formControlName="name" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-left col-2">{{ 'common.websiteInfo.title' | translate }}：</div>
+              <div class="col col-right">
+                <input title="title" matInput formControlName="title" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-left col-2">
+                {{ 'common.websiteInfo.copyright' | translate }}：
+              </div>
+              <div class="col col-right">
+                <input title="copyright" matInput formControlName="copyright" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-left col-2">{{ 'common.websiteInfo.license' | translate }}：</div>
+              <div class="col col-right">
+                <input title="license" matInput formControlName="license" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-left col-2">{{ 'common.websiteInfo.icon' | translate }}：</div>
+              <div class="col col-right">
+                <div class="upload-box">
+                  <img class="r-full"
+                    *ngIf="reactiveForm.get('icon')?.value"
+                    title="icon"
+                    [src]="reactiveForm.get('icon')?.value"
+                  />
+                  <input
+                    title="upload"
+                    type="file"
+                    accept=".ico"
+                    class="file-input"
+                    (change)="onFileSelected($event, 'icon')"
+                    #fileUploadIcon
+                  />
+                  <div class="file-upload">
+                    <button
+                      type="button"
+                      mat-mini-fab
+                      color="primary"
+                      class="upload-btn"
+                      (click)="fileUploadIcon.click()"
+                    >
+                      <mat-icon>attach_file</mat-icon>
+                    </button>
+                    <span *ngIf="getFile('icon')" class="tips">{{ getFile('icon')?.file?.name }}</span>
+                    <span *ngIf="!getFile('icon')" class="tips">{{
+                      'common.websiteInfo.select_icon_file' | translate
+                    }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-left col-2">{{ 'common.websiteInfo.logo' | translate }}：</div>
+              <div class="col col-right">
+                <div class="upload-box">
+                  <img class="r-full"
+                    mtxPhotoviewer
+                    title="logo"
+                    *ngIf="reactiveForm.get('logo')?.value"
+                    [src]="reactiveForm.get('logo')?.value"
+                  />
+                  <input
+                    title="upload"
+                    type="file"
+                    accept="image/*"
+                    class="file-input"
+                    (change)="onFileSelected($event, 'logo')"
+                    #fileUploadLogo
+                  />
+                  <div class="file-upload">
+                    <button
+                      type="button"
+                      mat-mini-fab
+                      color="primary"
+                      class="upload-btn"
+                      (click)="fileUploadLogo.click()"
+                    >
+                      <mat-icon>attach_file</mat-icon>
+                    </button>
+                    <span *ngIf="getFile('logo')" class="tips">{{ getFile('logo')?.file?.name }}</span>
+                    <span *ngIf="!getFile('logo')" class="tips">{{
+                      'common.websiteInfo.select_image_file' | translate
+                    }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-left col-2"></div>
+              <div class="col col-right">
+                <button type="submit" mat-stroked-button color="primary" class="m-8">
+                  <mat-icon class="icon-8">save</mat-icon>{{ 'common.save' | translate }}
+                </button>
+              </div>
+            </div>
+          </mat-card-content>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</section>

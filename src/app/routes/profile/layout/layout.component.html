@@ -1,5 +1,5 @@
 <page-header class="p-t-32 p-b-48 m-b--24 profile-header"
-             title="Personal Profile" hideBreadcrumb>
+             [title]="'common.PersonalProfile'|translate" hideBreadcrumb>
 </page-header>
 
 <div class="row">
@@ -7,12 +7,32 @@
     <mat-card>
       <mat-card-content>
         <div class="text-center" *ngIf="user && org">
-          <img class="m-b-8 r-full" [src]="user.avatar" alt="" width="80">
-          <h2 class="m-t-0 m-b-8 f-w-400">{{ user.displayName }}</h2>
-          <p class="m-t-0 m-b-8">{{org.org.name}}</p>
-          <section class="m-t-0 text-grey-500" *ngFor="let post of org.postInfo">
-            {{post.dept}}-{{post.post}}
-          </section>
+
+          <div class="avatar-box r-full ">
+            <input
+                    title="upload"
+                    type="file"
+                    accept="image/*"
+                    class="file-input"
+                    (change)="onFileSelected($event)"
+                    #avatarUpload
+                  />
+            <img class="avatar" [src]="user.account.avatar" alt="" >
+            <div class="cover" (click)="avatarUpload.click()">+</div>
+          </div>
+
+          <p class="nickname">
+            <mat-form-field class="m-r-8" appearance="outline">
+              <mat-label>{{"common.nickname"|translate}}</mat-label>
+              <input title="nickname" matInput [(ngModel)]="user.account.nickname"
+               name="nickname" (change)="onNicknameChanged()">
+            </mat-form-field>
+          </p>
+          <p class="">{{"common.username"|translate}}：{{ user.account.username }}</p>
+          <p class="">{{"common.org"|translate}}：{{org.org.name}}</p>
+          <p class="m-t-0 text-grey-500" *ngFor="let post of org.postInfo">
+            {{"common.postName"|translate}}：{{post.dept}}-{{post.post}}
+          </p>
         </div>
         <mat-nav-list class="m-x--16 m-b--16 m-t-16">
           <mat-divider></mat-divider>
@@ -24,8 +44,12 @@
             <mat-icon matListItemIcon>settings</mat-icon> {{"user.settings"|translate}}
           </a>
           <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/profile/language">
+            <mat-icon matListItemIcon>language</mat-icon> {{"common.language_set"|translate}}
+          </a>
+          <mat-divider></mat-divider>
           <a mat-list-item routerLink="/profile/password">
-            <mat-icon matListItemIcon>settings</mat-icon> {{"user.passwordChange"|translate}}
+            <mat-icon matListItemIcon>lock</mat-icon> {{"user.passwordChange"|translate}}
           </a>
         </mat-nav-list>
       </mat-card-content>

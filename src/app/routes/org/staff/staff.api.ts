@@ -1,3 +1,4 @@
+import { RequiredValidator, Validators } from '@angular/forms';
 import { OkApi, OkPageApi } from '@shared/api/ok';
 
 class Api implements OkPageApi {
@@ -7,7 +8,7 @@ class Api implements OkPageApi {
   children = '/api/org/staff/children/';
   getChildren = '/api/org/staff/children';
   page = '/api/org/staff/page';
-  save = '/api/org/staff/save';
+  save = '/api/org/staff';
   update = '/api/org/staff/update';
   sync = '/api/org/staff/sync';
   syncUser = '/api/portal/sys/org/user/sync';
@@ -28,11 +29,9 @@ export enum Gender {
   MALE,
   FEMALE,
 }
-export interface OrgStaffFragment {
-  /**
-   * 编号
-   */
-  no: string;
+
+export interface OrgStaffProfile {
+  accountId: number;
 
   /**
    * 性
@@ -44,24 +43,22 @@ export interface OrgStaffFragment {
    */
   lastName: string;
 
-  name: string;
-
   /**
    * 身份证ID
    */
-  identity: string;
+  identify: string;
 
   gender: Gender;
-
-  iso: string;
 
   language: string;
 
   /**
    * 电话
    */
-  phone: string;
+  telephone: string;
 
+  //手机
+  phone: string;
   /**
    * email
    */
@@ -70,19 +67,32 @@ export interface OrgStaffFragment {
   /**
    * 备注
    */
-  descr: string;
-
-  /**
-   * 居住地址
-   */
-  livingIn: string;
+  description: string;
 
   birthday: Date;
+
+  country: string;
+
+  city: string;
+
+  province: string;
+
+  address: string;
+
+  website: string;
+}
+
+export interface OrgStaffEdit extends OrgStaffProfile {
+  id: number;
 }
 
 export interface Staff {
   id: number;
-  fragment: OrgStaffFragment;
+  /**
+   * 编号
+   */
+  no: string;
+  profile: OrgStaffProfile;
   postIds?: number[];
 }
 
@@ -101,7 +111,7 @@ export interface OrgStaff0 {
 
 export interface OrgStaffReq {
   id: number;
-  fragment: OrgStaffFragment;
+  profile: OrgStaffProfile;
 }
 
 /**员工入职请求 */
@@ -116,6 +126,27 @@ export interface StaffJoinOpt {
   postIds?: number[];
 }
 
-export interface StaffAddOpt extends OrgStaffFragment {
+export interface StaffAddOpt extends OrgStaffProfile {
   id: number;
 }
+
+const staffForm = {
+  telephone: [''],
+  phone: [''],
+  email: ['', [Validators.email, Validators.required]],
+  gender: [Gender.NONE, Validators.required],
+  birthday: [new Date()],
+  lastName: ['', Validators.required],
+  firstName: ['', Validators.required],
+  identify: [''],
+  description: [''],
+  country: [''],
+  province: [''],
+  city: [''],
+  address: [''],
+  language: [''],
+  accountId: [0],
+  website: [''],
+};
+
+export { staffForm };

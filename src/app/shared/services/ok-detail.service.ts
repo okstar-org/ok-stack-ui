@@ -1,4 +1,4 @@
-import { ID, OkApi, OkPageApi, OkResult } from './../api/ok';
+import { OkPageApi, OkResult } from './../api/ok';
 import { NGXLogger } from 'ngx-logger';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

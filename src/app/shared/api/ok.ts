@@ -36,11 +36,10 @@ export interface OkPageApi extends OkApi {
   importCommit?: string;
 }
 
-export interface OkResult<D> {
-  takes: number;
+export interface OkResult<T> {
   code: number;
   msg: string;
-  data: any;
+  data: T;
   success: boolean;
 }
 

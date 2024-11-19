@@ -1,16 +1,16 @@
 {
   "menu": {
     "dashboard": "数据大盘",
-    "design": "设计",
-    "permissions": "权限管理",
-    "permissions.test": "权限测试",
+    "auth": "权限管理",
+    "auth.resource": "资源管理",
+    "auth.role": "角色管理",
+    "auth.conf": "权限配置",
     "org": "组织架构",
     "org.dept": "部门管理",
     "org.staff": "人员管理",
-    "org.perm": "权限管理",
     "org.integration": "集成设置",
     "sys": "系统管理",
-    "sys.personal": "个人设置",
+    "sys.settings": "系统设置",
     "sys.integration": "集成设置",
     "sys.open": "开放设置",
     "meet": "会议管理",
@@ -81,27 +81,7 @@
     "range_page_label_1": "无数据",
     "range_page_label_2": "第 {{startIndex}} - {{endIndex}} 行，共 {{length}} 行"
   },
-  "table_kitchen_sink": {
-    "position": "序号",
-    "name": "姓名",
-    "weight": "体重",
-    "symbol": "代号",
-    "gender": "性别",
-    "mobile": "手机号",
-    "tele": "固话",
-    "birthday": "出生日期",
-    "city": "城市",
-    "address": "地址",
-    "company": "公司",
-    "website": "网址",
-    "email": "邮箱",
-    "operation": "操作",
-    "edit": "编辑",
-    "delete": "删除",
-    "confirm_delete": "确认删除？",
-    "ok": "确定",
-    "close": "关闭"
-  },
+
   "table_common_fields": {
     "top": "置顶"
   },
@@ -269,6 +249,12 @@
         "clientId":"管理员客户端Id",
         "clientSecret":"客户端访问密钥"
       },
+      "minio":{
+        "title": "Minio 设置",
+        "endpoint": "写入Url",
+        "accessKey": "Access Key",
+        "secretKey": "Secret Key"
+      },
 
       "IMSettings": "IM 设置",
       "stackSettings": "Stack 设置",
@@ -314,6 +300,7 @@
     }
   },
   "common": {
+    "none":"--",
     "confirm_delete": "确认删除？",
     "all": "全部",
     "search": "搜索",
@@ -346,16 +333,28 @@
     "telephone": "电话号码",
     "descr": "描述",
     "country": "国家",
+    "province": "省/州",
     "city":"城市",
     "gender": "性别",
     "male": "男",
-    "femle": "女",
+    "female": "女",
+    "id": "ID",
+    "UserID":"身份证号码",
+    "avatar":"头像",
     "name": "名称",
+    "displayName":"显示名称",
+    "alias":"別名",
+    "nickname":"昵称",
     "firstName":"姓",
     "lastName":"名",
+    "type":"类型",
+    "uris":"URI",
+    "scopes":"范围",
     "address": "地址",
     "website": "网站",
-    "username": "用户名",
+    "settings":"设置",
+    "users": "用户",
+    "username": "帐号",
     "email": "邮箱",
     "language": "语言",
     "language_set": "语言设置",
@@ -378,15 +377,29 @@
     "postName": "岗位",
     "org":"组织",
     "url":"URL",
+    "externalUrl":"访问Url",
     "location":"位置",
     "cert":"认证编号",
     "test":"测试",
     "success":"成功",
     "failure":"失败",
-    "copied":"已复制"
+    "copied":"已复制",
+    "description":"描述",
+    "management":"管理",
+    "PersonalProfile":"个人中心",
+    "websiteInfo":{
+      "title":"网站标题",
+      "license":"备案信息",
+      "copyright":"版权信息",
+      "icon":"网站图标",
+      "logo":"网站Logo",
+      "select_icon_file":"请选择一个Ico文件！",
+      "select_image_file":"请选择一个Image文件！"
+    }
   },
   "support": {
     "can_not": "您的浏览器不支持该功能，请升级最新版谷歌或者火狐浏览器！",
-    "input_warning": "本系统仅供测试使用，请勿输入涉及隐私等敏感信息！"
+    "input_warning": "本系统仅供测试使用，请勿输入涉及隐私等敏感信息！",
+    "coming_soon":"敬请期待!"
   }
 }

@@ -5,13 +5,22 @@ import { AuthService } from '@core/authentication/auth.service';
 import { SignUpForm } from '@core/authentication/interface';
 import { Router } from '@angular/router';
 
+interface EyeIconState {
+  password: boolean;
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   isLoading = false;
+
+  eyeIcon: EyeIconState = {
+    password: false,
+  };
 
   constructor(
     private fb: FormBuilder,
@@ -24,8 +33,8 @@ export class RegisterComponent implements OnInit {
       accountType: ['email', [Validators.required]],
       account: [null, [Validators.required]],
       password: [null, [Validators.required]],
-      confirmPassword: ['', [this.confirmValidator]],
       agree: [false, [Validators.requiredTrue]],
+      nickname: [''],
     });
   }
 
@@ -37,34 +46,25 @@ export class RegisterComponent implements OnInit {
     }
 
     if (this.isLoading) return;
+
     this.isLoading = true;
 
-    this.authService
-      .register({
-        iso: this.registerForm.get('iso')?.value,
-        accountType: this.registerForm.get('accountType')?.value,
-        account: this.registerForm.get('account')?.value,
-        password: this.registerForm.get('password')?.value,
-      })
-      .subscribe({
-        next: data => {
-          this.isLoading = false;
-          if (data.username) {
-            this.router.navigateByUrl('/auth/login');
-          }
-        },
-        error: err => {
-          this.isLoading = false;
-        },
-      });
+    const data = this.registerForm.value as SignUpForm;
+
+    this.authService.register(data).subscribe({
+      next: data => {
+        this.isLoading = false;
+        if (data.username) {
+          this.router.navigateByUrl('/auth/login');
+        }
+      },
+      error: err => {
+        this.isLoading = false;
+      },
+    });
   }
 
-  confirmValidator = (control: FormControl): { [k: string]: boolean } => {
-    if (!control.value) {
-      return { error: true, required: true };
-    } else if (control.value !== this.registerForm.controls.password.value) {
-      return { error: true, confirm: true };
-    }
-    return {};
-  };
+  eyeIconChange(key: keyof EyeIconState) {
+    this.eyeIcon[key] = !this.eyeIcon[key];
+  }
 }
