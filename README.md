@@ -63,15 +63,8 @@
 
 # ☎️ 联系我们
 
-> 技术交流群，添加微信：**okstar-org**（备注：**OkStar** 姓名）
-<div>
-  <img src="https://gitee.com/okstar-org/ok-edu-desktop/raw/develop/docs/assets/assistant-OkEDU.jpg" width="240"  alt=""/> 
-</div>
-
-> 微信公众号，关注账号：**OkEDU**
-<div>
-  <img src="https://gitee.com/okstar-org/ok-edu-desktop/raw/develop/docs/assets/gzh-OkEDU.jpg" width="240"  alt=""/> 
-</div>
+> 技术交流群，添加微信：**gaojiex1314**（备注：**OkStar** 姓名）
+> 微信公众号，关注账号：**TheOkStar**
 
 # 🙏 感谢支持
 - 感谢配合测试的同学
